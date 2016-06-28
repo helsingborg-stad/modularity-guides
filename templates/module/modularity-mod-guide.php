@@ -1,7 +1,6 @@
 <?php
 $i = 1;
 $steps = get_field('steps', $module->ID);
-var_dump($steps);
 ?>
 
 <div class="box no-padding">
@@ -13,9 +12,19 @@ var_dump($steps);
                 <h4><span class="label label-number"><em><?php echo $i; ?></em></span> <?php echo $step['title']; ?></h4>
             </label>
             <div class="accordion-content">
-                <article>
-                    <?php echo $step['text']; ?>
-                </article>
+                <?php
+                // Include content template
+                if (isset($step['content']) && count($step['content']) > 0) {
+                    foreach ($step['content'] as $content) {
+                        $contentTemplate = MODULARITYGUIDES_TEMPLATE_PATH . '/content/' . $content['acf_fc_layout'] . '.php';
+                        if (!file_exists($contentTemplate)) {
+                            continue;
+                        }
+
+                        include $contentTemplate;
+                    }
+                }
+                ?>
             </div>
         </section>
         <?php $i++; endforeach; endif; ?>

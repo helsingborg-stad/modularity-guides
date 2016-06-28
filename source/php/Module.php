@@ -25,10 +25,25 @@ class Module extends \Modularity\Module
             $this->args['icon']
         );
 
+        add_action('wp_enqueue_scripts', array($this, 'enqueueAssets'));
+
         // Add our template folder as search path for templates
         add_filter('Modularity/Module/TemplatePath', function ($paths) {
             $paths[] = MODULARITYGUIDES_TEMPLATE_PATH;
             return $paths;
         });
+    }
+
+    public function enqueueAssets()
+    {
+        if (!$this->hasModule()) {
+            return;
+        }
+
+        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.min.js', null, '1.0.0', true);
+        wp_enqueue_script('modularity-guides');
+
+        wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/css/modularity-guides.min.css', null, '1.0.0');
+        wp_enqueue_style('modularity-guides');
     }
 }
