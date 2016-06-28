@@ -1,0 +1,13 @@
+{
+    "name": "helsingborg-stad/modularity-guides",
+    "description": "Addon for Modularity for creating guides",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristoffer Svanmark",
+            "email": "kristoffer.svanmark@lexiconitkonsult.se"
+        }
+    ],
+    "require": {}
+}

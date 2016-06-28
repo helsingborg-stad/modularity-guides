@@ -1,7 +1,7 @@
 {
   "name": "modularity-guides",
   "version": "1.0.0",
-  "description": "A addon for Modularity to create guides",
+  "description": "Addon for Modularity for creating guides",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

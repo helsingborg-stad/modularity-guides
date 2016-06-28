@@ -1,3 +1,3 @@
 # Modularity Guides
 
-A addon for Modularity to create guides
+Addon for Modularity for creating guides
