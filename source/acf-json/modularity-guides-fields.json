@@ -82,6 +82,27 @@
                                         "tabs": "all",
                                         "toolbar": "full",
                                         "media_upload": ""
+                                    },
+                                    {
+                                        "key": "field_57736cb2f03e9",
+                                        "label": "Toggle key",
+                                        "name": "toggle_key",
+                                        "type": "text",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": "",
+                                        "maxlength": "",
+                                        "readonly": 0,
+                                        "disabled": 0
                                     }
                                 ],
                                 "min": "",
@@ -114,7 +135,7 @@
                                         "sub_fields": [
                                             {
                                                 "key": "field_57727e6d2981b",
-                                                "label": "Key",
+                                                "label": "Toggle key",
                                                 "name": "key",
                                                 "type": "text",
                                                 "instructions": "Unique key for this checkbox",
@@ -161,15 +182,15 @@
                                 "max": ""
                             },
                             {
-                                "key": "577281d980070",
-                                "name": "checkbox_content",
-                                "label": "Checkbox content",
+                                "key": "57736eaf75dcc",
+                                "name": "todo",
+                                "label": "Todo list",
                                 "display": "block",
                                 "sub_fields": [
                                     {
-                                        "key": "field_577281f080072",
-                                        "label": "Content",
-                                        "name": "content",
+                                        "key": "field_577370a3a7be7",
+                                        "label": "List items",
+                                        "name": "list_items",
                                         "type": "repeater",
                                         "instructions": "",
                                         "required": 1,
@@ -182,15 +203,15 @@
                                         "collapsed": "",
                                         "min": 1,
                                         "max": "",
-                                        "layout": "block",
+                                        "layout": "table",
                                         "button_label": "L\u00e4gg till rad",
                                         "sub_fields": [
                                             {
-                                                "key": "field_577281fe80073",
-                                                "label": "Key",
-                                                "name": "key",
+                                                "key": "field_577370aca7be8",
+                                                "label": "Title",
+                                                "name": "title",
                                                 "type": "text",
-                                                "instructions": "The checkbox key. Should be same as for any added checkbox.",
+                                                "instructions": "",
                                                 "required": 1,
                                                 "conditional_logic": 0,
                                                 "wrapper": {
@@ -207,12 +228,12 @@
                                                 "disabled": 0
                                             },
                                             {
-                                                "key": "field_5772821880074",
-                                                "label": "Text",
-                                                "name": "text",
-                                                "type": "wysiwyg",
+                                                "key": "field_577370b8a7be9",
+                                                "label": "Link text",
+                                                "name": "link_text",
+                                                "type": "text",
                                                 "instructions": "",
-                                                "required": 1,
+                                                "required": 0,
                                                 "conditional_logic": 0,
                                                 "wrapper": {
                                                     "width": "",
@@ -220,9 +241,49 @@
                                                     "id": ""
                                                 },
                                                 "default_value": "",
-                                                "tabs": "all",
-                                                "toolbar": "full",
-                                                "media_upload": 1
+                                                "placeholder": "",
+                                                "prepend": "",
+                                                "append": "",
+                                                "maxlength": "",
+                                                "readonly": 0,
+                                                "disabled": 0
+                                            },
+                                            {
+                                                "key": "field_577370c3a7bea",
+                                                "label": "Link url",
+                                                "name": "link_url",
+                                                "type": "url",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "default_value": "",
+                                                "placeholder": ""
+                                            },
+                                            {
+                                                "key": "field_577370cca7beb",
+                                                "label": "Toggle key",
+                                                "name": "toggle_key",
+                                                "type": "text",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "default_value": "",
+                                                "placeholder": "",
+                                                "prepend": "",
+                                                "append": "",
+                                                "maxlength": "",
+                                                "readonly": 0,
+                                                "disabled": 0
                                             }
                                         ]
                                     }
