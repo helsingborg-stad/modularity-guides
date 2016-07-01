@@ -7,7 +7,7 @@ $steps = get_field('steps', $module->ID);
     <div class="accordion accordion-icon accordion-list">
         <?php if (count($steps) > 0) : foreach ($steps as $step) : ?>
         <section class="accordion-section">
-            <input type="radio" name="active-section" id="mod-guide-<?php echo $module->ID; ?>-<?php echo $i; ?>">
+            <input type="radio" name="active-section" id="mod-guide-<?php echo $module->ID; ?>-<?php echo $i; ?>" <?php if ($i === 1) : ?>checked<?php endif; ?>>
             <label class="accordion-toggle" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i; ?>">
                 <h4><span class="label label-number"><em><?php echo $i; ?></em></span> <?php echo $step['title']; ?></h4>
             </label>
