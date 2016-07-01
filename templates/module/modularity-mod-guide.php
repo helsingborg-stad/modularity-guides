@@ -27,11 +27,11 @@ $steps = get_field('steps', $module->ID);
                 ?>
                 <div class="mod-guide-nav clearfix">
                     <?php if ($i > 1) : ?>
-                        <button class="btn btn-sm pull-left" data-guide-nav="prev"><?php _e('Previous', 'modularity-guides'); ?></button>
+                        <label class="btn btn-sm pull-left" data-guide-nav="prev" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i-1; ?>"><?php _e('Previous', 'modularity-guides'); ?></label>
                     <?php endif; ?>
 
                     <?php if (count($steps) > 1 && $i !== count($steps)) : ?>
-                    <button class="btn btn-sm btn-primary pull-right" data-guide-nav="next"><?php _e('Next', 'modularity-guides'); ?></button>
+                    <label class="btn btn-sm btn-primary pull-right" data-guide-nav="next" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i+1; ?>"><?php _e('Next', 'modularity-guides'); ?></label>
                     <?php endif; ?>
                 </div>
             </div>
