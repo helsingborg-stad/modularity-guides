@@ -4,6 +4,8 @@ ModularityGuides.Content = ModularityGuides.Content || {};
 ModularityGuides.Content.Checkboxes = (function ($) {
 
     function Checkboxes() {
+        this.contentToggleEngine();
+
         $('[data-mod-guide-toggle-key]').on('change', function (e) {
             this.contentToggleEngine();
         }.bind(this));
