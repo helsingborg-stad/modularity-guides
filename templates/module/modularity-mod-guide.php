@@ -4,7 +4,7 @@ $steps = get_field('steps', $module->ID);
 ?>
 
 <div class="box no-padding">
-    <div class="accordion accordion-icon accordion-list">
+    <div class="accordion accordion-list">
         <?php if (count($steps) > 0) : foreach ($steps as $step) : ?>
         <section class="accordion-section">
             <input type="radio" name="active-section" id="mod-guide-<?php echo $module->ID; ?>-<?php echo $i; ?>" <?php if ($i === 1) : ?>checked<?php endif; ?>>
@@ -27,11 +27,11 @@ $steps = get_field('steps', $module->ID);
                 ?>
                 <div class="mod-guide-nav clearfix">
                     <?php if ($i > 1) : ?>
-                        <label class="btn btn-sm pull-left" data-guide-nav="prev" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i-1; ?>"><?php _e('Previous', 'modularity-guides'); ?></label>
+                        <label class="btn pull-left" data-guide-nav="prev" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i-1; ?>"><i class="fa fa-caret-left"></i> <?php _e('Previous', 'modularity-guides'); ?></label>
                     <?php endif; ?>
 
                     <?php if (count($steps) > 1 && $i !== count($steps)) : ?>
-                    <label class="btn btn-sm btn-primary pull-right" data-guide-nav="next" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i+1; ?>"><?php _e('Next', 'modularity-guides'); ?></label>
+                    <label class="btn btn-primary pull-right" data-guide-nav="next" for="mod-guide-<?php echo $module->ID; ?>-<?php echo $i+1; ?>"><?php _e('Next', 'modularity-guides'); ?> <i class="fa fa-caret-right"></i></label>
                     <?php endif; ?>
                 </div>
             </div>

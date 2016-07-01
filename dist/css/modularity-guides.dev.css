@@ -16,3 +16,9 @@
   margin-top: 20px;
   padding: 10px 20px;
   border-top: 1px solid #E7E5E1; }
+
+[data-guide-nav="next"] .fa {
+  margin-left: 5px; }
+
+[data-guide-nav="prev"] .fa {
+  margin-right: 5px; }
