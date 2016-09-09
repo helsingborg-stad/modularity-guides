@@ -11,6 +11,8 @@ class App
         });
 
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
+        add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
+        add_action('wp_ajax_email_todo', array($this, 'emailTodo'));
 
         //add_action('wp_enqueue_scripts', array($this, 'style'));
         //add_action('wp_enqueue_scripts', array($this, 'script'));
@@ -32,5 +34,33 @@ class App
     {
         $paths[] = MODULARITYGUIDES_PATH . 'source/acf-json';
         return $paths;
+    }
+
+    public function emailTodo()
+    {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'secret=6Lc7xSkTAAAAAIhub2lk0HY9EvxlP81vpen2AfDG&response=' . $_POST['captcha'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $response = json_decode($response);
+
+        curl_close($ch);
+
+        if (!isset($response->success) || $response->success !== true) {
+            echo "false";
+            wp_die();
+        }
+
+        // SEND THE GODDAMN EMAIL
+        $to = $_POST['email'];
+        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'], 'From: no-reply@helsingborg.se');
+
+        echo "success";
+        wp_die();
     }
 }
