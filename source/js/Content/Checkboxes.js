@@ -4,17 +4,31 @@ ModularityGuides.Content = ModularityGuides.Content || {};
 ModularityGuides.Content.Checkboxes = (function ($) {
 
     function Checkboxes() {
+        this.handleEvents();
         this.contentToggleEngine();
+    }
+
+    Checkboxes.prototype.handleEvents = function() {
+        $('input[type="checkbox"][data-mod-guide-relation]').on('change', function (e) {
+            var relations = $(this).data('mod-guide-relation');
+            relations = relations.split(',');
+
+            $.each(relations, function (index, item) {
+                var $cb = $('input[type="checkbox"][data-mod-guide-toggle-key="' + item + '"]');
+                $cb.prop('checked', !$cb.prop('checked')).trigger('change');
+            });
+        });
 
         $('[data-mod-guide-toggle-key]').on('change', function (e) {
             this.contentToggleEngine();
         }.bind(this));
-    }
+    };
 
     Checkboxes.prototype.contentToggleEngine = function() {
         // Get checked checkboxes
         var checked = [];
         var $checkboxes = $('[data-mod-guide-toggle-key]');
+
         $checkboxes.each(function (index, element) {
             if ($(element).prop('checked') !== true) {
                 return;
