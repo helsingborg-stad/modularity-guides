@@ -1,3 +1,4 @@
+[
     {
         "key": "group_577279265d68a",
         "title": "Guide",
@@ -413,6 +414,91 @@
                                 ],
                                 "min": "",
                                 "max": ""
+                            },
+                            {
+                                "key": "57d653b946a7c",
+                                "name": "related_guides",
+                                "label": "Related guides",
+                                "display": "block",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_57d653cf46a7d",
+                                        "label": "Guides",
+                                        "name": "guides",
+                                        "type": "repeater",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "collapsed": "",
+                                        "min": 1,
+                                        "max": "",
+                                        "layout": "table",
+                                        "button_label": "L\u00e4gg till rad",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_57d653f646a7e",
+                                                "label": "Title",
+                                                "name": "title",
+                                                "type": "text",
+                                                "instructions": "",
+                                                "required": 1,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "default_value": "",
+                                                "placeholder": "",
+                                                "prepend": "",
+                                                "append": "",
+                                                "maxlength": ""
+                                            },
+                                            {
+                                                "key": "field_57d6546146a7f",
+                                                "label": "Link URL",
+                                                "name": "url",
+                                                "type": "url",
+                                                "instructions": "",
+                                                "required": 1,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "default_value": "",
+                                                "placeholder": ""
+                                            },
+                                            {
+                                                "key": "field_57d6548046a80",
+                                                "label": "Toggle key",
+                                                "name": "toggle_key",
+                                                "type": "text",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "default_value": "",
+                                                "placeholder": "",
+                                                "prepend": "",
+                                                "append": "",
+                                                "maxlength": ""
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "min": "",
+                                "max": ""
                             }
                         ]
                     }
@@ -437,3 +523,4 @@
         "active": 1,
         "description": ""
     }
+]
