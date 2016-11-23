@@ -56,9 +56,12 @@ class App
             wp_die();
         }
 
+        $checklist = urldecode($_POST['checklist']);
+        $checklist = preg_replace('/<tfoot[^>]*>([\s\S]*?)<\/tfoot[^>]*>/i', '', $checklist);
+
         // SEND THE GODDAMN EMAIL
         $to = $_POST['email'];
-        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'], "From: no-reply@helsingborg.se\r\nContent-Type: text/html; charset=UTF-8\r\n");
+        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $checklist, "From: no-reply@helsingborg.se\r\nContent-Type: text/html; charset=UTF-8\r\n");
 
         echo "success";
         wp_die();

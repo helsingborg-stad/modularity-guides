@@ -16,6 +16,7 @@ ModularityGuides.Content.Todo = (function ($) {
             $(this).find('.modal-footer').append('<div class="loading"><div></div><div></div><div></div><div></div></div>');
 
             var checklist = $container.first().find('table')[0].outerHTML;
+            checklist = encodeURI(checklist);
 
             var gCaptcha = $container.find('textarea[name="g-recaptcha-response"]').val();
 
