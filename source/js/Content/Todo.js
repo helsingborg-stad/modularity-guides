@@ -15,7 +15,13 @@ ModularityGuides.Content.Todo = (function ($) {
             $(this).find('input[type="submit"]').hide();
             $(this).find('.modal-footer').append('<div class="loading"><div></div><div></div><div></div><div></div></div>');
 
-            var checklist = $container.first().find('table')[0].outerHTML;
+            var $checklist = $container.first().find('table').clone();
+            $checklist.appendTo(document.body);
+            $checklist.find('tr').not(':visible').remove();
+            checklistHTML = $checklist[0].outerHTML;
+            $checklist.remove();
+
+            checklist = encodeURI(checklistHTML);
 
             var gCaptcha = $container.find('textarea[name="g-recaptcha-response"]').val();
 
