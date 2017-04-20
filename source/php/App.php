@@ -6,9 +6,7 @@ class App
 {
     public function __construct()
     {
-        add_action('Modularity', function () {
-            new \ModularityGuides\Module();
-        });
+        new \ModularityGuides\Module();
 
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
