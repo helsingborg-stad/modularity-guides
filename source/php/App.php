@@ -6,7 +6,9 @@ class App
 {
     public function __construct()
     {
-        new \ModularityGuides\Module();
+        add_action('Modularity', function () {
+            new \ModularityGuides\Module();
+        });
 
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
@@ -54,12 +56,9 @@ class App
             wp_die();
         }
 
-        $checklist = urldecode($_POST['checklist']);
-        $checklist = preg_replace('/<tfoot[^>]*>([\s\S]*?)<\/tfoot[^>]*>/i', '', $checklist);
-
         // SEND THE GODDAMN EMAIL
         $to = $_POST['email'];
-        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $checklist, "From: no-reply@helsingborg.se\r\nContent-Type: text/html; charset=UTF-8\r\n");
+        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'], 'From: no-reply@helsingborg.se');
 
         echo "success";
         wp_die();
