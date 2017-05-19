@@ -6,10 +6,12 @@ class App
 {
     public function __construct()
     {
-        modularity_register_module(
-            MODULARITYGUIDES_PATH . 'source/php/', // The directory path of the module
-            'Module' // The class' file and class name (should be the same) withot .php extension
-        );
+        add_action('plugins_loaded', function () {
+            modularity_register_module(
+                MODULARITYGUIDES_PATH . 'source/php/', // The directory path of the module
+                'Module' // The class' file and class name (should be the same) withot .php extension
+            );
+        });
 
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
