@@ -59,9 +59,17 @@ class App
             wp_die();
         }
 
-        // SEND THE GODDAMN EMAIL
+        // Send the email
         $to = $_POST['email'];
-        $mail = mail($to, __('Your checklist', 'modularity-guides'), __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'], 'From: no-reply@helsingborg.se');
+        $mail = wp_mail(
+            $to,
+            __('Your checklist', 'modularity-guides'),
+            __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'],
+            array(
+                'From: no-reply@helsingborg.se',
+                'Content-Type: text/html; charset=UTF-8'
+            )
+        );
 
         echo "success";
         wp_die();
