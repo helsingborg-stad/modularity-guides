@@ -64,7 +64,7 @@ class App
         $mail = wp_mail(
             $to,
             __('Your checklist', 'modularity-guides'),
-            __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . $_POST['checklist'],
+            __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . urldecode($_POST['checklist']),
             array(
                 'From: no-reply@helsingborg.se',
                 'Content-Type: text/html; charset=UTF-8'

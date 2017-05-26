@@ -6,7 +6,11 @@
     "authors": [
         {
             "name": "Kristoffer Svanmark",
-            "email": "kristoffer.svanmark@lexiconitkonsult.se"
+            "email": "kristoffer.svanmark@knowit.se"
+        },
+        {
+            "name": "Sebastian Thulin",
+            "email": "sebastian.thulin@helsingborg.se"
         }
     ],
     "require": {}
