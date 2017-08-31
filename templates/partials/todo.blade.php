@@ -50,11 +50,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid">
-                            <div class="grid-md-12">
-                                <div class="g-recaptcha" data-sitekey="6Lc7xSkTAAAAAJLXT2LbsFDPPp81rKmqzNj0jcH0"></div>
+                        @if(!is_user_logged_in())
+                            <div class="grid">
+                                <div class="grid-md-12">
+                                    <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </article>
                 </div>
                 <div class="modal-footer">

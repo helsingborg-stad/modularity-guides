@@ -118,11 +118,12 @@ ModularityGuides.Content.Todo = (function ($) {
                 $container.find('.loading').remove();
                 $container.find('input[type="submit"]').show();
 
-                if (response != 'success') {
-                    return false;
+                if (response == 'success') {
+                    $container.after('<div class="grid"><div class="grid-md-12"><div class="notice success">' + guides.email_sent + '</div></div></div>');
+                } else {
+                    $container.after('<div class="grid"><div class="grid-md-12"><div class="notice warning">' + guides.email_failed + '</div></div></div>');
                 }
 
-                $container.after('<div class="grid"><div class="grid-md-12"><div class="notice success">' + guides.email_sent + '</div></div></div>')
                 location.hash = '';
             });
 

@@ -16,21 +16,17 @@ class App
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
         add_action('wp_ajax_email_todo', array($this, 'emailTodo'));
-
-        //add_action('wp_enqueue_scripts', array($this, 'style'));
-        //add_action('wp_enqueue_scripts', array($this, 'script'));
+        add_action('admin_notices', array($this, 'recaptchaConstant'));
     }
 
-    public function style()
+    public function recaptchaConstant()
     {
-        wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/css/modularity-guides.min.css', null, '1.0.0');
-        wp_enqueue_style('modularity-guides');
-    }
-
-    public function script()
-    {
-        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.min.js', null, '1.0.0', true);
-        wp_enqueue_script('modularity-guides');
+        if (defined('G_RECAPTCHA_KEY') && defined('G_RECAPTCHA_SECRET')) {
+            return;
+        }
+        $class = 'notice notice-warning';
+        $message = __('Modularity guides: constant \'g_recaptcha_key\' or \'g_recaptcha_secret\' is not defined.', 'modularity-guides' );
+        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
     }
 
     public function jsonLoadPath($paths)
@@ -41,22 +37,25 @@ class App
 
     public function emailTodo()
     {
-        $ch = curl_init();
+        if (!is_user_logged_in()) {
+            $g_recaptcha_secret = defined('G_RECAPTCHA_SECRET') ? G_RECAPTCHA_SECRET : '';
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 'secret=6Lc7xSkTAAAAAIhub2lk0HY9EvxlP81vpen2AfDG&response=' . $_POST['captcha'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+            curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'secret=' . $g_recaptcha_secret . '&response=' . $_POST['captcha'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
-        $response = json_decode($response);
+            $response = curl_exec($ch);
+            $response = json_decode($response);
 
-        curl_close($ch);
+            curl_close($ch);
 
-        if (!isset($response->success) || $response->success !== true) {
-            echo "false";
-            wp_die();
+            if (!isset($response->success) || $response->success !== true) {
+                echo "false";
+                wp_die();
+            }
         }
 
         // Send the email

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Guides\n"
-"POT-Creation-Date: 2017-08-31 09:45+0200\n"
-"PO-Revision-Date: 2017-08-31 09:47+0200\n"
+"POT-Creation-Date: 2017-08-31 15:12+0200\n"
+"PO-Revision-Date: 2017-08-31 15:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:66
+#: source/php/App.php:68
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/App.php:67
+#: source/php/App.php:69
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
@@ -43,6 +43,10 @@ msgstr ""
 #: source/php/Module.php:32
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
+
+#: source/php/Module.php:33
+msgid "The message can't be sent right now. Please try again later."
+msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
 #: templates/content/checkboxes.php:8 templates/partials/checkboxes.blade.php:9
 msgid "required"
@@ -77,7 +81,7 @@ msgstr "Skicka att göra-lista som e-post"
 msgid "Email"
 msgstr "E-postadress"
 
-#: templates/content/todo.php:61 templates/partials/todo.blade.php:61
+#: templates/content/todo.php:61 templates/partials/todo.blade.php:63
 msgid "Send"
 msgstr "Skicka"
 

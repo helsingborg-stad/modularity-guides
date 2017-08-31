@@ -21,6 +21,7 @@ class Module extends \Modularity\Module
     {
         $data = array();
         $data['steps'] = get_field('steps', $this->ID);
+        $data['g_recaptcha_key'] = defined('G_RECAPTCHA_KEY') ? G_RECAPTCHA_KEY : '';
 
         return $data;
     }
@@ -29,7 +30,8 @@ class Module extends \Modularity\Module
     {
         wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.dev.js', null, '1.0.0', true);
         wp_localize_script('modularity-guides', 'guides', array(
-            'email_sent' => __("Email was sent", 'modularity-guides'),
+            'email_sent'    => __("Email was sent", 'modularity-guides'),
+            'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
         ));
         wp_enqueue_script('modularity-guides');
 
