@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Guides\n"
-"POT-Creation-Date: 2017-08-31 15:12+0200\n"
-"PO-Revision-Date: 2017-08-31 15:12+0200\n"
+"POT-Creation-Date: 2017-08-31 16:05+0200\n"
+"PO-Revision-Date: 2017-08-31 16:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -20,11 +20,19 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:68
+#: source/php/App.php:28
+msgid ""
+"Modularity guides: constant 'g_recaptcha_key' or 'g_recaptcha_secret' is not "
+"defined."
+msgstr ""
+"Modularity guider: konstant ‘g_recaptcha_key’ eller ‘g_recaptcha_secret’ är "
+"inte definierade."
+
+#: source/php/App.php:65
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/App.php:69
+#: source/php/App.php:66
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
@@ -40,11 +48,11 @@ msgstr ""
 msgid "A step by step guide"
 msgstr ""
 
-#: source/php/Module.php:32
+#: source/php/Module.php:33
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Module.php:33
+#: source/php/Module.php:34
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
