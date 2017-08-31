@@ -28,6 +28,9 @@ class Module extends \Modularity\Module
     public function script()
     {
         wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.dev.js', null, '1.0.0', true);
+        wp_localize_script('modularity-guides', 'guides', array(
+            'email_sent' => __("Email was sent", 'modularity-guides'),
+        ));
         wp_enqueue_script('modularity-guides');
 
         wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/css/modularity-guides.min.css', null, '1.0.0');

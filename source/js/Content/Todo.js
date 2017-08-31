@@ -40,7 +40,7 @@ ModularityGuides.Content.Todo = (function ($) {
                     return false;
                 }
 
-                $container.after('<div class="grid"><div class="grid-md-12"><div class="notice success">Email was sent.</div></div></div>')
+                $container.after('<div class="grid"><div class="grid-md-12"><div class="notice success">' + guides.email_sent + '</div></div></div>')
                 location.hash = '';
             });
 
