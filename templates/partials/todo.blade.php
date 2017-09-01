@@ -32,8 +32,6 @@
     </div>
 
     <div id="modal-email-todo" class="modal modal-backdrop-2 modal-xs" tabindex="-1" role="dialog" aria-hidden="true">
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-
         <div class="modal-content">
             <form>
                 <div class="modal-header">
