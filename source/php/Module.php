@@ -21,6 +21,8 @@ class Module extends \Modularity\Module
     {
         $data = array();
         $data['steps'] = get_field('steps', $this->ID);
+        $theme = wp_get_theme();
+        $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
         $data['g_recaptcha_key'] = defined('G_RECAPTCHA_KEY') ? G_RECAPTCHA_KEY : '';
 
         return $data;

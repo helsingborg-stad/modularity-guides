@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if(!is_user_logged_in())
+                        @if(!is_user_logged_in() && $municipio)
                             <div class="grid">
                                 <div class="grid-md-12">
                                     <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>

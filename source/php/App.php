@@ -26,7 +26,8 @@ class App
 
     public function emailTodo()
     {
-        if (!is_user_logged_in()) {
+        $theme = wp_get_theme();
+        if (!is_user_logged_in() && ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio')) {
             $response = isset($_POST['captcha']) ? esc_attr($_POST['captcha']) : '';
             $reCaptcha = \Municipio\Helper\ReCaptcha::controlReCaptcha($response);
 
