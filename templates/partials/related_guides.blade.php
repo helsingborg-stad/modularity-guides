@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid u-mb-2">
     <div class="grid-xs-12">
         <ul>
             @foreach ($content['guides'] as $item)

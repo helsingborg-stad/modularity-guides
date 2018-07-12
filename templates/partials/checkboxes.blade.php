@@ -1,4 +1,4 @@
-<div class="grid mod-guide-checkboxes">
+<div class="grid mod-guide-checkboxes u-mb-2">
     <div class="grid-xs-12">
         <div class="form-group">
             @foreach ($content['checkboxes'] as $checkbox)
