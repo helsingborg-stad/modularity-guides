@@ -15,7 +15,7 @@ $j = 1;
             <div class="accordion-content">
                 @if (isset($step['content']) && count($step['content']) > 0)
                     @foreach ($step['content'] as $content)
-                        @include('partials.' . $content['acf_fc_layout'], array('modalId' => $j))
+                        @include('partials.' . $content['acf_fc_layout'], array('stepId' => $j))
                         <?php $j++; ?>
                     @endforeach
                 @endif
