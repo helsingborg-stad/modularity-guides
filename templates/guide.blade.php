@@ -1,4 +1,7 @@
-<?php $i = 1; ?>
+<?php
+$i = 1;
+$j = 1;
+?>
 
 <div class="box no-padding">
     <div class="accordion accordion-list">
@@ -12,7 +15,8 @@
             <div class="accordion-content">
                 @if (isset($step['content']) && count($step['content']) > 0)
                     @foreach ($step['content'] as $content)
-                        @include('partials.' . $content['acf_fc_layout'])
+                        @include('partials.' . $content['acf_fc_layout'], array('modalId' => $j))
+                        <?php $j++; ?>
                     @endforeach
                 @endif
                 <div class="accordion-nav clearfix">
