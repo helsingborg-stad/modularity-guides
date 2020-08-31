@@ -1,7 +1,4 @@
-ModularityGuides = ModularityGuides || {};
-ModularityGuides.Content = ModularityGuides.Content || {};
-
-ModularityGuides.Content.Todo = (function ($) {
+export default (function ($) {
 
     function Todo() {
         $('#modal-email-todo form').on('submit', function (e) {

@@ -1,7 +1,4 @@
-ModularityGuides = ModularityGuides || {};
-ModularityGuides.Content = ModularityGuides.Content || {};
-
-ModularityGuides.Content.Checkboxes = (function ($) {
+export default (function ($) {
 
     function Checkboxes() {
         this.handleEvents();

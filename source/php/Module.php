@@ -24,7 +24,7 @@ class Module extends \Modularity\Module
         $theme = wp_get_theme();
         $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
         $data['g_recaptcha_key'] = defined('G_RECAPTCHA_KEY') ? G_RECAPTCHA_KEY : '';
-
+        var_dump($data);
         return $data;
     }
 
@@ -33,7 +33,7 @@ class Module extends \Modularity\Module
         wp_register_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', '', '1.0.0', true);
         wp_enqueue_script('google-recaptcha');
 
-        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.dev.js', null, '1.0.0', true);
+        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.min.js', null, '1.0.0', true);
         wp_localize_script('modularity-guides', 'guides', array(
             'email_sent'    => __("Email was sent", 'modularity-guides'),
             'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
