@@ -1,8 +1,6 @@
 <div class="grid u-mb-2">
     <div class="grid-xs-12">
 
-
-
         <table class="table mod-guide-todo-list">
             <thead>
                 <tr>

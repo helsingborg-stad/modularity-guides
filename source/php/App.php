@@ -15,15 +15,6 @@ class App
             }
         });
 
-        add_filter( '/Modularity/externalViewPath', function(){
-                return [
-                    'post_type' => 'guides',
-                    'viewPath' => MODULARITYGUIDES_TEMPLATE_PATH
-                ];
-
-            }, 10, 3
-        );
-
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
         add_action('wp_ajax_email_todo', array($this, 'emailTodo'));

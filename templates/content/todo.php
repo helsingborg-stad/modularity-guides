@@ -24,7 +24,8 @@
             <tfoot class="hidden-print">
                 <tr>
                     <th colspan="3">
-                        <a href="#modal-email-todo" class="btn btn-primary btn-sm pricon pricon-email pricon-space-right"><?php _e('Send as email', 'modularity-guides'); ?></button>
+                        <a href="#modal-email-todo" class="btn btn-primary btn-sm pricon
+                        pricon-email pricon-space-right"><?php _e('Send as email', 'modularity-guides'); ?></a>
                     </th>
                 </tr>
             </tfoot>
