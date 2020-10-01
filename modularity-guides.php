@@ -21,7 +21,7 @@ if (! defined('WPINC')) {
 define('MODULARITYGUIDES_PATH', plugin_dir_path(__FILE__));
 define('MODULARITYGUIDES_URL', plugins_url('', __FILE__));
 define('MODULARITYGUIDES_TEMPLATE_PATH', MODULARITYGUIDES_PATH . 'templates/');
-define('MODULARITYGUIDES_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/templates/views');
+define('MODULARITYGUIDES_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . '/templates/');
 
 load_plugin_textdomain('modularity-guides', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
@@ -36,7 +36,7 @@ $loader->register();
 
 add_filter( '/Modularity/externalViewPath', function($arr)
 {
-    $arr['mod-guides'] = MODULARITYGUIDES_MODULE_VIEW_PATH;
+    $arr['mod-guide'] = MODULARITYGUIDES_MODULE_VIEW_PATH;
     return $arr;
 }, 10, 3
 );

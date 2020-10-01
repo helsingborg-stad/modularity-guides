@@ -3,8 +3,20 @@
         <div class="form-group">
             @foreach ($content['checkboxes'] as $checkbox)
                 <label>
-                    <input type="checkbox" {!! isset($checkbox['relate_to']) && !empty($checkbox['relate_to']) ? 'data-mod-guide-relation="' . $checkbox['relate_to'] . '"' : '' !!} data-mod-guide-toggle-key="{{ $checkbox['key'] }}" {!! isset($checkbox['required']) && $checkbox['required'] ? 'checked disabled' : '' !!}>
-                    {{ $checkbox['label'] }}
+
+                    @option([
+                        'type' => 'checkbox',
+                        'attributeList' => [
+                            'name' => 'active-section',
+                            'checked' => (isset($checkbox['required']) && $checkbox['required']) ? 'checked disabled' : '',
+                            'data-mod-guide-relation' => (isset($checkbox['relate_to']) && !empty($checkbox['relate_to']) ) ? $checkbox['relate_to'] : '',
+                            'data-mod-guide-toggle-key' => $checkbox['key']
+                        ],
+                        'label' => $checkbox['label']
+                    ])
+                    @endoption
+
+
                     @if (isset($checkbox['required']) && $checkbox['required'])
                         <span class="mod-guide-checkboxes-required">(<?php _e('required', 'modularity-guides'); ?>)</span>
                     @endif
