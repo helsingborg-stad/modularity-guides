@@ -25,44 +25,49 @@
             <tfoot class="hidden-print">
                 <tr>
                     <th colspan="3">
-                        <a href="#modal-email-todo" class="btn btn-primary btn-sm pricon pricon-email pricon-space-right"><?php _e('Send as email', 'modularity-guides'); ?></button>
+                        @button( [
+                            'href' => '',
+                            'icon' => 'open_with',
+                            'size' => 'sm',
+                            'color' => 'secondary',
+                            'style' => 'basic',
+                            'reverseIcon' => true,
+                            'attributeList' => ['data-open' => "mod-guide-todo-".$stepId]
+                        ])
+                            {!!  _e('Send as email', 'modularity-guides') !!}
+                        @endbutton
+
+
                     </th>
                 </tr>
             </tfoot>
         </table>
     </div>
 
-    <div id="modal-email-todo" class="modal modal-backdrop-2 modal-xs" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <a class="btn btn-close" href="#close"></a>
-                    <h2 class="modal-title"><?php _e('Send todo-list as email', 'modularity-guides'); ?></h2>
-                </div>
-                <div class="modal-body">
-                    <article>
-                        <div class="grid">
-                            <div class="grid-md-12">
-                                <div class="form-group">
-                                    <label for="send-todo-email"><?php _e('Email', 'modularity-guides'); ?></label>
-                                    <input type="email" name="email" id="send-todo-email" required>
-                                </div>
-                            </div>
-                        </div>
-                        @if(!is_user_logged_in() && $municipio)
-                            <div class="grid">
-                                <div class="grid-md-12">
-                                    <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
-                                </div>
-                            </div>
-                        @endif
-                    </article>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="<?php _e('Send', 'modularity-guides'); ?>">
-                </div>
-            </form>
+    @modal([
+        'heading' => __('Send todo-list as email', 'modularity-guides'),
+        'isPanel' => false,
+        'id' => "mod-guide-todo-".$stepId,
+        'overlay' => 'dark',
+        'animation' => 'scale-up',
+        'attributeList' => [
+        'tabindex' => "-1",
+        'role' => "dialog",
+        'aria-hidden' => "true"
+        ]
+    ])
+        <div class="form-group">
+            <label for="send-todo-email"><?php _e('Email', 'modularity-guides'); ?></label>
+            <input type="email" name="email" id="send-todo-email" required>
         </div>
-        <a href="#close" class="backdrop"></a>
-    </div>
+        @if(!is_user_logged_in() && $municipio)
+            <div class="grid">
+                <div class="grid-md-12">
+                    <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
+                </div>
+            </div>
+        @endif
+        <input type="submit" class="btn btn-primary" value="<?php _e('Send', 'modularity-guides'); ?>">
+    @endmodal
+
 </div>
