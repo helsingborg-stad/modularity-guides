@@ -26,7 +26,7 @@
                 'collapsible' => true,
                 'heading' => '',
                 'subHeading' =>'',
-                'content' => 'Atoms are the fundemental building blocks. They are rarely used just by them self but mostly used to build more advanced components.',
+                'content' => "<!-- Container hack -->",
                 'id' => $i.'_guide_card',
                 'classList' =>  [($i !== 1) ? 'guideDiver' : ''],
                 'collapsible' => true,
