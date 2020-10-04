@@ -18,7 +18,8 @@ class GuideDefault {
      * @returns {string}
      */
     sectionId() {
-        return document.querySelector('.mod-guide-wrapper .c-option__radio input:checked').getAttribute('guide-section');
+        return document.querySelector('.mod-guide-wrapper .c-option__radio ' +
+            'input:checked').getAttribute('guide-section');
     }
 
     /**
@@ -27,27 +28,27 @@ class GuideDefault {
      */
     initView() {
 
-
         let int = 0;
         //Reset stuff - Hack Component library cards to look like "accordish" ......
         for (const firstElement of document.body.querySelectorAll('.c-card')) {
             if (int < 1) {
                 firstElement.querySelector('.c-card__body').classList.Border = '1px solid red';
-                firstElement.querySelector('.c-card__body').setAttribute('c-card--collapse', 'c-card--collapse')
+                firstElement.querySelector('.c-card__body').setAttribute(
+                    'c-card--collapse', 'c-card--collapse')
                 firstElement.querySelector('.c-card__body').classList.remove('c-card--collapse');
             }
             int++;
         }
 
         // Maybe remove ......
-        for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper .c-option__checkbox--hidden-box')) {
-            document.body.querySelector('.mod-guide-wrapper .c-option__radio--hidden-box').removeAttribute('disabled');
+        for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
+            '.c-option__checkbox--hidden-box')) {
+            document.body.querySelector('.mod-guide-wrapper ' +
+                '.c-option__radio--hidden-box').removeAttribute('disabled');
         }
 
-        //this.collectRequiredElements();
         this.prepareEvent();
         this.prevNextStep();
-
     }
 
     /**
@@ -88,14 +89,17 @@ class GuideDefault {
 
         // Change view by adding or removing attributes and css classes -> styleguide
         const thisElementId = element.getAttribute('guide-section');
-        document.getElementById(thisElementId).querySelector('.c-card__body').setAttribute('c-card--collapse', 'c-card--collapse');
-        document.getElementById(thisElementId).querySelector('.c-card__body').classList.remove('c-card--collapse');
+        document.getElementById(thisElementId).querySelector('.c-card__body').setAttribute(
+            'c-card--collapse', 'c-card--collapse');
+        document.getElementById(thisElementId).querySelector('.c-card__body').classList.remove(
+            'c-card--collapse');
 
         // Check for required stuff
         if (this.collectRequiredElements()) {
             element.removeAttribute('disabled');
             let int = 0;
-            for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper .c-option__checkbox--hidden-box')) {
+            for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
+                '.c-option__checkbox--hidden-box')) {
                 if (int === 1) {
                     disabled.setAttribute('disabled', false);
                 }
@@ -178,16 +182,11 @@ class GuideDefault {
 
     /**
      * Jump to next or previous
+     * Doesnt add up - Need a second view
      */
     prevNextStep() {
 
         const self = this;
-
-       /* if (!this.collectRequiredElements()) {
-            return false;
-        }*/
-        const checkRequirement = this.collectRequiredElements();
-
         for (const steps of document.body.querySelectorAll('.prevNext')) {
 
             steps.addEventListener("click", function () {
@@ -196,7 +195,8 @@ class GuideDefault {
                 let count = 0;
                 let stepData = [];
 
-                for (const stepCurrent of document.body.querySelectorAll('.guideSteps .c-option__radio--hidden-box')) {
+                for (const stepCurrent of document.body.querySelectorAll('.guideSteps ' +
+                    '.c-option__radio--hidden-box')) {
                     if (!stepCurrent.checked) {
                         stepData.push(stepCurrent.getAttribute('id'));
                     }
@@ -211,7 +211,6 @@ class GuideDefault {
                     let next = parseInt(currentStep - 1);
                     document.getElementById(stepData[next]).checked = true;
                     self.changeView(document.getElementById(stepData[next]));
-
                 }
 
                 if (this.classList.contains('prevStep')) {
@@ -222,8 +221,6 @@ class GuideDefault {
 
             }, false);
         }
-
-
     }
 
 
@@ -236,15 +233,16 @@ class GuideDefault {
         const sectionId = this.sectionId();
         for (const item of document.body.querySelectorAll('.c-option__radio--hidden-box')) {
 
+            //Lock view || not
             if (param) {
                 item.setAttribute('disabled', 'disabled');
-                document.getElementById(sectionId).querySelector('.prevNext').setAttribute('disabled', 'disabled');
+                document.getElementById(sectionId).querySelector('.prevNext').setAttribute(
+                    'disabled', 'disabled');
             } else {
                 item.removeAttribute('disabled');
-                document.getElementById(sectionId).querySelector('.prevNext').removeAttribute('disabled');
+                document.getElementById(sectionId).querySelector('.prevNext').removeAttribute(
+                    'disabled');
             }
-
-
         }
     }
 
@@ -265,8 +263,6 @@ class GuideDefault {
 
         }, 4000);
     }
-
-
 }
 
 new GuideDefault();
