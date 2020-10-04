@@ -40,7 +40,6 @@ class GuideDefault {
             int++;
         }
 
-        // Maybe remove ......
         for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
             '.c-option__checkbox--hidden-box')) {
             document.body.querySelector('.mod-guide-wrapper ' +
@@ -53,6 +52,7 @@ class GuideDefault {
 
     /**
      * Change Step in guide
+     * Prepare for change of view
      */
     prepareEvent() {
 
@@ -78,6 +78,7 @@ class GuideDefault {
 
     /**
      * Change view
+     * Show next section/step if required input is checked
      */
     changeView(element) {
 
@@ -108,8 +109,8 @@ class GuideDefault {
     }
 
     /**
-     *
-     * @returns {number}
+     * Find required elements
+     * @returns {boolean}
      */
     collectRequiredElements() {
 
@@ -182,7 +183,7 @@ class GuideDefault {
 
     /**
      * Jump to next or previous
-     * Doesnt add up - Need a second view
+     * !! Doesnt add up - Needs a second view - Dev ok.
      */
     prevNextStep() {
 
@@ -230,7 +231,7 @@ class GuideDefault {
 
     /**
      * Lock section view until required are checked
-     * @param param
+     * @param param (boolean)
      */
     lockView(param) {
 
