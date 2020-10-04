@@ -189,6 +189,7 @@ class GuideDefault {
         const self = this;
         for (const steps of document.body.querySelectorAll('.prevNext')) {
 
+            //Listen to Next or previous clicks
             steps.addEventListener("click", function () {
 
                 let currentStep = 0;
@@ -197,6 +198,7 @@ class GuideDefault {
 
                 for (const stepCurrent of document.body.querySelectorAll('.guideSteps ' +
                     '.c-option__radio--hidden-box')) {
+
                     if (!stepCurrent.checked) {
                         stepData.push(stepCurrent.getAttribute('id'));
                     }
@@ -207,12 +209,14 @@ class GuideDefault {
                     count++;
                 }
 
+                // Next section
                 if (this.classList.contains('nextStep')) {
                     let next = parseInt(currentStep - 1);
                     document.getElementById(stepData[next]).checked = true;
                     self.changeView(document.getElementById(stepData[next]));
                 }
 
+                // Previous section
                 if (this.classList.contains('prevStep')) {
                     let prev = parseInt(currentStep) - 2;
                     document.getElementById(stepData[prev]).checked = true;
@@ -247,7 +251,7 @@ class GuideDefault {
     }
 
     /**
-     * Notice for unsolved required field
+     * Notice for unsolved required fields
      */
     requiredNotice(element) {
 
