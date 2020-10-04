@@ -4,9 +4,9 @@
         <table class="table mod-guide-todo-list">
             <thead>
                 <tr>
-                    <th class="text-center print-only" width="20"><?php _e('Done', 'modularity-guides'); ?></th>
-                    <th><?php _e('Title', 'modularity-guides'); ?></th>
-                    <th><?php _e('Link', 'modularity-guides'); ?></th>
+                    <th class="text-center print-only" width="20">{{_e('Done', 'modularity-guides')}}</th>
+                    <th>{{_e('Title', 'modularity-guides')}}</th>
+                    <th>{{_e('Link', 'modularity-guides')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                             'reverseIcon' => true,
                             'attributeList' => ['data-open' => "mod-guide-todo-".$stepId]
                         ])
-                            {!!  _e('Send as email', 'modularity-guides') !!}
+                            {!!  __('Send as email', 'modularity-guides') !!}
                         @endbutton
 
 

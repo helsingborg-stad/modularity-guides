@@ -36,6 +36,7 @@ class Module extends \Modularity\Module
         wp_localize_script('modularity-guides', 'guides', array(
             'email_sent'    => __("Email was sent", 'modularity-guides'),
             'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
+            'lockMessage'   => __("You need to check the required fields", 'modularity-guides'),
         ));
         wp_enqueue_script('modularity-guides');
 

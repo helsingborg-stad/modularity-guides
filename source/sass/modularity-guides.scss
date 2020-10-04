@@ -34,9 +34,25 @@
     z-index:10;
     width:60px;
   }
-
 }
 
+
+.c-notice-guide {
+  display:none;
+  &.displayNotice {
+    display:block;
+    opacity: 1;
+    transition: opacity 4s linear;
+  }
+}
+
+.c-notice-fade-away {
+  height:0px;
+  width:0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 6s, opacity 6s linear;
+}
 
 
 .mod-guide-todo-check {

@@ -15,9 +15,9 @@
                 'attributeList' => [
                     'name' => 'active-section',
                     'aria-pressed' => "false",
-                    'guide-step' => $i.'_guide_card',
-                    'disabled' => 'disabled'
-            ],
+                    'guide-section' => 'section-'.$i,
+                    'disabled' => ($i === 1) ? 'disabled' : ''
+                    ],
                 'checked' => ($i === 1) ? true : false
             ])
             @endoption
@@ -27,8 +27,8 @@
                 'heading' => '',
                 'subHeading' =>'',
                 'content' => "<!-- Container hack -->",
-                'id' => $i.'_guide_card',
-                'classList' =>  [($i !== 1) ? 'guideDiver' : ''],
+                'id' => 'section-'.$i,
+                'classList' =>  [($i !== 1) ? 'guide-section' : '', 'section-'.$i],
                 'collapsible' => true,
                     'heading' => $i . " " . $step['title'],
                     'buttonColor' => 'black'
@@ -41,6 +41,21 @@
                        @php $j++; @endphp
                     @endforeach
                 @endif
+
+                    @notice([
+                        'type' => 'danger',
+                        'message' => [
+                            'text' => 'hbgWorks',
+                            'size' => 'sm'
+                        ],
+                        'classList' => ['c-notice-guide'],
+                        'icon' => [
+                            'name' => 'report',
+                            'size' => 'md',
+                            'color' => 'black'
+                        ]
+                    ])
+                    @endnotice
 
                     <div class="guide-pagination">
                         @if ($i >= 1 && $i !== count($steps))
