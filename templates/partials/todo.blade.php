@@ -32,7 +32,9 @@
                             'color' => 'secondary',
                             'style' => 'basic',
                             'reverseIcon' => true,
-                            'attributeList' => ['data-open' => "mod-guide-todo-".$stepId]
+                            'attributeList' => [
+                                'data-open' => "mod-guide-todo-".$stepId
+                            ]
                         ])
                             {!!  __('Send as email', 'modularity-guides') !!}
                         @endbutton
@@ -57,8 +59,20 @@
         ]
     ])
         <div class="form-group">
-            <label for="send-todo-email"><?php _e('Email', 'modularity-guides'); ?></label>
-            <input type="email" name="email" id="send-todo-email" required>
+            @field([
+                'type' => 'text',
+                'id' => 'send-todo-email',
+                'attributeList' => [
+                    'type' => 'email',
+                    'name' => 'email',
+                    'pattern' => '^[^@]+@[^@]+\.[^@]+$',
+                    'autocomplete' => 'e-mail',
+                    'data-invalid-message' => "You need to add a valid E-mail!"
+                ],
+                'label' => __('Email', 'modularity-guides'),
+                'required' => true,
+            ])
+            @endfield
         </div>
         @if(!is_user_logged_in() && $municipio)
             <div class="grid">
@@ -67,7 +81,15 @@
                 </div>
             </div>
         @endif
-        <input type="submit" class="btn btn-primary" value="<?php _e('Send', 'modularity-guides'); ?>">
+        @button([
+            'text' => __('Send', 'modularity-guides'),
+            'color' => 'primary',
+            'style' => 'filled',
+            'attributeList' => [
+                'type' => 'submit'
+            ]
+        ])
+        @endbutton
     @endmodal
 
 </div>

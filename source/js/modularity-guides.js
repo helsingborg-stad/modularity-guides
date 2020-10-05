@@ -64,7 +64,9 @@ class GuideDefault {
             // If item is disabled listen to parent
             if (stepOption.hasAttribute('disabled')) {
                 stepOption.parentElement.addEventListener("click", function () {
-                    self.requiredNotice(this);
+                    if (!self.collectRequiredElements()){
+                        self.requiredNotice(this);
+                    }
                 }, false);
             }
 
@@ -96,16 +98,19 @@ class GuideDefault {
             'c-card--collapse');
 
         // Check for required stuff
-        if (this.collectRequiredElements()) {
-            element.removeAttribute('disabled');
-            let int = 0;
-            for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
-                '.c-option__checkbox--hidden-box')) {
-                if (int === 1) {
-                    disabled.setAttribute('disabled', false);
-                }
+        if (!this.collectRequiredElements()) {
+            return false;
+        }
+
+        element.removeAttribute('disabled');
+        let int = 0;
+        for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
+            '.c-option__checkbox--hidden-box')) {
+            if (int === 1) {
+                disabled.setAttribute('disabled', false);
             }
         }
+
     }
 
     /**
