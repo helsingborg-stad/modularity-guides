@@ -23,7 +23,6 @@ class GuideDefault {
 
     /**
      * Init the first step in guide
-     * Activate all steps
      */
     initView() {
 
