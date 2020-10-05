@@ -6,7 +6,7 @@ export default (function ($) {
     }
 
     Checkboxes.prototype.handleEvents = function() {
-        $('input[type="checkbox"][data-mod-guide-relation]').on('change', function (e) {
+        /*$('input[type="checkbox"][data-mod-guide-relation]').on('change', function (e) {
             var relations = $(this).data('mod-guide-relation');
             relations = relations.split(',');
 
@@ -19,6 +19,8 @@ export default (function ($) {
         $('[data-mod-guide-toggle-key]').on('change', function (e) {
             this.contentToggleEngine();
         }.bind(this));
+        */
+
     };
 
     Checkboxes.prototype.contentToggleEngine = function() {
@@ -27,16 +29,18 @@ export default (function ($) {
         var $checkboxes = $('[data-mod-guide-toggle-key]');
 
         $checkboxes.each(function (index, element) {
-            if ($(element).prop('checked') !== true) {
+            /*if ($(element).prop('checked') !== true) {
                 return;
             }
 
             checked.push($(element).attr('data-mod-guide-toggle-key'));
+
+             */
         });
 
         // Display or hide content
         $('[data-mod-guide-toggle-key-content]').each(function (index, element) {
-            var shouldShow = false;
+            /*var shouldShow = false;
             var conditions = $(element).attr('data-mod-guide-toggle-key-content');
             conditions = conditions.split(',');
 
@@ -68,6 +72,8 @@ export default (function ($) {
 
             $(element).hide();
             return;
+
+             */
         });
     };
 

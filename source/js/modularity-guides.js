@@ -1,4 +1,3 @@
-import './Content/Checkboxes.js';
 import './Content/Todo.js';
 
 /**
@@ -64,7 +63,7 @@ class GuideDefault {
             // If item is disabled listen to parent
             if (stepOption.hasAttribute('disabled')) {
                 stepOption.parentElement.addEventListener("click", function () {
-                    if (!self.collectRequiredElements()){
+                    if (!self.collectRequiredElements()) {
                         self.requiredNotice(this);
                     }
                 }, false);
@@ -110,7 +109,6 @@ class GuideDefault {
                 disabled.setAttribute('disabled', false);
             }
         }
-
     }
 
     /**
@@ -152,7 +150,6 @@ class GuideDefault {
         } else {
             return false;
         }
-
     }
 
     /**
@@ -188,7 +185,7 @@ class GuideDefault {
 
     /**
      * Jump to next or previous
-     * !! Doesnt add up - Needs a second view - Dev ok.
+     * if requirements are ok
      */
     prevNextStep() {
 
@@ -204,6 +201,7 @@ class GuideDefault {
 
                 const requirement = self.collectRequiredElements();
                 if (!requirement) {
+                    self.requiredNotice(this);
                     return false;
                 }
 
@@ -222,7 +220,7 @@ class GuideDefault {
 
                 // Next section
                 if (this.classList.contains('nextStep')) {
-                    let next = parseInt(currentStep - 1);
+                    let next = parseInt(currentStep) - 1;
                     document.getElementById(stepData[next]).checked = true;
                     self.changeView(document.getElementById(stepData[next]));
                 }

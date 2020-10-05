@@ -53,9 +53,9 @@
         'overlay' => 'dark',
         'animation' => 'scale-up',
         'attributeList' => [
-        'tabindex' => "-1",
-        'role' => "dialog",
-        'aria-hidden' => "true"
+            'tabindex' => "-1",
+            'role' => "dialog",
+            'aria-hidden' => "true"
         ]
     ])
         <div class="form-group">
