@@ -197,6 +197,11 @@ class GuideDefault {
                 let count = 0;
                 let stepData = [];
 
+                const requirement = self.collectRequiredElements();
+                if (!requirement) {
+                    return false;
+                }
+
                 for (const stepCurrent of document.body.querySelectorAll('.guideSteps ' +
                     '.c-option__radio--hidden-box')) {
 
