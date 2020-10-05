@@ -4,10 +4,15 @@
   [data-mod-guide-toggle-key-content] {
     display: none;
   }
-  .guideDiver {
+
+  .guide-sections {
     border-top-left-radius:0px;
     border-top-right-radius:0px;
     border-top:4px #ae0b05 solid
+  }
+
+  .section-1{
+    border-top:none;
   }
 
   .c-card {

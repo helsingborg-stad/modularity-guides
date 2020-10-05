@@ -28,7 +28,7 @@
                 'subHeading' =>'',
                 'content' => "<!-- Container hack -->",
                 'id' => 'section-'.$i,
-                'classList' =>  [($i !== 1) ? 'guide-section' : '', 'section-'.$i],
+                'classList' =>  ['guide-sections', ($i !== 1) ? 'guide-section' : '', 'section-'.$i],
                 'collapsible' => true,
                     'heading' => $i . " " . $step['title'],
                     'buttonColor' => 'black'
