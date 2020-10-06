@@ -4,7 +4,7 @@ export default (function ($) {
         $('#modal-email-todo form').on('submit', function (e) {
             e.preventDefault();
 
-            var $container = $(e.target).parents('.grid').first();
+            let $container = $(e.target).parents('.grid').first();
             if ($container.find('textarea[name="g-recaptcha-response"]').val() === '') {
                 return false;
             }
@@ -12,17 +12,17 @@ export default (function ($) {
             $(this).find('input[type="submit"]').hide();
             $(this).find('.modal-footer').append('<div class="loading"><div></div><div></div><div></div><div></div></div>');
 
-            var $checklist = $container.first().find('table').clone();
+            let $checklist = $container.first().find('table').clone();
             $checklist.appendTo(document.body);
             $checklist.find('tr').not(':visible').remove();
-            checklistHTML = $checklist[0].outerHTML;
+            let checklistHTML = $checklist[0].outerHTML;
             $checklist.remove();
 
-            checklist = encodeURI(checklistHTML);
+            let checklist = encodeURI(checklistHTML);
 
-            var gCaptcha = $container.find('textarea[name="g-recaptcha-response"]').val();
+            let gCaptcha = $container.find('textarea[name="g-recaptcha-response"]').val();
 
-            var data = {
+            let data = {
                 action: 'email_todo',
                 checklist: checklist,
                 email: $container.find('input[name="email"]').val(),

@@ -1,5 +1,5 @@
 import './Content/Todo.js';
-
+import './Content/checkboxes.js';
 /**
  * Guide steps and views
  */
