@@ -26,18 +26,23 @@ class GuideDefault {
      */
     initView() {
 
+        if (!this.sectionId()) {
+            return false;
+        }
+
         let int = 0;
-        //Reset stuff - Hack Component library cards to look like "accordish" ......
-        for (const firstElement of document.body.querySelectorAll('.c-card')) {
-            if (int < 1) {
-                firstElement.querySelector('.c-card__body').classList.Border = '1px solid red';
-                firstElement.querySelector('.c-card__body').setAttribute(
-                    'c-card--collapse', 'c-card--collapse')
-                firstElement.querySelector('.c-card__body').classList.remove('c-card--collapse');
+
+        //Reset stuff and show Section/step 1
+        for (const sections of document.querySelectorAll('.mod-guide-wrapper .c-card .c-card__body')) {
+            if (int > 0) {
+                this.setVisibleSection({element: sections, visible: true});
+            } else {
+                this.setVisibleSection({element: sections, visible: false});
             }
             int++;
         }
 
+        // Enable the Disabled
         for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
             '.c-option__checkbox--hidden-box')) {
             document.body.querySelector('.mod-guide-wrapper ' +
@@ -46,6 +51,21 @@ class GuideDefault {
 
         this.prepareEvent();
         this.prevNextStep();
+    }
+
+    /**
+     * Set section/Step visibility
+     * @param param
+     */
+    setVisibleSection(param){
+
+        if (param.visible) {
+            param.element.classList.add('c-card--collapse');
+            param.element.removeAttribute('c-card--collapse');
+        } else {
+            param.element.classList.remove('c-card--collapse');
+            param.element.setAttribute('c-card--collapse', 'c-card--collapse');
+        }
     }
 
     /**
@@ -82,25 +102,28 @@ class GuideDefault {
      */
     changeView(element) {
 
-        // Restore views
-        for (const hideOption of document.querySelectorAll('.c-card .c-card__body')) {
-            hideOption.removeAttribute('c-card--collapse');
-            hideOption.classList.add('c-card--collapse');
+        // Restore views for sections/steps
+        for (const sections of document.querySelectorAll('.mod-guide-wrapper .c-card .c-card__body')) {
+            this.setVisibleSection({
+                element: sections,
+                visible: true
+            });
         }
 
-        // Change view by adding or removing attributes and css classes -> styleguide
-        const thisElementId = element.getAttribute('guide-section');
-        document.getElementById(thisElementId).querySelector('.c-card__body').setAttribute(
-            'c-card--collapse', 'c-card--collapse');
-        document.getElementById(thisElementId).querySelector('.c-card__body').classList.remove(
-            'c-card--collapse');
+        // Change view by adding or removing attributes and css classes
+        this.setVisibleSection({
+            element: document.getElementById(element.getAttribute('guide-section')).
+                querySelector('.mod-guide-wrapper .c-card__body'),
+            visible: false});
 
         // Check for required stuff
         if (!this.collectRequiredElements()) {
             return false;
         }
 
+        // Able the disabled section
         element.removeAttribute('disabled');
+
         let int = 0;
         for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
             '.c-option__checkbox--hidden-box')) {
@@ -204,6 +227,7 @@ class GuideDefault {
                     return false;
                 }
 
+                // Check all step and set current step
                 for (const stepCurrent of document.body.querySelectorAll('.guideSteps ' +
                     '.c-option__radio--hidden-box')) {
 
@@ -217,20 +241,19 @@ class GuideDefault {
                     count++;
                 }
 
-                // Next section
+                // Try to change section by clicking Next section
                 if (this.classList.contains('nextStep')) {
                     let next = parseInt(currentStep) - 1;
                     document.getElementById(stepData[next]).checked = true;
                     self.changeView(document.getElementById(stepData[next]));
                 }
 
-                // Previous section
+                // Try to change section by clicking Previous section
                 if (this.classList.contains('prevStep')) {
                     let prev = parseInt(currentStep) - 2;
                     document.getElementById(stepData[prev]).checked = true;
                     self.changeView(document.getElementById(stepData[prev]));
                 }
-
             }, false);
         }
     }
@@ -243,7 +266,7 @@ class GuideDefault {
     lockView(param) {
 
         const sectionId = this.sectionId();
-        for (const item of document.body.querySelectorAll('.c-option__radio--hidden-box')) {
+        for (const item of document.body.querySelectorAll('.mod-guide-wrapper .c-option__radio--hidden-box')) {
 
             //Lock view || not
             if (param) {

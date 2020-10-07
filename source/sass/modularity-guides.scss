@@ -11,13 +11,17 @@
     border-top:4px #ae0b05 solid
   }
 
+  .guide-section-body {
+    display:none;
+  }
+
   .section-1{
     border-top:none;
   }
 
   .c-card {
     position: relative;
-    margin-bottom:20px;
+    margin-bottom:10px;
   }
 
   .c-card__title {
@@ -33,11 +37,9 @@
   }
 
   .c-option__radio{
-    position: relative;
-    margin-bottom:-45px;
-    margin-left:20px;
-    z-index:10;
-    width:60px;
+    font-weight:600;
+    margin-left:5px;
+    padding-top:5px;
   }
 }
 
