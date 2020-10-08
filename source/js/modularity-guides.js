@@ -26,7 +26,8 @@ class GuideDefault {
      */
     initView() {
 
-        if (!this.sectionId()) {
+        // Check if guide exist
+        if (document.body.querySelector('.mod-guide-wrapper ') === null) {
             return false;
         }
 
