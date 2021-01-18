@@ -6,12 +6,17 @@
 <div class="mod-guide-wrapper">
 
 @if (count($steps) > 0)
+<div class="o-grid">
+
+
     @foreach ($steps as $step)
+    <div class="o-grid-12">
+        
 
             @option([
                 'type' => 'radio',
                 'value' => $i,
-                'classList' => ['guideSteps'],
+                'classList' => ['guideSteps',  'u-float--right'],
                 'attributeList' => [
                     'name' => 'active-section',
                     'aria-pressed' => "false",
@@ -34,6 +39,9 @@
                     'buttonColor' => 'black'
 
             ])
+
+            <div class="c-card__body">
+            <h3><span class="step-count">{{$loop->iteration}}.</span> {{$step['title']}}</h3>
 
                 @if (isset($step['content']) && !empty($step['content']))
                     @foreach ($step['content'] as $content)
@@ -58,40 +66,43 @@
                     @endnotice
 
                     <div class="guide-pagination">
-                        @if ($i >= 1 && $i !== count($steps))
-
-                            @button([
-                                'icon' => "keyboard_arrow_right",
-                                'reversePositions' => false,
-                                'text' => __('Next', 'modularity-guides'),
-                                'style' => 'basic',
-                                'size' => 'sm',
-                                'classList' => ['prevNext','nextStep']
-                            ])
-                            @endbutton
-
-                        @endif
 
                         @if ($i !== 1)
-
                             @button([
                                 'icon' => 'keyboard_arrow_left',
                                 'reversePositions' => true,
                                 'text' => __('Previous', 'modularity-guides'),
                                 'style' => 'basic',
                                 'size' => 'sm',
-                                'classList' => ['prevNext','prevStep', 'u-float--right']
+                                'classList' => ['prevNext','prevStep']
+                            ])
+                            @endbutton
+
+                        @endif
+
+
+                        @if ($i >= 1 && $i !== count($steps))
+                            @button([
+                                'icon' => "keyboard_arrow_right",
+                                'reversePositions' => false,
+                                'text' => __('Next', 'modularity-guides'),
+                                'style' => 'basic',
+                                'size' => 'sm',
+                                'classList' => ['prevNext','nextStep', 'u-float--right']
                             ])
                             @endbutton
 
                         @endif
                     </div>
+                </div>
             @php $i++; @endphp
 
 
 
 
         @endcard
+    </div>
     @endforeach
-@endif
+</div>
+    @endif
 </div>
