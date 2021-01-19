@@ -3,106 +3,78 @@
     $j = 1;
 @endphp
 
-<div class="mod-guide-wrapper">
+<div class="mod-guide-wrapper js-modularity-guide">
+    <style>
+        .mod-guide-wrapper button > * {
+            pointer-events: none;
+        }
+    </style>
 
 @if (count($steps) > 0)
-<div class="o-grid">
-
-
-    @foreach ($steps as $step)
-    <div class="o-grid-12">
-        
-
-            @option([
-                'type' => 'radio',
-                'value' => $i,
-                'classList' => ['guideSteps',  'u-float--right'],
-                'attributeList' => [
-                    'name' => 'active-section',
-                    'aria-pressed' => "false",
-                    'guide-section' => 'section-'.$i,
-                    'disabled' => ($i === 1) ? 'disabled' : ''
-                    ],
-                'checked' => ($i === 1) ? true : false
+    @accordion([])
+        @foreach ($steps as $step)
+            @accordion__item([
+                'heading' => $loop->iteration . '. '  . $step['title'],
+                'classList' => ['js-modularity-guide__section'],
+                'attributeList' => ['data-guide-step' => $loop->iteration]
             ])
-            @endoption
-
-            @card([
-                'collapsible' => true,
-                'heading' => '',
-                'subHeading' =>'',
-                'content' => "<!-- Container hack -->",
-                'id' => 'section-'.$i,
-                'classList' =>  ['guide-sections', ($i !== 1) ? 'guide-section' : '', 'section-'.$i],
-                'collapsible' => true,
-                    'heading' => $i . " " . $step['title'],
-                    'buttonColor' => 'black'
-
-            ])
-
-            <div class="c-card__body">
-            <h3><span class="step-count">{{$loop->iteration}}.</span> {{$step['title']}}</h3>
 
                 @if (isset($step['content']) && !empty($step['content']))
                     @foreach ($step['content'] as $content)
                         @include('partials.' . $content['acf_fc_layout'], array('stepId' => $j))
-                       @php $j++; @endphp
+                        @php $j++; @endphp
                     @endforeach
                 @endif
 
-                    @notice([
-                        'type' => 'danger',
-                        'message' => [
-                            'text' => 'hbgWorks',
-                            'size' => 'sm'
-                        ],
-                        'classList' => ['c-notice-guide'],
-                        'icon' => [
-                            'name' => 'report',
-                            'size' => 'md',
-                            'color' => 'black'
-                        ]
-                    ])
-                    @endnotice
+                @notice([
+                    'type' => 'danger',
+                    'message' => [
+                        'text' => 'hbgWorks',
+                        'size' => 'sm'
+                    ],
+                    'classList' => ['c-notice-guide'],
+                    'icon' => [
+                        'name' => 'report',
+                        'size' => 'md',
+                        'color' => 'black'
+                    ]
+                ])
+                @endnotice
 
-                    <div class="guide-pagination">
-
-                        @if ($i !== 1)
-                            @button([
-                                'icon' => 'keyboard_arrow_left',
-                                'reversePositions' => true,
-                                'text' => __('Previous', 'modularity-guides'),
-                                'style' => 'basic',
-                                'size' => 'sm',
-                                'classList' => ['prevNext','prevStep']
-                            ])
-                            @endbutton
-
-                        @endif
-
-
-                        @if ($i >= 1 && $i !== count($steps))
-                            @button([
-                                'icon' => "keyboard_arrow_right",
-                                'reversePositions' => false,
-                                'text' => __('Next', 'modularity-guides'),
-                                'style' => 'basic',
-                                'size' => 'sm',
-                                'classList' => ['prevNext','nextStep', 'u-float--right']
-                            ])
-                            @endbutton
-
-                        @endif
+                <div class="guide-pagination">
+                    <div class="o-grid">
+                        <div class="o-grid-6">
+                            @if (!$loop->first)
+                                @button([
+                                    'icon' => 'keyboard_arrow_left',
+                                    'reversePositions' => true,
+                                    'text' => __('Previous', 'modularity-guides'),
+                                    'style' => 'filled',
+                                    // 'size' => 'sm',
+                                    'classList' => ['prevNext','prevStep', 'js-modularity-guide__prev']
+                                ])
+                                @endbutton
+                            @endif
+                        </div>
+                        <div class="o-grid-6 u-text-align--right">
+                            @if (!$loop->last)
+                                @button([
+                                    'icon' => "keyboard_arrow_right",
+                                    'reversePositions' => false,
+                                    'text' => __('Next', 'modularity-guides'),
+                                    'style' => 'filled',
+                                    // 'size' => 'sm',
+                                    'color' => 'primary',
+                                    'classList' => ['prevNext','nextStep', 'js-modularity-guide__next'],
+                                ])
+                                @endbutton
+                            @endif
+                        </div>
                     </div>
                 </div>
-            @php $i++; @endphp
-
-
-
-
-        @endcard
-    </div>
-    @endforeach
-</div>
+                @php $i++; @endphp
+            @endaccordion__item
+        @endforeach
+        @endaccordion
     @endif
 </div>
