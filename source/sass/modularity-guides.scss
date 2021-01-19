@@ -1,6 +1,10 @@
 .modularity-mod-guide {
   position: relative;
 
+  button > * {
+    pointer-events: none;
+  }
+
   .mod-guide-todo-list {
     border-radius: 4px;
     padding-bottom: 16px;
