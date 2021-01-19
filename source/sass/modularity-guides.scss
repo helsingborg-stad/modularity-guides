@@ -1,6 +1,6 @@
 .modularity-mod-guide {
-  position: relative;
-
+  z-index: 1;
+  
   button > * {
     pointer-events: none;
   }
@@ -50,6 +50,11 @@
     margin-left:20px;
     z-index:10;
     width:60px;
+  }
+
+  // Fix modal fixed position
+  .c-accordion__content[aria-hidden="false"] {
+    will-change: auto;
   }
 }
 
