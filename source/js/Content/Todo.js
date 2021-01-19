@@ -1,51 +1,93 @@
+const SELECTOR_TODOS_WRAPPER = '.js-modularity-guide-todos';
+const SELECTOR_FORM = '.js-modularity-guide-todos__form';
+const SELECTOR_TABLE = '.js-modularity-guide-todos__table';
+const SELECTOR_INPUT_RECAPTCHA = 'textarea[name="g-recaptcha-response"]';
+const SELECTOR_INPUT_EMAIL = 'input[name="email"]';
+
 export default (function ($) {
+    /**
+     * Check if element is visible or not
+     * @param {*} elem 
+     * @returns {boolean}
+     */
+    const isVisible = (elem) => (elem.offsetWidth > 0 || elem.offsetHeight > 0 || elem.getClientRects().length > 0);
 
-    function Todo() {
-        $('#modal-email-todo form').on('submit', function (e) {
-            e.preventDefault();
-
-            let $container = $(e.target).parents('.grid').first();
-            if ($container.find('textarea[name="g-recaptcha-response"]').val() === '') {
-                return false;
+    /**
+     * Extract checklist html from todo table
+     * @param {*} todoTable 
+     * @returns {string} html containing visible checklist items
+     */
+    function getCheckList(todoTable) {
+        let checklist = todoTable.cloneNode(true);
+        checklist = document.body.appendChild(checklist);
+    
+        // Remove not visible rows
+        checklist?.querySelectorAll('tr')?.forEach(row => {
+            if (isVisible(row)) {
+                return;
             }
-
-            $(this).find('input[type="submit"]').hide();
-            $(this).find('.modal-footer').append('<div class="loading"><div></div><div></div><div></div><div></div></div>');
-
-            let $checklist = $container.first().find('table').clone();
-            $checklist.appendTo(document.body);
-            $checklist.find('tr').not(':visible').remove();
-            let checklistHTML = $checklist[0].outerHTML;
-            $checklist.remove();
-
-            let checklist = encodeURI(checklistHTML);
-
-            let gCaptcha = $container.find('textarea[name="g-recaptcha-response"]').val();
-
-            let data = {
+            row.remove();
+        });
+        
+        let checklistHTML = checklist.outerHTML;
+        checklist.remove();
+        return encodeURI(checklistHTML);
+    }
+    
+    /**
+     * Send checklist email through wordpress on submit
+     * @param {*} e 
+     */
+    function handleSubmit(e) {
+        e.preventDefault();
+    
+        const currentForm = e.target;
+        const currentSection = currentForm.closest(SELECTOR_TODOS_WRAPPER);
+        const recaptcha = currentForm?.querySelector(SELECTOR_INPUT_RECAPTCHA)?.val();
+        const email = currentForm?.querySelector(SELECTOR_INPUT_EMAIL)?.value;
+    
+        if (recaptcha === '') {
+            return false;
+        }
+    
+        const todoTable = currentSection?.querySelector(SELECTOR_TABLE);
+    
+        if (todoTable && email && ajaxurl) {
+            const checklist = getCheckList(todoTable); 
+            const data = {
                 action: 'email_todo',
                 checklist: checklist,
-                email: $container.find('input[name="email"]').val(),
-                captcha: gCaptcha
+                email: email,
+                captcha: recaptcha
             };
-
+    
             $.post(ajaxurl, data, function (response) {
-                $container.find('.loading').remove();
-                $container.find('input[type="submit"]').show();
-
                 if (response == 'success') {
-                    $container.after('<div class="grid"><div class="grid-md-12"><div class="notice success">' + guides.email_sent + '</div></div></div>');
+                    console.log('success!');
                 } else {
-                    $container.after('<div class="grid"><div class="grid-md-12"><div class="notice warning">' + guides.email_failed + '</div></div></div>');
+                    console.log('fails!');
                 }
-
+    
                 location.hash = '';
             });
-
-            return false;
-        });
+        }
+    }
+    
+    /**
+     * Query ToDo sections & subscribe form
+     */
+    function subscribeSubmit() {
+        const todoSections = document.querySelectorAll(SELECTOR_TODOS_WRAPPER);
+        if (todoSections?.length > 0) {
+            todoSections.forEach(todoSection => {
+                const form = todoSection?.querySelector(SELECTOR_FORM);
+                if (form) {
+                    form.addEventListener('submit', handleSubmit);
+                }
+            });
+        }
     }
 
-    return new Todo();
 
+    window.addEventListener('DOMContentLoaded', subscribeSubmit);
 })(jQuery);
