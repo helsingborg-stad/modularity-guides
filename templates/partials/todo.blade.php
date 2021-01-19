@@ -4,7 +4,6 @@
         <table class="table mod-guide-todo-list">
             <thead>
                 <tr>
-                    <th class="text-center print-only" width="20">{{_e('Done', 'modularity-guides')}}</th>
                     <th>{{_e('Title', 'modularity-guides')}}</th>
                     <th>{{_e('Link', 'modularity-guides')}}</th>
                 </tr>
@@ -12,7 +11,6 @@
             <tbody>
             @foreach ($content['list_items'] as $item)
                 <tr {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
-                    <td class="text-center print-only"><span class="mod-guide-todo-check"></span></td>
                     <td>{{ $item['title'] }}</td>
                     <td>
                         @if (isset($item['link_url']) && !empty($item['link_url']))
@@ -27,16 +25,16 @@
                     <th colspan="3">
                         @button( [
                             'href' => '',
-                            'icon' => 'open_with',
+                            'icon' => 'mail',
+                            'color' => 'primary',
+                            'style' => 'filled',
+                            'reversePositions' => true,
                             'size' => 'sm',
-                            'color' => 'secondary',
-                            'style' => 'basic',
-                            'reverseIcon' => true,
+                            'text' => __('Send as email', 'modularity-guides'),
                             'attributeList' => [
                                 'data-open' => "mod-guide-todo-".$stepId
                             ]
                         ])
-                            {!!  __('Send as email', 'modularity-guides') !!}
                         @endbutton
 
 
