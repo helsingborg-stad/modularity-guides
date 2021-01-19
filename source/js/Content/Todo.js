@@ -15,7 +15,7 @@ export default (function ($) {
     /**
      * Extract checklist html from todo table
      * @param {*} todoTable 
-     * @returns {string} html containing visible checklist items
+     * @returns {string} html with visible checklist items
      */
     function getCheckList(todoTable) {
         let checklist = todoTable.cloneNode(true);
@@ -87,7 +87,6 @@ export default (function ($) {
             });
         }
     }
-
 
     window.addEventListener('DOMContentLoaded', subscribeSubmit);
 })(jQuery);

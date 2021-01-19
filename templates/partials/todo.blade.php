@@ -35,8 +35,6 @@
                             ]
                         ])
                         @endbutton
-
-
                     </th>
                 </tr>
             </tfoot>
@@ -77,7 +75,7 @@
 
                     </div>
                 </div>
-                @if(!is_user_logged_in() && $municipio)
+                @if(!is_user_logged_in() && $municipio && $g_recaptcha_key)
                     <div class="o-grid-12">
                         <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
                     </div>
