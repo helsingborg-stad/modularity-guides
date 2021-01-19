@@ -44,8 +44,8 @@ function handlePrevNextClick(e) {
  */
 function subscribePrevNextButtons(wrapperElement) {
     const buttons = [
-        ...wrapperElement.querySelectorAll(SELECTOR_NEXT),
-        ...wrapperElement.querySelectorAll(SELECTOR_PREV),
+        ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_NEXT}`),
+        ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_PREV}`),
     ];
 
     if (buttons.length > 0) {
