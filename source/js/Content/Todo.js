@@ -43,7 +43,7 @@ export default (function ($) {
     
         const currentForm = e.target;
         const currentSection = currentForm.closest(SELECTOR_TODOS_WRAPPER);
-        const recaptcha = currentForm?.querySelector(SELECTOR_INPUT_RECAPTCHA)?.val();
+        const recaptcha = currentForm?.querySelector(SELECTOR_INPUT_RECAPTCHA)?.value;
         const email = currentForm?.querySelector(SELECTOR_INPUT_EMAIL)?.value;
     
         if (recaptcha === '') {
