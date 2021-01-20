@@ -12,7 +12,7 @@ const SELECTOR_ACCORDION_TOGGLE = '[js-expand-button]';
 const ATTRIBUTE_STEP = 'data-guide-step';
 
 /**
- * Click handler for Next & Prev buttons, 
+ * Click handler for Next & Prev buttons,
  * will traverse up to find current, previous and the next step to simulate accordion click
  * @param {*} e event
  */
@@ -31,7 +31,7 @@ function handlePrevNextClick(e) {
         const targetStep = isNext ? currentStep + 1 : currentStep - 1;
         const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
         const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE);
-        
+
         if (targetToggle) {
             targetToggle.click();
         }
@@ -40,7 +40,7 @@ function handlePrevNextClick(e) {
 
 /**
  * Subscribe prev/next button click event
- * @param {Element} wrapperElement 
+ * @param {Element} wrapperElement
  */
 function subscribePrevNextButtons(wrapperElement) {
     const buttons = [
