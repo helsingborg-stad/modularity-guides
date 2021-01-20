@@ -18,7 +18,7 @@ export default (function ($) {
     let RECAPTCHA_WIDGETS = {};    
 
     /**
-     * Check if element is visible or not
+     * Utility to check if element is visible or not
      * @param {*} elem 
      * @returns {boolean}
      */
