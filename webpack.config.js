@@ -30,7 +30,7 @@ module.exports = {
      * Output settings
      */
     output: {
-        filename: ifProduction('[name].min.js', '[name].min.js'),
+        filename: ifProduction('[name].[contenthash].js', '[name].js'),
         path: path.resolve(__dirname, 'dist'),
     },
     /**
@@ -132,7 +132,7 @@ module.exports = {
          * Output CSS files
          */
         new MiniCssExtractPlugin({
-            filename: ifProduction('[name].min.css', '[name].min.css')
+            filename: ifProduction('[name].[contenthash:8].css', '[name].css')
         }),
         
         /**

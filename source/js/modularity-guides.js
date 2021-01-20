@@ -1,280 +1,69 @@
 import './Content/Todo.js';
 import './Content/checkboxes.js';
+
+// Required selectors
+const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';
+const SELECTOR_SECTION = '.js-modularity-guide__section';
+const SELECTOR_NEXT = '.js-modularity-guide__next';
+const SELECTOR_PREV = '.js-modularity-guide__prev';
+const SELECTOR_ACCORDION_TOGGLE = '[js-expand-button]';
+
+// Required data-attributes
+const ATTRIBUTE_STEP = 'data-guide-step';
+
 /**
- * Guide steps and views
+ * Click handler for Next & Prev buttons,
+ * will traverse up to find current, previous and the next step to simulate accordion click
+ * @param {*} e event
  */
-class GuideDefault {
+function handlePrevNextClick(e) {
+    e.preventDefault();
 
-    /**
-     * Init
-     */
-    constructor() {
-        this.initView();
-    }
+    const prevNextButtonElement = e.target;
+    const isNext = e.target.classList.contains(SELECTOR_NEXT.substring(1));
 
-    /**
-     * Get Section ID
-     * @returns {string}
-     */
-    sectionId() {
-        return document.querySelector('.mod-guide-wrapper .c-option__radio ' +
-            'input:checked').getAttribute('guide-section');
-    }
+    // Traverse DOM upwards
+    const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE);
+    const currentSection = prevNextButtonElement?.closest(SELECTOR_SECTION);
+    const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1');
 
-    /**
-     * Init the first step in guide
-     */
-    initView() {
+    if (currentStep > 0) {
+        const targetStep = isNext ? currentStep + 1 : currentStep - 1;
+        const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
+        const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE);
 
-        let int = 0;
-        //Reset stuff - Hack Component library cards to look like "accordish" ......
-        for (const firstElement of document.body.querySelectorAll('.c-card')) {
-            if (int < 1) {
-                firstElement.querySelector('.c-card__body').classList.Border = '1px solid red';
-                firstElement.querySelector('.c-card__body').setAttribute(
-                    'c-card--collapse', 'c-card--collapse')
-                firstElement.querySelector('.c-card__body').classList.remove('c-card--collapse');
-            }
-            int++;
-        }
-
-        for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
-            '.c-option__checkbox--hidden-box')) {
-            document.body.querySelector('.mod-guide-wrapper ' +
-                '.c-option__radio--hidden-box').removeAttribute('disabled');
-        }
-
-        this.prepareEvent();
-        this.prevNextStep();
-    }
-
-    /**
-     * Change Step in guide
-     * Prepare for change of view
-     */
-    prepareEvent() {
-
-        const self = this;
-
-        // Prepare views - Listen to section change
-        for (const stepOption of document.body.querySelectorAll('.c-option__radio--hidden-box')) {
-
-            // If item is disabled listen to parent
-            if (stepOption.hasAttribute('disabled')) {
-                stepOption.parentElement.addEventListener("click", function () {
-                    if (!self.collectRequiredElements()) {
-                        self.requiredNotice(this);
-                    }
-                }, false);
-            }
-
-            //Check fore requirements
-            stepOption.addEventListener("change", function () {
-                self.collectRequiredElements();
-                self.changeView(this);
-            }, false);
+        if (targetToggle) {
+            targetToggle.click();
         }
     }
+};
 
-    /**
-     * Change view
-     * Show next section/step if required input is checked
-     */
-    changeView(element) {
+/**
+ * Subscribe prev/next button click event
+ * @param {Element} wrapperElement
+ */
+function subscribePrevNextButtons(wrapperElement) {
+    const buttons = [
+        ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_NEXT}`),
+        ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_PREV}`),
+    ];
 
-        // Restore views
-        for (const hideOption of document.querySelectorAll('.c-card .c-card__body')) {
-            hideOption.removeAttribute('c-card--collapse');
-            hideOption.classList.add('c-card--collapse');
-        }
-
-        // Change view by adding or removing attributes and css classes -> styleguide
-        const thisElementId = element.getAttribute('guide-section');
-        document.getElementById(thisElementId).querySelector('.c-card__body').setAttribute(
-            'c-card--collapse', 'c-card--collapse');
-        document.getElementById(thisElementId).querySelector('.c-card__body').classList.remove(
-            'c-card--collapse');
-
-        // Check for required stuff
-        if (!this.collectRequiredElements()) {
-            return false;
-        }
-
-        element.removeAttribute('disabled');
-        let int = 0;
-        for (const disabled of document.body.querySelectorAll('.mod-guide-wrapper ' +
-            '.c-option__checkbox--hidden-box')) {
-            if (int === 1) {
-                disabled.setAttribute('disabled', false);
-            }
-        }
-    }
-
-    /**
-     * Find required elements
-     * @returns {boolean}
-     */
-    collectRequiredElements() {
-
-        const self = this;
-        let requiredFields = [];
-        const sectionId = this.sectionId();
-
-        // Run trough section and look for checkboxes that is required
-        for (const item of document.querySelectorAll('.' + sectionId + ' .c-option__checkbox--hidden-box')) {
-
-            // Listen to changes of checkbox
-            item.addEventListener("change", function () {
-                requiredFields = self.evaluateCheckBox({element: this, required: requiredFields});
-            }, false);
-
-            // Check if there is anymore input left
-            if (item.hasAttribute('required') && !item.checked) {
-                requiredFields.push(item.getAttribute('id'));
-            } else {
-                requiredFields = self.evaluateCheckBox({element: item, required: requiredFields});
-            }
-
-            // Lock view if required fields not completed
-            if (requiredFields.length <= 0) {
-                this.lockView(false);
-            } else {
-                this.lockView(true);
-            }
-        }
-
-        // return boolean result
-        if (requiredFields.length <= 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Evaluate checkboxes
-     * @param params
-     * @returns {*}
-     */
-    evaluateCheckBox(params) {
-
-        // Checkbox id
-        if (params.element.hasAttribute('required') && !params.element.checked) {
-            params.required.push(params.element.getAttribute('id'));
-        }
-
-        // Checked or not
-        if (params.element.hasAttribute('required') && params.element.checked) {
-            for (let int = 0; int < params.required.length; int++) {
-                if (params.required.includes(params.element.id)) {
-                    params.required.splice(params.required.indexOf(params.element.id), 1);
-                }
-            }
-        }
-
-        // Lock view if not checked
-        if (params.required.length <= 0 || params.element.checked) {
-            this.lockView(false);
-        } else {
-            this.lockView(true);
-        }
-
-        return params.required;
-    }
-
-    /**
-     * Jump to next or previous
-     * if requirements are ok
-     */
-    prevNextStep() {
-
-        const self = this;
-        for (const steps of document.body.querySelectorAll('.prevNext')) {
-
-            //Listen to Next or previous clicks
-            steps.addEventListener("click", function () {
-
-                let currentStep = 0;
-                let count = 0;
-                let stepData = [];
-
-                const requirement = self.collectRequiredElements();
-                if (!requirement) {
-                    self.requiredNotice(this);
-                    return false;
-                }
-
-                for (const stepCurrent of document.body.querySelectorAll('.guideSteps ' +
-                    '.c-option__radio--hidden-box')) {
-
-                    if (!stepCurrent.checked) {
-                        stepData.push(stepCurrent.getAttribute('id'));
-                    }
-
-                    if (stepCurrent.checked) {
-                        currentStep = stepCurrent.getAttribute('value');
-                    }
-                    count++;
-                }
-
-                // Next section
-                if (this.classList.contains('nextStep')) {
-                    let next = parseInt(currentStep) - 1;
-                    document.getElementById(stepData[next]).checked = true;
-                    self.changeView(document.getElementById(stepData[next]));
-                }
-
-                // Previous section
-                if (this.classList.contains('prevStep')) {
-                    let prev = parseInt(currentStep) - 2;
-                    document.getElementById(stepData[prev]).checked = true;
-                    self.changeView(document.getElementById(stepData[prev]));
-                }
-
-            }, false);
-        }
-    }
-
-
-    /**
-     * Lock section view until required are checked
-     * @param param (boolean)
-     */
-    lockView(param) {
-
-        const sectionId = this.sectionId();
-        for (const item of document.body.querySelectorAll('.c-option__radio--hidden-box')) {
-
-            //Lock view || not
-            if (param) {
-                item.setAttribute('disabled', 'disabled');
-                document.getElementById(sectionId).querySelector('.prevNext').setAttribute(
-                    'disabled', 'disabled');
-            } else {
-                item.removeAttribute('disabled');
-                document.getElementById(sectionId).querySelector('.prevNext').removeAttribute(
-                    'disabled');
-            }
-        }
-    }
-
-    /**
-     * Notice for unsolved required fields
-     */
-    requiredNotice(element) {
-
-        if (element.getAttribute('type') === 'checkbox') {
-            return false;
-        }
-
-        document.querySelector('.c-notice-guide').classList.remove('c-notice-fade-away');
-        document.querySelector('.c-notice-guide .c-notice__message--sm').innerHTML = guides.lockMessage;
-        document.querySelector('.c-notice-guide').classList.add('displayNotice');
-        setTimeout(function () {
-            document.querySelector('.c-notice-guide').classList.add('c-notice-fade-away');
-
-        }, 4000);
+    if (buttons.length > 0) {
+        buttons.forEach(buttonElement => {
+            buttonElement.addEventListener('click', handlePrevNextClick);
+        });
     }
 }
 
-new GuideDefault();
+/**
+ * Query guide modules & initialize stuff
+ */
+function init() {
+    const guideModules = document.querySelectorAll(SELECTOR_MODULARITY_GUIDE);
+
+    if (guideModules && guideModules.length > 0) {
+        guideModules.forEach(subscribePrevNextButtons);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', init);
