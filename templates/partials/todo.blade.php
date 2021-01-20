@@ -1,4 +1,4 @@
-<div class="o-grid js-modularity-guide-todos">
+<div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
         <table class="table mod-guide-todo-list js-modularity-guide-todos__table">
             <thead>
@@ -46,6 +46,8 @@
             'id' => "mod-guide-todo-".$stepId,
             'overlay' => 'dark',
             'animation' => 'scale-up',
+            'size' => 'sm',
+            'classList' => ['js-modularity-guide-todos__modal'],
             'attributeList' => [
                 'tabindex' => "-1",
                 'role' => "dialog",
@@ -56,8 +58,8 @@
                 'method' => 'POST',
                 'classList' => ['js-modularity-guide-todos__form']
             ])
-                <div class="o-grid">
-                    <div class="o-grid-12">
+                <div class="o-grid o-grid--no-margin">
+                    <div class="o-grid-12 u-margin__bottom--3">
                         @field([
                             'type' => 'text',
                             'id' => 'send-todo-email',
@@ -74,24 +76,56 @@
                         @endfield
 
                     </div>
-                </div>
-                @if(!is_user_logged_in() && $municipio && $g_recaptcha_key)
+
+                    @if(!is_user_logged_in() && $municipio && $g_recaptcha_key)
+                        <div class="o-grid-12 u-margin__bottom--3">
+                            <div class="js-modularity-guide-todos__grecaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
+                        </div>
+                    @endif
+                
                     <div class="o-grid-12">
-                        <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
+                        <div class="o-grid o-grid--no-margin">
+                            <div class="o-grid-fit">
+                                @button([
+                                    'text' => __('Send', 'modularity-guides'),
+                                    'color' => 'primary',
+                                    'style' => 'filled',
+                                    'type' => 'submit'
+                                ])
+                                @endbutton
+                            </div>
+                            <div class="o-grid-fit">
+                                @loader([
+                                    'size' => 'sm',
+                                    'classList' => []
+                                ])
+                                @endloader
+                            </div>
+                        </div>
                     </div>
-                @endif
-                <div class="o-grid-12">
-                    @button([
-                        'text' => __('Send', 'modularity-guides'),
-                        'color' => 'primary',
-                        'style' => 'filled',
-                        'type' => 'submit'
-                    ])
-                    @endbutton
                 </div>
+
+
 
             @endform
             
+            @slot('bottom')
+                @notice([
+                    'type' => 'success',
+                    'message' => [
+                        'text' => 'Tellus Sem Lorem Malesuada Ipsum',
+                        'size' => 'sm'
+                    ],
+                    'classList' => ['js-modularity-guide-todos__notice', 'u-display--none'],
+                    'icon' => [
+                        'name' => 'check',
+                        'size' => 'md',
+                        'color' => 'white'
+                    ]
+                ])
+                @endnotice
+            @endslot
+
         @endmodal
 
     </div>
