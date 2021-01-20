@@ -19,7 +19,8 @@
   }
 }
 
-.modularity-guide-todos.is-disabled {
+.modularity-guide-todos.is-disabled,
+.modularity-guide-todos.is-loading {
   button[type="submit"] {
     opacity: 0.3;
     pointer-events: none;
