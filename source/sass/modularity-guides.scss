@@ -1,3 +1,30 @@
+.modularity-guide-todos {
+  .c-modal__header {
+    padding-top: 48px;
+  }
+
+  .c-modal__content {
+    padding-bottom: 0px;
+  }
+
+  .c-loader {
+    display: none;
+  }
+}
+
+.modularity-guide-todos.is-loading {
+  .c-loader {
+    display: block;
+  }
+}
+
+.modularity-guide-todos.is-disabled {
+  button[type="submit"] {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
 .modularity-mod-guide {
   z-index: 1;
   
