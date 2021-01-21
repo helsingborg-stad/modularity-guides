@@ -2,6 +2,7 @@ export default (function ($) {
     const SELECTOR_TODOS_WRAPPER = '.js-modularity-guide-todos';
     const SELECTOR_FORM = '.js-modularity-guide-todos__form';
     const SELECTOR_MODAL_CLOSE_BUTTON = '.js-modularity-guide-todos__modal .c-modal__close';
+    const SELECTOR_MODAL_TRIGGER_BUTTON = '.js-modularity-guide-todos__modal-trigger';
     const SELECTOR_FORM_NOTICE = '.js-modularity-guide-todos__notice';
     const SELECTOR_TABLE = '.js-modularity-guide-todos__table';
     const SELECTOR_GRECAPTCHA_CONTAINER = '.js-modularity-guide-todos__grecaptcha';
@@ -146,11 +147,20 @@ export default (function ($) {
         }
     }
 
-
-    function subscribeForm(todoSection) {
+    /**
+     * 
+     * @param {element} todoSection 
+     * @param {int} index 
+     */
+    function subscribeForm(todoSection, index) {
         todoSection?.querySelector(SELECTOR_FORM)?.addEventListener('submit', handleSubmit);
     }
 
+    /**
+     * 
+     * @param {element} todoSection 
+     * @param {int} index 
+     */
     function renderRecaptcha(todoSection, index) {
         const recaptchaContainer = todoSection?.querySelector(SELECTOR_GRECAPTCHA_CONTAINER);
         const recaptchaSiteKey = recaptchaContainer?.getAttribute('data-sitekey');
@@ -177,6 +187,22 @@ export default (function ($) {
         }
     }
 
+
+    /**
+     * 
+     * @param {element} todoSection 
+     * @param {int} index 
+     */
+    function subscribeModalTrigger(todoSection, index)
+    {
+        const modalTrigger = todoSection.querySelector(SELECTOR_MODAL_TRIGGER_BUTTON);
+
+        modalTrigger?.addEventListener('click', function() {
+            renderRecaptcha(todoSection, index);
+        },{once: true});
+    }
+
+
     /**
      * Query ToDo sections & initialize great things
      */
@@ -184,7 +210,7 @@ export default (function ($) {
         const todoSections = document.querySelectorAll(SELECTOR_TODOS_WRAPPER);
         if (todoSections?.length > 0) {
             todoSections.forEach((todoSection, index) => {
-                renderRecaptcha(todoSection, index);
+                subscribeModalTrigger(todoSection, index);
                 subscribeForm(todoSection, index);
             });
         }

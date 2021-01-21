@@ -31,8 +31,9 @@
                             'size' => 'sm',
                             'text' => __('Send as email', 'modularity-guides'),
                             'attributeList' => [
-                                'data-open' => "mod-guide-todo-".$stepId
-                            ]
+                                'data-open' => "mod-guide-todo-".$stepId,
+                            ],
+                            'classList' => ['js-modularity-guide-todos__modal-trigger']
                         ])
                         @endbutton
                     </th>
