@@ -20,15 +20,15 @@ export default (function ($) {
 
     /**
      * Utility to check if element is visible or not
-     * @param {*} elem 
-     * @returns {boolean}
+     * @param {Element} elem 
+     * @returns {Boolean}
      */
     const isVisible = (elem) => (elem.offsetWidth > 0 || elem.offsetHeight > 0 || elem.getClientRects().length > 0);
 
     /**
      * Extract checklist html from todo table
-     * @param {*} todoTable 
-     * @returns {string} html with visible checklist items
+     * @param {Element} todoTable 
+     * @returns {String} html with visible checklist items
      */
     function getCheckList(todoTable) {
         let checklist = todoTable.cloneNode(true);
@@ -49,7 +49,7 @@ export default (function ($) {
 
     /**
      * Send checklist email through wordpress on submit
-     * @param {*} e 
+     * @param {SubmitEvent} e 
      */
     function handleSubmit(e) {
         e.preventDefault();
@@ -65,9 +65,9 @@ export default (function ($) {
     
         /**
          * Display or hide form notice
-         * @param {string/boolean} text notice content, set to false to hide notice 
-         * @param {string} level  notice level - info, danger, warning, success
-         * @param {string} icon material icon name
+         * @param {String|Boolean} text notice content, set to false to hide notice 
+         * @param {String} level  notice level - info, danger, warning, success
+         * @param {String} icon material icon name
          * @returns
          */
         function setNotice(text, level = 'info', icon = '') {
@@ -149,8 +149,8 @@ export default (function ($) {
 
     /**
      * 
-     * @param {element} todoSection 
-     * @param {int} index 
+     * @param {Element} todoSection 
+     * @param {Number} index 
      */
     function subscribeForm(todoSection, index) {
         todoSection?.querySelector(SELECTOR_FORM)?.addEventListener('submit', handleSubmit);
@@ -158,13 +158,17 @@ export default (function ($) {
 
     /**
      * 
-     * @param {element} todoSection 
-     * @param {int} index 
+     * @param {Element} todoSection 
+     * @param {Number} index 
      */
     function renderRecaptcha(todoSection, index) {
         const recaptchaContainer = todoSection?.querySelector(SELECTOR_GRECAPTCHA_CONTAINER);
         const recaptchaSiteKey = recaptchaContainer?.getAttribute('data-sitekey');
 
+        /**
+         * Handler for recaptcha submission & reset events
+         * @param {*} e 
+         */
         async function handleRecaptcha(e) {
             try {     
                 todoSection.classList.toggle('is-disabled');   
@@ -190,8 +194,8 @@ export default (function ($) {
 
     /**
      * 
-     * @param {element} todoSection 
-     * @param {int} index 
+     * @param {Element} todoSection 
+     * @param {Number} index 
      */
     function subscribeModalTrigger(todoSection, index)
     {
