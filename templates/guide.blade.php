@@ -2,6 +2,10 @@
     $j = 1;
 @endphp
 
+@if(!is_user_logged_in())
+    <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response" value="" />
+@endif
+
 <div class="mod-guide-wrapper js-modularity-guide">
     @if (count($steps) > 0)
         @accordion([])

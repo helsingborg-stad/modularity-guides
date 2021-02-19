@@ -1,17 +1,19 @@
 {
-    "name": "helsingborg-stad/modularity-guides",
-    "description": "Addon for Modularity for creating guides",
-    "type": "wordpress-plugin",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Kristoffer Svanmark",
-            "email": "kristoffer.svanmark@knowit.se"
-        },
-        {
-            "name": "Sebastian Thulin",
-            "email": "sebastian.thulin@helsingborg.se"
-        }
-    ],
-    "require": {}
+  "name": "helsingborg-stad/modularity-guides",
+  "description": "Addon for Modularity for creating guides",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kristoffer Svanmark",
+      "email": "kristoffer.svanmark@knowit.se"
+    },
+    {
+      "name": "Sebastian Thulin",
+      "email": "sebastian.thulin@helsingborg.se"
+    }
+  ],
+  "require": {
+    "helsingborg-stad/recaptcha-integration": ">=1.0.8"
+  }
 }

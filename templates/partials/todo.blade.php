@@ -8,6 +8,7 @@
                 </tr>
             </thead>
             <tbody>
+            <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response" value="" />
             @foreach ($content['list_items'] as $item)
                 <tr {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
                     <td>{{ $item['title'] }}</td>
@@ -75,15 +76,9 @@
                             'required' => true,
                         ])
                         @endfield
-
+                        
                     </div>
-
-                    @if(!is_user_logged_in() && $municipio && $g_recaptcha_key)
-                        <div class="o-grid-12 u-margin__bottom--3">
-                            <div class="js-modularity-guide-todos__grecaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
-                        </div>
-                    @endif
-                
+                    
                     <div class="o-grid-12">
                         <div class="o-grid o-grid--no-margin">
                             <div class="o-grid-fit">
@@ -105,9 +100,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
             @endform
             
             @slot('bottom')

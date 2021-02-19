@@ -2,8 +2,17 @@
 
 namespace ModularityGuides;
 
+use HelsingborgStad\RecaptchaIntegration as Captcha;
+
+/**
+ * Class App
+ * @package ModularityGuides
+ */
 class App
 {
+    /**
+     * App constructor.
+     */
     public function __construct()
     {
         add_action('plugins_loaded', function () {
@@ -18,30 +27,58 @@ class App
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
         add_action('wp_ajax_email_todo', array($this, 'emailTodo'));
+        add_action('wp_enqueue_scripts', array($this, 'addRecaptchaScript'), 40);
+
     }
 
+    /**
+     * @param $paths
+     * @return mixed
+     */
     public function jsonLoadPath($paths)
     {
         $paths[] = MODULARITYGUIDES_PATH . 'source/acf-json';
         return $paths;
     }
 
+    /**
+     * Check reCaptcha Keys and if poster is Human or bot.
+     */
+    public static function reCaptchaValidation()
+    {
+        if (is_user_logged_in()) {
+            return;
+        }
+
+        Captcha::initCaptcha();
+    }
+
+    /**
+     * Add Recaptcha Script
+     */
+    public static function addRecaptchaScript()
+    {
+        // If Captcha Script is not Enqueued
+        if (!wp_script_is('municipio-google-recaptcha')) {
+            Captcha::initScripts();
+        }
+    }
+
+
+    /**
+     * Posting Email
+     */
     public function emailTodo()
     {
-        $theme = wp_get_theme();
-        if (!is_user_logged_in() && ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio')) {
-            $response = isset($_POST['captcha']) ? esc_attr($_POST['captcha']) : '';
-            $reCaptcha = \Municipio\Helper\ReCaptcha::controlReCaptcha($response);
 
-            if (!$reCaptcha) {
-                echo "false";
-                wp_die();
-            }
+        if (!is_user_logged_in()) {
+            $_POST['g-recaptcha-response'] = $_POST['captcha'];
+            self::reCaptchaValidation();
         }
 
         // Send the email
         $to = $_POST['email'];
-        $mail = wp_mail(
+        wp_mail(
             $to,
             __('Your checklist', 'modularity-guides'),
             __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . urldecode($_POST['checklist']),
@@ -51,7 +88,7 @@ class App
             )
         );
 
-        echo "success";
+        wp_send_json(true);
         wp_die();
     }
 }
