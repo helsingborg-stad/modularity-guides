@@ -42,6 +42,7 @@
             ]
         ])
             {!! $content['modal_content'] !!}
+        
         @endmodal
 
     </div>

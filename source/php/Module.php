@@ -2,6 +2,8 @@
 
 namespace ModularityGuides;
 
+use HelsingborgStad\RecaptchaIntegration as Captcha;
+
 class Module extends \Modularity\Module
 {
     public $slug = 'guide';
@@ -23,14 +25,11 @@ class Module extends \Modularity\Module
         $data['steps'] = get_field('steps', $this->ID);
         $theme = wp_get_theme();
         $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
-        $data['g_recaptcha_key'] = defined('G_RECAPTCHA_KEY') ? G_RECAPTCHA_KEY : '';
         return $data;
     }
 
     public function script()
     {
-        wp_register_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', '', '1.0.0', true);
-        wp_enqueue_script('google-recaptcha');
 
         wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/'. Helper\CacheBust::name('js/modularity-guides.js'), null, '1.0.0', true);
         wp_localize_script('modularity-guides', 'guides', array(
@@ -42,6 +41,7 @@ class Module extends \Modularity\Module
 
         wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/'. Helper\CacheBust::name('css/modularity-guides.css'), null, '1.0.0');
         wp_enqueue_style('modularity-guides');
+
     }
 
     /**
