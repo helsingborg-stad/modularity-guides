@@ -24,7 +24,7 @@ class App
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
         add_action('wp_ajax_email_todo', array($this, 'emailTodo'));
-        add_action('wp_enqueue_scripts', array($this, 'addRecaptchaScript'), 40);
+        add_action('wp_enqueue_scripts', array($this, 'addRecaptchaScript'), 50);
     }
 
     /**

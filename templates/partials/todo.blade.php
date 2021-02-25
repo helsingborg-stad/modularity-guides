@@ -45,7 +45,11 @@
                                 <div class="form-group">
                                     <label for="send-todo-email"><?php _e('Email', 'modularity-guides'); ?></label>
                                     <input type="email" name="email" id="send-todo-email" required>
+                                   
                                     @if(!is_user_logged_in())
+                                        <p class="text-sm text-dark-gray">
+                                            <?php echo _e('This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.', 'modularity-guides') ?>
+                                        </p>
                                     <textarea  class="g-recaptcha-response" style="visibility:hidden; height:0px; width:0px;"
                                                name="g-recaptcha-response" value="" /></textarea>
                                     @endif
