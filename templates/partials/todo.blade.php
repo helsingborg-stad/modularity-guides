@@ -45,16 +45,14 @@
                                 <div class="form-group">
                                     <label for="send-todo-email"><?php _e('Email', 'modularity-guides'); ?></label>
                                     <input type="email" name="email" id="send-todo-email" required>
+                                    @if(!is_user_logged_in())
+                                    <textarea  class="g-recaptcha-response" style="visibility:hidden; height:0px; width:0px;"
+                                               name="g-recaptcha-response" value="" /></textarea>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        @if(!is_user_logged_in() && $municipio)
-                            <div class="grid">
-                                <div class="grid-md-12">
-                                    <div class="g-recaptcha" data-sitekey="{{ $g_recaptcha_key }}"></div>
-                                </div>
-                            </div>
-                        @endif
+                        
                     </article>
                 </div>
                 <div class="modal-footer">
