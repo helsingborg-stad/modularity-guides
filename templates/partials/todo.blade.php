@@ -1,3 +1,4 @@
+
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
         <table class="table mod-guide-todo-list js-modularity-guide-todos__table">
@@ -76,7 +77,11 @@
                             'required' => true,
                         ])
                         @endfield
-                        
+                        @typography([
+                            "variant" => "meta"
+                        ])
+                            {!! $googleCaptchaTerms  !!}
+                        @endtypography
                     </div>
                     
                     <div class="o-grid-12">
