@@ -25,6 +25,9 @@ class Module extends \Modularity\Module
         $data['steps'] = get_field('steps', $this->ID);
         $theme = wp_get_theme();
         $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
+
+        $data['googleCaptchaTerms'] = __('This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.', 'modularity-guides');
+
         return $data;
     }
 
