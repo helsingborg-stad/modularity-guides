@@ -30,9 +30,7 @@ class Module extends \Modularity\Module
 
     public function script()
     {
-        wp_register_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', '', '1.0.0', true);
-        wp_enqueue_script('google-recaptcha');
-
+        
         wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/js/modularity-guides.dev.js', null, '1.0.0', true);
         wp_localize_script('modularity-guides', 'guides', array(
             'email_sent'    => __("Email was sent", 'modularity-guides'),
