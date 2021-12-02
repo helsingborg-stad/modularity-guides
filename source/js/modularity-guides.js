@@ -1,5 +1,5 @@
 import './Content/Todo.js';
-import './Content/checkboxes.js';
+import './Content/Checkboxes.js';
 
 // Required selectors
 const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';
