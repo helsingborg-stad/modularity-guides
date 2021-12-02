@@ -8,9 +8,7 @@ node_modules/
 # ignore composer vendor directory
 /vendor
 
-# ignore composer lock file
-composer.lock
-
+dist
 # ignore jekyll build directory
 /_site
 
