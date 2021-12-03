@@ -22,7 +22,9 @@ $removables = [
     'composer.lock',
     'node_modules',
     'package.json',
-    'package-lock.json'
+    'package-lock.json',
+    'LICENSE',
+    'README.md'
 ];
 
 $dirName = basename(dirname(__FILE__));
