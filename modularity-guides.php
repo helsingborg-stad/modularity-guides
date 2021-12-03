@@ -25,6 +25,19 @@ define('MODULARITYGUIDES_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . '/templa
 
 load_plugin_textdomain('modularity-guides', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
+// Autoload from ABSPATH first and plugin path as alternative.
+$rootAutoload = dirname(ABSPATH) . '/vendor/autoload.php';
+$pluginAutoload = MODULARITYGUIDES_PATH . '/vendor/autoload.php';
+
+if (file_exists($rootAutoload)) {
+    require_once $rootAutoload;
+} elseif (file_exists($pluginAutoload)) {
+    require_once $pluginAutoload;
+} else {
+    error_log('Missing autoload.php, have you run composer install?');
+}
+
+
 require_once MODULARITYGUIDES_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MODULARITYGUIDES_PATH . 'Public.php';
 
