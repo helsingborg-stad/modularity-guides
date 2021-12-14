@@ -19,6 +19,8 @@ const ATTRIBUTE_STEP = 'data-guide-step';
 function handlePrevNextClick(e) {
     e.preventDefault();
 
+    console.log("next prev"); 
+
     const prevNextButtonElement = e.target;
     const isNext = e.target.classList.contains(SELECTOR_NEXT.substring(1));
 
