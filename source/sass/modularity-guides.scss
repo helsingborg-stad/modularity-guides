@@ -69,11 +69,12 @@
   }
 
   .guide-pagination {
-    padding-top:20px;
-
+    margin-top: calc(var(--base, 8px) * 3);
+    padding-top: calc(var(--base, 8px) * 3);
+    border-top: 3px dashed var(--color-border-divider); 
   }
 
-  .c-option__radio{
+  .c-option__radio {
     position: relative;
     margin-bottom:-45px;
     margin-left:20px;

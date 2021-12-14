@@ -13,18 +13,16 @@
                 {!! $content['summary'] !!}
             @endtypography
 
-
-
-            @button( [
+            @button([
+                'text' => $content['title'],
                 'href' => '',
                 'icon' => 'open_with',
                 'size' => 'sm',
-                'color' => 'secondary',
-                'style' => 'basic',
-                'reverseIcon' => true,
+                'color' => 'default',
+                'style' => 'filled',
+                'reversePositions' => true,
                 'attributeList' => ['data-open' => "mod-guide-modal-".$stepId]
             ])
-                {!! $content['title'] !!}
             @endbutton
 
         </article>
