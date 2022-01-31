@@ -76,6 +76,10 @@ class App
             self::reCaptchaValidation();
         }
 
+        $siteDomain = preg_replace( '/www\./i', '', parse_url( get_home_url() )['host'] );
+        $siteMailFromDomain = defined( 'MOD_FORMS_MAIL_FROM_DOMAIN' ) && !empty( MOD_FORMS_MAIL_FROM_DOMAIN ) ? MOD_FORMS_MAIL_FROM_DOMAIN : $siteDomain;
+        $siteMailFromName = defined( 'MOD_FORMS_MAIL_FROM_NAME' ) && !empty( MOD_FORMS_MAIL_FROM_NAME ) ? MOD_FORMS_MAIL_FROM_NAME : get_bloginfo( 'name' );
+
         // Send the email
         $to = $_POST['email'];
         wp_mail(
@@ -83,7 +87,7 @@ class App
             __('Your checklist', 'modularity-guides'),
             __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . urldecode($_POST['checklist']),
             array(
-                'From: no-reply@helsingborg.se',
+                'From: ' . $siteMailFromName . ' <no-reply@' . $siteMailFromDomain . '>',
                 'Content-Type: text/html; charset=UTF-8'
             )
         );
