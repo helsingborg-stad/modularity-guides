@@ -77,8 +77,8 @@ class App
         }
 
         $siteDomain = preg_replace( '/www\./i', '', parse_url( get_home_url() )['host'] );
-        $siteMailFromDomain = defined( 'MOD_FORMS_MAIL_FROM_DOMAIN' ) && !empty( MOD_FORMS_MAIL_FROM_DOMAIN ) ? MOD_FORMS_MAIL_FROM_DOMAIN : $siteDomain;
-        $siteMailFromName = defined( 'MOD_FORMS_MAIL_FROM_NAME' ) && !empty( MOD_FORMS_MAIL_FROM_NAME ) ? MOD_FORMS_MAIL_FROM_NAME : get_bloginfo( 'name' );
+        $siteMailFromDomain = defined( 'MOD_GUIDES_MAIL_FROM_DOMAIN' ) && !empty( MOD_GUIDES_MAIL_FROM_DOMAIN ) ? MOD_GUIDES_MAIL_FROM_DOMAIN : $siteDomain;
+        $siteMailFromName = defined( 'MOD_GUIDES_MAIL_FROM_NAME' ) && !empty( MOD_GUIDES_MAIL_FROM_NAME ) ? MOD_GUIDES_MAIL_FROM_NAME : get_bloginfo( 'name' );
 
         // Send the email
         $to = $_POST['email'];
