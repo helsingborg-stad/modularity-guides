@@ -46,6 +46,9 @@ class Module extends \Modularity\Module
         wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/'. Helper\CacheBust::name('css/modularity-guides.css'), null, '1.0.0');
         wp_enqueue_style('modularity-guides');
 
+        if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
+            wp_enqueue_script('jquery');
+        }
     }
 
     /**
