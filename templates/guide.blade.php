@@ -2,10 +2,6 @@
     $j = 1;
 @endphp
 
-@if(!is_user_logged_in())
-    <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response" value="" />
-@endif
-
 @card()
     <!-- Heading -->
     @if (!$hideTitle && !empty($postTitle))
@@ -38,7 +34,7 @@
                         @endif
 
                         <div class="guide-pagination u-margin__bottom--1">
-                            <div class="o-grid o-grid--no-margin">
+                            <div class="o-grid o-grid--no-margin u-justify-content--space-between">
                                 <div class="o-grid-6">
                                     @if (!$loop->first)
                                         @button([

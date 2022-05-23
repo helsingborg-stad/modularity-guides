@@ -78,6 +78,10 @@
   .c-accordion__content[aria-hidden="false"] {
     will-change: auto;
   }
+
+  .c-option .c-option__checkbox--label-text, .c-option .c-option__radio--label-text {
+    font-style: normal;
+  }
 }
 
 
@@ -114,4 +118,6 @@
   font-weight: normal;
 }
 
-
+.mod-guide-checkboxes--checkbox {
+  padding-bottom: 8px;
+}

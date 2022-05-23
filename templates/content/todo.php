@@ -51,9 +51,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <input type="hidden" class="g-recaptcha g-recaptcha-response" name="g-recaptcha-response" value=""/>
-
                     </article>
                 </div>
                 <div class="modal-footer">

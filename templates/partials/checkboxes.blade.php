@@ -11,6 +11,9 @@
                             'data-mod-guide-relation' => (isset($checkbox['relate_to']) && !empty($checkbox['relate_to']) ) ? $checkbox['relate_to'] : '',
                             'data-mod-guide-toggle-key' => $checkbox['key']
                         ],
+                        'classList' => [
+                            'mod-guide-checkboxes--checkbox'
+                        ],
                         'required' => (isset($checkbox['required']) && $checkbox['required']) ? true : false,
                         'label' => $checkbox['label']
                     ])
