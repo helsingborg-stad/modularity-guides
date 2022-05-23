@@ -2,10 +2,6 @@
     $j = 1;
 @endphp
 
-@if(!is_user_logged_in())
-    <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response" value="" />
-@endif
-
 @card()
     <!-- Heading -->
     @if (!$hideTitle && !empty($postTitle))

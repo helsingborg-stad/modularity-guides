@@ -12,8 +12,5 @@
       "name": "Sebastian Thulin",
       "email": "sebastian.thulin@helsingborg.se"
     }
-  ],
-  "require": {
-    "helsingborg-stad/recaptcha-integration": ">=1.0.8"
-  }
+  ]
 }

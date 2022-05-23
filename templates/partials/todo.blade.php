@@ -9,7 +9,6 @@
                 </tr>
             </thead>
             <tbody>
-            <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response" value="" />
             @foreach ($content['list_items'] as $item)
                 <tr {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
                     <td>{{ $item['title'] }}</td>

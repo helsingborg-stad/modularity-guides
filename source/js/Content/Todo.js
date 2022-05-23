@@ -116,7 +116,6 @@ export default (function ($) {
                 action: 'email_todo',
                 checklist: checklist,
                 email: email,
-                captcha: document.querySelector('.g-recaptcha-response').value
             };
 
             fetch(ajaxurl, {

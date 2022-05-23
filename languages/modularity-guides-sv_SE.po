@@ -40,16 +40,6 @@ msgstr ""
 msgid "A step by step guide"
 msgstr ""
 
-#: source/php/Module.php:29
-msgid ""
-"This site is protected by reCAPTCHA and the Google <a href=\"https://"
-"policies.google.com/privacy\">Privacy Policy</a> and <a href=\"https://"
-"policies.google.com/terms\">Terms of Service</a> apply."
-msgstr ""
-"Denna webbplats är skyddad av reCAPTCHA och Googles <a href=\"https://"
-"policies.google.com/privacy\">Integritetspolicy</a> och <a href=\"https://"
-"policies.google.com/terms\">Användarvillkor</a> tillämpas."
-
 #: source/php/Module.php:39
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
@@ -127,9 +117,3 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#~ msgid ""
-#~ "Modularity guides: constant 'g_recaptcha_key' or 'g_recaptcha_secret' is "
-#~ "not defined."
-#~ msgstr ""
-#~ "Modularity guider: konstant ‘g_recaptcha_key’ eller ‘g_recaptcha_secret’ "
-#~ "är inte definierade."
