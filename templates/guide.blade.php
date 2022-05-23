@@ -38,7 +38,7 @@
                         @endif
 
                         <div class="guide-pagination u-margin__bottom--1">
-                            <div class="o-grid o-grid--no-margin">
+                            <div class="o-grid o-grid--no-margin u-justify-content--space-between">
                                 <div class="o-grid-6">
                                     @if (!$loop->first)
                                         @button([
