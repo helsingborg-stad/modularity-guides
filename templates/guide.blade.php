@@ -42,6 +42,7 @@
                                             'reversePositions' => true,
                                             'text' => __('Previous', 'modularity-guides'),
                                             'style' => 'filled',
+                                            'size' => 'sm',
                                             'classList' => ['prevNext','prevStep', 'js-modularity-guide__prev']
                                         ])
                                         @endbutton
@@ -54,6 +55,7 @@
                                             'reversePositions' => false,
                                             'text' => __('Next', 'modularity-guides'),
                                             'style' => 'filled',
+                                            'size' => 'sm',
                                             'color' => 'primary',
                                             'classList' => ['prevNext','nextStep', 'js-modularity-guide__next'],
                                         ])
