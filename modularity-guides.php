@@ -25,14 +25,11 @@ define('MODULARITYGUIDES_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . '/templa
 
 load_plugin_textdomain('modularity-guides', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
-require_once MODULARITYGUIDES_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
+// Autoload from plugin
+if (file_exists(MODULARITYGUIDES_PATH . 'vendor/autoload.php')) {
+    require_once MODULARITYGUIDES_PATH . 'vendor/autoload.php';
+}
 require_once MODULARITYGUIDES_PATH . 'Public.php';
-
-// Instantiate and register the autoloader
-$loader = new ModularityGuides\Vendor\Psr4ClassLoader();
-$loader->addPrefix('ModularityGuides', MODULARITYGUIDES_PATH);
-$loader->addPrefix('ModularityGuides', MODULARITYGUIDES_PATH . 'source/php/');
-$loader->register();
 
 add_filter( '/Modularity/externalViewPath', function($arr)
 {

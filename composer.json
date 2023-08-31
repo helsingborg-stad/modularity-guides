@@ -12,5 +12,10 @@
       "name": "Sebastian Thulin",
       "email": "sebastian.thulin@helsingborg.se"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "ModularityGuides\\": "source/php/"
+    }
+  }
 }
