@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/modularity-guides",
-    "version": "4.0.3",
+    "version": "4.0.4",
     "description": "Addon for Modularity for creating guides",
     "main": "",
     "scripts": {
@@ -24,7 +24,9 @@
         "not dead",
         "IE 11"
     ],
-    "files": ["dist/"],
+    "files": [
+        "dist/"
+    ],
     "devDependencies": {
         "@babel/core": "^7.11.0",
         "@babel/plugin-proposal-class-properties": "^7.10.4",
