@@ -18,5 +18,23 @@
             "ModularityGuides\\": "source/php/"
         }
     },
-    "version": "4.0.4"
+    "version": "4.0.4",
+    "require-dev": {
+        "helsingborg-stad/phpcs": "^0.2.2",
+        "phpunit/phpunit": "^11.5",
+        "php-stubs/wordpress-stubs": "^6.8"
+    },
+    "scripts": {
+        "test": "phpunit --no-coverage --testdox",
+        "test:coverage": "XDEBUG_MODE=coverage phpunit --testdox",
+        "lint": "vendor/bin/phpcs",
+        "lint:changed": "vendor/bin/phpcs-changed origin/main",
+        "fix": "vendor/bin/phpcbf",
+        "fix:changed": "vendor/bin/phpcbf-changed origin/main"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
 }
