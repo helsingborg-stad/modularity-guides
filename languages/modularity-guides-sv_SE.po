@@ -81,7 +81,7 @@ msgstr "Klar"
 #: templates/content/todo.php:7
 #: templates/partials/todo.blade.php:7
 msgid "Title"
-msgstr "Titel"
+msgstr " "
 
 #: templates/content/todo.php:8
 #: templates/partials/todo.blade.php:8
