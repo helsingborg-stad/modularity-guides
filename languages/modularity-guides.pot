@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-23T15:17:16+00:00\n"
+"POT-Creation-Date: 2025-06-25T10:52:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
@@ -83,19 +83,22 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: templates/content/todo.php:29
+#: templates/content/todo.php:30
+#: templates/partials/todo.blade.php:34
 msgid "Send as email"
 msgstr ""
 
-#: templates/content/todo.php:42
+#: templates/content/todo.php:43
 msgid "Send todo-list as email"
 msgstr ""
 
-#: templates/content/todo.php:49
+#: templates/content/todo.php:50
+#: templates/partials/todo.blade.php:76
 msgid "Email"
 msgstr ""
 
-#: templates/content/todo.php:57
+#: templates/content/todo.php:58
+#: templates/partials/todo.blade.php:92
 msgid "Send"
 msgstr ""
 
@@ -105,4 +108,8 @@ msgstr ""
 
 #: templates/module/modularity-mod-guide.php:34
 msgid "Next"
+msgstr ""
+
+#: templates/partials/todo.blade.php:114
+msgid "Notice"
 msgstr ""

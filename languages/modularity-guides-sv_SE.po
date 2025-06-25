@@ -88,19 +88,22 @@ msgstr " "
 msgid "Link"
 msgstr "Länk"
 
-#: templates/content/todo.php:29
+#: templates/content/todo.php:30
+#: templates/partials/todo.blade.php:34
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: templates/content/todo.php:42
+#: templates/content/todo.php:43
 msgid "Send todo-list as email"
 msgstr ""
 
-#: templates/content/todo.php:49
+#: templates/content/todo.php:50
+#: templates/partials/todo.blade.php:76
 msgid "Email"
 msgstr ""
 
-#: templates/content/todo.php:57
+#: templates/content/todo.php:58
+#: templates/partials/todo.blade.php:92
 msgid "Send"
 msgstr ""
 
@@ -111,3 +114,7 @@ msgstr ""
 #: templates/module/modularity-mod-guide.php:34
 msgid "Next"
 msgstr ""
+
+#: templates/partials/todo.blade.php:114
+msgid "Notice"
+msgstr " "
