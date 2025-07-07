@@ -1,9 +1,9 @@
 module.exports = {
-  roots: ["<rootDir>/source/js"],
+  roots: ['<rootDir>/source/js'],
   moduleNameMapper: {
-    "(.*).js": "$1",
+    '(.*).js': '$1',
   },
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    '^.+\\.tsx?$': 'ts-jest',
   },
-};
+}

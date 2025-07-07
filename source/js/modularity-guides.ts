@@ -16,13 +16,11 @@ const ATTRIBUTE_STEP = 'data-guide-step'
  * will traverse up to find current, previous and the next step to simulate accordion click
  * @param {*} e event
  */
-function handlePrevNextClick(e) {
+function handlePrevNextClick(e: Event) {
   e.preventDefault()
 
-  console.log('next prev')
-
-  const prevNextButtonElement = e.target
-  const isNext = e.target.classList.contains(SELECTOR_NEXT.substring(1))
+  const prevNextButtonElement = e.target as HTMLButtonElement
+  const isNext = prevNextButtonElement?.classList.contains(SELECTOR_NEXT.substring(1))
 
   // Traverse DOM upwards
   const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE)
@@ -36,7 +34,7 @@ function handlePrevNextClick(e) {
     const targetSection = currentGuide?.querySelector(
       `[${ATTRIBUTE_STEP}="${targetStep}"]`
     )
-    const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE)
+    const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE) as HTMLButtonElement
 
     if (targetToggle) {
       targetToggle.click()
@@ -48,7 +46,7 @@ function handlePrevNextClick(e) {
  * Subscribe prev/next button click event
  * @param {Element} wrapperElement
  */
-function subscribePrevNextButtons(wrapperElement) {
+function subscribePrevNextButtons(wrapperElement: Element) {
   const buttons = [
     ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_NEXT}`),
     ...wrapperElement.querySelectorAll(`${SELECTOR_SECTION} ${SELECTOR_PREV}`),

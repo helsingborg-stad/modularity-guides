@@ -1,18 +1,23 @@
-export default (function ($) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const jQuery: any
+
+export default (($) =>{
   function Checkboxes() {
+    // @ts-expect-error Needs refactoring
     this.handleEvents()
+    // @ts-expect-error Needs refactoring
     this.contentToggleEngine()
   }
 
-  Checkboxes.prototype.handleEvents = function () {
+  Checkboxes.prototype.handleEvents = () => {
     $('input[type="checkbox"][data-mod-guide-relation]').on(
       'change',
-      function (e) {
+      () => {
         let relations = $(this).data('mod-guide-relation')
         relations = relations.split(',')
 
-        $.each(relations, function (index, item) {
-          let $cb = $(
+        $.each(relations, function (_: number, item: string) {
+          const $cb = $(
             'input[type="checkbox"][data-mod-guide-toggle-key="' + item + '"]'
           )
           $cb.prop('checked', !$cb.prop('checked')).trigger('change')
@@ -22,50 +27,50 @@ export default (function ($) {
 
     $('[data-mod-guide-toggle-key]').on(
       'change',
-      function (e) {
+      function () {
+        // @ts-expect-error Needs refactoring
         this.contentToggleEngine()
       }.bind(this)
     )
   }
 
-  Checkboxes.prototype.contentToggleEngine = function () {
+  Checkboxes.prototype.contentToggleEngine = () => {
     // Get checked checkboxes
-    let checked = []
-    let $checkboxes = $('[data-mod-guide-toggle-key]')
+    const checked: string[] = []
+    const $checkboxes = $('[data-mod-guide-toggle-key]')
 
-    $checkboxes.each(function (index, element) {
+    $checkboxes.each(function (_: number, element: Element) {
       if ($(element).prop('checked') !== true) {
         return
       }
-
       checked.push($(element).attr('data-mod-guide-toggle-key'))
     })
 
     // Display or hide content
-    $('[data-mod-guide-toggle-key-content]').each(function (index, element) {
+    $('[data-mod-guide-toggle-key-content]').each(function (_: number, element: Element) {
       let shouldShow = false
       let conditions = $(element).attr('data-mod-guide-toggle-key-content')
       conditions = conditions.split(',')
 
       // Datermind if content should be shown or not
-      $.each(conditions, function (index, item) {
-        let and = item.match(/(^|\+)([^\+\-]+)/g)
-        let andPattern = new RegExp(
-          '\\b(' + and.join('|').replace('+', '') + ')\\b',
+      $.each(conditions, function (_: number, item: string) {
+        const and = item.match(/(^|\+)([^+-]+)/g)
+        const andPattern = new RegExp(
+          '\\b(' + and?.join('|').replace('+', '') + ')\\b',
           'ig'
         )
-        let andMatches = checked.join(',').match(andPattern)
-        let andIsMatching =
-          andMatches !== null && andMatches.length === and.length
+        const andMatches = checked.join(',').match(andPattern)
+        const andIsMatching =
+          andMatches !== null && andMatches.length === and?.length
 
-        let andnot = item.match(/\-([^\+\-]+)/g)
+        const andnot = item.match(/-([^+-]+)/g)
         let andnotIsMatching = true
         if (andnot !== null) {
-          let andnotPattern = new RegExp(
+          const andnotPattern = new RegExp(
             '\\b(' + andnot.join('|').replace('-', '') + ')\\b',
             'ig'
           )
-          let andnotMatches = checked.join(',').match(andnotPattern)
+          const andnotMatches = checked.join(',').match(andnotPattern)
           andnotIsMatching = !(
             andnotMatches !== null && andnotMatches.length > 0
           )
@@ -77,7 +82,7 @@ export default (function ($) {
       })
 
       // Hide or show
-      if (shouldShow === true) {
+      if (shouldShow) {
         $(element).show()
         return
       }
@@ -86,6 +91,6 @@ export default (function ($) {
       return
     })
   }
-
+    // @ts-expect-error Needs refactoring
   return new Checkboxes()
 })(jQuery)
