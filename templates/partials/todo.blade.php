@@ -30,7 +30,7 @@
                             'style' => 'filled',
                             'reversePositions' => true,
                             'size' => 'sm',
-                            'text' => {{__('Send as email', 'modularity-guides')}},
+                            'text' => __('Send as email', 'modularity-guides'),
                             'attributeList' => [
                                 'data-open' => "mod-guide-todo-".$stepId,
                             ],
@@ -72,7 +72,7 @@
                                 'autocomplete' => 'e-mail',
                                 'data-invalid-message' => "You need to add a valid E-mail!"
                             ],
-                            'label' => {{__('Email', 'modularity-guides')}},
+                            'label' => __('Email', 'modularity-guides'),
                             'required' => true,
                         ])
                         @endfield
@@ -87,7 +87,7 @@
                         <div class="o-grid o-grid--no-margin">
                             <div class="o-grid-fit">
                                 @button([
-                                    'text' => {{__('Send', 'modularity-guides')}},
+                                    'text' => __('Send', 'modularity-guides'),
                                     'color' => 'primary',
                                     'style' => 'filled',
                                     'type' => 'submit'
@@ -109,7 +109,7 @@
                 @notice([
                     'type' => 'success',
                     'message' => [
-                        'text' => {{__('Notice', 'modularity-guides')}},
+                        'text' => __('Notice', 'modularity-guides'),
                         'size' => 'sm'
                     ],
                     'classList' => ['js-modularity-guide-todos__notice', 'u-display--none'],
