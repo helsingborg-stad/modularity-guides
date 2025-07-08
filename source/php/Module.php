@@ -18,7 +18,7 @@ class Module extends \Modularity\Module
         $this->description = __('A step by step guide', 'modularity');
     }
 
-    public function data() : array
+    public function data(): array
     {
         $data = array();
         $data['steps'] = get_field('steps', $this->ID);
@@ -31,7 +31,7 @@ class Module extends \Modularity\Module
     public function script()
     {
 
-        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/dist/'. Helper\CacheBust::name('js/modularity-guides.js'), null, '1.0.0', true);
+        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/assets/dist/' . Helper\CacheBust::name('js/modularity-guides.js'), null, '1.0.0', true);
         wp_localize_script('modularity-guides', 'guides', array(
             'email_sent'    => __("Email was sent", 'modularity-guides'),
             'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
@@ -39,7 +39,7 @@ class Module extends \Modularity\Module
         ));
         wp_enqueue_script('modularity-guides');
 
-        wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/dist/'. Helper\CacheBust::name('css/modularity-guides.css'), null, '1.0.0');
+        wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/assets/dist/' . Helper\CacheBust::name('css/modularity-guides.css'), null, '1.0.0');
         wp_enqueue_style('modularity-guides');
 
         if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {

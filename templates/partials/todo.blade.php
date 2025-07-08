@@ -65,13 +65,10 @@
                         @field([
                             'type' => 'text',
                             'id' => 'send-todo-email',
-                            'attributeList' => [
-                                'type' => 'email',
-                                'name' => 'email',
-                                'pattern' => '^[^@]+@[^@]+\.[^@]+$',
-                                'autocomplete' => 'e-mail',
-                                'data-invalid-message' => "You need to add a valid E-mail!"
-                            ],
+                            'name' => 'email',
+                            'pattern' => '^[^@]+@[^@]+\.[^@]+$',
+                            'autocomplete' => 'email',
+                            'data-invalid-message' => "You need to add a valid E-mail!",
                             'label' => __('Email', 'modularity-guides'),
                             'required' => true,
                         ])
