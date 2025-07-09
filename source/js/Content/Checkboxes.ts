@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const jQuery: any
 
-export default (($) =>{
+export default (function ($) {
   function Checkboxes() {
     // @ts-expect-error Needs refactoring
     this.handleEvents()
@@ -9,10 +9,11 @@ export default (($) =>{
     this.contentToggleEngine()
   }
 
-  Checkboxes.prototype.handleEvents = () => {
+  Checkboxes.prototype.handleEvents = function () {
     $('input[type="checkbox"][data-mod-guide-relation]').on(
       'change',
-      () => {
+      function () {
+        // @ts-expect-error Needs refactoring
         let relations = $(this).data('mod-guide-relation')
         relations = relations.split(',')
 
@@ -34,7 +35,7 @@ export default (($) =>{
     )
   }
 
-  Checkboxes.prototype.contentToggleEngine = () => {
+  Checkboxes.prototype.contentToggleEngine = function () {
     // Get checked checkboxes
     const checked: string[] = []
     const $checkboxes = $('[data-mod-guide-toggle-key]')
