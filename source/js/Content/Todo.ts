@@ -89,11 +89,7 @@ export default (function () {
         }
         td {
             vertical-align: top;
-        }
-        td:first-child {
-            font-weight: bold;
-        }
-        `   
+        }`   
     // Add intro text
     const p = body.appendChild(doc.createElement('p'))
     p.textContent = guides.mailIntro ?? ''
@@ -124,7 +120,6 @@ export default (function () {
     }        
 
     const checklistHTML = doc.documentElement.outerHTML
-    
     checklist.remove()
     return encodeURI(checklistHTML)
   }
