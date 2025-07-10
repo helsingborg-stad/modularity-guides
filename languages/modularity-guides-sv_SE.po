@@ -19,51 +19,102 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:49
-#: Helper/Lang.php:18
+#: source/php/App.php:49
+#: source/php/Helper/Lang.php:18
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: Helper/Lang.php:23
+#: source/php/Helper/Lang.php:23
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: Helper/Lang.php:20
+#: source/php/Helper/Lang.php:20
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: Helper/Lang.php:21
+#: source/php/Helper/Lang.php:21
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: Helper/Lang.php:22
+#: source/php/Helper/Lang.php:22
 msgid "You need to check the required fields"
 msgstr ""
 
-#: Helper/Lang.php:16
+#: source/php/Helper/Lang.php:16
+#: templates/content/todo.php:7
 msgid "Title"
 msgstr "Åtgärder"
 
-#: Helper/Lang.php:17
+#: source/php/Helper/Lang.php:17
+#: templates/content/todo.php:8
 msgid "Link"
 msgstr "Länk"
 
-#: Helper/Lang.php:15
+#: source/php/Helper/Lang.php:15
+#: templates/content/todo.php:30
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: Helper/Lang.php:14
+#: source/php/Helper/Lang.php:14
+#: templates/content/todo.php:43
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: Helper/Lang.php:13
+#: source/php/Helper/Lang.php:13
+#: templates/content/todo.php:50
 msgid "Email"
 msgstr "E-postadress"
 
-#: Helper/Lang.php:12
+#: source/php/Helper/Lang.php:12
+#: templates/content/todo.php:58
 msgid "Send"
 msgstr "Skicka"
 
-#: Helper/Lang.php:11
+#: source/php/Helper/Lang.php:11
 msgid "Notice"
 msgstr " "
+
+#: source/php/Helper/Lang.php:25
+msgid "Previous"
+msgstr "Föregående"
+
+#: source/php/Helper/Lang.php:26
+msgid "Next"
+msgstr "Nästa"
+
+#. Plugin Name of the plugin
+#: modularity-guides.php
+msgid "Modularity Guides"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: modularity-guides.php
+msgid "(#plugin_url#)"
+msgstr ""
+
+#. Description of the plugin
+#: modularity-guides.php
+msgid "A addon for Modularity to create guides"
+msgstr ""
+
+#. Author of the plugin
+#: modularity-guides.php
+msgid "Kristoffer Svanmark"
+msgstr ""
+
+#. Author URI of the plugin
+#: modularity-guides.php
+msgid "(#plugin_author_url#)"
+msgstr ""
+
+#: templates/content/checkboxes.php:8
+msgid "required"
+msgstr "obligatoriskt"
+
+#: templates/content/text_modal.php:21
+msgid "Close"
+msgstr "Stäng"
+
+#: templates/content/todo.php:6
+msgid "Done"
+msgstr "Klar"

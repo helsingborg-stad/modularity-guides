@@ -7,7 +7,7 @@ class Lang
     public static function getLang(): array
     {
         return [
-            // partials/tot.blade.php
+            // partials/todo.blade.php
             'notice' => __('Notice', 'modularity-guides'),
             'send' => __('Send', 'modularity-guides'),
             'email' => __('Email', 'modularity-guides'),
@@ -21,7 +21,9 @@ class Lang
             'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
             'lockMessage'   => __("You need to check the required fields", 'modularity-guides'),
             'mailIntro'    => __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides'),
-
+            // guide.blade.php
+            'previous'      => __('Previous', 'modularity-guides'),
+            'next'          => __('Next', 'modularity-guides')
         ];
     }
 }

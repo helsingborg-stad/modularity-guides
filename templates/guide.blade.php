@@ -40,7 +40,7 @@
                                         @button([
                                             'icon' => 'keyboard_arrow_left',
                                             'reversePositions' => true,
-                                            'text' => __('Previous', 'modularity-guides'),
+                                            'text' => $lang['previous'],
                                             'style' => 'filled',
                                             'classList' => ['prevNext','prevStep', 'js-modularity-guide__prev']
                                         ])
@@ -52,7 +52,7 @@
                                         @button([
                                             'icon' => "keyboard_arrow_right",
                                             'reversePositions' => false,
-                                            'text' => __('Next', 'modularity-guides'),
+                                            'text' => $lang['next'],
                                             'style' => 'filled',
                                             'color' => 'primary',
                                             'classList' => ['prevNext','nextStep', 'js-modularity-guide__next'],

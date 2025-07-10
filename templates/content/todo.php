@@ -10,8 +10,8 @@
             </thead>
             <tbody>
                 <?php foreach ($content['list_items'] as $item) : ?>
-                    <tr <?php if (isset($item['toggle_key']) && !empty($item['toggle_key'])) : ?>data-mod-guide-toggle-key-content="<?php echo $item['toggle_key']; ?>" <?php 
-                   endif; ?>>
+                    <tr <?php if (isset($item['toggle_key']) && !empty($item['toggle_key'])) : ?>data-mod-guide-toggle-key-content="<?php echo $item['toggle_key']; ?>" <?php
+                                                                                                                                                                    endif; ?>>
                         <td class="text-center print-only"><span class="mod-guide-todo-check"></span></td>
                         <td><?php echo $item['title']; ?></td>
                         <td>
