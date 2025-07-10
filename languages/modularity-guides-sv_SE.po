@@ -19,95 +19,51 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:50
+#: App.php:49
+#: Helper/Lang.php:17
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/App.php:51
+#: Module.php:41
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: source/php/Module.php:36
+#: Module.php:38
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Module.php:37
+#: Module.php:39
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: source/php/Module.php:38
+#: Module.php:40
 msgid "You need to check the required fields"
 msgstr ""
 
-#. Plugin Name of the plugin
-#: modularity-guides.php
-msgid "Modularity Guides"
-msgstr ""
-
-#. Plugin URI of the plugin
-#: modularity-guides.php
-msgid "(#plugin_url#)"
-msgstr ""
-
-#. Description of the plugin
-#: modularity-guides.php
-msgid "A addon for Modularity to create guides"
-msgstr ""
-
-#. Author of the plugin
-#: modularity-guides.php
-msgid "Kristoffer Svanmark"
-msgstr ""
-
-#. Author URI of the plugin
-#: modularity-guides.php
-msgid "(#plugin_author_url#)"
-msgstr ""
-
-#: templates/content/checkboxes.php:8
-#: templates/partials/checkboxes.blade.php:23
-#: templates/partials/checkboxes.blade.php:24
-msgid "required"
-msgstr ""
-
-#: templates/content/text_modal.php:21
-msgid "Close"
-msgstr ""
-
-#: templates/content/todo.php:6
-msgid "Done"
-msgstr "Klar"
-
-#: templates/content/todo.php:7
-#: templates/partials/todo.blade.php:7
+#: Helper/Lang.php:15
 msgid "Title"
 msgstr " "
 
-#: templates/content/todo.php:8
-#: templates/partials/todo.blade.php:8
+#: Helper/Lang.php:16
 msgid "Link"
 msgstr "Länk"
 
-#: templates/content/todo.php:30
+#: Helper/Lang.php:14
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: templates/content/todo.php:43
+#: Helper/Lang.php:13
 msgid "Send todo-list as email"
-msgstr ""
+msgstr "Skicka att göra-lista som e-post"
 
-#: templates/content/todo.php:50
+#: Helper/Lang.php:12
 msgid "Email"
-msgstr ""
+msgstr "E-postadress"
 
-#: templates/content/todo.php:58
+#: Helper/Lang.php:11
 msgid "Send"
-msgstr ""
+msgstr "Skicka"
 
-#: templates/module/modularity-mod-guide.php:30
-msgid "Previous"
-msgstr ""
-
-#: templates/module/modularity-mod-guide.php:34
-msgid "Next"
-msgstr ""
+#: Helper/Lang.php:10
+msgid "Notice"
+msgstr " "

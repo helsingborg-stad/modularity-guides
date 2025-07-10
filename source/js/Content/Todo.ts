@@ -1,9 +1,18 @@
 declare const ajaxurl: string
 
 declare const guides: {
-  email_sent: string
-  email_failed: string
-  lockMessage: string
+    notice: string
+    send: string
+    email: string
+    send_todo_list: string
+    send_as_email: string
+    title: string
+    link: string
+    your_checklist: string
+    email_sent: string
+    email_failed: string
+    lockMessage: string
+    mailIntro: string
 }
 
 export default (function () {
@@ -37,8 +46,8 @@ export default (function () {
    * @param {Element} todoTable
    * @returns {String} html with visible checklist items
    */
-  function getCheckList(todoTable: Element): string {
-    const checklist = todoTable.cloneNode(true) as Element
+  function getCheckList(todoTable: HTMLElement): string {
+    const checklist = todoTable.cloneNode(true) as HTMLElement
     document.body.appendChild(checklist)
 
     // Remove not visible rows
@@ -49,7 +58,72 @@ export default (function () {
       row.remove()
     })
 
-    const checklistHTML = checklist.outerHTML
+    // Create Mail HTML document
+    const doc = document.implementation.createHTMLDocument();
+    const { body, head } = doc
+
+    // Set charset
+    head.appendChild(doc.createElement('meta')).setAttribute('charset', 'utf-8')
+
+    // Set styling
+    const style = head.appendChild(doc.createElement('style'))
+    style.textContent = `
+        body, table {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        td {
+            vertical-align: top;
+        }
+        td:first-child {
+            font-weight: bold;
+        }
+        `   
+    // Add intro text
+    const p = body.appendChild(doc.createElement('p'))
+    p.textContent = guides.mailIntro ?? ''
+
+    // Add table
+    const table = body.appendChild(doc.createElement('table'))
+
+    // Head
+    const thead = table.createTHead()
+    const tr = thead.insertRow()
+    tr.insertCell().textContent = guides.title ?? ''
+    tr.insertCell().textContent = guides.link ?? ''
+
+    // Body
+    const tbody = table.createTBody()
+
+    const rows = checklist.querySelectorAll('tr')
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i]
+      const newRow = tbody.insertRow()
+      const cells = row.getElementsByTagName('td')
+      for (let j = 0; j < cells.length; j++) {
+        const cell = cells[j]
+        const newCell = newRow.insertCell()
+        newCell.innerHTML = cell.innerHTML
+      }
+    }        
+
+    const checklistHTML = doc.documentElement.outerHTML
+        
     checklist.remove()
     return encodeURI(checklistHTML)
   }
@@ -117,12 +191,13 @@ export default (function () {
 
     setNotice(false)
 
-    const todoTable = currentSection?.querySelector(SELECTOR_TABLE)
+    const todoTable = currentSection?.querySelector(SELECTOR_TABLE) as HTMLTableElement
 
     if (todoTable && email && ajaxurl) {
       currentSection?.classList.toggle('is-loading')
 
       const checklist = getCheckList(todoTable)
+
       const data = {
         action: 'email_todo',
         checklist: checklist,

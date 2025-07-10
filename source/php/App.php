@@ -25,7 +25,6 @@ class App
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_action('wp_ajax_nopriv_email_todo', array($this, 'emailTodo'));
         add_action('wp_ajax_email_todo', array($this, 'emailTodo'));
-
     }
 
     /**
@@ -48,7 +47,7 @@ class App
         wp_mail(
             $to,
             __('Your checklist', 'modularity-guides'),
-            __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides') . '<br><br>' . urldecode($_POST['checklist']),
+            urldecode($_POST['checklist']),
             array(
                 'From: no-reply@helsingborg.se',
                 'Content-Type: text/html; charset=UTF-8'

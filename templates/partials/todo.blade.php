@@ -4,8 +4,8 @@
         <table class="table mod-guide-todo-list js-modularity-guide-todos__table">
             <thead>
                 <tr>
-                    <th>{{_e('Title', 'modularity-guides')}}</th>
-                    <th>{{_e('Link', 'modularity-guides')}}</th>
+                    <th>{!! $lang['title'] !!}</th>
+                    <th>{!! $lang['link'] !!}</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                             'style' => 'filled',
                             'reversePositions' => true,
                             'size' => 'sm',
-                            'text' => __('Send as email', 'modularity-guides'),
+                            'text' => $lang['send_as_email'],
                             'attributeList' => [
                                 'data-open' => "mod-guide-todo-".$stepId,
                             ],
@@ -43,7 +43,7 @@
         </table>
 
         @modal([
-            'heading' => __('Send todo-list as email', 'modularity-guides'),
+            'heading' => $lang['send_todo_list'],
             'isPanel' => false,
             'id' => "mod-guide-todo-".$stepId,
             'overlay' => 'dark',
@@ -69,22 +69,17 @@
                             'pattern' => '^[^@]+@[^@]+\.[^@]+$',
                             'autocomplete' => 'email',
                             'data-invalid-message' => "You need to add a valid E-mail!",
-                            'label' => __('Email', 'modularity-guides'),
+                            'label' => $lang['email'],
                             'required' => true,
                         ])
                         @endfield
-                        @typography([
-                            "variant" => "meta"
-                        ])
-                            {!! $googleCaptchaTerms  !!}
-                        @endtypography
                     </div>
                     
                     <div class="o-grid-12">
                         <div class="o-grid o-grid--no-margin">
                             <div class="o-grid-fit">
                                 @button([
-                                    'text' => __('Send', 'modularity-guides'),
+                                    'text' => $lang['send'],
                                     'color' => 'primary',
                                     'style' => 'filled',
                                     'type' => 'submit'
@@ -106,7 +101,7 @@
                 @notice([
                     'type' => 'success',
                     'message' => [
-                        'text' => __('Notice', 'modularity-guides'),
+                        'text' => $lang['notice'],
                         'size' => 'sm'
                     ],
                     'classList' => ['js-modularity-guide-todos__notice', 'u-display--none'],
