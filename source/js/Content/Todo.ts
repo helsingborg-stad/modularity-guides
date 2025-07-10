@@ -74,6 +74,7 @@ export default (function () {
         }
         table {
             border-collapse: collapse;
+            width: 100%;
         }
         th, td {
             padding: 8px;
@@ -103,8 +104,8 @@ export default (function () {
     // Head
     const thead = table.createTHead()
     const tr = thead.insertRow()
-    tr.insertCell().textContent = guides.title ?? ''
-    tr.insertCell().textContent = guides.link ?? ''
+    tr.appendChild(doc.createElement('th')).textContent = guides.title ?? ''
+    tr.appendChild(doc.createElement('th')).textContent = guides.link ?? ''
 
     // Body
     const tbody = table.createTBody()
@@ -123,7 +124,7 @@ export default (function () {
     }        
 
     const checklistHTML = doc.documentElement.outerHTML
-        
+    
     checklist.remove()
     return encodeURI(checklistHTML)
   }

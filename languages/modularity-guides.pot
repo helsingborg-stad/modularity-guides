@@ -7,56 +7,56 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-09T18:55:22+00:00\n"
+"POT-Creation-Date: 2025-07-10T09:47:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
 
 #: App.php:49
-#: Helper/Lang.php:17
+#: Helper/Lang.php:18
 msgid "Your checklist"
 msgstr ""
 
-#: Helper/Lang.php:10
+#: Helper/Lang.php:11
 msgid "Notice"
 msgstr ""
 
-#: Helper/Lang.php:11
+#: Helper/Lang.php:12
 msgid "Send"
 msgstr ""
 
-#: Helper/Lang.php:12
+#: Helper/Lang.php:13
 msgid "Email"
 msgstr ""
 
-#: Helper/Lang.php:13
+#: Helper/Lang.php:14
 msgid "Send todo-list as email"
 msgstr ""
 
-#: Helper/Lang.php:14
+#: Helper/Lang.php:15
 msgid "Send as email"
 msgstr ""
 
-#: Helper/Lang.php:15
+#: Helper/Lang.php:16
 msgid "Title"
 msgstr ""
 
-#: Helper/Lang.php:16
+#: Helper/Lang.php:17
 msgid "Link"
 msgstr ""
 
-#: Module.php:38
+#: Helper/Lang.php:20
 msgid "Email was sent"
 msgstr ""
 
-#: Module.php:39
+#: Helper/Lang.php:21
 msgid "The message can't be sent right now. Please try again later."
 msgstr ""
 
-#: Module.php:40
+#: Helper/Lang.php:22
 msgid "You need to check the required fields"
 msgstr ""
 
-#: Module.php:41
+#: Helper/Lang.php:23
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr ""

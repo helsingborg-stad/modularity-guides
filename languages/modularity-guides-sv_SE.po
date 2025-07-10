@@ -20,50 +20,50 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: App.php:49
-#: Helper/Lang.php:17
+#: Helper/Lang.php:18
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: Module.php:41
+#: Helper/Lang.php:23
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: Module.php:38
+#: Helper/Lang.php:20
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: Module.php:39
+#: Helper/Lang.php:21
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: Module.php:40
+#: Helper/Lang.php:22
 msgid "You need to check the required fields"
 msgstr ""
 
-#: Helper/Lang.php:15
-msgid "Title"
-msgstr " "
-
 #: Helper/Lang.php:16
+msgid "Title"
+msgstr "Åtgärder"
+
+#: Helper/Lang.php:17
 msgid "Link"
 msgstr "Länk"
 
-#: Helper/Lang.php:14
+#: Helper/Lang.php:15
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: Helper/Lang.php:13
+#: Helper/Lang.php:14
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: Helper/Lang.php:12
+#: Helper/Lang.php:13
 msgid "Email"
 msgstr "E-postadress"
 
-#: Helper/Lang.php:11
+#: Helper/Lang.php:12
 msgid "Send"
 msgstr "Skicka"
 
-#: Helper/Lang.php:10
+#: Helper/Lang.php:11
 msgid "Notice"
 msgstr " "
