@@ -8,7 +8,6 @@
         <div class="c-card__header">
             @typography([
                 'element' => 'h4',
-                'variant' => 'p',
                 'id'      => 'mod-guide-' . $id .'-label'
             ])
                 {!! $postTitle !!}

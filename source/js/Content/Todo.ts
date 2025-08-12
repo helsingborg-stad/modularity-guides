@@ -21,8 +21,7 @@ export default (function () {
   const SELECTOR_MODAL_CLOSE_BUTTON =
     '.js-modularity-guide-todos__modal .c-modal__close'
   const SELECTOR_FORM_NOTICE = '.js-modularity-guide-todos__notice'
-  const SELECTOR_TABLE = '.js-modularity-guide-todos__table'
-
+  
   const SELECTOR_INPUT_EMAIL = 'input[name="email"]'
 
   const NOTICE_LEVEL_CLASSNAMES = {
@@ -31,15 +30,6 @@ export default (function () {
     danger: 'c-notice--danger',
     warning: 'c-notice--warning',
   }
-  /**
-   * Utility to check if element is visible or not
-   * @param {Element} elem
-   * @returns {Boolean}
-   */
-  const isVisible = (elem: HTMLElement) =>
-    elem.offsetWidth > 0 ||
-    elem.offsetHeight > 0 ||
-    elem.getClientRects().length > 0
 
   /**
    * Extract checklist html from todo table
@@ -51,11 +41,12 @@ export default (function () {
     document.body.appendChild(checklist)
 
     // Remove not visible rows
-    checklist?.querySelectorAll('tr')?.forEach(row => {
-      if (isVisible(row)) {
+    checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
+      
+      if (paper.checkVisibility()) {
         return
       }
-      row.remove()
+      paper.remove()
     })
 
     // Create Mail HTML document
@@ -68,57 +59,30 @@ export default (function () {
     // Set styling
     const style = head.appendChild(doc.createElement('style'))
     style.textContent = `
-        body, table {
-            font-family: Arial, sans-serif;
+        body {
+            font-family: Roboto, Arial, sans-serif;
             font-size: 14px;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
+        .c-paper {
+          border: 1px solid var(--color-primary);
+          border-top-width: 6px;
+          border-radius: 6px;
+          padding: 16px;    
         }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        ul {
+          padding-inline-start: 0;
         }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        td {
-            vertical-align: top;
+
+        li {
+            list-style-type: none;
         }`   
     // Add intro text
     const p = body.appendChild(doc.createElement('p'))
     p.textContent = guides.mailIntro ?? ''
-
-    // Add table
-    const table = body.appendChild(doc.createElement('table'))
-
-    // Head
-    const thead = table.createTHead()
-    const tr = thead.insertRow()
-    tr.appendChild(doc.createElement('th')).textContent = guides.title ?? ''
-    tr.appendChild(doc.createElement('th')).textContent = guides.link ?? ''
-
-    // Body
-    const tbody = table.createTBody()
-
-    const rows = checklist.querySelectorAll('tr')
-
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i]
-      const newRow = tbody.insertRow()
-      const cells = row.getElementsByTagName('td')
-      for (let j = 0; j < cells.length; j++) {
-        const cell = cells[j]
-        const newCell = newRow.insertCell()
-        newCell.innerHTML = cell.innerHTML
-      }
-    }        
-
+    
+    checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
+      body.appendChild(paper)      
+    })
     const checklistHTML = doc.documentElement.outerHTML
     checklist.remove()
     return encodeURI(checklistHTML)
@@ -132,7 +96,7 @@ export default (function () {
     e.preventDefault()
 
     const currentForm = e.target as HTMLFormElement
-    const currentSection = currentForm?.closest(SELECTOR_TODOS_WRAPPER)
+    const currentSection = currentForm?.closest<HTMLElement>(SELECTOR_TODOS_WRAPPER)
     const email = (currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement)?.value
 
     /**
@@ -187,12 +151,9 @@ export default (function () {
 
     setNotice(false)
 
-    const todoTable = currentSection?.querySelector(SELECTOR_TABLE) as HTMLTableElement
-
-    if (todoTable && email && ajaxurl) {
+    if (currentSection && email && ajaxurl) {
       currentSection?.classList.toggle('is-loading')
-
-      const checklist = getCheckList(todoTable)
+      const checklist = getCheckList(currentSection)
 
       const data = {
         action: 'email_todo',

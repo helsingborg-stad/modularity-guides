@@ -121,3 +121,20 @@
 .mod-guide-checkboxes--checkbox {
   padding-bottom: 8px;
 }
+
+.modularity-guide-todos {
+  .c-paper {
+    border: 1px solid var(--color-primary);
+    border-top-width: 6px;
+    border-radius: 6px;
+    padding: 16px;    
+  }
+  ul {
+    padding-inline-start: 0;
+  }
+
+  li {
+      list-style-type: none;
+  }
+}
+

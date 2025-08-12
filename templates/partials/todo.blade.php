@@ -1,46 +1,48 @@
 
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
-        <table class="table mod-guide-todo-list js-modularity-guide-todos__table">
-            <thead>
-                <tr>
-                    <th>{!! $lang['title'] !!}</th>
-                    <th>{!! $lang['link'] !!}</th>
-                </tr>
-            </thead>
-            <tbody>
             @foreach ($content['list_items'] as $item)
-                <tr {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
-                    <td>{{ $item['title'] }}</td>
-                    <td>
-                        @if (isset($item['link_url']) && !empty($item['link_url']))
-                        <a href="{{ $item['link_url'] }}" class="link-item">{{ isset($item['link_text']) && !empty($item['link_text']) ? $item['link_text'] : 'Mer information' }}</a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-            <tfoot class="hidden-print">
-                <tr>
-                    <th colspan="3">
-                        @button( [
-                            'href' => '',
-                            'icon' => 'mail',
-                            'color' => 'primary',
-                            'style' => 'filled',
-                            'reversePositions' => true,
-                            'size' => 'sm',
-                            'text' => $lang['send_as_email'],
-                            'attributeList' => [
-                                'data-open' => "mod-guide-todo-".$stepId,
-                            ],
-                            'classList' => ['js-modularity-guide-todos__modal-trigger']
-                        ])
-                        @endbutton
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
+                @paper(['classList' => [
+                    'u-margin__bottom--4'
+                ], 'attributeList' => [
+                    'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
+                ]])
+                    @typography([
+                        "variant" => "h4"
+                    ])
+                        {{ $item['title'] }}
+                    @endtypography
+                    @if (isset($item['link_text']) && !empty($item['link_text']))
+                        <ul>
+                            <li>
+                            @option([
+                                'type' => 'checkbox',
+                                'label' => $item['link_text']
+                            ])
+                            @endoption
+                            @if (isset($item['link_url']) && !empty($item['link_url']))
+                                <a href="{{ $item['link_url'] }}" class="link-item">Mer information</a>
+                            @endif
+                            </li>
+                        </ul>                        
+                    @endif
+                @endpaper
+            @endforeach        
+
+            @button( [
+                'href' => '',
+                'icon' => 'mail',
+                'color' => 'primary',
+                'style' => 'filled',
+                'reversePositions' => true,
+                'size' => 'sm',
+                'text' => $lang['send_as_email'],
+                'attributeList' => [
+                    'data-open' => "mod-guide-todo-".$stepId,
+                ],
+                'classList' => ['js-modularity-guide-todos__modal-trigger']
+            ])
+            @endbutton
 
         @modal([
             'heading' => $lang['send_todo_list'],
@@ -63,12 +65,11 @@
                 <div class="o-grid o-grid--no-margin">
                     <div class="o-grid-12 u-margin__bottom--3">
                         @field([
-                            'type' => 'text',
+                            'type' => 'email',
                             'id' => 'send-todo-email',
                             'name' => 'email',
-                            'pattern' => '^[^@]+@[^@]+\.[^@]+$',
                             'autocomplete' => 'email',
-                            'data-invalid-message' => "You need to add a valid E-mail!",
+                            'invalidMessage' => "You need to add a valid E-mail!",
                             'label' => $lang['email'],
                             'required' => true,
                         ])
