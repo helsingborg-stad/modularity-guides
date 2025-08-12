@@ -64,17 +64,20 @@ export default (function () {
             font-size: 14px;
         }
         .c-paper {
-          border: 1px solid var(--color-primary);
+          border: 1px solid black;
           border-top-width: 6px;
           border-radius: 6px;
-          padding: 16px;    
-        }
-        ul {
-          padding-inline-start: 0;
-        }
-
-        li {
+          padding: 16px;
+          margin-bottom: 16px;
+          p {
+            font-weight: bolder;
+          }
+          ul {
+            padding-inline-start: 0;
+          }
+          li {
             list-style-type: none;
+          }
         }`   
     // Add intro text
     const p = body.appendChild(doc.createElement('p'))
@@ -85,6 +88,7 @@ export default (function () {
     })
     const checklistHTML = doc.documentElement.outerHTML
     checklist.remove()
+    console.log(checklistHTML)
     return encodeURI(checklistHTML)
   }
 
