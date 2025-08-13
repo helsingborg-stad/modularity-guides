@@ -16,9 +16,9 @@ class Module extends \Modularity\Module
     public function init()
     {
         $this->lang = Lang::getLang();
-        $this->nameSingular = __('Guide', 'modularity');
-        $this->namePlural = __('Guides', 'modularity');
-        $this->description = __('A step by step guide', 'modularity');
+        $this->nameSingular = __('Guide', 'modularity-guides');
+        $this->namePlural = __('Guides', 'modularity-guides');
+        $this->description = __('A step by step guide', 'modularity-guides');
     }
 
     public function data(): array

@@ -7,23 +7,19 @@ class Lang
     public static function getLang(): array
     {
         return [
-            // partials/todo.blade.php
             'notice' => __('Notice', 'modularity-guides'),
             'send' => __('Send', 'modularity-guides'),
             'email' => __('Email', 'modularity-guides'),
             'send_todo_list' => __('Send todo-list as email', 'modularity-guides'),
             'send_as_email' => __('Send as email', 'modularity-guides'),
-            'title' => __('Title', 'modularity-guides'),
-            'link' => __('Link', 'modularity-guides'),
             'your_checklist' => __('Your checklist', 'modularity-guides'),
-            // Module.php
+            'email_error'   => __('You need to add a valid E-mail!', 'modularity-guides'),
             'email_sent'    => __("Email was sent", 'modularity-guides'),
             'email_failed'  => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
-            'lockMessage'   => __("You need to check the required fields", 'modularity-guides'),
-            'mailIntro'    => __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides'),
-            // guide.blade.php
+            'email_intro'    => __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides'),
             'previous'      => __('Previous', 'modularity-guides'),
-            'next'          => __('Next', 'modularity-guides')
+            'next'          => __('Next', 'modularity-guides'),
+            'required'    => __('required', 'modularity-guides'),
         ];
     }
 }

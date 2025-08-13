@@ -69,7 +69,7 @@
                             'id' => 'send-todo-email',
                             'name' => 'email',
                             'autocomplete' => 'email',
-                            'invalidMessage' => "You need to add a valid E-mail!",
+                            'invalidMessage' => $lang['email_error'],
                             'label' => $lang['email'],
                             'required' => true,
                         ])

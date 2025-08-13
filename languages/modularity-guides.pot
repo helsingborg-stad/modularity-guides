@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-10T10:37:26+00:00\n"
+"POT-Creation-Date: 2025-08-13T08:41:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
@@ -39,77 +39,67 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#: source/php/App.php:49
-#: source/php/Helper/Lang.php:18
+#: source/php/App.php:36
+#: source/php/Helper/Lang.php:15
 msgid "Your checklist"
 msgstr ""
 
-#: source/php/Helper/Lang.php:11
+#: source/php/Helper/Lang.php:10
 msgid "Notice"
 msgstr ""
 
-#: source/php/Helper/Lang.php:12
-#: templates/content/todo.php:58
+#: source/php/Helper/Lang.php:11
 msgid "Send"
 msgstr ""
 
-#: source/php/Helper/Lang.php:13
-#: templates/content/todo.php:50
+#: source/php/Helper/Lang.php:12
 msgid "Email"
 msgstr ""
 
-#: source/php/Helper/Lang.php:14
-#: templates/content/todo.php:43
+#: source/php/Helper/Lang.php:13
 msgid "Send todo-list as email"
 msgstr ""
 
-#: source/php/Helper/Lang.php:15
-#: templates/content/todo.php:30
+#: source/php/Helper/Lang.php:14
 msgid "Send as email"
 msgstr ""
 
 #: source/php/Helper/Lang.php:16
-#: templates/content/todo.php:7
-msgid "Title"
+msgid "You need to add a valid E-mail!"
 msgstr ""
 
 #: source/php/Helper/Lang.php:17
-#: templates/content/todo.php:8
-msgid "Link"
-msgstr ""
-
-#: source/php/Helper/Lang.php:20
 msgid "Email was sent"
 msgstr ""
 
-#: source/php/Helper/Lang.php:21
+#: source/php/Helper/Lang.php:18
 msgid "The message can't be sent right now. Please try again later."
 msgstr ""
 
-#: source/php/Helper/Lang.php:22
-msgid "You need to check the required fields"
-msgstr ""
-
-#: source/php/Helper/Lang.php:23
+#: source/php/Helper/Lang.php:19
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr ""
 
-#: source/php/Helper/Lang.php:25
+#: source/php/Helper/Lang.php:20
 msgid "Previous"
 msgstr ""
 
-#: source/php/Helper/Lang.php:26
+#: source/php/Helper/Lang.php:21
 msgid "Next"
 msgstr ""
 
-#: templates/content/checkboxes.php:8
+#: source/php/Helper/Lang.php:22
 msgid "required"
 msgstr ""
 
-#: templates/content/text_modal.php:21
-msgid "Close"
+#: source/php/Module.php:19
+msgid "Guide"
 msgstr ""
 
-#: templates/content/todo.php:6
-msgid "Done"
+#: source/php/Module.php:20
+msgid "Guides"
+msgstr ""
+
+#: source/php/Module.php:21
+msgid "A step by step guide"
 msgstr ""

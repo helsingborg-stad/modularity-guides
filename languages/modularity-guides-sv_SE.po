@@ -19,68 +19,70 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:49
-#: source/php/Helper/Lang.php:18
+#: source/php/App.php:36
+#: source/php/Helper/Lang.php:15
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/Helper/Lang.php:23
+#: source/php/Helper/Lang.php:19
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: source/php/Helper/Lang.php:20
+#: source/php/Helper/Lang.php:17
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Helper/Lang.php:21
+#: source/php/Helper/Lang.php:18
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: source/php/Helper/Lang.php:22
-msgid "You need to check the required fields"
-msgstr ""
-
-#: source/php/Helper/Lang.php:16
-#: templates/content/todo.php:7
-msgid "Title"
-msgstr "Åtgärder"
-
-#: source/php/Helper/Lang.php:17
-#: templates/content/todo.php:8
-msgid "Link"
-msgstr "Länk"
-
-#: source/php/Helper/Lang.php:15
-#: templates/content/todo.php:30
+#: source/php/Helper/Lang.php:14
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: source/php/Helper/Lang.php:14
-#: templates/content/todo.php:43
+#: source/php/Helper/Lang.php:13
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: source/php/Helper/Lang.php:13
-#: templates/content/todo.php:50
+#: source/php/Helper/Lang.php:12
 msgid "Email"
 msgstr "E-postadress"
 
-#: source/php/Helper/Lang.php:12
-#: templates/content/todo.php:58
+#: source/php/Helper/Lang.php:11
 msgid "Send"
 msgstr "Skicka"
 
-#: source/php/Helper/Lang.php:11
+#: source/php/Helper/Lang.php:10
 msgid "Notice"
 msgstr " "
 
-#: source/php/Helper/Lang.php:25
+#: source/php/Helper/Lang.php:20
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Helper/Lang.php:26
+#: source/php/Helper/Lang.php:21
 msgid "Next"
 msgstr "Nästa"
+
+#: source/php/Helper/Lang.php:16
+msgid "You need to add a valid E-mail!"
+msgstr "Ange en giltig E-post adress"
+
+#: source/php/Module.php:19
+msgid "Guide"
+msgstr ""
+
+#: source/php/Module.php:20
+msgid "Guides"
+msgstr ""
+
+#: source/php/Module.php:21
+msgid "A step by step guide"
+msgstr ""
+
+#: source/php/Helper/Lang.php:22
+msgid "required"
+msgstr "obligatoriskt"
 
 #. Plugin Name of the plugin
 #: modularity-guides.php
@@ -106,15 +108,3 @@ msgstr ""
 #: modularity-guides.php
 msgid "(#plugin_author_url#)"
 msgstr ""
-
-#: templates/content/checkboxes.php:8
-msgid "required"
-msgstr "obligatoriskt"
-
-#: templates/content/text_modal.php:21
-msgid "Close"
-msgstr "Stäng"
-
-#: templates/content/todo.php:6
-msgid "Done"
-msgstr "Klar"
