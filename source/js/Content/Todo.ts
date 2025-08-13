@@ -11,8 +11,7 @@ declare const guides: {
     your_checklist: string
     email_sent: string
     email_failed: string
-    lockMessage: string
-    mailIntro: string
+    email_intro: string
 }
 
 export default (function () {
@@ -80,8 +79,8 @@ export default (function () {
           }
         }`   
     // Add intro text
-    const p = body.appendChild(doc.createElement('p'))
-    p.textContent = guides.mailIntro ?? ''
+    body.appendChild(doc.createElement('p')).textContent =
+      guides.email_intro ?? ''
     
     checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
       body.appendChild(paper)      
