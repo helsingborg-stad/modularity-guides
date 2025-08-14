@@ -8,7 +8,8 @@
                     'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
                 ]])
                     @typography([
-                        "variant" => "h4"
+                        "variant" => "h4",
+                        "element" => "h4",
                     ])
                         {{ $item['title'] }}
                     @endtypography
