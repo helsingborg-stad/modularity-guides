@@ -129,12 +129,16 @@
     border-radius: 6px;
     padding: 16px;    
   }
-  ul {
-    padding-inline-start: 0;
+  table {
+    width: 100%;
+    margin-top: 12px;
   }
-
-  li {
-      list-style-type: none;
+  td {
+    vertical-align: top;
+    padding: 0 0 8px 0;
+  }
+  td:last-child {
+    text-align: right;
   }
 }
 

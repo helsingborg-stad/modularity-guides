@@ -61,7 +61,7 @@ export default (function () {
         body {
             font-family: Roboto, Arial, sans-serif;
             font-size: 14px;
-        }
+        } 
         .c-paper {
           border: 1px solid black;
           border-top-width: 6px;
@@ -71,11 +71,16 @@ export default (function () {
           p {
             font-weight: bolder;
           }
-          ul {
-            padding-inline-start: 0;
+          table {
+            width: 100%;
+            margin-top: 12px;
           }
-          li {
-            list-style-type: none;
+          td {
+            vertical-align: top;
+            padding: 0 0 8px 0;
+          }
+          td:last-child {
+            text-align: right;
           }
         }`   
     // Add intro text

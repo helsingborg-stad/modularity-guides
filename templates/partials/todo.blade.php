@@ -15,14 +15,15 @@
                 ]])
                     @typography([
                         "variant" => "h4",
-                        "element" => "h4",
+                        "element" => "h4"
                     ])
                         {{ $group }}
                     @endtypography
-                        <ul>
+                    <table>
                             @foreach ($items as $item)
                                 @if (isset($item['link_text']) && !empty($item['link_text']))
-                            <li>
+                    <tr>
+                    <td>
                             @option([
                                 'type' => 'checkbox',
                                 'label' => $item['link_text'], 'attributeList' => [
@@ -30,13 +31,21 @@
                 ]
                             ])
                             @endoption
+                            </td>
+                            <td>
                             @if (isset($item['link_url']) && !empty($item['link_url']))
-                                <a href="{{ $item['link_url'] }}" class="link-item">Mer information</a>
+                                @link([
+                                    'href' => $item['link_url']
+                                ])
+                                    Mer information
+                                @endlink
                             @endif
-                            </li>
+                            </td>
+                            </tr>
                     @endif
                     @endforeach
-                        </ul>
+
+                            </table>
                 @endpaper
             @endforeach        
 
