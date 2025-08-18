@@ -1,32 +1,42 @@
 
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
-            @foreach ($content['list_items'] as $item)
+
+            <?php
+                $grouped = [];
+                foreach ($content['list_items'] as $item) {
+                    $key = $item['title'];
+                    $grouped[$key][] = $item;
+                }
+            ?>
+            @foreach ($grouped as $group => $items)
                 @paper(['classList' => [
                     'u-margin__bottom--4'
-                ], 'attributeList' => [
-                    'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
                 ]])
                     @typography([
                         "variant" => "h4",
                         "element" => "h4",
                     ])
-                        {{ $item['title'] }}
+                        {{ $group }}
                     @endtypography
-                    @if (isset($item['link_text']) && !empty($item['link_text']))
                         <ul>
+                            @foreach ($items as $item)
+                                @if (isset($item['link_text']) && !empty($item['link_text']))
                             <li>
                             @option([
                                 'type' => 'checkbox',
-                                'label' => $item['link_text']
+                                'label' => $item['link_text'], 'attributeList' => [
+                    'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
+                ]
                             ])
                             @endoption
                             @if (isset($item['link_url']) && !empty($item['link_url']))
                                 <a href="{{ $item['link_url'] }}" class="link-item">Mer information</a>
                             @endif
                             </li>
-                        </ul>                        
                     @endif
+                    @endforeach
+                        </ul>
                 @endpaper
             @endforeach        
 
