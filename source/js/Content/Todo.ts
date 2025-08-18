@@ -1,17 +1,17 @@
 declare const ajaxurl: string
 
 declare const guides: {
-    notice: string
-    send: string
-    email: string
-    send_todo_list: string
-    send_as_email: string
-    title: string
-    link: string
-    your_checklist: string
-    email_sent: string
-    email_failed: string
-    email_intro: string
+  notice: string
+  send: string
+  email: string
+  send_todo_list: string
+  send_as_email: string
+  title: string
+  link: string
+  your_checklist: string
+  email_sent: string
+  email_failed: string
+  email_intro: string
 }
 
 export default (function () {
@@ -20,7 +20,7 @@ export default (function () {
   const SELECTOR_MODAL_CLOSE_BUTTON =
     '.js-modularity-guide-todos__modal .c-modal__close'
   const SELECTOR_FORM_NOTICE = '.js-modularity-guide-todos__notice'
-  
+
   const SELECTOR_INPUT_EMAIL = 'input[name="email"]'
 
   const NOTICE_LEVEL_CLASSNAMES = {
@@ -41,7 +41,6 @@ export default (function () {
 
     // Remove not visible rows
     checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
-      
       if (paper.checkVisibility()) {
         return
       }
@@ -49,7 +48,7 @@ export default (function () {
     })
 
     // Create Mail HTML document
-    const doc = document.implementation.createHTMLDocument();
+    const doc = document.implementation.createHTMLDocument()
     const { body, head } = doc
 
     // Set charset
@@ -82,13 +81,13 @@ export default (function () {
           td:last-child {
             text-align: right;
           }
-        }`   
+        }`
     // Add intro text
     body.appendChild(doc.createElement('p')).textContent =
       guides.email_intro ?? ''
-    
+
     checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
-      body.appendChild(paper)      
+      body.appendChild(paper)
     })
     const checklistHTML = doc.documentElement.outerHTML
     checklist.remove()
@@ -104,8 +103,12 @@ export default (function () {
     e.preventDefault()
 
     const currentForm = e.target as HTMLFormElement
-    const currentSection = currentForm?.closest<HTMLElement>(SELECTOR_TODOS_WRAPPER)
-    const email = (currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement)?.value
+    const currentSection = currentForm?.closest<HTMLElement>(
+      SELECTOR_TODOS_WRAPPER
+    )
+    const email = (
+      currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement
+    )?.value
 
     /**
      * Display or hide form notice
@@ -114,13 +117,17 @@ export default (function () {
      * @param {String} icon material icon name
      * @returns
      */
-    function setNotice(text: string | boolean, level: keyof typeof NOTICE_LEVEL_CLASSNAMES = 'info', icon: string = '') {
+    function setNotice(
+      text: string | boolean,
+      level: keyof typeof NOTICE_LEVEL_CLASSNAMES = 'info',
+      icon = ''
+    ) {
       const noticeElement = currentSection?.querySelector(SELECTOR_FORM_NOTICE)
       const noticeIconElement = noticeElement?.querySelectorAll('c-icon')
       const noticeClassList = noticeElement?.classList
       const noticeLevelClassName = NOTICE_LEVEL_CLASSNAMES[level]
 
-      if (typeof text ==='boolean' && text === false) {
+      if (typeof text === 'boolean' && text === false) {
         if (!noticeClassList?.contains('u-display--none')) {
           noticeClassList?.add('u-display--none')
         }
@@ -129,7 +136,8 @@ export default (function () {
       }
 
       if (
-        noticeClassList && noticeLevelClassName &&
+        noticeClassList &&
+        noticeLevelClassName &&
         !noticeClassList?.contains(noticeLevelClassName)
       ) {
         ;[...noticeClassList]
@@ -144,13 +152,15 @@ export default (function () {
       }
 
       if (typeof text === 'string' && text.length > 0) {
-        const spanElements = Array.from(noticeElement?.querySelectorAll('span') ?? [])
+        const spanElements = Array.from(
+          noticeElement?.querySelectorAll('span') ?? []
+        )
         const textSpan =
           spanElements.length === 2 ? spanElements[1] : spanElements[0]
         textSpan.innerHTML = text
 
         if (icon.length > 0 && noticeIconElement) {
-          noticeIconElement.forEach(x => x.innerHTML = icon)
+          noticeIconElement.forEach(x => (x.innerHTML = icon))
         }
 
         noticeClassList?.remove('u-display--none')
@@ -219,7 +229,7 @@ export default (function () {
   function init() {
     const todoSections = document.querySelectorAll(SELECTOR_TODOS_WRAPPER)
     if (todoSections?.length > 0) {
-      todoSections.forEach((todoSection) => {
+      todoSections.forEach(todoSection => {
         subscribeForm(todoSection)
       })
     }

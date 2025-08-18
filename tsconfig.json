@@ -4,11 +4,6 @@
     "target": "ES2021",
     "module": "ES6",
     "moduleResolution": "node",
-
-    // Uncomment for Nodejs
-    //"target": "ESNext",
-    //"module": "NodeNext",
-    //"moduleResolution": "nodenext",
     "isolatedModules": true,
     "outDir": "assets/dist/js",
     "skipLibCheck": true,
@@ -18,7 +13,5 @@
     "sourceMap": true
   },
   "exclude": [],
-  "include": [
-    "./source/js/**/*.ts",
-  ]
+  "include": ["./source/js/**/*.ts"]
 }

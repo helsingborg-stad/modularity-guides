@@ -20,7 +20,9 @@ function handlePrevNextClick(e: Event) {
   e.preventDefault()
 
   const prevNextButtonElement = e.target as HTMLButtonElement
-  const isNext = prevNextButtonElement?.classList.contains(SELECTOR_NEXT.substring(1))
+  const isNext = prevNextButtonElement?.classList.contains(
+    SELECTOR_NEXT.substring(1)
+  )
 
   // Traverse DOM upwards
   const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE)
@@ -34,7 +36,9 @@ function handlePrevNextClick(e: Event) {
     const targetSection = currentGuide?.querySelector(
       `[${ATTRIBUTE_STEP}="${targetStep}"]`
     )
-    const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE) as HTMLButtonElement
+    const targetToggle = targetSection?.querySelector(
+      SELECTOR_ACCORDION_TOGGLE
+    ) as HTMLButtonElement
 
     if (targetToggle) {
       targetToggle.click()

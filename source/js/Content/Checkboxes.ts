@@ -48,7 +48,10 @@ export default (function ($) {
     })
 
     // Display or hide content
-    $('[data-mod-guide-toggle-key-content]').each(function (_: number, element: Element) {
+    $('[data-mod-guide-toggle-key-content]').each(function (
+      _: number,
+      element: Element
+    ) {
       let shouldShow = false
       let conditions = $(element).attr('data-mod-guide-toggle-key-content')
       conditions = conditions.split(',')
@@ -92,6 +95,6 @@ export default (function ($) {
       return
     })
   }
-    // @ts-expect-error Needs refactoring
+  // @ts-expect-error Needs refactoring
   return new Checkboxes()
 })(jQuery)
