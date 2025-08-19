@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-require-imports */
 require('dotenv').config()
 
 const path = require('path')
@@ -15,59 +17,57 @@ const autoprefixer = require('autoprefixer')
 const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 const { ifProduction } = getIfUtils(process.env.NODE_ENV)
 
-
 module.exports = {
-    mode: ifProduction('production', 'development'),
-    /**
-     * Add your entry files here
-     */
-    entry: {
+  mode: ifProduction('production', 'development'),
+  /**
+   * Add your entry files here
+   */
+  entry: {
+    'js/modularity-guides': './source/js/modularity-guides.ts',
+    'css/modularity-guides': './source/sass/modularity-guides.scss',
+  },
+  /**
+   * Output settings
+   */
+  output: {
+    filename: ifProduction(
+      '[name].[contenthash].js',
+      '[name].[contenthash].js'
+    ),
+    path: path.resolve(__dirname, 'assets', 'dist'),
+    publicPath: '',
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  /**
+   * Define external dependencies here
+   */
+  externals: {
+    jquery: 'jQuery',
+  },
+  module: {
+    rules: [
+      /**
+       * Scripts
+       */
+      {
+        test: /\.ts$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // Babel config goes here
+            presets: ['@babel/preset-env', '@babel/preset-typescript'],
+            plugins: [
+              '@babel/plugin-syntax-dynamic-import',
+              '@babel/plugin-proposal-export-default-from',
+              '@babel/plugin-transform-class-properties',
+            ],
+          },
+        },
+      },
 
-        'js/modularity-guides': './source/js/modularity-guides.ts',
-        'css/modularity-guides': './source/sass/modularity-guides.scss',
-    },
-    /**
-     * Output settings
-     */
-    output: {
-        filename: ifProduction(
-        '[name].[contenthash].js',
-        '[name].[contenthash].js'
-        ),
-        path: path.resolve(__dirname, 'assets', 'dist'),
-        publicPath: '',
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
-    /**
-     * Define external dependencies here
-     */
-    externals: {
-        jquery: 'jQuery'
-    },
-    module: {
-        rules: [
-            /**
-             * Scripts
-             */
-            {
-                test: /\.ts$/,
-                exclude: /(node_modules)/,
-                use: {
-                loader: 'babel-loader',
-                options: {
-                    // Babel config goes here
-                    presets: ['@babel/preset-env', '@babel/preset-typescript'],
-                    plugins: [
-                    '@babel/plugin-syntax-dynamic-import',
-                    '@babel/plugin-proposal-export-default-from',
-                    '@babel/plugin-proposal-class-properties',
-                    ],
-                },
-                },
-            },
-            
       /**
        * Styles
        */
@@ -96,9 +96,8 @@ module.exports = {
           'import-glob-loader',
         ],
       },
-
-        ],
-    },
+    ],
+  },
   plugins: removeEmpty([
     /**
      * BrowserSync
@@ -204,4 +203,4 @@ module.exports = {
   ]).filter(Boolean),
   devtool: 'source-map',
   stats: { children: false },
-};
+}

@@ -1,7 +1,6 @@
 
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
-
             <?php
                 $grouped = [];
                 foreach ($content['list_items'] as $item) {
@@ -22,30 +21,29 @@
                     <table>
                             @foreach ($items as $item)
                                 @if (isset($item['link_text']) && !empty($item['link_text']))
-                    <tr>
-                    <td>
-                            @option([
-                                'type' => 'checkbox',
-                                'label' => $item['link_text'], 'attributeList' => [
-                    'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
-                ]
-                            ])
-                            @endoption
+                        <tr>
+                            <td>
+                                @option([
+                                    'type' => 'checkbox',
+                                    'label' => $item['link_text'], 'attributeList' => [
+                        'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
+                    ]
+                                ])
+                                @endoption
                             </td>
                             <td>
-                            @if (isset($item['link_url']) && !empty($item['link_url']))
-                                @link([
-                                    'href' => $item['link_url']
-                                ])
-                                    Mer information
-                                @endlink
-                            @endif
+                                @if (isset($item['link_url']) && !empty($item['link_url']))
+                                    @link([
+                                        'href' => $item['link_url']
+                                    ])
+                                        Mer information
+                                    @endlink
+                                @endif
                             </td>
-                            </tr>
+                        </tr>
                     @endif
                     @endforeach
-
-                            </table>
+                    </table>
                 @endpaper
             @endforeach        
 
