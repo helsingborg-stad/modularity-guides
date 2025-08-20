@@ -108,3 +108,7 @@ msgstr ""
 #: modularity-guides.php
 msgid "(#plugin_author_url#)"
 msgstr ""
+
+#: source/php/Helper/Lang.php:23
+msgid "Read more"
+msgstr "Läs mer"

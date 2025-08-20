@@ -36,7 +36,7 @@
                                     @link([
                                         'href' => $item['link_url']
                                     ])
-                                        Mer information
+                                        {{ $lang['read_more'] }}
                                     @endlink
                                 @endif
                             </td>

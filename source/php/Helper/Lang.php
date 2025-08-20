@@ -20,6 +20,7 @@ class Lang
             'previous'      => __('Previous', 'modularity-guides'),
             'next'          => __('Next', 'modularity-guides'),
             'required'    => __('required', 'modularity-guides'),
+            'read_more' => __('Read more', 'modularity-guides'),
         ];
     }
 }
