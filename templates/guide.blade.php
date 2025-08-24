@@ -2,6 +2,9 @@
     $j = 1;
 @endphp
 
+<script>
+    var apiUrl = '{{ '/?rest_route=/' . MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . ($id ?? 0) }}';
+</script>
 @card()
     <!-- Heading -->
     @if (!$hideTitle && !empty($postTitle))
@@ -17,9 +20,9 @@
 
     <!-- Guide specific -->
     <div class="mod-guide-wrapper js-modularity-guide">
-        @if (count($steps) > 0)
+        @if (count($fields['steps']) > 0)
             @accordion([])
-                @foreach ($steps as $step)
+                @foreach ($fields['steps'] as $step)
                     @accordion__item([
                         'heading' => $loop->iteration . '. '  . $step['title'],
                         'classList' => ['js-modularity-guide__section'],

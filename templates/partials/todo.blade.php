@@ -1,16 +1,12 @@
 
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
-            <?php
-                $grouped = [];
-                foreach ($content['list_items'] as $item) {
-                    $key = $item['title'];
-                    $grouped[$key][] = $item;
-                }
-            ?>
-            @foreach ($grouped as $group => $items)
+            @foreach ($content['list_items'] as $group => $items)
                 @paper(['classList' => [
                     'u-margin__bottom--4'
+                ],
+                'attributeList' => [
+                    'data-mod-guide-todo-widget' => true
                 ]])
                     @typography([
                         "variant" => "h4",

@@ -1,4 +1,4 @@
-declare const ajaxurl: string
+declare const apiUrl: string
 
 declare const guides: {
   notice: string
@@ -11,7 +11,6 @@ declare const guides: {
   your_checklist: string
   email_sent: string
   email_failed: string
-  email_intro: string
 }
 
 export default (function () {
@@ -35,64 +34,16 @@ export default (function () {
    * @param {Element} todoTable
    * @returns {String} html with visible checklist items
    */
-  function getCheckList(todoTable: HTMLElement): string {
-    const checklist = todoTable.cloneNode(true) as HTMLElement
-    document.body.appendChild(checklist)
-
+  function getCheckList(todoTable: HTMLElement): string[] {
+    const keys: string[] = []
     // Remove not visible rows
-    checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
-      if (paper.checkVisibility()) {
+    todoTable?.querySelectorAll('[data-mod-guide-toggle-key-content]')?.forEach(checkbox => {
+      if (!checkbox.checkVisibility()) {
         return
       }
-      paper.remove()
+      keys.push(checkbox.getAttribute('data-mod-guide-toggle-key-content') ?? '')
     })
-
-    // Create Mail HTML document
-    const doc = document.implementation.createHTMLDocument()
-    const { body, head } = doc
-
-    // Set charset
-    head.appendChild(doc.createElement('meta')).setAttribute('charset', 'utf-8')
-
-    // Set styling
-    const style = head.appendChild(doc.createElement('style'))
-    style.textContent = `
-        body {
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 14px;
-        } 
-        .c-paper {
-          border: 1px solid black;
-          border-top-width: 6px;
-          border-radius: 6px;
-          padding: 16px;
-          margin-bottom: 16px;
-          p {
-            font-weight: bolder;
-          }
-          table {
-            width: 100%;
-            margin-top: 12px;
-          }
-          td {
-            vertical-align: top;
-            padding: 0 0 8px 0;
-          }
-          td:last-child {
-            text-align: right;
-          }
-        }`
-    // Add intro text
-    body.appendChild(doc.createElement('p')).textContent =
-      guides.email_intro ?? ''
-
-    checklist?.querySelectorAll('.c-paper')?.forEach(paper => {
-      body.appendChild(paper)
-    })
-    const checklistHTML = doc.documentElement.outerHTML
-    checklist.remove()
-    console.log(checklistHTML)
-    return encodeURI(checklistHTML)
+    return keys
   }
 
   /**
@@ -169,24 +120,25 @@ export default (function () {
 
     setNotice(false)
 
-    if (currentSection && email && ajaxurl) {
+    if (currentSection && email && apiUrl) {
       currentSection?.classList.toggle('is-loading')
       const checklist = getCheckList(currentSection)
 
       const data = {
         action: 'email_todo',
-        checklist: checklist,
-        email: email,
+        checklist,
+        email,
       }
 
-      fetch(ajaxurl, {
+      fetch(apiUrl, {
         method: 'POST',
         credentials: 'same-origin',
         headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         }),
-        body: new URLSearchParams(data),
+        body: JSON.stringify(data),
       })
+
         .then(function (response) {
           currentSection?.classList.toggle('is-loading')
           response.json().then(data => {

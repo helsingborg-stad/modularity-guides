@@ -46,7 +46,12 @@ export default (function ($) {
       }
       checked.push($(element).attr('data-mod-guide-toggle-key'))
     })
-
+    // Hide all todo widgets
+    $('[data-mod-guide-todo-widget]').each((
+      _: number,
+      element: Element
+    ) => $(element).hide())
+    
     // Display or hide content
     $('[data-mod-guide-toggle-key-content]').each(function (
       _: number,
@@ -88,10 +93,13 @@ export default (function ($) {
       // Hide or show
       if (shouldShow) {
         $(element).show()
+        $(element).closest('tr').show()
+        $(element).closest('[data-mod-guide-todo-widget]').show()
         return
       }
 
       $(element).hide()
+      $(element).closest('tr').hide()
       return
     })
   }

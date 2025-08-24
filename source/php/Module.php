@@ -23,10 +23,11 @@ class Module extends \Modularity\Module
 
     public function data(): array
     {
-        $fields = $this->getFields();
+        $transformer = new Helper\FieldTransform($this->getFields());
+        $fields = $transformer->getFields();
         $data = array();
-        $data['id'] = $this->ID ?? uniqid();
-        $data['steps'] = $fields['steps'] ?? [];
+        $data['id'] = $this->ID ?? 0;
+        $data['fields'] = $fields ?? [];
         $theme = wp_get_theme();
         $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
         $data['lang'] = $this->lang;
