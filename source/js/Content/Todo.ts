@@ -19,8 +19,8 @@ export default (function () {
   const SELECTOR_MODAL_CLOSE_BUTTON =
     '.js-modularity-guide-todos__modal .c-modal__close'
   const SELECTOR_FORM_NOTICE = '.js-modularity-guide-todos__notice'
-
   const SELECTOR_INPUT_EMAIL = 'input[name="email"]'
+  const SELECTOR_API_URL = 'data-js-modularity-guide-post-url'
 
   const NOTICE_LEVEL_CLASSNAMES = {
     info: 'c-notice--info',
@@ -60,7 +60,9 @@ export default (function () {
     const email = (
       currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement
     )?.value
+    const apiUrl = currentSection?.closest(`[${SELECTOR_API_URL}]`)?.getAttribute(SELECTOR_API_URL)
 
+    console.log('API URL', apiUrl)
     /**
      * Display or hide form notice
      * @param {String|Boolean} text notice content, set to false to hide notice
@@ -120,6 +122,7 @@ export default (function () {
 
     setNotice(false)
 
+    
     if (currentSection && email && apiUrl) {
       currentSection?.classList.toggle('is-loading')
       const checklist = getCheckList(currentSection)

@@ -2,9 +2,6 @@
     $j = 1;
 @endphp
 
-<script>
-    var apiUrl = '{{ '/?rest_route=/' . MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . ($id ?? 0) }}';
-</script>
 @card()
     <!-- Heading -->
     @if (!$hideTitle && !empty($postTitle))
@@ -19,7 +16,7 @@
     @endif
 
     <!-- Guide specific -->
-    <div class="mod-guide-wrapper js-modularity-guide">
+    <div class="mod-guide-wrapper js-modularity-guide" data-js-modularity-guide-post-url="{{ $apiUrl }}">
         @if (count($fields['steps']) > 0)
             @accordion([])
                 @foreach ($fields['steps'] as $step)

@@ -31,6 +31,7 @@ class Module extends \Modularity\Module
         $theme = wp_get_theme();
         $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
         $data['lang'] = $this->lang;
+        $data['apiUrl'] = get_rest_url(null, MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . $data['id']);
         return $data;
     }
 
