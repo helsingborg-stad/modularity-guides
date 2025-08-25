@@ -77,6 +77,13 @@ class Api extends \WP_REST_Controller
             $request->get_json_params()
         );
 
+        // Check post type
+        $post = get_post($parameters['id']);
+
+        if (!$post || $post->post_type !== 'mod-guide') {
+            return new \WP_REST_Response(['error' => 'Invalid guide ID'], 404);
+        }
+
         // Get fields from the given ID
         $fields = get_fields($parameters['id']);
 
