@@ -4,6 +4,7 @@ namespace ModularityGuides;
 
 use \ComponentLibrary\Init as ComponentLibraryInit;
 use ModularityGuides\Helper\Lang;
+use \Municipio\Helper\Color;
 
 class Api extends \WP_REST_Controller
 {
@@ -105,6 +106,7 @@ class Api extends \WP_REST_Controller
         $bladeEngine = (new ComponentLibraryInit([]))->getEngine();
 
         return $bladeEngine->makeView('email', [
+            'color' => Color::getPalettes(['color_palette_primary'])['color_palette_primary']['base'],
             'content' => $fields,
             'lang' => Lang::getLang()
         ], [], [MODULARITYGUIDES_MODULE_VIEW_PATH])->render();

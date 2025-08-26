@@ -8,7 +8,7 @@
         }
 
         div.widget {
-            border: 1px solid black;
+            border: 1px solid {{$color}};
             border-top-width: 6px;
             border-radius: 6px;
             padding: 16px;
