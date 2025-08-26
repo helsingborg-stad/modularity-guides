@@ -5,20 +5,26 @@ namespace ModularityGuides;
 use \ComponentLibrary\Init as ComponentLibraryInit;
 use ModularityGuides\Helper\Lang;
 use \Municipio\Helper\Color;
+use WpService\Contracts\AddAction;
+use WpService\Contracts\RegisterRestRoute;
+use WpService\Contracts\GetPost;
+use AcfService\Contracts\GetFields;
 
 class Api extends \WP_REST_Controller
 {
-    public function __construct()
-    {
-        add_action('rest_api_init', array($this, 'register_routes'));
+    public function __construct(
+        private GetPost&AddAction&RegisterRestRoute $wpService,
+        private GetFields $acfService
+    ) {
+        $this->wpService->addAction('rest_api_init', array($this, 'registerRoutes'));
     }
 
-    public function register_routes()
+    public function registerRoutes()
     {
-        register_rest_route(MODULARITYGUIDES_API_NAMESPACE, '/modularity-guides/(?P<id>\d+)', array(
+        $this->wpService->registerRestRoute(MODULARITYGUIDES_API_NAMESPACE, '/modularity-guides/(?P<id>\d+)', array(
             array(
                 'methods' => \WP_REST_Server::CREATABLE,
-                'callback' => array($this, 'handle_post'),
+                'callback' => array($this, 'handlePost'),
                 'permission_callback' => '__return_true',
                 'args' => array(
                     'id' => array(
@@ -41,11 +47,11 @@ class Api extends \WP_REST_Controller
                     ),
                 ),
             ),
-            'schema' => array($this, 'get_item_schema'),
+            'schema' => array($this, 'getItemSchema'),
         ));
     }
 
-    public function get_item_schema()
+    public function getItemSchema()
     {
         return array(
             '$schema'              => 'http://json-schema.org/draft-04/schema#',
@@ -71,7 +77,7 @@ class Api extends \WP_REST_Controller
         );
     }
 
-    public function handle_post(\WP_REST_Request $request)
+    public function handlePost(\WP_REST_Request $request)
     {
         $parameters = array_merge(
             $request->get_url_params(),
@@ -79,14 +85,14 @@ class Api extends \WP_REST_Controller
         );
 
         // Check post type
-        $post = get_post($parameters['id']);
+        $post = $this->wpService->getPost($parameters['id']);
 
         if (!$post || $post->post_type !== 'mod-guide') {
             return new \WP_REST_Response(['error' => 'Invalid guide ID'], 404);
         }
 
         // Get fields from the given ID
-        $fields = get_fields($parameters['id']);
+        $fields = $this->acfService->getFields($parameters['id']);
 
         if (!$fields) {
             return new \WP_REST_Response(['error' => 'No fields found for the given ID'], 404);
@@ -96,12 +102,12 @@ class Api extends \WP_REST_Controller
         $fields = (new Helper\FieldTransform($fields))->filterTodo($parameters['checklist']);
 
         // Render email content
-        $result = $this->send_mail($this->render_mail_content($fields), $parameters['email']);
+        $result = $this->sendMail($this->renderMailContent($fields), $parameters['email']);
 
         return new \WP_REST_Response(["status" => $result ? "success" : "error"], 200);
     }
 
-    protected function render_mail_content($fields): string
+    protected function renderMailContent($fields): string
     {
         $bladeEngine = (new ComponentLibraryInit([]))->getEngine();
 
@@ -112,7 +118,7 @@ class Api extends \WP_REST_Controller
         ], [], [MODULARITYGUIDES_MODULE_VIEW_PATH])->render();
     }
 
-    protected function send_mail(string $markup, string $to): bool
+    protected function sendMail(string $markup, string $to): bool
     {
         return wp_mail(
             $to,

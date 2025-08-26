@@ -13,6 +13,9 @@
  * Domain Path:       /languages
  */
 
+use AcfService\Implementations\NativeAcfService;
+use WpService\Implementations\NativeWpService;
+
 // Protect agains direct file access
 if (! defined('WPINC')) {
     die;
@@ -44,4 +47,4 @@ add_filter(
 
 // Start application
 new ModularityGuides\App();
-new ModularityGuides\Api();
+new ModularityGuides\Api(new NativeWpService(), new NativeAcfService());
