@@ -19,11 +19,6 @@
                 margin-top: 12px;
             }
 
-            table {
-                width: 100%;
-                margin-top: 12px;
-            }
-
             input {
                 padding: 8;
             }
