@@ -121,3 +121,25 @@
 .mod-guide-checkboxes--checkbox {
   padding-bottom: 8px;
 }
+
+.modularity-guide-todos {
+  .c-paper {
+    border: 1px solid var(--color-primary);
+    border-top-width: 6px;
+    border-radius: 6px;
+    padding: 16px;    
+  }
+  table {
+    width: 100%;
+    margin-top: 12px;
+  }
+  td {
+    vertical-align: top;
+    padding: 0 0 8px 0;
+  }
+  td:last-child {
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+

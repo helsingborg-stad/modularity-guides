@@ -1,119 +1,114 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Guides\n"
-"POT-Creation-Date: 2021-02-25 16:09+0100\n"
-"PO-Revision-Date: 2021-02-25 16:10+0100\n"
+"Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-02-25 16:09+0100\n"
+"PO-Revision-Date: 2021-02-25 16:10+0100\n"
+"Language: sv\n"
 "X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity-guides.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:83
+#: source/php/App.php:36
+#: source/php/Helper/Lang.php:15
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/App.php:84
+#: source/php/Helper/Lang.php:19
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: source/php/Module.php:17
-msgid "Guide"
-msgstr ""
-
-#: source/php/Module.php:18
-msgid "Guides"
-msgstr ""
-
-#: source/php/Module.php:19
-msgid "A step by step guide"
-msgstr ""
-
-#: source/php/Module.php:39
+#: source/php/Helper/Lang.php:17
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Module.php:40
+#: source/php/Helper/Lang.php:18
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: source/php/Module.php:41
-msgid "You need to check the required fields"
-msgstr ""
-
-#: templates/content/checkboxes.php:8
-#: templates/partials/checkboxes.blade.php:20
-msgid "required"
-msgstr "obligatoriskt"
-
-#: templates/content/text_modal.php:21
-msgid "Close"
-msgstr "Stäng"
-
-#: templates/content/todo.php:6
-msgid "Done"
-msgstr "Klar"
-
-#: templates/content/todo.php:7
-msgid "Title"
-msgstr "Titel"
-
-#: templates/content/todo.php:8
-msgid "Link"
-msgstr "Länk"
-
-#: templates/content/todo.php:29
+#: source/php/Helper/Lang.php:14
 msgid "Send as email"
-msgstr "Skicka som e-post"
+msgstr "Skicka som E-post"
 
-#: templates/content/todo.php:42
+#: source/php/Helper/Lang.php:13
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: templates/content/todo.php:49
+#: source/php/Helper/Lang.php:12
 msgid "Email"
 msgstr "E-postadress"
 
-#: templates/content/todo.php:60
+#: source/php/Helper/Lang.php:11
 msgid "Send"
 msgstr "Skicka"
 
-#: templates/module/modularity-mod-guide.php:30
+#: source/php/Helper/Lang.php:10
+msgid "Notice"
+msgstr " "
+
+#: source/php/Helper/Lang.php:20
 msgid "Previous"
 msgstr "Föregående"
 
-#: templates/module/modularity-mod-guide.php:34
+#: source/php/Helper/Lang.php:21
 msgid "Next"
 msgstr "Nästa"
 
-#. Plugin Name of the plugin/theme
+#: source/php/Helper/Lang.php:16
+msgid "You need to add a valid E-mail!"
+msgstr "Ange en giltig E-post adress"
+
+#: source/php/Module.php:19
+msgid "Guide"
+msgstr ""
+
+#: source/php/Module.php:20
+msgid "Guides"
+msgstr ""
+
+#: source/php/Module.php:21
+msgid "A step by step guide"
+msgstr ""
+
+#: source/php/Helper/Lang.php:22
+msgid "required"
+msgstr "obligatoriskt"
+
+#. Plugin Name of the plugin
+#: modularity-guides.php
 msgid "Modularity Guides"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+#: modularity-guides.php
 msgid "(#plugin_url#)"
 msgstr ""
 
-#. Description of the plugin/theme
+#. Description of the plugin
+#: modularity-guides.php
 msgid "A addon for Modularity to create guides"
 msgstr ""
 
-#. Author of the plugin/theme
+#. Author of the plugin
+#: modularity-guides.php
 msgid "Kristoffer Svanmark"
 msgstr ""
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
+#: modularity-guides.php
 msgid "(#plugin_author_url#)"
 msgstr ""
 
+#: source/php/Helper/Lang.php:23
+msgid "Read more"
+msgstr "Läs mer"

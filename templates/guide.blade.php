@@ -8,7 +8,6 @@
         <div class="c-card__header">
             @typography([
                 'element' => 'h4',
-                'variant' => 'p',
                 'id'      => 'mod-guide-' . $id .'-label'
             ])
                 {!! $postTitle !!}
@@ -17,10 +16,10 @@
     @endif
 
     <!-- Guide specific -->
-    <div class="mod-guide-wrapper js-modularity-guide">
-        @if (count($steps) > 0)
+    <div class="mod-guide-wrapper js-modularity-guide" data-js-modularity-guide-post-url="{{ $apiUrl }}">
+        @if (count($fields['steps']) > 0)
             @accordion([])
-                @foreach ($steps as $step)
+                @foreach ($fields['steps'] as $step)
                     @accordion__item([
                         'heading' => $loop->iteration . '. '  . $step['title'],
                         'classList' => ['js-modularity-guide__section'],
@@ -40,7 +39,7 @@
                                         @button([
                                             'icon' => 'keyboard_arrow_left',
                                             'reversePositions' => true,
-                                            'text' => __('Previous', 'modularity-guides'),
+                                            'text' => $lang['previous'],
                                             'style' => 'filled',
                                             'classList' => ['prevNext','prevStep', 'js-modularity-guide__prev']
                                         ])
@@ -52,7 +51,7 @@
                                         @button([
                                             'icon' => "keyboard_arrow_right",
                                             'reversePositions' => false,
-                                            'text' => __('Next', 'modularity-guides'),
+                                            'text' => $lang['next'],
                                             'style' => 'filled',
                                             'color' => 'primary',
                                             'classList' => ['prevNext','nextStep', 'js-modularity-guide__next'],

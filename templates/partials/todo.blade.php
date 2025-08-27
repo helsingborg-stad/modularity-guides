@@ -1,49 +1,65 @@
 
 <div class="o-grid modularity-guide-todos js-modularity-guide-todos">
     <div class="o-grid-12">
-        <table class="table mod-guide-todo-list js-modularity-guide-todos__table">
-            <thead>
-                <tr>
-                    <th>{{_e('Title', 'modularity-guides')}}</th>
-                    <th>{{_e('Link', 'modularity-guides')}}</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($content['list_items'] as $item)
-                <tr {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
-                    <td>{{ $item['title'] }}</td>
-                    <td>
-                        @if (isset($item['link_url']) && !empty($item['link_url']))
-                        <a href="{{ $item['link_url'] }}" class="link-item">{{ isset($item['link_text']) && !empty($item['link_text']) ? $item['link_text'] : 'Mer information' }}</a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-            <tfoot class="hidden-print">
-                <tr>
-                    <th colspan="3">
-                        @button( [
-                            'href' => '',
-                            'icon' => 'mail',
-                            'color' => 'primary',
-                            'style' => 'filled',
-                            'reversePositions' => true,
-                            'size' => 'sm',
-                            'text' => __('Send as email', 'modularity-guides'),
-                            'attributeList' => [
-                                'data-open' => "mod-guide-todo-".$stepId,
-                            ],
-                            'classList' => ['js-modularity-guide-todos__modal-trigger']
-                        ])
-                        @endbutton
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
+            @foreach ($content['list_items'] as $group => $items)
+                @paper(['classList' => [
+                    'u-margin__bottom--4'
+                ],
+                'attributeList' => [
+                    'data-mod-guide-todo-widget' => true
+                ]])
+                    @typography([
+                        "variant" => "h4",
+                        "element" => "h4"
+                    ])
+                        {{ $group }}
+                    @endtypography
+                    <table>
+                            @foreach ($items as $item)
+                                @if (isset($item['link_text']) && !empty($item['link_text']))
+                        <tr>
+                            <td>
+                                @option([
+                                    'type' => 'checkbox',
+                                    'label' => $item['link_text'], 'attributeList' => [
+                        'data-mod-guide-toggle-key-content' => isset($item['toggle_key']) && !empty($item['toggle_key']) ? $item['toggle_key'] : ''
+                    ]
+                                ])
+                                @endoption
+                            </td>
+                            <td>
+                                @if (isset($item['link_url']) && !empty($item['link_url']))
+                                    @link([
+                                        'href' => $item['link_url']
+                                    ])
+                                        {{ $lang['read_more'] }}
+                                    @endlink
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
+                    @endforeach
+                    </table>
+                @endpaper
+            @endforeach        
+
+            @button( [
+                'href' => '',
+                'icon' => 'mail',
+                'color' => 'primary',
+                'style' => 'filled',
+                'reversePositions' => true,
+                'size' => 'sm',
+                'text' => $lang['send_as_email'],
+                'attributeList' => [
+                    'data-open' => "mod-guide-todo-".$stepId,
+                ],
+                'classList' => ['js-modularity-guide-todos__modal-trigger']
+            ])
+            @endbutton
 
         @modal([
-            'heading' => __('Send todo-list as email', 'modularity-guides'),
+            'heading' => $lang['send_todo_list'],
             'isPanel' => false,
             'id' => "mod-guide-todo-".$stepId,
             'overlay' => 'dark',
@@ -63,31 +79,22 @@
                 <div class="o-grid o-grid--no-margin">
                     <div class="o-grid-12 u-margin__bottom--3">
                         @field([
-                            'type' => 'text',
+                            'type' => 'email',
                             'id' => 'send-todo-email',
-                            'attributeList' => [
-                                'type' => 'email',
-                                'name' => 'email',
-                                'pattern' => '^[^@]+@[^@]+\.[^@]+$',
-                                'autocomplete' => 'e-mail',
-                                'data-invalid-message' => "You need to add a valid E-mail!"
-                            ],
-                            'label' => __('Email', 'modularity-guides'),
+                            'name' => 'email',
+                            'autocomplete' => 'email',
+                            'invalidMessage' => $lang['email_error'],
+                            'label' => $lang['email'],
                             'required' => true,
                         ])
                         @endfield
-                        @typography([
-                            "variant" => "meta"
-                        ])
-                            {!! $googleCaptchaTerms  !!}
-                        @endtypography
                     </div>
                     
                     <div class="o-grid-12">
                         <div class="o-grid o-grid--no-margin">
                             <div class="o-grid-fit">
                                 @button([
-                                    'text' => __('Send', 'modularity-guides'),
+                                    'text' => $lang['send'],
                                     'color' => 'primary',
                                     'style' => 'filled',
                                     'type' => 'submit'
@@ -105,12 +112,11 @@
                     </div>
                 </div>
             @endform
-            
             @slot('bottom')
                 @notice([
                     'type' => 'success',
                     'message' => [
-                        'text' => 'Tellus Sem Lorem Malesuada Ipsum',
+                        'text' => $lang['notice'],
                         'size' => 'sm'
                     ],
                     'classList' => ['js-modularity-guide-todos__notice', 'u-display--none'],
@@ -124,7 +130,6 @@
             @endslot
 
         @endmodal
-
     </div>
 </div>
 

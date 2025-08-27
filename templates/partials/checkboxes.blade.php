@@ -20,7 +20,7 @@
                     @endoption
 
                     @if (isset($checkbox['required']) && $checkbox['required'])
-                        <span class="mod-guide-checkboxes-required">(<?php _e('required', 'modularity-guides'); ?>)</span>
+                        <span class="mod-guide-checkboxes-required">(<?php echo $lang['required']; ?>)</span>
                     @endif
                 </label>
             @endforeach

@@ -1,0 +1,109 @@
+# Copyright (C) 2025 Kristoffer Svanmark
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: Modularity Guides 4.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-guides\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-20T10:54:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: modularity-guides\n"
+
+#. Plugin Name of the plugin
+#: modularity-guides.php
+msgid "Modularity Guides"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: modularity-guides.php
+msgid "(#plugin_url#)"
+msgstr ""
+
+#. Description of the plugin
+#: modularity-guides.php
+msgid "A addon for Modularity to create guides"
+msgstr ""
+
+#. Author of the plugin
+#: modularity-guides.php
+msgid "Kristoffer Svanmark"
+msgstr ""
+
+#. Author URI of the plugin
+#: modularity-guides.php
+msgid "(#plugin_author_url#)"
+msgstr ""
+
+#: source/php/App.php:36
+#: source/php/Helper/Lang.php:15
+msgid "Your checklist"
+msgstr ""
+
+#: source/php/Helper/Lang.php:10
+msgid "Notice"
+msgstr ""
+
+#: source/php/Helper/Lang.php:11
+msgid "Send"
+msgstr ""
+
+#: source/php/Helper/Lang.php:12
+msgid "Email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:13
+msgid "Send todo-list as email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:14
+msgid "Send as email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:16
+msgid "You need to add a valid E-mail!"
+msgstr ""
+
+#: source/php/Helper/Lang.php:17
+msgid "Email was sent"
+msgstr ""
+
+#: source/php/Helper/Lang.php:18
+msgid "The message can't be sent right now. Please try again later."
+msgstr ""
+
+#: source/php/Helper/Lang.php:19
+msgid "Hi, here's your requested checlist, enjoy!"
+msgstr ""
+
+#: source/php/Helper/Lang.php:20
+msgid "Previous"
+msgstr ""
+
+#: source/php/Helper/Lang.php:21
+msgid "Next"
+msgstr ""
+
+#: source/php/Helper/Lang.php:22
+msgid "required"
+msgstr ""
+
+#: source/php/Helper/Lang.php:23
+msgid "Read more"
+msgstr ""
+
+#: source/php/Module.php:19
+msgid "Guide"
+msgstr ""
+
+#: source/php/Module.php:20
+msgid "Guides"
+msgstr ""
+
+#: source/php/Module.php:21
+msgid "A step by step guide"
+msgstr ""

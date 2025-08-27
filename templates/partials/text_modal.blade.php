@@ -2,13 +2,13 @@
     <div class="grid-xs-12">
         <article>
             @typography([
-                'element' => "h3",
+                'element' => 'h3',
             ])
                 {!! $content['title'] !!}
             @endtypography
 
             @typography([
-                'element' => "meta",
+                'element' => 'meta',
             ])
                 {!! $content['summary'] !!}
             @endtypography

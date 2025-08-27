@@ -13,7 +13,10 @@
  * Domain Path:       /languages
  */
 
- // Protect agains direct file access
+use AcfService\Implementations\NativeAcfService;
+use WpService\Implementations\NativeWpService;
+
+// Protect agains direct file access
 if (! defined('WPINC')) {
     die;
 }
@@ -22,6 +25,7 @@ define('MODULARITYGUIDES_PATH', plugin_dir_path(__FILE__));
 define('MODULARITYGUIDES_URL', plugins_url('', __FILE__));
 define('MODULARITYGUIDES_TEMPLATE_PATH', MODULARITYGUIDES_PATH . 'templates/');
 define('MODULARITYGUIDES_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . '/templates/');
+define('MODULARITYGUIDES_API_NAMESPACE', 'wp/v2');
 
 load_plugin_textdomain('modularity-guides', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
@@ -31,12 +35,16 @@ if (file_exists(MODULARITYGUIDES_PATH . 'vendor/autoload.php')) {
 }
 require_once MODULARITYGUIDES_PATH . 'Public.php';
 
-add_filter( '/Modularity/externalViewPath', function($arr)
-{
-    $arr['mod-guide'] = MODULARITYGUIDES_MODULE_VIEW_PATH;
-    return $arr;
-}, 10, 3
+add_filter(
+    '/Modularity/externalViewPath',
+    function ($arr) {
+        $arr['mod-guide'] = MODULARITYGUIDES_MODULE_VIEW_PATH;
+        return $arr;
+    },
+    10,
+    3
 );
 
 // Start application
 new ModularityGuides\App();
+new ModularityGuides\Api(new NativeWpService(), new NativeAcfService());
