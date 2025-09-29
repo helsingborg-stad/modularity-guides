@@ -4,7 +4,7 @@
  * Plugin Name:       Modularity Guides
  * Plugin URI:        (#plugin_url#)
  * Description:       A addon for Modularity to create guides
- * Version: 4.0.5
+ * Version: 4.0.6
  * Author:            Kristoffer Svanmark
  * Author URI:        (#plugin_author_url#)
  * License:           MIT

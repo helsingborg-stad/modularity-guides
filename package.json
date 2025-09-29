@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/modularity-guides",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "description": "Addon for Modularity for creating guides",
     "main": "",
     "scripts": {
