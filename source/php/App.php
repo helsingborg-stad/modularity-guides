@@ -7,7 +7,7 @@ class App
     public function __construct()
     {
         add_action(
-            'plugins_loaded',
+            'init',
             function () {
                 if (function_exists('modularity_register_module')) {
                     modularity_register_module(
