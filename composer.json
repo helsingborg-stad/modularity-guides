@@ -26,7 +26,7 @@
         "helsingborg-stad/wpservice": "^2.0",
         "helsingborg-stad/acfservice": "^1.0"
     },
-    "version": "4.0.6",
+    "version": "5.0.0",
     "require-dev": {
         "helsingborg-stad/phpcs": "^0.2.2",
         "phpunit/phpunit": "^11.5",
