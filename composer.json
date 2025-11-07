@@ -3,6 +3,18 @@
     "description": "Addon for Modularity for creating guides",
     "type": "wordpress-plugin",
     "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}": [
+                "type:wordpress-muplugin",
+                "type:wordpress-theme",
+                "type:wordpress-plugin",
+                "type:acf-plugin"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "Kristoffer Svanmark",
@@ -24,7 +36,8 @@
         "helsingborg-stad/coordinate-transformation-library": "^1.0.1",
         "phpseclib/phpseclib": "^3.0.0",
         "helsingborg-stad/wpservice": "^2.0",
-        "helsingborg-stad/acfservice": "^1.0"
+        "helsingborg-stad/acfservice": "^1.0",
+        "helsingborg-stad/municipio": "^6.0.0"
     },
     "version": "5.0.0",
     "require-dev": {
@@ -42,7 +55,8 @@
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true
         }
     }
 }
