@@ -39,7 +39,6 @@
         "helsingborg-stad/acfservice": "^1.0",
         "helsingborg-stad/municipio": "^6.0.0"
     },
-    "version": "5.0.1",
     "require-dev": {
         "helsingborg-stad/phpcs": "^0.2.2",
         "phpunit/phpunit": "^11.5",
