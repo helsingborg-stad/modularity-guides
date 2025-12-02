@@ -29,7 +29,7 @@ class Module extends \Modularity\Module
         $data['id'] = $this->ID ?? 0;
         $data['fields'] = $fields ?? [];
         $theme = wp_get_theme();
-        $data['municipio'] = ($theme->name == 'Municipio' || $theme->parent_theme == 'Municipio') ? true : false;
+        $data['municipio'] = $theme->name == 'Municipio' || $theme->parent_theme == 'Municipio' ? true : false;
         $data['lang'] = $this->lang;
         $data['apiUrl'] = get_rest_url(null, MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . $data['id']);
         return $data;
@@ -37,12 +37,11 @@ class Module extends \Modularity\Module
 
     public function script()
     {
-        wp_register_script('modularity-guides', MODULARITYGUIDES_URL . '/assets/dist/' . Helper\CacheBust::name('js/modularity-guides.js'), null, '1.0.0', true);
-        wp_localize_script('modularity-guides', 'guides', $this->lang);
-        wp_enqueue_script('modularity-guides');
-
-        wp_register_style('modularity-guides', MODULARITYGUIDES_URL . '/assets/dist/' . Helper\CacheBust::name('css/modularity-guides.css'), null, '1.0.0');
-        wp_enqueue_style('modularity-guides');
+        $this->wpEnqueue
+            ->add('js/modularity-guides.js', [], '1.0.0', true)
+            ->with()
+            ->translations('guides', $this->lang)
+            ->add('css/modularity-guides.css', [], '1.0.0');
 
         if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
             wp_enqueue_script('jquery');
