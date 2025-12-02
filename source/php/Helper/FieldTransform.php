@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ModularityGuides\Helper;
 
 class FieldTransform
@@ -13,19 +15,20 @@ class FieldTransform
         // Transform todo list items into groups based on title
         $todo = &$this->getTodo();
 
-        $grouped = array();
+        $grouped = [];
         foreach ($todo['list_items'] as &$item) {
             $key = $item['title'];
             $grouped[$key][] = [
                 'id' => uniqid(),
                 'link_text' => $item['link_text'],
                 'link_url' => $item['link_url'],
-                'toggle_key' => $item['toggle_key']
+                'toggle_key' => $item['toggle_key'],
             ];
         }
         // Replace list items with grouped version
         $todo['list_items'] = $grouped;
     }
+
     public function getFields(): array
     {
         return $this->fields;
@@ -35,9 +38,11 @@ class FieldTransform
     {
         foreach ($this->fields['steps'] as &$step) {
             foreach ($step['content'] as &$content) {
-                if ($content['acf_fc_layout'] == 'todo') {
-                    return $content;
+                if ($content['acf_fc_layout'] != 'todo') {
+                    continue;
                 }
+
+                return $content;
             }
         }
         return [];
@@ -49,10 +54,11 @@ class FieldTransform
 
         foreach ($todo['list_items'] as $group => &$items) {
             foreach ($items as $key => $item) {
-
-                if (!in_array($item['toggle_key'], $keys)) {
-                    unset($items[$key]);
+                if (in_array($item['toggle_key'], $keys)) {
+                    continue;
                 }
+
+                unset($items[$key]);
             }
             // No active actions, remove group
             if (empty($items)) {
