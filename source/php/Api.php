@@ -108,7 +108,7 @@ class Api extends \WP_REST_Controller
         }
 
         // Transform fields and filter todo list based on provided checklist keys
-        $fields = new Helper\FieldTransform($fields)->filterTodo($parameters['checklist']);
+        $fields = (new Helper\FieldTransform($fields))->filterTodo($parameters['checklist']);
 
         // Render email content
         $result = $this->sendMail($this->renderMailContent($fields), $parameters['email']);
@@ -118,7 +118,7 @@ class Api extends \WP_REST_Controller
 
     protected function renderMailContent($fields): string
     {
-        $bladeEngine = new ComponentLibraryInit([])->getEngine();
+        $bladeEngine = (new ComponentLibraryInit([]))->getEngine();
 
         return $bladeEngine
             ->makeView(
