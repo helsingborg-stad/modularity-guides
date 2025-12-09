@@ -1,15 +1,15 @@
-import "./Content/Todo";
-import "./Content/Checkboxes";
+import './Content/Todo';
+import './Content/Checkboxes';
 
 // Required selectors
-const SELECTOR_MODULARITY_GUIDE = ".js-modularity-guide";
-const SELECTOR_SECTION = ".js-modularity-guide__section";
-const SELECTOR_NEXT = ".js-modularity-guide__next";
-const SELECTOR_PREV = ".js-modularity-guide__prev";
-const SELECTOR_ACCORDION_TOGGLE = "[js-expand-button]";
+const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';
+const SELECTOR_SECTION = '.js-modularity-guide__section';
+const SELECTOR_NEXT = '.js-modularity-guide__next';
+const SELECTOR_PREV = '.js-modularity-guide__prev';
+const SELECTOR_ACCORDION_TOGGLE = '[js-expand-button]';
 
 // Required data-attributes
-const ATTRIBUTE_STEP = "data-guide-step";
+const ATTRIBUTE_STEP = 'data-guide-step';
 
 /**
  * Click handler for Next & Prev buttons,
@@ -20,27 +20,17 @@ function handlePrevNextClick(e: Event) {
 	e.preventDefault();
 
 	const prevNextButtonElement = e.target as HTMLButtonElement;
-	const isNext = prevNextButtonElement?.classList.contains(
-		SELECTOR_NEXT.substring(1),
-	);
+	const isNext = prevNextButtonElement?.classList.contains(SELECTOR_NEXT.substring(1));
 
 	// Traverse DOM upwards
-	const currentGuide = prevNextButtonElement?.closest(
-		SELECTOR_MODULARITY_GUIDE,
-	);
+	const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE);
 	const currentSection = prevNextButtonElement?.closest(SELECTOR_SECTION);
-	const currentStep = parseInt(
-		currentSection?.getAttribute(ATTRIBUTE_STEP) ?? "-1",
-	);
+	const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1');
 
 	if (currentStep > 0) {
 		const targetStep = isNext ? currentStep + 1 : currentStep - 1;
-		const targetSection = currentGuide?.querySelector(
-			`[${ATTRIBUTE_STEP}="${targetStep}"]`,
-		);
-		const targetToggle = targetSection?.querySelector(
-			SELECTOR_ACCORDION_TOGGLE,
-		) as HTMLButtonElement;
+		const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
+		const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE) as HTMLButtonElement;
 
 		if (targetToggle) {
 			targetToggle.click();
@@ -60,7 +50,7 @@ function subscribePrevNextButtons(wrapperElement: Element) {
 
 	if (buttons.length > 0) {
 		buttons.forEach((buttonElement) => {
-			buttonElement.addEventListener("click", handlePrevNextClick);
+			buttonElement.addEventListener('click', handlePrevNextClick);
 		});
 	}
 }
@@ -76,4 +66,4 @@ function init() {
 	}
 }
 
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener('DOMContentLoaded', init);

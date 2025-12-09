@@ -14,19 +14,18 @@ declare const guides: {
 };
 
 export default (() => {
-	const SELECTOR_TODOS_WRAPPER = ".js-modularity-guide-todos";
-	const SELECTOR_FORM = ".js-modularity-guide-todos__form";
-	const SELECTOR_MODAL_CLOSE_BUTTON =
-		".js-modularity-guide-todos__modal .c-modal__close";
-	const SELECTOR_FORM_NOTICE = ".js-modularity-guide-todos__notice";
+	const SELECTOR_TODOS_WRAPPER = '.js-modularity-guide-todos';
+	const SELECTOR_FORM = '.js-modularity-guide-todos__form';
+	const SELECTOR_MODAL_CLOSE_BUTTON = '.js-modularity-guide-todos__modal .c-modal__close';
+	const SELECTOR_FORM_NOTICE = '.js-modularity-guide-todos__notice';
 	const SELECTOR_INPUT_EMAIL = 'input[name="email"]';
-	const SELECTOR_API_URL = "data-js-modularity-guide-post-url";
+	const SELECTOR_API_URL = 'data-js-modularity-guide-post-url';
 
 	const NOTICE_LEVEL_CLASSNAMES = {
-		info: "c-notice--info",
-		success: "c-notice--success",
-		danger: "c-notice--danger",
-		warning: "c-notice--warning",
+		info: 'c-notice--info',
+		success: 'c-notice--success',
+		danger: 'c-notice--danger',
+		warning: 'c-notice--warning',
 	};
 
 	/**
@@ -37,16 +36,12 @@ export default (() => {
 	function getCheckList(todoTable: HTMLElement): string[] {
 		const keys: string[] = [];
 		// Remove not visible rows
-		todoTable
-			?.querySelectorAll("[data-mod-guide-toggle-key-content]")
-			?.forEach((checkbox) => {
-				if (!checkbox.checkVisibility()) {
-					return;
-				}
-				keys.push(
-					checkbox.getAttribute("data-mod-guide-toggle-key-content") ?? "",
-				);
-			});
+		todoTable?.querySelectorAll('[data-mod-guide-toggle-key-content]')?.forEach((checkbox) => {
+			if (!checkbox.checkVisibility()) {
+				return;
+			}
+			keys.push(checkbox.getAttribute('data-mod-guide-toggle-key-content') ?? '');
+		});
 		return keys;
 	}
 
@@ -58,17 +53,11 @@ export default (() => {
 		e.preventDefault();
 
 		const currentForm = e.target as HTMLFormElement;
-		const currentSection = currentForm?.closest<HTMLElement>(
-			SELECTOR_TODOS_WRAPPER,
-		);
-		const email = (
-			currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement
-		)?.value;
-		const apiUrl = currentSection
-			?.closest(`[${SELECTOR_API_URL}]`)
-			?.getAttribute(SELECTOR_API_URL);
+		const currentSection = currentForm?.closest<HTMLElement>(SELECTOR_TODOS_WRAPPER);
+		const email = (currentForm?.querySelector(SELECTOR_INPUT_EMAIL) as HTMLInputElement)?.value;
+		const apiUrl = currentSection?.closest(`[${SELECTOR_API_URL}]`)?.getAttribute(SELECTOR_API_URL);
 
-		console.log("API URL", apiUrl);
+		console.log('API URL', apiUrl);
 		/**
 		 * Display or hide form notice
 		 * @param {String|Boolean} text notice content, set to false to hide notice
@@ -76,33 +65,23 @@ export default (() => {
 		 * @param {String} icon material icon name
 		 * @returns
 		 */
-		function setNotice(
-			text: string | boolean,
-			level: keyof typeof NOTICE_LEVEL_CLASSNAMES = "info",
-			icon = "",
-		) {
+		function setNotice(text: string | boolean, level: keyof typeof NOTICE_LEVEL_CLASSNAMES = 'info', icon = '') {
 			const noticeElement = currentSection?.querySelector(SELECTOR_FORM_NOTICE);
-			const noticeIconElement = noticeElement?.querySelectorAll("c-icon");
+			const noticeIconElement = noticeElement?.querySelectorAll('c-icon');
 			const noticeClassList = noticeElement?.classList;
 			const noticeLevelClassName = NOTICE_LEVEL_CLASSNAMES[level];
 
-			if (typeof text === "boolean" && text === false) {
-				if (!noticeClassList?.contains("u-display--none")) {
-					noticeClassList?.add("u-display--none");
+			if (typeof text === 'boolean' && text === false) {
+				if (!noticeClassList?.contains('u-display--none')) {
+					noticeClassList?.add('u-display--none');
 				}
 
 				return;
 			}
 
-			if (
-				noticeClassList &&
-				noticeLevelClassName &&
-				!noticeClassList?.contains(noticeLevelClassName)
-			) {
+			if (noticeClassList && noticeLevelClassName && !noticeClassList?.contains(noticeLevelClassName)) {
 				[...noticeClassList]
-					.filter((className) =>
-						Object.values(NOTICE_LEVEL_CLASSNAMES).includes(className),
-					)
+					.filter((className) => Object.values(NOTICE_LEVEL_CLASSNAMES).includes(className))
 					.forEach((className) => {
 						noticeClassList?.remove(className);
 					});
@@ -110,12 +89,9 @@ export default (() => {
 				noticeClassList?.add(noticeLevelClassName);
 			}
 
-			if (typeof text === "string" && text.length > 0) {
-				const spanElements = Array.from(
-					noticeElement?.querySelectorAll("span") ?? [],
-				);
-				const textSpan =
-					spanElements.length === 2 ? spanElements[1] : spanElements[0];
+			if (typeof text === 'string' && text.length > 0) {
+				const spanElements = Array.from(noticeElement?.querySelectorAll('span') ?? []);
+				const textSpan = spanElements.length === 2 ? spanElements[1] : spanElements[0];
 				textSpan.innerHTML = text;
 
 				if (icon.length > 0 && noticeIconElement) {
@@ -124,47 +100,45 @@ export default (() => {
 					});
 				}
 
-				noticeClassList?.remove("u-display--none");
+				noticeClassList?.remove('u-display--none');
 			}
 		}
 
 		setNotice(false);
 
 		if (currentSection && email && apiUrl) {
-			currentSection?.classList.toggle("is-loading");
+			currentSection?.classList.toggle('is-loading');
 			const checklist = getCheckList(currentSection);
 
 			const data = {
-				action: "email_todo",
+				action: 'email_todo',
 				checklist,
 				email,
 			};
 
 			fetch(apiUrl, {
-				method: "POST",
-				credentials: "same-origin",
+				method: 'POST',
+				credentials: 'same-origin',
 				headers: new Headers({
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 				}),
 				body: JSON.stringify(data),
 			})
 
 				.then((response) => {
-					currentSection?.classList.toggle("is-loading");
+					currentSection?.classList.toggle('is-loading');
 					response.json().then((data) => {
 						if (data) {
-							currentSection?.classList.toggle("is-loading");
+							currentSection?.classList.toggle('is-loading');
 
-							setNotice(guides.email_sent, "success", "report");
+							setNotice(guides.email_sent, 'success', 'report');
 							setTimeout(() => {
 								setNotice(false);
-								const closeModal = currentSection?.querySelector(
-									SELECTOR_MODAL_CLOSE_BUTTON,
-								) as HTMLButtonElement;
+								const closeModal = currentSection?.querySelector(SELECTOR_MODAL_CLOSE_BUTTON) as HTMLButtonElement;
 								closeModal?.click();
 							}, 2000);
 						} else {
-							setNotice(guides.email_failed, "danger", "report");
+							setNotice(guides.email_failed, 'danger', 'report');
 						}
 					});
 				})
@@ -180,9 +154,7 @@ export default (() => {
 	 * @param {Number} index
 	 */
 	function subscribeForm(todoSection: Element) {
-		todoSection
-			?.querySelector(SELECTOR_FORM)
-			?.addEventListener("submit", handleSubmit);
+		todoSection?.querySelector(SELECTOR_FORM)?.addEventListener('submit', handleSubmit);
 	}
 
 	/**
@@ -197,5 +169,5 @@ export default (() => {
 		}
 	}
 
-	window.addEventListener("DOMContentLoaded", init);
+	window.addEventListener('DOMContentLoaded', init);
 })();
