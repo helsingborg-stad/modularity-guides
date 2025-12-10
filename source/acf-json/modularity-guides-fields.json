@@ -1,524 +1,524 @@
-    {
-        "key": "group_577279265d68a",
-        "title": "Guide",
-        "fields": [
-            {
-                "key": "field_57727933e3560",
-                "label": "Steps",
-                "name": "steps",
-                "type": "repeater",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "collapsed": "",
-                "min": 1,
-                "max": "",
-                "layout": "block",
-                "button_label": "Add",
-                "sub_fields": [
-                    {
-                        "key": "field_577279cfb8810",
-                        "label": "Title",
-                        "name": "title",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 1,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": "",
-                        "readonly": 0,
-                        "disabled": 0
-                    },
-                    {
-                        "key": "field_57727e2129817",
-                        "label": "Content",
-                        "name": "content",
-                        "type": "flexible_content",
-                        "instructions": "",
-                        "required": 1,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "button_label": "Add content",
-                        "min": 1,
-                        "max": "",
-                        "layouts": [
-                            {
-                                "key": "57727e2b2ea57",
-                                "name": "text",
-                                "label": "Text",
-                                "display": "block",
-                                "sub_fields": [
-                                    {
-                                        "key": "field_57727e3d29818",
-                                        "label": "Text",
-                                        "name": "text",
-                                        "type": "wysiwyg",
-                                        "instructions": "",
-                                        "required": "",
-                                        "conditional_logic": "",
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "tabs": "all",
-                                        "toolbar": "full",
-                                        "media_upload": ""
-                                    },
-                                    {
-                                        "key": "field_57736cb2f03e9",
-                                        "label": "Toggle key",
-                                        "name": "toggle_key",
-                                        "type": "text",
-                                        "instructions": "",
-                                        "required": 0,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "placeholder": "",
-                                        "prepend": "",
-                                        "append": "",
-                                        "maxlength": "",
-                                        "readonly": 0,
-                                        "disabled": 0
-                                    }
-                                ],
-                                "min": "",
-                                "max": ""
-                            },
-                            {
-                                "key": "577630b8269de",
-                                "name": "text_modal",
-                                "label": "Text: modal",
-                                "display": "block",
-                                "sub_fields": [
-                                    {
-                                        "key": "field_577630ca269df",
-                                        "label": "Title",
-                                        "name": "title",
-                                        "type": "text",
-                                        "instructions": "",
-                                        "required": 1,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "placeholder": "",
-                                        "prepend": "",
-                                        "append": "",
-                                        "maxlength": "",
-                                        "readonly": 0,
-                                        "disabled": 0
-                                    },
-                                    {
-                                        "key": "field_577630dd269e0",
-                                        "label": "Summary",
-                                        "name": "summary",
-                                        "type": "wysiwyg",
-                                        "instructions": "",
-                                        "required": 0,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "tabs": "all",
-                                        "toolbar": "full",
-                                        "media_upload": 1
-                                    },
-                                    {
-                                        "key": "field_577630ea269e1",
-                                        "label": "Modal content",
-                                        "name": "modal_content",
-                                        "type": "wysiwyg",
-                                        "instructions": "",
-                                        "required": 1,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "tabs": "all",
-                                        "toolbar": "full",
-                                        "media_upload": 1
-                                    },
-                                    {
-                                        "key": "field_57763284d4d10",
-                                        "label": "Toggle key",
-                                        "name": "toggle_key",
-                                        "type": "text",
-                                        "instructions": "",
-                                        "required": 0,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "default_value": "",
-                                        "placeholder": "",
-                                        "prepend": "",
-                                        "append": "",
-                                        "maxlength": "",
-                                        "readonly": 0,
-                                        "disabled": 0
-                                    }
-                                ],
-                                "min": "",
-                                "max": ""
-                            },
-                            {
-                                "key": "57727e4829819",
-                                "name": "checkboxes",
-                                "label": "Checkboxes",
-                                "display": "block",
-                                "sub_fields": [
-                                    {
-                                        "key": "field_57727e502981a",
-                                        "label": "Checkboxes",
-                                        "name": "checkboxes",
-                                        "type": "repeater",
-                                        "instructions": "",
-                                        "required": 1,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "collapsed": "",
-                                        "min": 1,
-                                        "max": "",
-                                        "layout": "table",
-                                        "button_label": "Add checkbox",
-                                        "sub_fields": [
-                                            {
-                                                "key": "field_57727e6d2981b",
-                                                "label": "Toggle key",
-                                                "name": "key",
-                                                "type": "text",
-                                                "instructions": "Unique key for this checkbox",
-                                                "required": 1,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": "",
-                                                "readonly": 0,
-                                                "disabled": 0
-                                            },
-                                            {
-                                                "key": "field_57727e8c2981c",
-                                                "label": "Label",
-                                                "name": "label",
-                                                "type": "text",
-                                                "instructions": "Checkbox label",
-                                                "required": 1,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": "",
-                                                "readonly": 0,
-                                                "disabled": 0
-                                            },
-                                            {
-                                                "key": "field_57d280f7e9dee",
-                                                "label": "Relate to (toggle key)",
-                                                "name": "relate_to",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": ""
-                                            },
-                                            {
-                                                "key": "field_57d27e8ed3eb5",
-                                                "label": "Required",
-                                                "name": "required",
-                                                "type": "true_false",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "1",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "message": "",
-                                                "default_value": 0
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "min": "",
-                                "max": ""
-                            },
-                            {
-                                "key": "57736eaf75dcc",
-                                "name": "todo",
-                                "label": "Todo list",
-                                "display": "block",
-                                "sub_fields": [
-                                    {
-                                        "key": "field_577370a3a7be7",
-                                        "label": "List items",
-                                        "name": "list_items",
-                                        "type": "repeater",
-                                        "instructions": "",
-                                        "required": 1,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "collapsed": "",
-                                        "min": 1,
-                                        "max": "",
-                                        "layout": "table",
-                                        "button_label": "L\u00e4gg till rad",
-                                        "sub_fields": [
-                                            {
-                                                "key": "field_577370aca7be8",
-                                                "label": "Title",
-                                                "name": "title",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 1,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": "",
-                                                "readonly": 0,
-                                                "disabled": 0
-                                            },
-                                            {
-                                                "key": "field_577370b8a7be9",
-                                                "label": "Link text",
-                                                "name": "link_text",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": "",
-                                                "readonly": 0,
-                                                "disabled": 0
-                                            },
-                                            {
-                                                "key": "field_577370c3a7bea",
-                                                "label": "Link url",
-                                                "name": "link_url",
-                                                "type": "url",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": ""
-                                            },
-                                            {
-                                                "key": "field_577370cca7beb",
-                                                "label": "Toggle key",
-                                                "name": "toggle_key",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": "",
-                                                "readonly": 0,
-                                                "disabled": 0
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "min": "",
-                                "max": ""
-                            },
-                            {
-                                "key": "57d653b946a7c",
-                                "name": "related_guides",
-                                "label": "Related guides",
-                                "display": "block",
-                                "sub_fields": [
-                                    {
-                                        "key": "field_57d653cf46a7d",
-                                        "label": "Guides",
-                                        "name": "guides",
-                                        "type": "repeater",
-                                        "instructions": "",
-                                        "required": 0,
-                                        "conditional_logic": 0,
-                                        "wrapper": {
-                                            "width": "",
-                                            "class": "",
-                                            "id": ""
-                                        },
-                                        "collapsed": "",
-                                        "min": 1,
-                                        "max": "",
-                                        "layout": "table",
-                                        "button_label": "L\u00e4gg till rad",
-                                        "sub_fields": [
-                                            {
-                                                "key": "field_57d653f646a7e",
-                                                "label": "Title",
-                                                "name": "title",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 1,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": ""
-                                            },
-                                            {
-                                                "key": "field_57d6546146a7f",
-                                                "label": "Link URL",
-                                                "name": "url",
-                                                "type": "url",
-                                                "instructions": "",
-                                                "required": 1,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": ""
-                                            },
-                                            {
-                                                "key": "field_57d6548046a80",
-                                                "label": "Toggle key",
-                                                "name": "toggle_key",
-                                                "type": "text",
-                                                "instructions": "",
-                                                "required": 0,
-                                                "conditional_logic": 0,
-                                                "wrapper": {
-                                                    "width": "",
-                                                    "class": "",
-                                                    "id": ""
-                                                },
-                                                "default_value": "",
-                                                "placeholder": "",
-                                                "prepend": "",
-                                                "append": "",
-                                                "maxlength": ""
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "min": "",
-                                "max": ""
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "mod-guide"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": 1,
-        "description": ""
-    }
+{
+	"key": "group_577279265d68a",
+	"title": "Guide",
+	"fields": [
+		{
+			"key": "field_57727933e3560",
+			"label": "Steps",
+			"name": "steps",
+			"type": "repeater",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "",
+			"min": 1,
+			"max": "",
+			"layout": "block",
+			"button_label": "Add",
+			"sub_fields": [
+				{
+					"key": "field_577279cfb8810",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": "",
+					"readonly": 0,
+					"disabled": 0
+				},
+				{
+					"key": "field_57727e2129817",
+					"label": "Content",
+					"name": "content",
+					"type": "flexible_content",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"button_label": "Add content",
+					"min": 1,
+					"max": "",
+					"layouts": [
+						{
+							"key": "57727e2b2ea57",
+							"name": "text",
+							"label": "Text",
+							"display": "block",
+							"sub_fields": [
+								{
+									"key": "field_57727e3d29818",
+									"label": "Text",
+									"name": "text",
+									"type": "wysiwyg",
+									"instructions": "",
+									"required": "",
+									"conditional_logic": "",
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": ""
+								},
+								{
+									"key": "field_57736cb2f03e9",
+									"label": "Toggle key",
+									"name": "toggle_key",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"maxlength": "",
+									"readonly": 0,
+									"disabled": 0
+								}
+							],
+							"min": "",
+							"max": ""
+						},
+						{
+							"key": "577630b8269de",
+							"name": "text_modal",
+							"label": "Text: modal",
+							"display": "block",
+							"sub_fields": [
+								{
+									"key": "field_577630ca269df",
+									"label": "Title",
+									"name": "title",
+									"type": "text",
+									"instructions": "",
+									"required": 1,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"maxlength": "",
+									"readonly": 0,
+									"disabled": 0
+								},
+								{
+									"key": "field_577630dd269e0",
+									"label": "Summary",
+									"name": "summary",
+									"type": "wysiwyg",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 1
+								},
+								{
+									"key": "field_577630ea269e1",
+									"label": "Modal content",
+									"name": "modal_content",
+									"type": "wysiwyg",
+									"instructions": "",
+									"required": 1,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 1
+								},
+								{
+									"key": "field_57763284d4d10",
+									"label": "Toggle key",
+									"name": "toggle_key",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"maxlength": "",
+									"readonly": 0,
+									"disabled": 0
+								}
+							],
+							"min": "",
+							"max": ""
+						},
+						{
+							"key": "57727e4829819",
+							"name": "checkboxes",
+							"label": "Checkboxes",
+							"display": "block",
+							"sub_fields": [
+								{
+									"key": "field_57727e502981a",
+									"label": "Checkboxes",
+									"name": "checkboxes",
+									"type": "repeater",
+									"instructions": "",
+									"required": 1,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"collapsed": "",
+									"min": 1,
+									"max": "",
+									"layout": "table",
+									"button_label": "Add checkbox",
+									"sub_fields": [
+										{
+											"key": "field_57727e6d2981b",
+											"label": "Toggle key",
+											"name": "key",
+											"type": "text",
+											"instructions": "Unique key for this checkbox",
+											"required": 1,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": "",
+											"readonly": 0,
+											"disabled": 0
+										},
+										{
+											"key": "field_57727e8c2981c",
+											"label": "Label",
+											"name": "label",
+											"type": "text",
+											"instructions": "Checkbox label",
+											"required": 1,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": "",
+											"readonly": 0,
+											"disabled": 0
+										},
+										{
+											"key": "field_57d280f7e9dee",
+											"label": "Relate to (toggle key)",
+											"name": "relate_to",
+											"type": "text",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": ""
+										},
+										{
+											"key": "field_57d27e8ed3eb5",
+											"label": "Required",
+											"name": "required",
+											"type": "true_false",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "1",
+												"class": "",
+												"id": ""
+											},
+											"message": "",
+											"default_value": 0
+										}
+									]
+								}
+							],
+							"min": "",
+							"max": ""
+						},
+						{
+							"key": "57736eaf75dcc",
+							"name": "todo",
+							"label": "Todo list",
+							"display": "block",
+							"sub_fields": [
+								{
+									"key": "field_577370a3a7be7",
+									"label": "List items",
+									"name": "list_items",
+									"type": "repeater",
+									"instructions": "",
+									"required": 1,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"collapsed": "",
+									"min": 1,
+									"max": "",
+									"layout": "table",
+									"button_label": "L\u00e4gg till rad",
+									"sub_fields": [
+										{
+											"key": "field_577370aca7be8",
+											"label": "Title",
+											"name": "title",
+											"type": "text",
+											"instructions": "",
+											"required": 1,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": "",
+											"readonly": 0,
+											"disabled": 0
+										},
+										{
+											"key": "field_577370b8a7be9",
+											"label": "Link text",
+											"name": "link_text",
+											"type": "text",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": "",
+											"readonly": 0,
+											"disabled": 0
+										},
+										{
+											"key": "field_577370c3a7bea",
+											"label": "Link url",
+											"name": "link_url",
+											"type": "url",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": ""
+										},
+										{
+											"key": "field_577370cca7beb",
+											"label": "Toggle key",
+											"name": "toggle_key",
+											"type": "text",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": "",
+											"readonly": 0,
+											"disabled": 0
+										}
+									]
+								}
+							],
+							"min": "",
+							"max": ""
+						},
+						{
+							"key": "57d653b946a7c",
+							"name": "related_guides",
+							"label": "Related guides",
+							"display": "block",
+							"sub_fields": [
+								{
+									"key": "field_57d653cf46a7d",
+									"label": "Guides",
+									"name": "guides",
+									"type": "repeater",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"collapsed": "",
+									"min": 1,
+									"max": "",
+									"layout": "table",
+									"button_label": "L\u00e4gg till rad",
+									"sub_fields": [
+										{
+											"key": "field_57d653f646a7e",
+											"label": "Title",
+											"name": "title",
+											"type": "text",
+											"instructions": "",
+											"required": 1,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": ""
+										},
+										{
+											"key": "field_57d6546146a7f",
+											"label": "Link URL",
+											"name": "url",
+											"type": "url",
+											"instructions": "",
+											"required": 1,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": ""
+										},
+										{
+											"key": "field_57d6548046a80",
+											"label": "Toggle key",
+											"name": "toggle_key",
+											"type": "text",
+											"instructions": "",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"default_value": "",
+											"placeholder": "",
+											"prepend": "",
+											"append": "",
+											"maxlength": ""
+										}
+									]
+								}
+							],
+							"min": "",
+							"max": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "mod-guide"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": ""
+}

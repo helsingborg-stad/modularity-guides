@@ -1,88 +1,97 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ModularityGuides;
 
-use \ComponentLibrary\Init as ComponentLibraryInit;
-use ModularityGuides\Helper\Lang;
-use \Municipio\Helper\Color;
-use WpService\Contracts\AddAction;
-use WpService\Contracts\RegisterRestRoute;
-use WpService\Contracts\GetPost;
 use AcfService\Contracts\GetFields;
+use ModularityGuides\Helper\Lang;
+use WpService\Contracts\AddAction;
+use WpService\Contracts\GetPost;
+use WpService\Contracts\RegisterRestRoute;
 
 class Api extends \WP_REST_Controller
 {
     public function __construct(
         private GetPost&AddAction&RegisterRestRoute $wpService,
-        private GetFields $acfService
+        private GetFields $acfService,
     ) {
-        $this->wpService->addAction('rest_api_init', array($this, 'registerRoutes'));
+        $this->wpService->addAction('rest_api_init', [$this, 'registerRoutes']);
     }
 
     public function registerRoutes()
     {
-        $this->wpService->registerRestRoute(MODULARITYGUIDES_API_NAMESPACE, '/modularity-guides/(?P<id>\d+)', array(
-            array(
+        $this->wpService->registerRestRoute(MODULARITYGUIDES_API_NAMESPACE, '/modularity-guides/(?P<id>\d+)', [
+            [
                 'methods' => \WP_REST_Server::CREATABLE,
-                'callback' => array($this, 'handlePost'),
+                'callback' => [$this, 'handlePost'],
                 'permission_callback' => '__return_true',
-                'args' => array(
-                    'id' => array(
+                'args' => [
+                    'id' => [
                         'required' => true,
                         'validate_callback' => function ($param, $request, $key) {
-                            return rest_validate_value_from_schema($param, $this->get_item_schema()['properties']['id'], $key);
-                        }
-                    ),
-                    'email' => array(
+                            return rest_validate_value_from_schema(
+                                $param,
+                                $this->get_item_schema()['properties']['id'],
+                                $key,
+                            );
+                        },
+                    ],
+                    'email' => [
                         'required' => true,
                         'validate_callback' => function ($param, $request, $key) {
-                            return rest_validate_value_from_schema($param, $this->get_item_schema()['properties']['email'], $key);
-                        }
-                    ),
-                    'checklist' => array(
+                            return rest_validate_value_from_schema(
+                                $param,
+                                $this->get_item_schema()['properties']['email'],
+                                $key,
+                            );
+                        },
+                    ],
+                    'checklist' => [
                         'required' => true,
                         'validate_callback' => function ($param, $request, $key) {
-                            return rest_validate_value_from_schema($param, $this->get_item_schema()['properties']['checklist'], $key);
-                        }
-                    ),
-                ),
-            ),
-            'schema' => array($this, 'getItemSchema'),
-        ));
+                            return rest_validate_value_from_schema(
+                                $param,
+                                $this->get_item_schema()['properties']['checklist'],
+                                $key,
+                            );
+                        },
+                    ],
+                ],
+            ],
+            'schema' => [$this, 'getItemSchema'],
+        ]);
     }
 
     public function getItemSchema()
     {
-        return array(
-            '$schema'              => 'http://json-schema.org/draft-04/schema#',
-            'type'                 => 'object',
-            'properties'           => array(
-                'id' => array(
-                    'type'         => 'integer',
-                    'required'     => true,
-                ),
-                'email' => array(
-                    'type'         => 'string',
-                    'format'      => 'email',
-                    'required'     => true,
-                ),
-                'checklist' => array(
-                    'type'         => 'array',
-                    'required'     => true,
-                    'items'       => array(
+        return [
+            '$schema' => 'http://json-schema.org/draft-04/schema#',
+            'type' => 'object',
+            'properties' => [
+                'id' => [
+                    'type' => 'integer',
+                    'required' => true,
+                ],
+                'email' => [
+                    'type' => 'string',
+                    'format' => 'email',
+                    'required' => true,
+                ],
+                'checklist' => [
+                    'type' => 'array',
+                    'required' => true,
+                    'items' => [
                         'type' => 'string',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
     }
 
     public function handlePost(\WP_REST_Request $request)
     {
-        $parameters = array_merge(
-            $request->get_url_params(),
-            $request->get_json_params()
-        );
+        $parameters = array_merge($request->get_url_params(), $request->get_json_params());
 
         // Check post type
         $post = $this->wpService->getPost($parameters['id']);
@@ -104,18 +113,25 @@ class Api extends \WP_REST_Controller
         // Render email content
         $result = $this->sendMail($this->renderMailContent($fields), $parameters['email']);
 
-        return new \WP_REST_Response(["status" => $result ? "success" : "error"], 200);
+        return new \WP_REST_Response(['status' => $result ? 'success' : 'error'], 200);
     }
 
     protected function renderMailContent($fields): string
     {
         $bladeEngine = (new ComponentLibraryInit([]))->getEngine();
 
-        return $bladeEngine->makeView('email', [
-            'color' => Color::getPalettes(['color_palette_primary'])['color_palette_primary']['base'],
-            'content' => $fields,
-            'lang' => Lang::getLang()
-        ], [], [MODULARITYGUIDES_MODULE_VIEW_PATH])->render();
+        return $bladeEngine
+            ->makeView(
+                'email',
+                [
+                    'color' => Color::getPalettes(['color_palette_primary'])['color_palette_primary']['base'],
+                    'content' => $fields,
+                    'lang' => Lang::getLang(),
+                ],
+                [],
+                [MODULARITYGUIDES_MODULE_VIEW_PATH],
+            )
+            ->render();
     }
 
     protected function sendMail(string $markup, string $to): bool
@@ -124,10 +140,10 @@ class Api extends \WP_REST_Controller
             $to,
             Lang::getLang()['your_checklist'],
             $markup,
-            array(
+            [
                 'From: no-reply@helsingborg.se',
-                'Content-Type: text/html; charset=UTF-8'
-            )
+                'Content-Type: text/html; charset=UTF-8',
+            ],
         );
     }
 }

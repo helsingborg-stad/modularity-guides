@@ -37,25 +37,26 @@
         "phpseclib/phpseclib": "^3.0.0",
         "helsingborg-stad/wpservice": "^2.0",
         "helsingborg-stad/acfservice": "^1.0",
+        "helsingborg-stad/wputilservice": "^0.2.44"
+    },
+    "suggest": {
         "helsingborg-stad/municipio": "^6.0.0"
     },
     "require-dev": {
-        "helsingborg-stad/phpcs": "^0.2.2",
         "phpunit/phpunit": "^11.5",
-        "php-stubs/wordpress-stubs": "^6.8"
+        "carthage-software/mago": "^1.0.0-rc.3"
     },
     "scripts": {
-        "test": "phpunit --no-coverage --testdox",
-        "test:coverage": "XDEBUG_MODE=coverage phpunit --testdox",
-        "lint": "vendor/bin/phpcs",
-        "lint:changed": "vendor/bin/phpcs-changed origin/main",
-        "fix": "vendor/bin/phpcbf",
-        "fix:changed": "vendor/bin/phpcbf-changed origin/main"
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html .coverage/html --coverage-clover .coverage/clover.xml",
+        "lint": "vendor/bin/mago lint",
+        "fix": "vendor/bin/mago lint --format-after-fix --fix",
+        "format": "vendor/bin/mago fmt"
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "composer/installers": true
+            "composer/installers": true,
+            "carthage-software/mago": true
         }
     }
 }
