@@ -42,7 +42,7 @@ class Module extends \Modularity\Module
         $this->wpEnqueue
             ->add('js/modularity-guides.js', [], '1.0.0', true)
             ->with()
-            ->translations('guides', $this->lang)
+            ->translation('guides', $this->lang)
             ->add('css/modularity-guides.css', [], '1.0.0');
 
         if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {

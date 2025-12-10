@@ -15,18 +15,20 @@ class FieldTransform
         // Transform todo list items into groups based on title
         $todo = &$this->getTodo();
 
-        $grouped = [];
-        foreach ($todo['list_items'] as &$item) {
-            $key = $item['title'];
-            $grouped[$key][] = [
-                'id' => uniqid(),
-                'link_text' => $item['link_text'],
-                'link_url' => $item['link_url'],
-                'toggle_key' => $item['toggle_key'],
-            ];
+        if (isset($todo['list_items'])) {
+            $grouped = [];
+            foreach ($todo['list_items'] as &$item) {
+                $key = $item['title'];
+                $grouped[$key][] = [
+                    'id' => uniqid(),
+                    'link_text' => $item['link_text'],
+                    'link_url' => $item['link_url'],
+                    'toggle_key' => $item['toggle_key'],
+                ];
+            }
+            // Replace list items with grouped version
+            $todo['list_items'] = $grouped;
         }
-        // Replace list items with grouped version
-        $todo['list_items'] = $grouped;
     }
 
     public function getFields(): array
@@ -52,17 +54,19 @@ class FieldTransform
     {
         $todo = $this->getTodo();
 
-        foreach ($todo['list_items'] as $group => &$items) {
-            foreach ($items as $key => $item) {
-                if (in_array($item['toggle_key'], $keys)) {
-                    continue;
-                }
+        if (isset($todo['list_items'])) {
+            foreach ($todo['list_items'] as $group => &$items) {
+                foreach ($items as $key => $item) {
+                    if (in_array($item['toggle_key'], $keys)) {
+                        continue;
+                    }
 
-                unset($items[$key]);
-            }
-            // No active actions, remove group
-            if (empty($items)) {
-                unset($todo['list_items'][$group]);
+                    unset($items[$key]);
+                }
+                // No active actions, remove group
+                if (empty($items)) {
+                    unset($todo['list_items'][$group]);
+                }
             }
         }
         return $todo['list_items'];
