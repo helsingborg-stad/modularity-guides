@@ -9,6 +9,8 @@ use ModularityGuides\Helper\Lang;
 use WpService\Contracts\AddAction;
 use WpService\Contracts\GetPost;
 use WpService\Contracts\RegisterRestRoute;
+use \ComponentLibrary\Init as ComponentLibraryInit;
+use \Municipio\Helper\Color;
 
 class Api extends \WP_REST_Controller
 {
