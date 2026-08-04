@@ -1,66 +1,65 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const jQuery: any;
+export default (() => {
+	const SELECTOR_RELATION_CHECKBOX = 'input[type="checkbox"][data-mod-guide-relation]';
+	const SELECTOR_TOGGLE_KEY = '[data-mod-guide-toggle-key]';
+	const SELECTOR_TODO_WIDGET = '[data-mod-guide-todo-widget]';
+	const SELECTOR_TOGGLE_KEY_CONTENT = '[data-mod-guide-toggle-key-content]';
+	const ATTRIBUTE_RELATION = 'data-mod-guide-relation';
+	const ATTRIBUTE_TOGGLE_KEY = 'data-mod-guide-toggle-key';
+	const ATTRIBUTE_TOGGLE_KEY_CONTENT = 'data-mod-guide-toggle-key-content';
 
-export default (($) => {
-	function Checkboxes() {
-		// @ts-expect-error Needs refactoring
-		this.handleEvents();
-		// @ts-expect-error Needs refactoring
-		this.contentToggleEngine();
-	}
+	/**
+	 * Toggle checkboxes related to the changed checkbox, based on data-mod-guide-relation
+	 * @param {Event} e change event
+	 */
+	function handleRelationChange(e: Event) {
+		const checkbox = e.currentTarget as HTMLInputElement;
+		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '').split(',');
 
-	Checkboxes.prototype.handleEvents = function () {
-		$('input[type="checkbox"][data-mod-guide-relation]').on('change', function () {
-			// @ts-expect-error Needs refactoring
-			let relations = $(this).data('mod-guide-relation');
-			relations = relations.split(',');
+		relations.forEach((item) => {
+			const relatedCheckbox = document.querySelector<HTMLInputElement>(
+				`input[type="checkbox"][${ATTRIBUTE_TOGGLE_KEY}="${item}"]`,
+			);
 
-			$.each(relations, (_: number, item: string) => {
-				const $cb = $('input[type="checkbox"][data-mod-guide-toggle-key="' + item + '"]');
-				$cb.prop('checked', !$cb.prop('checked')).trigger('change');
-			});
-		});
-
-		$('[data-mod-guide-toggle-key]').on(
-			'change',
-			function () {
-				// @ts-expect-error Needs refactoring
-				this.contentToggleEngine();
-			}.bind(this),
-		);
-	};
-
-	Checkboxes.prototype.contentToggleEngine = () => {
-		// Get checked checkboxes
-		const checked: string[] = [];
-		const $checkboxes = $('[data-mod-guide-toggle-key]');
-
-		$checkboxes.each((_: number, element: Element) => {
-			if ($(element).prop('checked') !== true) {
+			if (!relatedCheckbox) {
 				return;
 			}
-			checked.push($(element).attr('data-mod-guide-toggle-key'));
+
+			relatedCheckbox.checked = !relatedCheckbox.checked;
+			relatedCheckbox.dispatchEvent(new Event('change'));
 		});
-		// Hide all todo widgets
-		$('[data-mod-guide-todo-widget]').each((_: number, element: Element) => $(element).hide());
+	}
 
-		// Display or hide content
-		$('[data-mod-guide-toggle-key-content]').each((_: number, element: Element) => {
+	/**
+	 * Show or hide content based on which toggle keys are currently checked
+	 */
+	function contentToggleEngine() {
+		const checked: string[] = [];
+
+		document.querySelectorAll<HTMLInputElement>(SELECTOR_TOGGLE_KEY).forEach((element) => {
+			if (element.checked !== true) {
+				return;
+			}
+			checked.push(element.getAttribute(ATTRIBUTE_TOGGLE_KEY) ?? '');
+		});
+
+		document.querySelectorAll<HTMLElement>(SELECTOR_TODO_WIDGET).forEach((element) => {
+			element.style.display = 'none';
+		});
+
+		document.querySelectorAll<HTMLElement>(SELECTOR_TOGGLE_KEY_CONTENT).forEach((element) => {
 			let shouldShow = false;
-			let conditions = $(element).attr('data-mod-guide-toggle-key-content');
-			conditions = conditions.split(',');
+			const conditions = (element.getAttribute(ATTRIBUTE_TOGGLE_KEY_CONTENT) ?? '').split(',');
 
-			// Datermind if content should be shown or not
-			$.each(conditions, (_: number, item: string) => {
+			conditions.forEach((item) => {
 				const and = item.match(/(^|\+)([^+-]+)/g);
-				const andPattern = new RegExp('\\b(' + and?.join('|').replace('+', '') + ')\\b', 'ig');
+				const andPattern = new RegExp(`\\b(${and?.join('|').replace('+', '')})\\b`, 'ig');
 				const andMatches = checked.join(',').match(andPattern);
 				const andIsMatching = andMatches !== null && andMatches.length === and?.length;
 
 				const andnot = item.match(/-([^+-]+)/g);
 				let andnotIsMatching = true;
 				if (andnot !== null) {
-					const andnotPattern = new RegExp('\\b(' + andnot.join('|').replace('-', '') + ')\\b', 'ig');
+					const andnotPattern = new RegExp(`\\b(${andnot.join('|').replace('-', '')})\\b`, 'ig');
 					const andnotMatches = checked.join(',').match(andnotPattern);
 					andnotIsMatching = !(andnotMatches !== null && andnotMatches.length > 0);
 				}
@@ -70,19 +69,47 @@ export default (($) => {
 				}
 			});
 
-			// Hide or show
+			const row = element.closest<HTMLElement>('tr');
+
 			if (shouldShow) {
-				$(element).show();
-				$(element).closest('tr').show();
-				$(element).closest('[data-mod-guide-todo-widget]').show();
+				element.style.display = '';
+				if (row) {
+					row.style.display = '';
+				}
+				const todoWidget = element.closest<HTMLElement>(SELECTOR_TODO_WIDGET);
+				if (todoWidget) {
+					todoWidget.style.display = '';
+				}
 				return;
 			}
 
-			$(element).hide();
-			$(element).closest('tr').hide();
-			return;
+			element.style.display = 'none';
+			if (row) {
+				row.style.display = 'none';
+			}
 		});
-	};
-	// @ts-expect-error Needs refactoring
-	return new Checkboxes();
-})(jQuery);
+	}
+
+	/**
+	 * Subscribe checkbox relation & content toggle events
+	 */
+	function handleEvents() {
+		document.querySelectorAll<HTMLInputElement>(SELECTOR_RELATION_CHECKBOX).forEach((checkbox) => {
+			checkbox.addEventListener('change', handleRelationChange);
+		});
+
+		document.querySelectorAll<HTMLElement>(SELECTOR_TOGGLE_KEY).forEach((element) => {
+			element.addEventListener('change', contentToggleEngine);
+		});
+	}
+
+	/**
+	 * Subscribe events & set initial content visibility
+	 */
+	function init() {
+		handleEvents();
+		contentToggleEngine();
+	}
+
+	window.addEventListener('DOMContentLoaded', init);
+})();
