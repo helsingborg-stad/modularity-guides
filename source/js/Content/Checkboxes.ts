@@ -13,7 +13,7 @@ export default (() => {
 	 */
 	function handleRelationChange(e: Event) {
 		const checkbox = e.currentTarget as HTMLInputElement;
-		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '').split(',');
+		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '').split(',').map((item) => item.trim()).filter((item) => item !== '');
 
 		relations.forEach((item) => {
 			const relatedCheckbox = document.querySelector<HTMLInputElement>(
@@ -48,7 +48,7 @@ export default (() => {
 
 		document.querySelectorAll<HTMLElement>(SELECTOR_TOGGLE_KEY_CONTENT).forEach((element) => {
 			let shouldShow = false;
-			const conditions = (element.getAttribute(ATTRIBUTE_TOGGLE_KEY_CONTENT) ?? '').split(',');
+			const conditions = (element.getAttribute(ATTRIBUTE_TOGGLE_KEY_CONTENT) ?? '').split(',').map((item) => item.trim()).filter((item) => item !== '');
 
 			conditions.forEach((item) => {
 				const and = item.match(/(^|\+)([^+-]+)/g);
