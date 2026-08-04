@@ -44,10 +44,6 @@ class Module extends \Modularity\Module
             ->with()
             ->translation('guides', $this->lang)
             ->add('css/modularity-guides.css', [], '1.0.0');
-
-        if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
-            wp_enqueue_script('jquery');
-        }
     }
 
     /**

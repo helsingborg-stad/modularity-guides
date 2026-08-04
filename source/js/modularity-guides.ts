@@ -25,7 +25,7 @@ function handlePrevNextClick(e: Event) {
 	// Traverse DOM upwards
 	const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE);
 	const currentSection = prevNextButtonElement?.closest(SELECTOR_SECTION);
-	const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1');
+	const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1', 10);
 
 	if (currentStep > 0) {
 		const targetStep = isNext ? currentStep + 1 : currentStep - 1;
