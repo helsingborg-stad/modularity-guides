@@ -31,7 +31,7 @@ function handlePrevNextClick(e: Event) {
 		const targetStep = isNext ? currentStep + 1 : currentStep - 1;
 		const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
 
-		currentGuide?.querySelectorAll('[data-guide-step]').forEach((elem) => {
+		currentGuide?.querySelectorAll(`[${ATTRIBUTE_STEP}]`).forEach((elem) => {
 			elem.removeAttribute(SELECTOR_ACCORDION_TOGGLE);
 		});
 		targetSection?.setAttribute(SELECTOR_ACCORDION_TOGGLE, '');
