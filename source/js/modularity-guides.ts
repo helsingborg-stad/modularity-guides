@@ -6,7 +6,7 @@ const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';
 const SELECTOR_SECTION = '.js-modularity-guide__section';
 const SELECTOR_NEXT = '.js-modularity-guide__next';
 const SELECTOR_PREV = '.js-modularity-guide__prev';
-const SELECTOR_ACCORDION_TOGGLE = 'open';
+const ATTRIBUTE_STATE = 'open';
 
 // Required data-attributes
 const ATTRIBUTE_STEP = 'data-guide-step';
@@ -32,9 +32,9 @@ function handlePrevNextClick(e: Event) {
 		const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
 
 		currentGuide?.querySelectorAll(`[${ATTRIBUTE_STEP}]`).forEach((elem) => {
-			elem.removeAttribute(SELECTOR_ACCORDION_TOGGLE);
+			elem.removeAttribute(ATTRIBUTE_STATE);
 		});
-		targetSection?.setAttribute(SELECTOR_ACCORDION_TOGGLE, '');
+		targetSection?.setAttribute(ATTRIBUTE_STATE, '');
 	}
 }
 
