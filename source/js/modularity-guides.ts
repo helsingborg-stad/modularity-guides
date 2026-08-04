@@ -19,7 +19,7 @@ const ATTRIBUTE_STEP = 'data-guide-step';
 function handlePrevNextClick(e: Event) {
 	e.preventDefault();
 
-	const prevNextButtonElement = e.target as HTMLButtonElement;
+	const prevNextButtonElement = e.currentTarget as HTMLButtonElement;
 	const isNext = prevNextButtonElement?.classList.contains(SELECTOR_NEXT.substring(1));
 
 	// Traverse DOM upwards
