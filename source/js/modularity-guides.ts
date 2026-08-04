@@ -6,7 +6,7 @@ const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';
 const SELECTOR_SECTION = '.js-modularity-guide__section';
 const SELECTOR_NEXT = '.js-modularity-guide__next';
 const SELECTOR_PREV = '.js-modularity-guide__prev';
-const SELECTOR_ACCORDION_TOGGLE = '[js-expand-button]';
+const SELECTOR_ACCORDION_TOGGLE = 'open';
 
 // Required data-attributes
 const ATTRIBUTE_STEP = 'data-guide-step';
@@ -30,11 +30,11 @@ function handlePrevNextClick(e: Event) {
 	if (currentStep > 0) {
 		const targetStep = isNext ? currentStep + 1 : currentStep - 1;
 		const targetSection = currentGuide?.querySelector(`[${ATTRIBUTE_STEP}="${targetStep}"]`);
-		const targetToggle = targetSection?.querySelector(SELECTOR_ACCORDION_TOGGLE) as HTMLButtonElement;
 
-		if (targetToggle) {
-			targetToggle.click();
-		}
+		currentGuide?.querySelectorAll('[data-guide-step]').forEach((e) => {
+			e.removeAttribute(SELECTOR_ACCORDION_TOGGLE);
+		});
+		targetSection?.setAttribute(SELECTOR_ACCORDION_TOGGLE, '');
 	}
 }
 
