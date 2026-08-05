@@ -19,13 +19,13 @@ const ATTRIBUTE_STEP = 'data-guide-step';
 function handlePrevNextClick(e: Event) {
 	e.preventDefault();
 
-	const prevNextButtonElement = e.target as HTMLButtonElement;
+	const prevNextButtonElement = e.currentTarget as HTMLButtonElement;
 	const isNext = prevNextButtonElement?.classList.contains(SELECTOR_NEXT.substring(1));
 
 	// Traverse DOM upwards
 	const currentGuide = prevNextButtonElement?.closest(SELECTOR_MODULARITY_GUIDE);
 	const currentSection = prevNextButtonElement?.closest(SELECTOR_SECTION);
-	const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1');
+	const currentStep = parseInt(currentSection?.getAttribute(ATTRIBUTE_STEP) ?? '-1', 10);
 
 	if (currentStep > 0) {
 		const targetStep = isNext ? currentStep + 1 : currentStep - 1;
