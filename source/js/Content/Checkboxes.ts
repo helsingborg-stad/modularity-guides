@@ -12,20 +12,29 @@ export default (() => {
 	 * @param {Event} e change event
 	 */
 	function handleRelationChange(e: Event) {
+		if (e instanceof CustomEvent && e.detail?.skipRelation === true) {
+			return;
+		}
+
 		const checkbox = e.currentTarget as HTMLInputElement;
+		const currentToggleKey = checkbox.getAttribute(ATTRIBUTE_TOGGLE_KEY);
 		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '').split(',').map((item) => item.trim()).filter((item) => item !== '');
 
 		relations.forEach((item) => {
+			if (item === currentToggleKey) {
+				return;
+			}
+
 			const relatedCheckbox = document.querySelector<HTMLInputElement>(
 				`input[type="checkbox"][${ATTRIBUTE_TOGGLE_KEY}="${item}"]`,
 			);
 
-			if (!relatedCheckbox) {
+			if (!relatedCheckbox || relatedCheckbox === checkbox) {
 				return;
 			}
 
 			relatedCheckbox.checked = !relatedCheckbox.checked;
-			relatedCheckbox.dispatchEvent(new Event('change'));
+			relatedCheckbox.dispatchEvent(new CustomEvent('change', { detail: { skipRelation: true } }));
 		});
 	}
 
