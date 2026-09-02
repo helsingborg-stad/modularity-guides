@@ -13,7 +13,10 @@ export default (() => {
 	 */
 	function handleRelationChange(e: Event) {
 		const checkbox = e.currentTarget as HTMLInputElement;
-		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '').split(',').map((item) => item.trim()).filter((item) => item !== '');
+		const relations = (checkbox.getAttribute(ATTRIBUTE_RELATION) ?? '')
+			.split(',')
+			.map((item) => item.trim())
+			.filter((item) => item !== '');
 
 		relations.forEach((item) => {
 			const relatedCheckbox = document.querySelector<HTMLInputElement>(
@@ -48,7 +51,10 @@ export default (() => {
 
 		document.querySelectorAll<HTMLElement>(SELECTOR_TOGGLE_KEY_CONTENT).forEach((element) => {
 			let shouldShow = false;
-			const conditions = (element.getAttribute(ATTRIBUTE_TOGGLE_KEY_CONTENT) ?? '').split(',').map((item) => item.trim()).filter((item) => item !== '');
+			const conditions = (element.getAttribute(ATTRIBUTE_TOGGLE_KEY_CONTENT) ?? '')
+				.split(',')
+				.map((item) => item.trim())
+				.filter((item) => item !== '');
 
 			conditions.forEach((item) => {
 				const and = item.match(/(^|\+)([^+-]+)/g);
@@ -72,13 +78,13 @@ export default (() => {
 			const row = element.closest<HTMLElement>('tr');
 
 			if (shouldShow) {
-				element.style.display = '';
+				element.style.display = 'revert';
 				if (row) {
-					row.style.display = '';
+					row.style.display = 'revert';
 				}
 				const todoWidget = element.closest<HTMLElement>(SELECTOR_TODO_WIDGET);
 				if (todoWidget) {
-					todoWidget.style.display = '';
+					todoWidget.style.display = 'revert';
 				}
 				return;
 			}
