@@ -17,7 +17,21 @@
 
     <!-- Guide specific -->
     <div class="mod-guide-wrapper js-modularity-guide" data-js-modularity-guide-post-url="{{ $apiUrl }}">
+        <style>
+            .mod-guide-wrapper {
+                @foreach ($fields['actions'] ?? [] as $action)
+                .mod-guide-radiobutton-action-{{ $action['value'] }} {
+                    background: {{ $action['background_color'] ?? 'black' }};
+                    color: {{ $action['text_color'] ?? 'black' }};
+                }
+                @endforeach 
+            }
+        </style>
         @if (count($fields['steps']) > 0)
+        <aside class="mod-guide-sidebar">
+            hej
+        </aside>
+        <section class="mod-guide-section">
             @accordion([])
                 @foreach ($fields['steps'] as $step)
                     @accordion__item([
@@ -65,5 +79,6 @@
                 @endforeach
             @endaccordion
         @endif
+        </section>
     </div>
 @endcard

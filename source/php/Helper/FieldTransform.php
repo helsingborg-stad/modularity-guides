@@ -29,6 +29,50 @@ class FieldTransform
             // Replace list items with grouped version
             $todo['list_items'] = $grouped;
         }
+        
+        // Flatten actions structure
+        $this->fields['actions'] = array_map(function($item) { 
+            $flatten = [
+                ...$item,
+                ...['label' => $label, 'value' => $value] = $item['action'],
+            ]; 
+            unset($flatten['action']);
+            return $flatten;
+        }, $fields['actions'] ?? []);
+
+        // Getter for action by key
+        $getActionByKey = function (string $key) {
+            return current(array_filter($this->fields['actions'], fn($item) => $item['value'] === $key));
+        };
+
+        // Transform steps content with actions
+        $this->fields['steps'] = array_map(function($step) use ($getActionByKey) {
+            return [
+                ...$step,
+                'content' => array_map(function ($content) use ($getActionByKey) {
+                    switch ($content['acf_fc_layout'] ?? '') {
+                        case 'radiobuttons':
+                            return [
+                                ...$content,
+                                'radiobuttons' => array_map(function ($button) use ($getActionByKey) {
+                                    return [
+                                        ...$button,   
+                                        'action' => [
+                                            ...$getActionByKey($button['action']),
+                                        ],
+                                    ];
+                                }, $content['radiobuttons'] ?? [])
+                            ];
+                            break;
+                        default:
+                            return [
+                                ...$content,
+                            ];
+                            break;
+                    }
+                }, $step['content'] ?? [])
+            ];    
+        }, $this->fields['steps'] ?? []);        
     }
 
     public function getFields(): array

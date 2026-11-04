@@ -21,7 +21,22 @@
 
 .modularity-mod-guide {
   z-index: 1;
-  
+  display: grid;
+  grid-template-columns: 242px minmax(0,1fr);
+  gap: 30px;
+  align-items: start;
+
+  .mod-guide-sidebar {
+    position: sticky;
+    top: 22px;
+  }
+  .mod-guide-section {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 5px 24px #16384605;
+    padding: 31px;
+  }
   button > * {
     pointer-events: none;
   }
@@ -89,7 +104,6 @@
 
 }
 
-
 .c-notice-guide {
   display:none;
   &.displayNotice {
@@ -127,6 +141,22 @@
   padding-bottom: 8px;
 }
 
+.mod-guide-radiobuttons--container {
+  display: flex;
+  line-height: 1.4;
+}
+.mod-guide-radiobuttons--radiobutton {
+  flex: 1;
+  padding-bottom: 8px;
+}
+.mod-guide-radiobuttons--action {
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: .6px;
+  border-radius: 5px;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
 .modularity-guide-todos {
   .c-paper {
     border: 1px solid var(--color-primary);
