@@ -49,6 +49,47 @@
                         "parent_repeater": "field_57727933e3560"
                     },
                     {
+                        "key": "field_6af1e9073f37b",
+                        "label": "Subtitle",
+                        "name": "subtitle",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_57727933e3560"
+                    },
+                    {
+                        "key": "field_6af1e8dd3f37a",
+                        "label": "Icon",
+                        "name": "icon",
+                        "aria-label": "",
+                        "type": "icon",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "allow_in_bindings": 0,
+                        "default_value": "",
+                        "placeholder": "",
+                        "parent_repeater": "field_57727933e3560"
+                    },
+                    {
                         "key": "field_57727e2129817",
                         "label": "Content",
                         "name": "content",
@@ -385,7 +426,7 @@
                                                 "name": "label",
                                                 "aria-label": "",
                                                 "type": "text",
-                                                "instructions": "Checkbox label",
+                                                "instructions": "Radiobutton label",
                                                 "required": 1,
                                                 "conditional_logic": 0,
                                                 "wrapper": {
@@ -443,6 +484,37 @@
                                                 "ui": 0,
                                                 "ui_on_text": "",
                                                 "ui_off_text": "",
+                                                "parent_repeater": "field_6ae3293dc255b"
+                                            },
+                                            {
+                                                "key": "field_6af1ea7299a50",
+                                                "label": "Action",
+                                                "name": "action",
+                                                "aria-label": "",
+                                                "type": "select",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "choices": [
+                                                    "Continue",
+                                                    "Check",
+                                                    "Stop"
+                                                ],
+                                                "default_value": 0,
+                                                "return_format": "value",
+                                                "multiple": 0,
+                                                "allow_null": 0,
+                                                "allow_in_bindings": 0,
+                                                "ui": 0,
+                                                "ajax": 0,
+                                                "placeholder": "",
+                                                "create_options": 0,
+                                                "save_options": 0,
                                                 "parent_repeater": "field_6ae3293dc255b"
                                             }
                                         ]
@@ -671,6 +743,109 @@
                         "parent_repeater": "field_57727933e3560"
                     }
                 ]
+            },
+            {
+                "key": "field_6af1e281ec8aa",
+                "label": "Actions",
+                "name": "actions",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "",
+                "button_label": "Add Row",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_6af1e485ec8af",
+                        "label": "Value",
+                        "name": "value",
+                        "aria-label": "",
+                        "type": "select",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "0 :": "0 :",
+                            "1 :": "1 :",
+                            "2 :": "2 :"
+                        },
+                        "default_value": false,
+                        "return_format": "value",
+                        "multiple": 0,
+                        "allow_null": 0,
+                        "allow_in_bindings": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "create_options": 0,
+                        "save_options": 0,
+                        "parent_repeater": "field_6af1e281ec8aa"
+                    },
+                    {
+                        "key": "field_6af1e493ec8b0",
+                        "label": "Text color",
+                        "name": "text_color",
+                        "aria-label": "",
+                        "type": "color_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "enable_opacity": 0,
+                        "return_format": "string",
+                        "allow_in_bindings": 0,
+                        "show_custom_palette": 0,
+                        "show_color_wheel": 1,
+                        "custom_palette_source": "",
+                        "palette_colors": "",
+                        "parent_repeater": "field_6af1e281ec8aa"
+                    },
+                    {
+                        "key": "field_6af1e4afec8b1",
+                        "label": "Background color",
+                        "name": "background_color",
+                        "aria-label": "",
+                        "type": "color_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "enable_opacity": 0,
+                        "return_format": "string",
+                        "allow_in_bindings": 0,
+                        "show_custom_palette": 0,
+                        "show_color_wheel": 1,
+                        "custom_palette_source": "",
+                        "palette_colors": "",
+                        "parent_repeater": "field_6af1e281ec8aa"
+                    }
+                ]
             }
         ],
         "location": [
@@ -679,6 +854,27 @@
                     "param": "post_type",
                     "operator": "==",
                     "value": "mod-guide"
+                }
+            ],
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "all"
+                }
+            ],
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "all"
+                }
+            ],
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "all"
                 }
             ],
             [
