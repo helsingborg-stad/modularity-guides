@@ -1,5 +1,6 @@
 import './Content/Todo';
 import './Content/Checkboxes';
+import './Wizard';
 
 // Required selectors
 const SELECTOR_MODULARITY_GUIDE = '.js-modularity-guide';

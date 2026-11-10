@@ -1,3 +1,6 @@
+@if ($displayMode === 'wizard')
+    @include('wizard')
+@else
 @php
     $j = 1;
 @endphp
@@ -67,3 +70,4 @@
         @endif
     </div>
 @endcard
+@endif

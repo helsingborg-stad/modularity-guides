@@ -34,6 +34,8 @@ class Module extends \Modularity\Module
         $data['municipio'] = $theme->name == 'Municipio' || $theme->parent_theme == 'Municipio' ? true : false;
         $data['lang'] = $this->lang;
         $data['apiUrl'] = get_rest_url(null, MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . $data['id']);
+        $data['displayMode'] = ($data['fields']['display_mode'] ?? 'accordion') === 'wizard' ? 'wizard' : 'accordion';
+        $data['wizard'] = $data['displayMode'] === 'wizard' ? Helper\Wizard::build($data['fields'], $this->lang) : null;
         return $data;
     }
 

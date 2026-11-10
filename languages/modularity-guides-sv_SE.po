@@ -112,3 +112,136 @@ msgstr ""
 #: source/php/Helper/Lang.php:23
 msgid "Read more"
 msgstr "Läs mer"
+
+msgid "Your progress through the guide"
+msgstr "Din väg genom guiden"
+
+#, php-format
+msgid "Question %1$s of %2$s"
+msgstr "Fråga %1$s av %2$s"
+
+#, php-format
+msgid "%s answered"
+msgstr "%s besvarade"
+
+msgid "Continue"
+msgstr "Fortsätt"
+
+msgid "Back"
+msgstr "Tillbaka"
+
+msgid "Show summary"
+msgstr "Se sammanfattning"
+
+msgid "Choose an answer to continue."
+msgstr "Välj ett svar för att fortsätta."
+
+msgid "Choose one or more answers to continue."
+msgstr "Välj ett eller flera svar för att fortsätta."
+
+msgid "Your saved answer is selected. You can choose another."
+msgstr "Ditt sparade svar är markerat. Du kan välja ett annat."
+
+msgid "Your answer takes you further in the guide."
+msgstr "Ditt svar leder vidare i guiden."
+
+msgid "This answer stops the guide. Continue to see why and what to do next."
+msgstr "Det här svaret ger ett stopp. Fortsätt för att se orsaken och nästa steg."
+
+msgid "This answer needs to be checked. Continue to see what is missing."
+msgstr "Det här svaret behöver kontrolleras. Fortsätt för att se vad som saknas."
+
+msgid "Stop"
+msgstr "Stopp"
+
+msgid "Check"
+msgstr "Kontroll"
+
+msgid "Help with the question"
+msgstr "Hjälp med frågan"
+
+msgid "Summary"
+msgstr "Sammanfattning"
+
+msgid "Your answers"
+msgstr "Dina svar"
+
+msgid "Your next step"
+msgstr "Ditt nästa steg"
+
+msgid "Edit"
+msgstr "Ändra"
+
+msgid "Not answered"
+msgstr "Inte besvarad"
+
+msgid "Stops the guide"
+msgstr "Stopp i guiden"
+
+msgid "Needs to be checked"
+msgstr "Behöver kontrolleras"
+
+#, php-format
+msgid "%s question remains."
+msgstr "%s fråga återstår."
+
+#, php-format
+msgid "%s questions remain."
+msgstr "%s frågor återstår."
+
+#, php-format
+msgid "The guide stopped at \"%s\". The other questions have not been assessed."
+msgstr "Guiden stannade vid \"%s\". Övriga frågor har inte bedömts."
+
+msgid "Print / save as PDF"
+msgstr "Skriv ut / spara PDF"
+
+msgid "Save answers as text"
+msgstr "Spara svar som text"
+
+msgid "Your answers have been saved as a text file."
+msgstr "Dina svar har sparats som en textfil."
+
+msgid "Start over"
+msgstr "Börja om"
+
+msgid "Do you want to start over?"
+msgstr "Vill du börja om?"
+
+msgid "Your answers will be cleared. Save the summary first if you want to keep it."
+msgstr "Dina svar rensas. Spara sammanfattningen först om du vill behålla den."
+
+msgid "Yes, start over"
+msgstr "Ja, börja om"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Created"
+msgstr "Skapad"
+
+msgid "You have answered all questions"
+msgstr "Du har svarat på alla frågor"
+
+msgid "Here is a summary of your answers and what you can do next."
+msgstr "Här är en sammanfattning av dina svar och vad du kan göra härnäst."
+
+msgid "The guide stops here"
+msgstr "Stopp i guiden"
+
+msgid "One of your answers does not meet a condition in the guide. Contact us for advice on how to proceed."
+msgstr "Ett av dina svar uppfyller inte ett villkor i guiden. Kontakta oss för rådgivning om hur du kan gå vidare."
+
+msgid "This needs to be checked"
+msgstr "Det här behöver kontrolleras"
+
+msgid "The guide cannot give a preliminary answer when information is unknown. Check the information and update your answer."
+msgstr "Guiden kan inte ge ett preliminärt svar när en uppgift är okänd. Kontrollera uppgiften och uppdatera ditt svar."
+
+msgid "Go ahead"
+msgstr "Vidare"
+
+#, php-format
+msgctxt "one question"
+msgid "%s answered"
+msgstr "%s besvarad"

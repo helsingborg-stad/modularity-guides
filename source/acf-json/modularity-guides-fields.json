@@ -3,6 +3,159 @@
 	"title": "Guide",
 	"fields": [
 		{
+			"key": "field_6912b1a0d0001",
+			"label": "Display mode",
+			"name": "display_mode",
+			"type": "button_group",
+			"instructions": "Accordion shows all steps at once. Step by step shows one question at a time with a progress sidebar and a summary page.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"accordion": "Accordion",
+				"wizard": "Step by step"
+			},
+			"allow_null": 0,
+			"default_value": "accordion",
+			"layout": "horizontal",
+			"return_format": "value"
+		},
+		{
+			"key": "field_6912b1a0d0002",
+			"label": "Summary page",
+			"name": "summary_page",
+			"type": "group",
+			"instructions": "Texts shown on the summary page in step by step mode. Leave empty to use the default texts.",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_6912b1a0d0001",
+						"operator": "==",
+						"value": "wizard"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_6912b1a0d0003",
+					"label": "Title when all questions are passed",
+					"name": "pass_title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					}
+				},
+				{
+					"key": "field_6912b1a0d0004",
+					"label": "Text when all questions are passed",
+					"name": "pass_text",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_6912b1a0d0005",
+					"label": "Title when an answer stops the guide",
+					"name": "stop_title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					}
+				},
+				{
+					"key": "field_6912b1a0d0006",
+					"label": "Text when an answer stops the guide",
+					"name": "stop_text",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_6912b1a0d0007",
+					"label": "Title when an answer needs to be checked",
+					"name": "review_title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					}
+				},
+				{
+					"key": "field_6912b1a0d0008",
+					"label": "Text when an answer needs to be checked",
+					"name": "review_text",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_6912b1a0d0009",
+					"label": "Notice",
+					"name": "notice",
+					"type": "textarea",
+					"instructions": "For example: \"This is guidance, not a decision. Your answers are not saved.\"",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"rows": 2,
+					"new_lines": ""
+				}
+			]
+		},
+		{
 			"key": "field_57727933e3560",
 			"label": "Steps",
 			"name": "steps",
@@ -41,6 +194,90 @@
 					"maxlength": "",
 					"readonly": 0,
 					"disabled": 0
+				},
+				{
+					"key": "field_6912b1a0d0010",
+					"label": "Short title",
+					"name": "short_title",
+					"type": "text",
+					"instructions": "Step by step mode: shown in the progress sidebar and summary. Defaults to the title.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					}
+				},
+				{
+					"key": "field_6912b1a0d0011",
+					"label": "Icon",
+					"name": "icon",
+					"type": "text",
+					"instructions": "Step by step mode: optional Material Symbols icon name, e.g. \"straighten\".",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					}
+				},
+				{
+					"key": "field_6912b1a0d0012",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"instructions": "Step by step mode: short hint shown under the question.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"rows": 2,
+					"new_lines": ""
+				},
+				{
+					"key": "field_6912b1a0d0013",
+					"label": "Answers",
+					"name": "selection_type",
+					"type": "button_group",
+					"instructions": "Step by step mode: whether the visitor can choose one or several answers.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"multiple": "Several answers",
+						"single": "One answer"
+					},
+					"allow_null": 0,
+					"default_value": "multiple",
+					"layout": "horizontal",
+					"return_format": "value"
+				},
+				{
+					"key": "field_6912b1a0d0014",
+					"label": "Help text",
+					"name": "help",
+					"type": "wysiwyg",
+					"instructions": "Step by step mode: shown in an expandable \"Help\" section under the question.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"tabs": "all",
+					"toolbar": "basic",
+					"media_upload": 0,
+					"delay": 1
 				},
 				{
 					"key": "field_57727e2129817",
@@ -218,7 +455,7 @@
 									"collapsed": "",
 									"min": 1,
 									"max": "",
-									"layout": "table",
+									"layout": "block",
 									"button_label": "Add checkbox",
 									"sub_fields": [
 										{
@@ -230,7 +467,7 @@
 											"required": 1,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "",
+												"width": "25",
 												"class": "",
 												"id": ""
 											},
@@ -251,7 +488,7 @@
 											"required": 1,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "",
+												"width": "50",
 												"class": "",
 												"id": ""
 											},
@@ -272,7 +509,7 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "",
+												"width": "15",
 												"class": "",
 												"id": ""
 											},
@@ -291,12 +528,74 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "1",
+												"width": "10",
 												"class": "",
 												"id": ""
 											},
 											"message": "",
 											"default_value": 0
+										},
+										{
+											"key": "field_6912b1a0d0020",
+											"label": "Description",
+											"name": "description",
+											"type": "text",
+											"instructions": "Step by step mode: optional extra line under the label.",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "50",
+												"class": "",
+												"id": ""
+											}
+										},
+										{
+											"key": "field_6912b1a0d0021",
+											"label": "Outcome",
+											"name": "outcome",
+											"type": "select",
+											"instructions": "Step by step mode: Continue goes to the next question. Stop and Check end the guide and show the summary.",
+											"required": 0,
+											"conditional_logic": 0,
+											"wrapper": {
+												"width": "50",
+												"class": "",
+												"id": ""
+											},
+											"choices": {
+												"pass": "Continue",
+												"stop": "Stop",
+												"review": "Check"
+											},
+											"default_value": "pass",
+											"allow_null": 0,
+											"multiple": 0,
+											"ui": 0,
+											"return_format": "value"
+										},
+										{
+											"key": "field_6912b1a0d0022",
+											"label": "Reason",
+											"name": "outcome_reason",
+											"type": "textarea",
+											"instructions": "Shown on the summary page when this answer stops the guide.",
+											"required": 0,
+											"conditional_logic": [
+												[
+													{
+														"field": "field_6912b1a0d0021",
+														"operator": "!=",
+														"value": "pass"
+													}
+												]
+											],
+											"wrapper": {
+												"width": "",
+												"class": "",
+												"id": ""
+											},
+											"rows": 2,
+											"new_lines": ""
 										}
 									]
 								}
