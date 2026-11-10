@@ -127,19 +127,8 @@ export class GuideWizard {
 		this.root.querySelector('[data-wizard-print]')?.addEventListener('click', () => window.print());
 		this.root.querySelector('[data-wizard-download]')?.addEventListener('click', () => this.download());
 
-		const dialog = this.root.querySelector<HTMLDialogElement>('[data-wizard-dialog]');
-		this.root.querySelector('[data-wizard-restart]')?.addEventListener('click', () => {
-			if (dialog?.showModal) {
-				dialog.showModal();
-			} else if (window.confirm(t('wizard_restart_title'))) {
-				this.restart();
-			}
-		});
-		dialog?.querySelector('[data-wizard-dialog-cancel]')?.addEventListener('click', () => dialog.close());
-		dialog?.querySelector('[data-wizard-dialog-confirm]')?.addEventListener('click', () => {
-			dialog.close();
-			this.restart();
-		});
+		// The restart modal is opened and closed by the component library (data-open / data-close)
+		this.root.querySelector('[data-wizard-dialog-confirm]')?.addEventListener('click', () => this.restart());
 
 		this.result.addEventListener('click', (event) => {
 			const edit = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-wizard-edit]');
@@ -216,7 +205,7 @@ export class GuideWizard {
 		if (focus) {
 			const heading =
 				this.view.kind === 'result'
-					? this.result.querySelector<HTMLElement>('[data-wizard-hero]:not([hidden]) [data-wizard-hero-title]')
+					? this.result.querySelector<HTMLElement>('[data-wizard-hero]:not([hidden])')
 					: this.questions[current]?.querySelector<HTMLElement>('h2');
 			heading?.focus({ preventScroll: true });
 
@@ -266,9 +255,9 @@ export class GuideWizard {
 		if (count) {
 			count.textContent = t(answered === 1 ? 'wizard_answered_one' : 'wizard_answered_many', answered);
 		}
-		const progress = this.root.querySelector<HTMLProgressElement>('[data-wizard-progress]');
+		const progress = this.root.querySelector<HTMLElement>('[data-wizard-progress] > *');
 		if (progress) {
-			progress.value = answered;
+			progress.style.width = `${total > 0 ? (answered / total) * 100 : 0}%`;
 		}
 
 		this.stepButtons.forEach((button, index) => {
@@ -318,12 +307,15 @@ export class GuideWizard {
 		if (remainingNotice) {
 			const show = result.questionIndex !== null && remaining > 0;
 			remainingNotice.hidden = !show;
-			remainingNotice.textContent = show
-				? `${t(remaining === 1 ? 'wizard_remaining_one' : 'wizard_remaining_many', remaining)} ${t(
-						'wizard_stopped_at',
-						this.shortTitle(result.questionIndex as number),
-					)}`
-				: '';
+			const remainingText = remainingNotice.querySelector<HTMLElement>('[data-wizard-remaining-text]');
+			if (remainingText) {
+				remainingText.textContent = show
+					? `${t(remaining === 1 ? 'wizard_remaining_one' : 'wizard_remaining_many', remaining)} ${t(
+							'wizard_stopped_at',
+							this.shortTitle(result.questionIndex as number),
+						)}`
+					: '';
+			}
 		}
 
 		const answers = this.result.querySelector<HTMLElement>('[data-wizard-answers]');
@@ -409,7 +401,7 @@ export class GuideWizard {
 			clean(this.root.dataset.guideTitle).toUpperCase(),
 			`${t('wizard_created')} ${this.formatDate()}`,
 			'',
-			clean(hero?.querySelector('[data-wizard-hero-title]')?.textContent),
+			clean(hero?.querySelector('.c-notice__title')?.textContent),
 		];
 		if (result.reason) {
 			lines.push(result.reason);
@@ -458,7 +450,7 @@ export class GuideWizard {
 		});
 
 		const notice = clean(
-			this.result.querySelector('.mod-guide-wizard__notice:not([data-wizard-remaining]) p')?.textContent,
+			this.result.querySelector('.mod-guide-wizard__disclaimer [data-js-notice-message]')?.textContent,
 		);
 		if (notice) {
 			lines.push(notice, '');
@@ -492,7 +484,10 @@ export class GuideWizard {
 		if (!toast) {
 			return;
 		}
-		toast.textContent = text;
+		const toastText = toast.querySelector<HTMLElement>('[data-wizard-toast-text]');
+		if (toastText) {
+			toastText.textContent = text;
+		}
 		toast.hidden = false;
 		window.clearTimeout(this.toastTimer);
 		this.toastTimer = window.setTimeout(() => {

@@ -70,28 +70,7 @@
   }
 
   &__progress {
-    display: block;
-    width: 100%;
-    height: 5px;
-    border: 0;
-    border-radius: 5px;
-    overflow: hidden;
-    appearance: none;
-    background: var(--mgw-soft-strong);
-    color: var(--mgw-primary);
-
-    &::-webkit-progress-bar {
-      background: var(--mgw-soft-strong);
-    }
-
-    &::-webkit-progress-value {
-      background: var(--mgw-primary);
-      transition: width 0.2s;
-    }
-
-    &::-moz-progress-bar {
-      background: var(--mgw-primary);
-    }
+    margin: 0;
   }
 
   &__steps {
@@ -192,10 +171,6 @@
   // ---------- Question card ----------
   &__question,
   &__panel {
-    background: var(--mgw-surface);
-    border: 1px solid var(--mgw-border);
-    border-radius: var(--mgw-radius);
-    box-shadow: 0 5px 24px rgb(22 56 70 / 4%);
     min-width: 0;
   }
 
@@ -267,13 +242,11 @@
   &__option {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 12px;
     border: 1px solid var(--mgw-border);
     border-radius: 11px;
-    padding: 15px;
+    padding: 0 15px 0 0;
     margin: 10px 0;
-    cursor: pointer;
-    line-height: 1.4;
     background: var(--mgw-surface);
     transition: border-color 0.15s, background-color 0.15s;
 
@@ -293,23 +266,34 @@
       outline-offset: 3px;
     }
 
-    input {
-      width: 20px;
-      height: 20px;
+    // Let the component's label cover the whole card.
+    // .c-option.c-option beats the legacy .modularity-mod-guide .c-option__radio rule
+    .c-option.c-option {
+      flex: 1;
+      min-width: 0;
+      width: auto;
       margin: 0;
-      flex-shrink: 0;
-      accent-color: var(--mgw-primary);
-
-      &:focus-visible {
-        outline: 0;
-      }
+      z-index: auto;
     }
-  }
 
-  &__option-main {
-    flex: 1;
-    min-width: 0;
-    font-weight: 600;
+    .c-option__checkbox--label,
+    .c-option__radio--label {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .c-option__checkbox--label-text,
+    .c-option__radio--label-text {
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .c-option__input-invalid-message {
+      display: none;
+    }
   }
 
   &__option-desc {
@@ -371,78 +355,15 @@
 
   &__help {
     margin-top: calc(var(--base, 8px) * 2.5);
-    border-top: 1px solid var(--mgw-border);
-    padding-top: calc(var(--base, 8px) * 2);
-    font-size: 0.875rem;
-    color: var(--mgw-muted);
-
-    summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--mgw-primary);
-    }
-
-    > div {
-      margin-top: calc(var(--base, 8px) * 1.5);
-    }
   }
 
   // ---------- Result ----------
-  &__hero {
-    display: flex;
-    gap: calc(var(--base, 8px) * 2.5);
-    align-items: flex-start;
-    padding: calc(var(--base, 8px) * 3.5);
-    border-radius: var(--mgw-radius);
-    border: 1px solid color-mix(in srgb, var(--mgw-success) 25%, var(--mgw-surface));
-    background: var(--mgw-success-soft);
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    &--stop {
-      background: var(--mgw-danger-soft);
-      border-color: color-mix(in srgb, var(--mgw-danger) 25%, var(--mgw-surface));
-    }
-
-    &--review {
-      background: var(--mgw-warning-soft);
-      border-color: color-mix(in srgb, var(--mgw-warning) 35%, var(--mgw-surface));
-    }
-  }
-
-  &__hero-symbol {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--mgw-surface);
-    color: var(--mgw-success-text);
-    display: grid;
-    place-items: center;
-  }
-
-  &__hero--stop &__hero-symbol {
-    color: var(--mgw-danger-text);
-  }
-
-  &__hero--review &__hero-symbol {
-    color: var(--mgw-warning-text);
-  }
-
-  &__hero-title {
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.9rem);
-    line-height: 1.25;
-    margin-bottom: calc(var(--base, 8px) * 1.5);
-
-    &:focus {
-      outline: none;
-    }
+  &__hero:focus {
+    outline: none;
   }
 
   &__hero-reason {
-    font-weight: 700;
+    display: block;
     margin-bottom: var(--base, 8px);
   }
 
@@ -548,26 +469,12 @@
     margin: calc(var(--base, 8px) * 2) 0 0;
   }
 
-  &__notice {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    padding: 16px 18px;
-    border-radius: 12px;
-    background: var(--mgw-soft);
-    font-size: 0.875rem;
+  &__remaining {
+    margin-bottom: calc(var(--base, 8px) * 3);
+  }
+
+  &__disclaimer {
     margin-top: calc(var(--base, 8px) * 3);
-
-    p {
-      margin: 0;
-    }
-
-    &--warning {
-      background: var(--mgw-warning-soft);
-      color: var(--mgw-warning-text);
-      font-weight: 600;
-      margin-top: 0;
-    }
   }
 
   // The todo list keeps working on the summary page
@@ -576,44 +483,12 @@
   }
 
   // ---------- Dialog & toast ----------
-  &__dialog {
-    color: var(--mgw-text);
-    border: 1px solid var(--mgw-border);
-    border-radius: var(--mgw-radius);
-    padding: calc(var(--base, 8px) * 4);
-    max-width: 520px;
-    width: calc(100% - 32px);
-    box-shadow: 0 25px 85px rgb(18 60 75 / 27%);
-
-    &::backdrop {
-      background: rgb(24 54 66 / 50%);
-    }
-
-    h2 {
-      font-size: 1.5rem;
-    }
-  }
-
   &__dialog-actions {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: calc(var(--base, 8px) * 3);
-  }
-
-  &__toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 300;
-    max-width: calc(100% - 30px);
-    padding: 12px 20px;
-    border-radius: 10px;
-    background: var(--mgw-text);
-    color: var(--mgw-surface);
-    font-size: 0.875rem;
   }
 
   // ---------- Responsive ----------
@@ -661,33 +536,17 @@
     }
 
     &__option {
-      padding: 13px 12px;
-      gap: 10px;
       flex-wrap: wrap;
-    }
+      gap: 0;
+      padding: 0;
 
-    &__option-main {
-      flex-basis: calc(100% - 34px);
+      .c-option.c-option {
+        flex-basis: 100%;
+      }
     }
 
     &__tag {
-      margin-left: 30px;
-      margin-top: -4px;
-    }
-
-    &__hero {
-      display: block;
-      padding: 22px 18px;
-    }
-
-    &__hero-symbol {
-      width: 42px;
-      height: 42px;
-      margin-bottom: 14px;
-    }
-
-    &__panel {
-      padding: 22px 18px;
+      margin: -8px 0 12px 48px;
     }
   }
 
@@ -711,7 +570,6 @@
     &__side,
     &__result-actions,
     &__edit,
-    &__dialog,
     &__toast,
     &__question,
     .js-modularity-guide-todos__modal-trigger,
@@ -725,20 +583,11 @@
     }
 
     &__hero {
-      display: block;
-      border: 1px solid #888;
-      background: none !important;
       break-inside: avoid;
     }
 
-    &__hero-symbol {
-      display: none;
-    }
-
     &__panel {
-      border: 0;
       box-shadow: none;
-      padding: 16px 0;
     }
 
     &__answer,
@@ -746,9 +595,5 @@
       break-inside: avoid;
     }
 
-    &__notice {
-      border: 1px solid #aaa;
-      background: none !important;
-    }
   }
 }
