@@ -1,599 +1,522 @@
 // Step by step (wizard) display mode
+//
+// Built on the Municipio design system:
+// - Sizes are multipliers of --base, scaled by the global tokens --space,
+//   --border-radius and --border-width (same pattern as the components).
+// - Every token can be overridden for the wizard only via --c-guide-wizard--<token>,
+//   e.g. --c-guide-wizard--space or --c-guide-wizard--color--primary.
+// - Lives in the theme's "plugin" cascade layer: above components (so component
+//   internals can be adjusted) and below utilities (so utility classes win).
 
-.mod-guide-wizard {
-  --mgw-primary: var(--color--primary, var(--color-primary, #006d7b));
-  --mgw-primary-contrast: var(--color--primary-contrast, var(--color-primary-contrasting, #fff));
-  --mgw-surface: var(--color--surface, #fff);
-  --mgw-text: var(--color--surface-contrast, #173d4b);
-  --mgw-muted: var(--color--surface-contrast-muted, #536d77);
-  --mgw-border: var(--color--surface-border, #d6e3df);
-  --mgw-soft: color-mix(in srgb, var(--mgw-primary) 8%, var(--mgw-surface));
-  --mgw-soft-strong: color-mix(in srgb, var(--mgw-primary) 16%, var(--mgw-surface));
-  --mgw-success: var(--color--success, #216443);
-  --mgw-danger: var(--color--danger, #a72a36);
-  --mgw-warning: var(--color--warning, #b57d14);
-  --mgw-success-soft: color-mix(in srgb, var(--mgw-success) 12%, var(--mgw-surface));
-  --mgw-danger-soft: color-mix(in srgb, var(--mgw-danger) 10%, var(--mgw-surface));
-  --mgw-warning-soft: color-mix(in srgb, var(--mgw-warning) 14%, var(--mgw-surface));
-  --mgw-danger-text: color-mix(in srgb, var(--mgw-danger) 85%, #000);
-  --mgw-warning-text: color-mix(in srgb, var(--mgw-warning) 55%, #000);
-  --mgw-success-text: color-mix(in srgb, var(--mgw-success) 85%, #000);
-  --mgw-radius: calc(var(--base, 8px) * 2);
-  --mgw-gap: calc(var(--base, 8px) * 4);
+$prefix: '--c-guide-wizard--';
 
-  position: relative;
-  color: var(--mgw-text);
+// Breakpoints from the design system (--breakpoint-*). Media queries cannot use custom properties.
+$breakpoint-sm: 32.5em;
+$breakpoint-md: 56em;
+$breakpoint-lg: 78em;
 
-  [hidden] {
-    display: none !important;
-  }
+@function token($name) {
+  @return var(#{$prefix}#{$name}, var(--#{$name}));
+}
 
-  h2,
-  h3,
-  p {
-    margin-top: 0;
-  }
+@function color($name) {
+  @return token('color--#{$name}');
+}
 
-  // ---------- Layout ----------
-  &__layout {
-    display: grid;
-    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
-    gap: var(--mgw-gap);
-    align-items: start;
-  }
+@function space($n) {
+  @return calc(#{token('space')} * var(--base) * #{$n});
+}
 
-  &__main {
-    min-width: 0;
-  }
+@function radius($n: 1) {
+  @return calc(#{token('border-radius')} * var(--base) * #{$n});
+}
 
-  // ---------- Sidebar ----------
-  &__layout > &__side {
-    position: sticky;
-    top: calc(var(--base, 8px) * 3);
-    min-width: 0;
-  }
+@function border-width($n: 1) {
+  @return calc(#{token('border-width')} * var(--base) * #{$n});
+}
 
-  &__side-title {
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1.35;
-    margin-bottom: calc(var(--base, 8px) * 2);
-  }
+@function size($n) {
+  @return calc(var(--base) * #{$n});
+}
 
-  &__progress-label {
-    display: flex;
-    justify-content: space-between;
-    gap: 6px;
-    font-size: 0.75rem;
-    color: var(--mgw-muted);
-    margin-bottom: 6px;
-  }
+@function font-size($step) {
+  @return token('font-size-#{$step}');
+}
 
-  &__progress {
-    margin: 0;
-  }
+@function font-weight($name) {
+  @return token('font-weight-#{$name}');
+}
 
-  &__steps {
-    list-style: none;
-    padding: 0;
-    margin: calc(var(--base, 8px) * 3) 0 0;
+@mixin focus-ring($offset: 2) {
+  outline: border-width(3) solid color('focus');
+  outline-offset: size($offset * 0.25);
+}
 
-    li {
-      margin: 2px 0;
-    }
-  }
+@layer plugin {
+  .mod-guide-wizard {
+    position: relative;
+    color: color('surface-contrast');
 
-  &__step {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font: inherit;
-    font-size: 0.8125rem;
-    line-height: 1.35;
-    text-align: left;
-    color: var(--mgw-muted);
-    background: none;
-    border: 0;
-    padding: 8px;
-    border-radius: 10px;
-    cursor: pointer;
-
-    &:disabled {
-      cursor: default;
-      opacity: 0.65;
+    [hidden] {
+      display: none !important;
     }
 
-    &:not(:disabled):hover {
-      background: var(--mgw-soft);
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
-    &[aria-current='step'] {
-      background: var(--mgw-soft-strong);
-      color: var(--mgw-text);
-      font-weight: 700;
+    // ---------- Layout ----------
+    &__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: space(2);
+      align-items: start;
+
+      @media (min-width: $breakpoint-md) {
+        grid-template-columns: minmax(size(20), size(30)) minmax(0, 1fr);
+        gap: space(4);
+      }
     }
 
-    &:focus-visible {
-      outline: 3px solid var(--color--focus, var(--color-focus-outline, #b97e21));
-      outline-offset: 2px;
-    }
-  }
-
-  &__step-dot {
-    flex-shrink: 0;
-    width: 27px;
-    height: 27px;
-    border-radius: 50%;
-    border: 1px solid var(--mgw-border);
-    background: var(--mgw-surface);
-    display: grid;
-    place-items: center;
-    font-size: 0.6875rem;
-
-    .c-icon {
-      font-size: 16px;
-    }
-  }
-
-  &__step[aria-current='step'] &__step-dot {
-    background: var(--mgw-primary);
-    border-color: var(--mgw-primary);
-    color: var(--mgw-primary-contrast);
-  }
-
-  &__step.is-completed:not([aria-current='step']) &__step-dot {
-    background: var(--mgw-success-soft);
-    border-color: transparent;
-    color: var(--mgw-success-text);
-  }
-
-  &__step.is-stop:not([aria-current='step']) &__step-dot {
-    background: var(--mgw-danger-soft);
-    color: var(--mgw-danger-text);
-  }
-
-  &__step.is-review:not([aria-current='step']) &__step-dot {
-    background: var(--mgw-warning-soft);
-    color: var(--mgw-warning-text);
-  }
-
-  &__svg {
-    width: 15px;
-    height: 15px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  // ---------- Question card ----------
-  &__question,
-  &__panel {
-    min-width: 0;
-  }
-
-  &__question {
-    padding: calc(var(--base, 8px) * 4);
-  }
-
-  &__eyebrow {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mgw-primary);
-    margin-bottom: calc(var(--base, 8px) * 1.5);
-  }
-
-  &__head {
-    display: flex;
-    gap: calc(var(--base, 8px) * 3);
-    align-items: center;
-    margin-bottom: calc(var(--base, 8px) * 2.5);
-  }
-
-  &__head-text {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__title {
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);
-    line-height: 1.25;
-    margin-bottom: var(--base, 8px);
-    overflow-wrap: anywhere;
-    hyphens: auto;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__hint {
-    color: var(--mgw-muted);
-    margin-bottom: 0;
-  }
-
-  &__art {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
-    border-radius: var(--mgw-radius);
-    background: var(--mgw-soft);
-    color: var(--mgw-primary);
-    display: grid;
-    place-items: center;
-
-    .c-icon {
-      font-size: 56px;
-    }
-  }
-
-  // ---------- Options ----------
-  &__options {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-  }
-
-  &__option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid var(--mgw-border);
-    border-radius: 11px;
-    padding: 0 15px 0 0;
-    margin: 10px 0;
-    background: var(--mgw-surface);
-    transition: border-color 0.15s, background-color 0.15s;
-
-    &:hover {
-      border-color: color-mix(in srgb, var(--mgw-primary) 50%, var(--mgw-border));
-      background: color-mix(in srgb, var(--mgw-primary) 3%, var(--mgw-surface));
-    }
-
-    &:has(input:checked) {
-      border-color: var(--mgw-primary);
-      box-shadow: 0 0 0 1px var(--mgw-primary);
-      background: var(--mgw-soft);
-    }
-
-    &:has(input:focus-visible) {
-      outline: 3px solid var(--color--focus, var(--color-focus-outline, #b97e21));
-      outline-offset: 3px;
-    }
-
-    // Let the component's label cover the whole card.
-    // .c-option.c-option beats the legacy .modularity-mod-guide .c-option__radio rule
-    .c-option.c-option {
-      flex: 1;
+    &__main {
       min-width: 0;
-      width: auto;
-      margin: 0;
-      z-index: auto;
     }
 
-    .c-option__checkbox--label,
-    .c-option__radio--label {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      padding: 15px;
-      cursor: pointer;
+    // ---------- Sidebar ----------
+    &__side {
+      min-width: 0;
     }
 
-    .c-option__checkbox--label-text,
-    .c-option__radio--label-text {
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .c-option__input-invalid-message {
-      display: none;
-    }
-  }
-
-  &__option-desc {
-    display: block;
-    font-weight: 400;
-    font-size: 0.8125rem;
-    color: var(--mgw-muted);
-    margin-top: 4px;
-  }
-
-  &__tag {
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border-radius: 5px;
-    padding: 4px 6px;
-    white-space: nowrap;
-
-    &--pass {
-      color: var(--mgw-success-text);
-      background: var(--mgw-success-soft);
-    }
-
-    &--stop {
-      color: var(--mgw-danger-text);
-      background: var(--mgw-danger-soft);
-    }
-
-    &--review {
-      color: var(--mgw-warning-text);
-      background: var(--mgw-warning-soft);
-    }
-  }
-
-  // Toggle content (tips) inside a question
-  &__form > .mod-guide-text,
-  &__form > .grid,
-  &__form > .o-grid {
-    margin-top: calc(var(--base, 8px) * 2);
-  }
-
-  &__note {
-    font-size: 0.8125rem;
-    color: var(--mgw-muted);
-    min-height: 1.5em;
-    margin: calc(var(--base, 8px) * 2) 0 0;
-  }
-
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: calc(var(--base, 8px) * 2);
-    border-top: 1px solid var(--mgw-border);
-    margin-top: calc(var(--base, 8px) * 2);
-    padding-top: calc(var(--base, 8px) * 2.5);
-  }
-
-  &__help {
-    margin-top: calc(var(--base, 8px) * 2.5);
-  }
-
-  // ---------- Result ----------
-  &__hero:focus {
-    outline: none;
-  }
-
-  &__hero-reason {
-    display: block;
-    margin-bottom: var(--base, 8px);
-  }
-
-  &__result-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: calc(var(--base, 8px) * 2.5) 0;
-  }
-
-  &__result-grid {
-    display: grid;
-    gap: calc(var(--base, 8px) * 3);
-    margin-top: calc(var(--base, 8px) * 3);
-
-    &--split {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  &__panel {
-    padding: calc(var(--base, 8px) * 3);
-
-    h3 {
-      font-size: 1.375rem;
-      margin-bottom: calc(var(--base, 8px) * 2);
-    }
-  }
-
-  &__answers {
-    margin: 0;
-  }
-
-  &__answer {
-    padding: 13px 0;
-    border-top: 1px solid var(--mgw-border);
-
-    &:first-child {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    dt {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.8125rem;
-      color: var(--mgw-muted);
-      margin-bottom: 4px;
-    }
-
-    dd {
-      margin: 0;
-      font-weight: 600;
-      line-height: 1.5;
-
-      ul {
-        margin: 0;
-        padding-left: 1.2em;
+    @media (min-width: $breakpoint-md) {
+      &__layout > &__side {
+        position: sticky;
+        top: space(3);
       }
     }
 
-    &.is-unanswered dd {
-      font-weight: 400;
-      color: var(--mgw-muted);
-    }
-  }
-
-  &__edit {
-    font: inherit;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--mgw-primary);
-    background: none;
-    border: 0;
-    padding: 2px 0;
-    cursor: pointer;
-    white-space: nowrap;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &__outcome {
-    display: block;
-    font-size: 0.75rem;
-    margin-top: 4px;
-
-    &--stop {
-      color: var(--mgw-danger-text);
+    &__side-title.c-typography {
+      font-size: font-size(200);
+      line-height: token('line-height-heading');
     }
 
-    &--review {
-      color: var(--mgw-warning-text);
-    }
-  }
-
-  &__meta {
-    font-size: 0.75rem;
-    color: var(--mgw-muted);
-    margin: calc(var(--base, 8px) * 2) 0 0;
-  }
-
-  &__remaining {
-    margin-bottom: calc(var(--base, 8px) * 3);
-  }
-
-  &__disclaimer {
-    margin-top: calc(var(--base, 8px) * 3);
-  }
-
-  // The todo list keeps working on the summary page
-  &__panel .modularity-guide-todos .c-paper {
-    box-shadow: none;
-  }
-
-  // ---------- Dialog & toast ----------
-  &__dialog-actions {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: calc(var(--base, 8px) * 3);
-  }
-
-  // ---------- Responsive ----------
-  @media (max-width: 900px) {
-    &__layout {
-      grid-template-columns: minmax(160px, 200px) minmax(0, 1fr);
-      gap: calc(var(--base, 8px) * 3);
-    }
-
-    &__question {
-      padding: calc(var(--base, 8px) * 3);
-    }
-
-    &__art {
-      width: 76px;
-      height: 76px;
-
-      .c-icon {
-        font-size: 44px;
-      }
-    }
-  }
-
-  @media (max-width: 700px) {
-    &__layout {
-      grid-template-columns: minmax(0, 1fr);
-      gap: calc(var(--base, 8px) * 2);
-    }
-
-    &__layout > &__side {
-      position: static;
-      top: auto;
+    &__progress-label {
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
     }
 
     &__steps {
       display: none;
+      list-style: none;
+      padding: 0;
+      margin: space(3) 0 0;
+
+      @media (min-width: $breakpoint-md) {
+        display: block;
+      }
+
+      li {
+        margin: space(0.25) 0;
+      }
+    }
+
+    &__step {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: space(1);
+      font: inherit;
+      font-size: font-size(90);
+      line-height: token('line-height-heading');
+      text-align: left;
+      color: color('surface-contrast-muted');
+      background: none;
+      border: 0;
+      padding: space(1);
+      border-radius: radius();
+      corner-shape: token('corner-shape');
+      cursor: pointer;
+      transition: background-color token('duration-160') token('ease-out');
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.65;
+      }
+
+      &:not(:disabled):hover,
+      &[aria-current='step'] {
+        background: color('surface-alt');
+      }
+
+      &[aria-current='step'] {
+        color: color('surface-contrast');
+        font-weight: font-weight('bold');
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    &__step-dot {
+      flex-shrink: 0;
+      width: size(3.5);
+      height: size(3.5);
+      border-radius: 50%;
+      border: border-width() solid color('surface-border');
+      background: color('surface');
+      display: grid;
+      place-items: center;
+      font-size: font-size(80);
+
+      .c-icon {
+        font-size: font-size(100);
+      }
+    }
+
+    &__step[aria-current='step'] &__step-dot {
+      background: color('primary');
+      border-color: color('primary');
+      color: color('primary-contrast');
+    }
+
+    @each $state, $color in (completed: success, stop: danger, review: warning) {
+      &__step.is-#{$state}:not([aria-current='step']) &__step-dot {
+        background: color($color);
+        border-color: color('#{$color}-border');
+        color: color('#{$color}-contrast');
+      }
+    }
+
+    &__svg {
+      width: size(2);
+      height: size(2);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    // ---------- Question card ----------
+    &__question,
+    &__panel {
+      min-width: 0;
     }
 
     &__question {
-      padding: 22px 18px;
+      padding: space(3) space(2);
+
+      @media (min-width: $breakpoint-sm) {
+        padding: space(4);
+      }
+    }
+
+    &__eyebrow.c-typography {
+      font-size: font-size(80);
+      font-weight: font-weight('bold');
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: color('primary');
+    }
+
+    &__head-text {
+      min-width: 0;
+    }
+
+    &__title {
+      overflow-wrap: anywhere;
+      hyphens: auto;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__hint {
+      color: color('surface-contrast-muted');
     }
 
     &__art {
       display: none;
-    }
+      flex-shrink: 0;
+      width: size(12);
+      height: size(12);
+      border-radius: radius(2);
+      corner-shape: token('corner-shape');
+      background: color('surface-alt');
+      color: color('primary');
+      place-items: center;
 
-    &__option {
-      flex-wrap: wrap;
-      gap: 0;
-      padding: 0;
-
-      .c-option.c-option {
-        flex-basis: 100%;
+      @media (min-width: $breakpoint-sm) {
+        display: grid;
       }
     }
 
-    &__tag {
-      margin: -8px 0 12px 48px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      transition: none !important;
-    }
-  }
-}
-
-@media (min-width: 1100px) {
-  .mod-guide-wizard__result-grid:not(.mod-guide-wizard__result-grid--split) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    align-items: start;
-  }
-}
-
-// ---------- Print ----------
-@media print {
-  .mod-guide-wizard {
-    &__side,
-    &__result-actions,
-    &__edit,
-    &__toast,
-    &__question,
-    .js-modularity-guide-todos__modal-trigger,
-    .c-modal {
-      display: none !important;
+    // ---------- Options ----------
+    &__options {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
     }
 
-    &__layout,
-    &__result-grid {
+    &__option {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border: border-width() solid color('surface-border');
+      border-radius: radius();
+      corner-shape: token('corner-shape');
+      margin: space(1) 0;
+      background: color('surface');
+      transition:
+        border-color token('duration-160') token('ease-out'),
+        background-color token('duration-160') token('ease-out');
+
+      @media (min-width: $breakpoint-sm) {
+        flex-wrap: nowrap;
+        gap: space(1.5);
+        padding-right: space(2);
+      }
+
+      &:hover {
+        background: color('surface-alt');
+      }
+
+      &:has(input:checked) {
+        border-color: color('primary');
+        box-shadow: 0 0 0 border-width() color('primary');
+        background: color('surface-alt');
+      }
+
+      &:has(input:focus-visible) {
+        @include focus-ring(3);
+      }
+
+      // Let the component's label cover the whole card.
+      .c-option {
+        flex: 1 1 100%;
+        min-width: 0;
+        width: auto;
+        margin: 0;
+
+        @media (min-width: $breakpoint-sm) {
+          flex-basis: auto;
+        }
+      }
+
+      .c-option__checkbox--label,
+      .c-option__radio--label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: space(2);
+        cursor: pointer;
+      }
+
+      .c-option__checkbox--label-text,
+      .c-option__radio--label-text {
+        font-weight: font-weight('bold');
+        line-height: token('line-height-heading');
+      }
+
+      .c-option__input-invalid-message {
+        display: none;
+      }
+    }
+
+    &__option-desc {
       display: block;
+      font-weight: font-weight('normal');
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
+      margin-top: space(0.5);
     }
 
-    &__hero {
-      break-inside: avoid;
+    &__tag {
+      font-size: font-size(80);
+      font-weight: font-weight('bold');
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: radius(0.5);
+      padding: space(0.5) space(0.75);
+      margin: calc(#{space(1)} * -1) 0 space(1.5) size(6);
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-sm) {
+        margin: 0;
+      }
+
+      @each $outcome, $color in (pass: success, stop: danger, review: warning) {
+        &--#{$outcome} {
+          background: color($color);
+          color: color('#{$color}-contrast');
+        }
+      }
+    }
+
+    // Toggle content (tips) inside a question
+    &__form > .mod-guide-text,
+    &__form > .grid,
+    &__form > .o-grid {
+      margin-top: space(2);
+    }
+
+    &__note {
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
+      min-height: 1.5em;
+    }
+
+    &__actions {
+      border-top: border-width() solid color('surface-border');
+      padding-top: space(2.5);
+    }
+
+    // ---------- Result ----------
+    &__hero:focus {
+      outline: none;
+    }
+
+    &__hero-reason {
+      display: block;
+      margin-bottom: space(1);
+    }
+
+    &__result-actions {
+      flex-wrap: wrap;
+    }
+
+    &__result-grid {
+      display: grid;
+      gap: space(3);
+
+      @media (min-width: $breakpoint-lg) {
+        &:not(.mod-guide-wizard__result-grid--split) {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+          align-items: start;
+        }
+      }
     }
 
     &__panel {
+      padding: space(3);
+    }
+
+    &__answers {
+      margin: 0;
+    }
+
+    &__answer {
+      padding: space(1.5) 0;
+      border-top: border-width() solid color('surface-border');
+
+      &:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      dt {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: space(1);
+        font-size: font-size(90);
+        color: color('surface-contrast-muted');
+        margin-bottom: space(0.5);
+      }
+
+      dd {
+        margin: 0;
+        font-weight: font-weight('bold');
+
+        ul {
+          margin: 0;
+          padding-left: space(2.5);
+        }
+      }
+
+      &.is-unanswered dd {
+        font-weight: font-weight('normal');
+        color: color('surface-contrast-muted');
+      }
+    }
+
+    &__edit {
+      font: inherit;
+      font-size: font-size(90);
+      font-weight: font-weight('bold');
+      color: color('primary');
+      background: none;
+      border: 0;
+      padding: space(0.25) 0;
+      cursor: pointer;
+      white-space: nowrap;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    &__outcome {
+      display: block;
+      font-size: font-size(90);
+      margin-top: space(0.5);
+
+      &--stop {
+        color: color('danger');
+      }
+
+      &--review {
+        color: color('warning');
+      }
+    }
+
+    // The todo list keeps working on the summary page
+    &__panel .modularity-guide-todos .c-paper {
       box-shadow: none;
     }
 
-    &__answer,
-    .modularity-guide-todos tr {
-      break-inside: avoid;
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
     }
+  }
 
+  // ---------- Print ----------
+  @media print {
+    .mod-guide-wizard {
+      &__side,
+      &__result-actions,
+      &__edit,
+      &__toast,
+      &__question,
+      .js-modularity-guide-todos__modal-trigger,
+      .c-modal {
+        display: none !important;
+      }
+
+      &__layout,
+      &__result-grid {
+        display: block;
+      }
+
+      &__hero,
+      &__answer,
+      .modularity-guide-todos tr {
+        break-inside: avoid;
+      }
+
+      &__panel {
+        box-shadow: none;
+      }
+    }
   }
 }

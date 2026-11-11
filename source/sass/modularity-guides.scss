@@ -68,7 +68,8 @@
     border-top: 3px dashed var(--color-border-divider); 
   }
 
-  .c-option__radio {
+  // Accordion mode only – must not affect the step by step mode
+  .mod-guide-wrapper .c-option__radio {
     position: relative;
     margin-bottom:-45px;
     margin-left:20px;
@@ -85,7 +86,7 @@
     font-style: normal;
   }
 
-  .c-option__checkbox--label-text {
+  .mod-guide-wrapper .c-option__checkbox--label-text {
     line-height: 1.2em;
   }
 

@@ -17,11 +17,11 @@
         {{-- Sidebar with progress and steps --}}
         <aside class="mod-guide-wizard__side" aria-label="{{ $lang['wizard_progress_label'] }}">
             @if (!$hideTitle && !empty($postTitle))
-                @typography(['element' => 'p', 'variant' => 'h4', 'classList' => ['mod-guide-wizard__side-title']])
+                @typography(['element' => 'p', 'variant' => 'h4', 'classList' => ['mod-guide-wizard__side-title', 'u-margin__bottom--2']])
                     {!! $postTitle !!}
                 @endtypography
             @endif
-            <div class="mod-guide-wizard__progress-label">
+            <div class="mod-guide-wizard__progress-label u-display--flex u-justify-content--space-between u-gap--1 u-margin__bottom--1">
                 <span data-wizard-progress-position></span>
                 <span data-wizard-progress-answered></span>
             </div>
@@ -70,12 +70,12 @@
                     'classList' => ['mod-guide-wizard__question'],
                     'attributeList' => $questionAttributes
                 ])
-                    @typography(['element' => 'p', 'variant' => 'meta', 'classList' => ['mod-guide-wizard__eyebrow']])
+                    @typography(['element' => 'p', 'variant' => 'meta', 'classList' => ['mod-guide-wizard__eyebrow', 'u-margin__bottom--2']])
                         {{ sprintf($lang['wizard_question_x_of_y'], $index + 1, $total) }} · {{ $question['shortTitle'] }}
                     @endtypography
 
-                    <div class="mod-guide-wizard__head">
-                        <div class="mod-guide-wizard__head-text">
+                    <div class="mod-guide-wizard__head u-display--flex u-align-items--center u-gap--3 u-margin__bottom--3">
+                        <div class="mod-guide-wizard__head-text u-flex-grow--1">
                             @typography([
                                 'element' => 'h2',
                                 'variant' => 'h2',
@@ -88,7 +88,7 @@
                             @if (!empty($question['description']))
                                 @typography([
                                     'id' => $guideId . '-q' . $index . '-hint',
-                                    'classList' => ['mod-guide-wizard__hint']
+                                    'classList' => ['mod-guide-wizard__hint', 'u-margin__bottom--0']
                                 ])
                                     {{ $question['description'] }}
                                 @endtypography
@@ -147,9 +147,9 @@
                             @php $j++; @endphp
                         @endforeach
 
-                        <p class="mod-guide-wizard__note" data-wizard-note role="status" aria-live="polite"></p>
+                        <p class="mod-guide-wizard__note u-margin__top--2 u-margin__bottom--0" data-wizard-note role="status" aria-live="polite"></p>
 
-                        <div class="mod-guide-wizard__actions">
+                        <div class="mod-guide-wizard__actions u-display--flex u-justify-content--space-between u-align-items--center u-gap--2 u-margin__top--2">
                             @button([
                                 'text' => $lang['wizard_back'],
                                 'icon' => 'arrow_back',
@@ -173,7 +173,7 @@
                     </div>
 
                     @if (!empty($question['help']))
-                        @accordion(['classList' => ['mod-guide-wizard__help']])
+                        @accordion(['classList' => ['mod-guide-wizard__help', 'u-margin__top--3']])
                             @accordion__item(['heading' => $lang['wizard_help']])
                                 <div class="c-article">{!! $question['help'] !!}</div>
                             @endaccordion__item
@@ -206,7 +206,7 @@
                     @endnotice
                 @endforeach
 
-                <div class="mod-guide-wizard__result-actions">
+                <div class="mod-guide-wizard__result-actions u-display--flex u-gap--1 u-margin__y--3">
                     @button([
                         'text' => $lang['wizard_print'],
                         'icon' => 'print',
@@ -241,24 +241,24 @@
                     'type' => 'warning',
                     'message' => ['text' => '<span data-wizard-remaining-text></span>'],
                     'icon' => ['icon' => 'info', 'size' => 'md'],
-                    'classList' => ['mod-guide-wizard__remaining'],
+                    'classList' => ['mod-guide-wizard__remaining', 'u-margin__bottom--3'],
                     'attributeList' => ['data-wizard-remaining' => '', 'hidden' => 'hidden']
                 ])
                 @endnotice
 
-                <div class="mod-guide-wizard__result-grid @if (empty($wizard['summarySteps'])) mod-guide-wizard__result-grid--split @endif">
+                <div class="mod-guide-wizard__result-grid u-margin__top--3 @if (empty($wizard['summarySteps'])) mod-guide-wizard__result-grid--split @endif">
                     @paper(['classList' => ['mod-guide-wizard__panel']])
-                        @typography(['element' => 'h3', 'variant' => 'h3'])
+                        @typography(['element' => 'h3', 'variant' => 'h3', 'classList' => ['u-margin__bottom--2']])
                             {{ $lang['wizard_your_answers'] }}
                         @endtypography
                         <dl class="mod-guide-wizard__answers" data-wizard-answers></dl>
-                        @typography(['variant' => 'meta', 'classList' => ['mod-guide-wizard__meta'], 'attributeList' => ['data-wizard-created' => '']])
+                        @typography(['variant' => 'meta', 'classList' => ['mod-guide-wizard__meta', 'u-margin__top--2', 'u-margin__bottom--0'], 'attributeList' => ['data-wizard-created' => '']])
                         @endtypography
                     @endpaper
 
                     @foreach ($wizard['summarySteps'] as $step)
                         @paper(['classList' => ['mod-guide-wizard__panel']])
-                            @typography(['element' => 'h3', 'variant' => 'h3'])
+                            @typography(['element' => 'h3', 'variant' => 'h3', 'classList' => ['u-margin__bottom--2']])
                                 {{ $step['title'] }}
                             @endtypography
                             @if (!empty($step['description']))
@@ -279,7 +279,7 @@
                         'type' => 'info',
                         'message' => ['text' => e($wizard['notice'])],
                         'icon' => ['icon' => 'info', 'size' => 'md'],
-                        'classList' => ['mod-guide-wizard__disclaimer']
+                        'classList' => ['mod-guide-wizard__disclaimer', 'u-margin__top--3']
                     ])
                     @endnotice
                 @endif
@@ -298,7 +298,7 @@
         @typography([])
             {{ $lang['wizard_restart_text'] }}
         @endtypography
-        <div class="mod-guide-wizard__dialog-actions">
+        <div class="mod-guide-wizard__dialog-actions u-display--flex u-justify-content--end u-gap--2 u-margin__top--3">
             @button([
                 'text' => $lang['wizard_cancel'],
                 'style' => 'outlined',
