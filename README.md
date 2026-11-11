@@ -22,6 +22,8 @@ Guides are shown **step by step**: one question at a time, with a progress sideb
 
   With several answers, the most severe outcome wins (stop before check before continue).
   Outcome tags are only shown on questions where an answer can end the guide.
+  The setting *Show outcomes on answers* (on by default) hides the tags; the note under the answers
+  is then neutral, and the outcome is only shown on the summary page.
 - **Summary page:** titles and texts for each outcome and a notice. Empty fields use default texts.
   Visitors can edit answers, print/save as PDF, save their answers as a text file or start over.
   Nothing is sent or stored.

@@ -30,7 +30,7 @@ class ViewModelTest extends TestCase
             $lang['wizard_' . $type . '_text'] = 'Default ' . $type . ' text';
         }
         foreach (['summary', 'choose_one', 'choose_many', 'saved_answer', 'note_pass', 'note_stop', 'note_review',
-            'your_answers', 'edit', 'not_answered', 'outcome_stop', 'outcome_review', 'created', 'download_done'] as $key) {
+            'your_answers', 'edit', 'not_answered', 'outcome_stop', 'outcome_review', 'created', 'download_done', 'note_chosen'] as $key) {
             $lang['wizard_' . $key] = $key;
         }
 
@@ -42,8 +42,25 @@ class ViewModelTest extends TestCase
         return [
             'title' => $title,
             'description' => $description,
-            'content' => [['acf_fc_layout' => 'checkboxes', 'checkboxes' => [['label' => 'A']]]],
+            'content' => [['acf_fc_layout' => 'checkboxes', 'checkboxes' => [['label' => 'A'], ['label' => 'B', 'outcome' => 'stop']]]],
         ];
+    }
+
+    public function testOutcomesAreShownOnAnswersByDefault(): void
+    {
+        $result = $this->create(['steps' => [$this->question('First')]]);
+
+        static::assertTrue($result['questions'][0]['showTags']);
+        static::assertFalse($result['script']['hideOutcomes']);
+    }
+
+    public function testOutcomesCanBeHiddenOnAnswers(): void
+    {
+        $result = $this->create(['show_outcome_tags' => false, 'steps' => [$this->question('First')]]);
+
+        static::assertFalse($result['questions'][0]['showTags']);
+        static::assertTrue($result['script']['hideOutcomes']);
+        static::assertSame('stop', $result['questions'][0]['content'][0]['wizard_options'][1]['outcome'], 'Outcomes still apply');
     }
 
     public function testSplitsQuestionsAndSummaryContent(): void

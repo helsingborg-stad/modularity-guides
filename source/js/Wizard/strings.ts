@@ -22,6 +22,10 @@ export interface WizardStrings {
 	outcomeReview: string;
 	created: string;
 	downloadDone: string;
+	/** Neutral note used when the outcomes are hidden on the answers. */
+	noteChosen: string;
+	/** Setting "Show outcomes on answers" turned off. */
+	hideOutcomes: boolean;
 }
 
 export function parseStrings(json: string | null): WizardStrings {

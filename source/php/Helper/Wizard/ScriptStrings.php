@@ -31,6 +31,7 @@ class ScriptStrings
         'outcomeReview' => 'wizard_outcome_review',
         'created' => 'wizard_created',
         'downloadDone' => 'wizard_download_done',
+        'noteChosen' => 'wizard_note_chosen',
     ];
 
     public function __construct(

@@ -1,6 +1,6 @@
 import type { Answers } from './Answers';
 import { hook } from './hooks';
-import { OUTCOMES } from './outcome';
+import { type Outcome, OUTCOMES } from './outcome';
 import { setText, type WizardStrings } from './strings';
 
 /**
@@ -58,7 +58,11 @@ export class Sidebar {
 
 	private renderStep(button: HTMLButtonElement, index: number, current: number, furthest: number): void {
 		const isAnswered = this.answers.isAnswered(index);
-		const outcome = isAnswered ? this.answers.outcomeOf(index).outcome : null;
+		let outcome: Outcome | null = null;
+		if (isAnswered) {
+			// With outcomes hidden, an answered step only shows that it is answered.
+			outcome = this.strings.hideOutcomes ? 'pass' : this.answers.outcomeOf(index).outcome;
+		}
 
 		button.disabled = index > furthest && !isAnswered;
 		button.classList.toggle('is-completed', isAnswered);

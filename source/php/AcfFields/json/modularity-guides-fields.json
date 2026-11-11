@@ -161,6 +161,27 @@
             ]
         },
         {
+            "key": "field_6912b1a0d0030",
+            "label": "Show outcomes on answers",
+            "name": "show_outcome_tags",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_57727933e3560",
             "label": "Steps",
             "name": "steps",

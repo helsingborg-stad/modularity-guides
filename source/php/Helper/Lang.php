@@ -47,6 +47,8 @@ class Lang
             'wizard_note_pass' => __('Your answer takes you further in the guide.', 'modularity-guides'),
             'wizard_note_stop' => __('This answer stops the guide. Continue to see why and what to do next.', 'modularity-guides'),
             'wizard_note_review' => __('This answer needs to be checked. Continue to see what is missing.', 'modularity-guides'),
+            // Used instead of the notes above when outcomes are hidden on the answers.
+            'wizard_note_chosen' => __('Continue when you are ready.', 'modularity-guides'),
             'wizard_tag_pass' => _x('Continue', 'answer outcome', 'modularity-guides'),
             'wizard_tag_stop' => _x('Stop', 'answer outcome', 'modularity-guides'),
             'wizard_tag_review' => _x('Check', 'answer outcome', 'modularity-guides'),

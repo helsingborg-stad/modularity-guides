@@ -183,7 +183,10 @@ export class GuideWizard {
 			return;
 		}
 
-		let text = this.strings[NOTE_KEY[this.answers.outcomeOf(index).outcome]] as string;
+		// With outcomes hidden, the note must not reveal what the answer leads to.
+		let text = this.strings.hideOutcomes
+			? this.strings.noteChosen
+			: (this.strings[NOTE_KEY[this.answers.outcomeOf(index).outcome]] as string);
 		if (!answered) {
 			text = this.answers.isSingleChoice(index) ? this.strings.chooseOne : this.strings.chooseMany;
 		} else if (!changed) {

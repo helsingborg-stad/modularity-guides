@@ -17,7 +17,7 @@ class ScriptStringsTest extends TestCase
         $lang = array_fill_keys([
             'wizard_summary', 'wizard_choose_one', 'wizard_choose_many', 'wizard_saved_answer', 'wizard_note_pass',
             'wizard_note_stop', 'wizard_note_review', 'wizard_your_answers', 'wizard_edit', 'wizard_not_answered',
-            'wizard_outcome_stop', 'wizard_outcome_review', 'wizard_created', 'wizard_download_done',
+            'wizard_outcome_stop', 'wizard_outcome_review', 'wizard_created', 'wizard_download_done', 'wizard_note_chosen',
         ], 'text');
         $lang['wizard_answered'] = ['singular' => '%s answered', 'plural' => '%s answered (many)'];
         $lang['wizard_remaining'] = ['singular' => '%s remains', 'plural' => '%s remain'];

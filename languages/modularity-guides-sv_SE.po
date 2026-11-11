@@ -65,7 +65,7 @@ msgstr "Ange en giltig E-post adress"
 msgid "Guide"
 msgstr "Guide"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:792
+#: source/php/AcfFields/php/modularity-guides-fields.php:813
 #: source/php/Module.php:23
 msgid "Guides"
 msgstr "Guider"
@@ -149,33 +149,33 @@ msgstr "Det här svaret ger ett stopp. Fortsätt för att se orsaken och nästa 
 msgid "This answer needs to be checked. Continue to see what is missing."
 msgstr "Det här svaret behöver kontrolleras. Fortsätt för att se vad som saknas."
 
-#: source/php/Helper/Lang.php:53
+#: source/php/Helper/Lang.php:55
 msgid "Help with the question"
 msgstr "Hjälp med frågan"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:420
-#: source/php/Helper/Lang.php:54
+#: source/php/AcfFields/php/modularity-guides-fields.php:441
+#: source/php/Helper/Lang.php:56
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: source/php/Helper/Lang.php:55
+#: source/php/Helper/Lang.php:57
 msgid "Your answers"
 msgstr "Dina svar"
 
-#: source/php/Helper/Lang.php:56
+#: source/php/Helper/Lang.php:58
 msgid "Edit"
 msgstr "Ändra"
 
-#: source/php/Helper/Lang.php:57
+#: source/php/Helper/Lang.php:59
 msgid "Not answered"
 msgstr "Inte besvarad"
 
-#: source/php/Helper/Lang.php:58
+#: source/php/Helper/Lang.php:60
 msgid "Stops the guide"
 msgstr "Stopp i guiden"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:616
-#: source/php/Helper/Lang.php:59
+#: source/php/AcfFields/php/modularity-guides-fields.php:637
+#: source/php/Helper/Lang.php:61
 msgid "Needs to be checked"
 msgstr "Behöver kontrolleras"
 
@@ -188,68 +188,68 @@ msgstr[0] "%s fråga återstår."
 msgstr[1] "%s frågor återstår."
 
 #. translators: %s: short title of the question where the guide stopped
-#: source/php/Helper/Lang.php:61
+#: source/php/Helper/Lang.php:63
 #, php-format
 msgid "The guide stopped at \"%s\". The other questions have not been assessed."
 msgstr "Guiden stannade vid \"%s\". Övriga frågor har inte bedömts."
 
-#: source/php/Helper/Lang.php:62
+#: source/php/Helper/Lang.php:64
 msgid "Print / save as PDF"
 msgstr "Skriv ut / spara PDF"
 
-#: source/php/Helper/Lang.php:63
+#: source/php/Helper/Lang.php:65
 msgid "Save answers as text"
 msgstr "Spara svar som text"
 
-#: source/php/Helper/Lang.php:64
+#: source/php/Helper/Lang.php:66
 msgid "Your answers have been saved as a text file."
 msgstr "Dina svar har sparats som en textfil."
 
-#: source/php/Helper/Lang.php:65
+#: source/php/Helper/Lang.php:67
 msgid "Start over"
 msgstr "Börja om"
 
-#: source/php/Helper/Lang.php:66
+#: source/php/Helper/Lang.php:68
 msgid "Do you want to start over?"
 msgstr "Vill du börja om?"
 
-#: source/php/Helper/Lang.php:67
+#: source/php/Helper/Lang.php:69
 msgid "Your answers will be cleared. Save the summary first if you want to keep it."
 msgstr "Dina svar rensas. Spara sammanfattningen först om du vill behålla den."
 
-#: source/php/Helper/Lang.php:68
+#: source/php/Helper/Lang.php:70
 msgid "Yes, start over"
 msgstr "Ja, börja om"
 
-#: source/php/Helper/Lang.php:69
+#: source/php/Helper/Lang.php:71
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: source/php/Helper/Lang.php:70
+#: source/php/Helper/Lang.php:72
 msgid "Created"
 msgstr "Skapad"
 
-#: source/php/Helper/Lang.php:80
+#: source/php/Helper/Lang.php:82
 msgid "You have answered all questions"
 msgstr "Du har svarat på alla frågor"
 
-#: source/php/Helper/Lang.php:81
+#: source/php/Helper/Lang.php:83
 msgid "Here is a summary of your answers and what you can do next."
 msgstr "Här är en sammanfattning av dina svar och vad du kan göra härnäst."
 
-#: source/php/Helper/Lang.php:82
+#: source/php/Helper/Lang.php:84
 msgid "The guide stops here"
 msgstr "Stopp i guiden"
 
-#: source/php/Helper/Lang.php:83
+#: source/php/Helper/Lang.php:85
 msgid "One of your answers does not meet a condition in the guide. Contact us for advice on how to proceed."
 msgstr "Ett av dina svar uppfyller inte ett villkor i guiden. Kontakta oss för rådgivning om hur du kan gå vidare."
 
-#: source/php/Helper/Lang.php:84
+#: source/php/Helper/Lang.php:86
 msgid "This needs to be checked"
 msgstr "Det här behöver kontrolleras"
 
-#: source/php/Helper/Lang.php:85
+#: source/php/Helper/Lang.php:87
 msgid "The guide cannot give a preliminary answer when information is unknown. Check the information and update your answer."
 msgstr "Guiden kan inte ge ett preliminärt svar när en uppgift är okänd. Kontrollera uppgiften och uppdatera ditt svar."
 
@@ -261,17 +261,17 @@ msgid_plural "%s questions answered"
 msgstr[0] "%s besvarad"
 msgstr[1] "%s besvarade"
 
-#: source/php/Helper/Lang.php:50
+#: source/php/Helper/Lang.php:52
 msgctxt "answer outcome"
 msgid "Continue"
 msgstr "Vidare"
 
-#: source/php/Helper/Lang.php:51
+#: source/php/Helper/Lang.php:53
 msgctxt "answer outcome"
 msgid "Stop"
 msgstr "Stopp"
 
-#: source/php/Helper/Lang.php:52
+#: source/php/Helper/Lang.php:54
 msgctxt "answer outcome"
 msgid "Check"
 msgstr "Kontroll"
@@ -308,150 +308,150 @@ msgstr "Text när ett svar behöver kontrolleras"
 msgid "For example: \"This is guidance, not a decision. Your answers are not saved.\""
 msgstr "Till exempel: \"Detta är vägledning, inte ett beslut. Dina svar sparas inte.\""
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:170
+#: source/php/AcfFields/php/modularity-guides-fields.php:191
 msgid "Steps"
 msgstr "Steg"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:186
+#: source/php/AcfFields/php/modularity-guides-fields.php:207
 msgid "Add"
 msgstr "Lägg till"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:191
-#: source/php/AcfFields/php/modularity-guides-fields.php:398
-#: source/php/AcfFields/php/modularity-guides-fields.php:693
-#: source/php/AcfFields/php/modularity-guides-fields.php:813
+#: source/php/AcfFields/php/modularity-guides-fields.php:212
+#: source/php/AcfFields/php/modularity-guides-fields.php:419
+#: source/php/AcfFields/php/modularity-guides-fields.php:714
+#: source/php/AcfFields/php/modularity-guides-fields.php:834
 msgid "Title"
 msgstr "Rubrik"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:214
+#: source/php/AcfFields/php/modularity-guides-fields.php:235
 msgid "Short title"
 msgstr "Kort rubrik"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:235
+#: source/php/AcfFields/php/modularity-guides-fields.php:256
 msgid "Icon"
 msgstr "Ikon"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:256
-#: source/php/AcfFields/php/modularity-guides-fields.php:580
+#: source/php/AcfFields/php/modularity-guides-fields.php:277
+#: source/php/AcfFields/php/modularity-guides-fields.php:601
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:277
+#: source/php/AcfFields/php/modularity-guides-fields.php:298
 msgid "Answers"
 msgstr "Svar"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:290
+#: source/php/AcfFields/php/modularity-guides-fields.php:311
 msgid "Several answers"
 msgstr "Flera svar"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:291
+#: source/php/AcfFields/php/modularity-guides-fields.php:312
 msgid "One answer"
 msgstr "Ett svar"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:301
+#: source/php/AcfFields/php/modularity-guides-fields.php:322
 msgid "Help text"
 msgstr "Hjälptext"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:322
+#: source/php/AcfFields/php/modularity-guides-fields.php:343
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:334
+#: source/php/AcfFields/php/modularity-guides-fields.php:355
 msgid "Add content"
 msgstr "Lägg till innehåll"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:341
-#: source/php/AcfFields/php/modularity-guides-fields.php:346
+#: source/php/AcfFields/php/modularity-guides-fields.php:362
+#: source/php/AcfFields/php/modularity-guides-fields.php:367
 msgid "Text"
 msgstr "Text"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:366
-#: source/php/AcfFields/php/modularity-guides-fields.php:460
-#: source/php/AcfFields/php/modularity-guides-fields.php:513
-#: source/php/AcfFields/php/modularity-guides-fields.php:757
-#: source/php/AcfFields/php/modularity-guides-fields.php:852
+#: source/php/AcfFields/php/modularity-guides-fields.php:387
+#: source/php/AcfFields/php/modularity-guides-fields.php:481
+#: source/php/AcfFields/php/modularity-guides-fields.php:534
+#: source/php/AcfFields/php/modularity-guides-fields.php:778
+#: source/php/AcfFields/php/modularity-guides-fields.php:873
 msgid "Toggle key"
 msgstr "Växlingsnyckel"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:393
+#: source/php/AcfFields/php/modularity-guides-fields.php:414
 msgid "Text: modal"
 msgstr "Text: modal"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:440
+#: source/php/AcfFields/php/modularity-guides-fields.php:461
 msgid "Modal content"
 msgstr "Innehåll i modal"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:487
-#: source/php/AcfFields/php/modularity-guides-fields.php:492
+#: source/php/AcfFields/php/modularity-guides-fields.php:508
+#: source/php/AcfFields/php/modularity-guides-fields.php:513
 msgid "Checkboxes"
 msgstr "Kryssrutor"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:508
+#: source/php/AcfFields/php/modularity-guides-fields.php:529
 msgid "Add checkbox"
 msgstr "Lägg till kryssruta"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:517
+#: source/php/AcfFields/php/modularity-guides-fields.php:538
 msgid "Unique key for this checkbox"
 msgstr "Unik nyckel för kryssrutan"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:536
+#: source/php/AcfFields/php/modularity-guides-fields.php:557
 msgid "Label"
 msgstr "Etikett"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:540
+#: source/php/AcfFields/php/modularity-guides-fields.php:561
 msgid "Checkbox label"
 msgstr "Kryssrutans text"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:559
+#: source/php/AcfFields/php/modularity-guides-fields.php:580
 msgid "Relate to (toggle key)"
 msgstr "Koppla till (växlingsnyckel)"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:601
+#: source/php/AcfFields/php/modularity-guides-fields.php:622
 msgid "Outcome"
 msgstr "Utfall"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:614
+#: source/php/AcfFields/php/modularity-guides-fields.php:635
 msgid "Continue to next question"
 msgstr "Gå vidare till nästa fråga"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:615
+#: source/php/AcfFields/php/modularity-guides-fields.php:636
 msgid "Stop the guide"
 msgstr "Stoppa guiden"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:631
+#: source/php/AcfFields/php/modularity-guides-fields.php:652
 msgid "Reason"
 msgstr "Orsak"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:635
+#: source/php/AcfFields/php/modularity-guides-fields.php:656
 msgid "Shown on the summary page when this answer stops the guide."
 msgstr "Visas på sammanfattningssidan när svaret stoppar guiden."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:667
+#: source/php/AcfFields/php/modularity-guides-fields.php:688
 msgid "Todo list"
 msgstr "Att göra-lista"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:672
+#: source/php/AcfFields/php/modularity-guides-fields.php:693
 msgid "List items"
 msgstr "Listpunkter"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:688
-#: source/php/AcfFields/php/modularity-guides-fields.php:808
+#: source/php/AcfFields/php/modularity-guides-fields.php:709
+#: source/php/AcfFields/php/modularity-guides-fields.php:829
 msgid "Add row"
 msgstr "Lägg till rad"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:716
+#: source/php/AcfFields/php/modularity-guides-fields.php:737
 msgid "Link text"
 msgstr "Länktext"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:739
+#: source/php/AcfFields/php/modularity-guides-fields.php:760
 msgid "Link url"
 msgstr "Länk-URL"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:787
+#: source/php/AcfFields/php/modularity-guides-fields.php:808
 msgid "Related guides"
 msgstr "Relaterade guider"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:834
+#: source/php/AcfFields/php/modularity-guides-fields.php:855
 msgid "Link URL"
 msgstr "Länk-URL"
 
@@ -459,30 +459,42 @@ msgstr "Länk-URL"
 msgid "Texts shown on the summary page. Leave empty to use the default texts."
 msgstr "Texter på sammanfattningssidan. Lämna tomt för att använda standardtexterna."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:218
+#: source/php/AcfFields/php/modularity-guides-fields.php:239
 msgid "Shown in the progress sidebar and summary. Defaults to the title."
 msgstr "Visas i förloppsmenyn och sammanfattningen. Om tomt används rubriken."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:239
+#: source/php/AcfFields/php/modularity-guides-fields.php:260
 msgid "Optional Material Symbols icon name, e.g. \"straighten\"."
 msgstr "Valfritt ikonnamn från Material Symbols, t.ex. \"straighten\"."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:260
+#: source/php/AcfFields/php/modularity-guides-fields.php:281
 msgid "Short hint shown under the question."
 msgstr "Kort tips som visas under frågan."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:281
+#: source/php/AcfFields/php/modularity-guides-fields.php:302
 msgid "Whether the visitor can choose one or several answers."
 msgstr "Om besökaren kan välja ett eller flera svar."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:305
+#: source/php/AcfFields/php/modularity-guides-fields.php:326
 msgid "Shown in an expandable \"Help\" section under the question."
 msgstr "Visas i en utfällbar \"Hjälp\"-sektion under frågan."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:584
+#: source/php/AcfFields/php/modularity-guides-fields.php:605
 msgid "Optional extra line under the label."
 msgstr "Valfri extra rad under texten."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:605
+#: source/php/AcfFields/php/modularity-guides-fields.php:626
 msgid "Continue goes to the next question. Stop and Check end the guide and show the summary."
 msgstr "Gå vidare leder till nästa fråga. Stoppa och Behöver kontrolleras avslutar guiden och visar sammanfattningen."
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:170
+msgid "Show outcomes on answers"
+msgstr "Visa utfall vid svaren"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:174
+msgid "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page."
+msgstr "Visar Vidare, Stopp och Kontroll bredvid svaren på frågor där ett svar kan avsluta guiden. Stäng av för att bara visa utfallet på sammanfattningssidan."
+
+#: source/php/Helper/Lang.php:51
+msgid "Continue when you are ready."
+msgstr "Fortsätt när du är klar."

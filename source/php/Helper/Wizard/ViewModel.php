@@ -45,11 +45,16 @@ class ViewModel
             $steps[] = $this->stepFactory->create((array) $step, (int) $index, $guideId);
         }
 
+        // Setting "Show outcomes on answers" (on by default, also for guides saved before it existed).
+        $showOutcomes = ($fields['show_outcome_tags'] ?? true) !== false;
         $questions = $this->addPresentation(
             array_values(array_filter($steps, static fn(array $step): bool => $step['hasOptions'])),
             $lang,
             $guideId,
         );
+        if (!$showOutcomes) {
+            $questions = array_map(static fn(array $question): array => [...$question, 'showTags' => false], $questions);
+        }
         $summaryPage = (array) ($fields['summary_page'] ?? []);
 
         return [
@@ -62,7 +67,7 @@ class ViewModel
             'summarySteps' => array_values(array_filter($steps, static fn(array $step): bool => !$step['hasOptions'])),
             'results' => $this->resultFactory->create($summaryPage, $lang),
             'notice' => trim((string) ($summaryPage['notice'] ?? '')),
-            'script' => $this->scriptStrings->create($questions, $lang),
+            'script' => [...$this->scriptStrings->create($questions, $lang), 'hideOutcomes' => !$showOutcomes],
         ];
     }
 

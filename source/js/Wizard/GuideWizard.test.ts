@@ -21,6 +21,8 @@ const strings: WizardStrings = {
 	outcomeReview: 'Check',
 	created: 'Created',
 	downloadDone: 'Downloaded',
+	noteChosen: 'Continue when ready',
+	hideOutcomes: false,
 };
 
 const option = (question: number, value: string, outcome: string, reason = '') =>
@@ -36,9 +38,9 @@ const question = (index: number, title: string, options: string) => `
 		<button data-js-guide-wizard-next disabled></button>
 	</div>`;
 
-function setup(): { root: HTMLElement; wizard: GuideWizard } {
+function setup(overrides: Partial<WizardStrings> = {}): { root: HTMLElement; wizard: GuideWizard } {
 	document.body.innerHTML = `
-		<div data-js-guide-wizard='${JSON.stringify(strings)}' data-js-guide-wizard-title="Test guide">
+		<div data-js-guide-wizard='${JSON.stringify({ ...strings, ...overrides })}' data-js-guide-wizard-title="Test guide">
 			<span data-js-guide-wizard-progress-position></span>
 			<span data-js-guide-wizard-progress-answered></span>
 			<div data-js-guide-wizard-progress><div></div></div>
@@ -139,6 +141,19 @@ describe('GuideWizard', () => {
 		expect(wizard.currentResult?.type).toBe('pass');
 		expect(root.querySelector<HTMLElement>('[data-js-guide-wizard-remaining]')?.hidden).toBe(true);
 		expect(root.querySelectorAll('.mod-guide-wizard__answer')).toHaveLength(2);
+	});
+
+	it('keeps the note neutral when outcomes are hidden', () => {
+		const { root, wizard } = setup({ hideOutcomes: true });
+
+		choose(root, 'large');
+		expect(text(root, 'note')).toBe('Continue when ready');
+		const step = root.querySelector('[data-js-guide-wizard-jump="0"]') as HTMLElement;
+		expect(step.classList.contains('is-stop')).toBe(false);
+		expect(step.classList.contains('is-pass')).toBe(true);
+		wizard.commit(0);
+
+		expect(wizard.currentResult?.type).toBe('stop');
 	});
 
 	it('does not jump to questions that have not been reached', () => {
