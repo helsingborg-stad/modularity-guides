@@ -10,7 +10,8 @@ class FieldTransform
 
     public function __construct(array $fields)
     {
-        $this->fields = $fields;
+        // "Show when" answers become toggle keys before anything uses them (view and e-mail).
+        $this->fields = ShowWhen::apply($fields);
 
         // Transform todo list items into groups based on title
         $todo = &$this->getTodo();

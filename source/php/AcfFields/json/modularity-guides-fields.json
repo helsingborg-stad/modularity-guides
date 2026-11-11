@@ -3,12 +3,12 @@
     "title": "Guide",
     "fields": [
         {
-            "key": "field_6912b1a0d0002",
-            "label": "Summary page",
-            "name": "summary_page",
+            "key": "field_6912b1a0d0040",
+            "label": "Questions",
+            "name": "",
             "aria-label": "",
-            "type": "group",
-            "instructions": "Texts shown on the summary page. Leave empty to use the default texts.",
+            "type": "tab",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,190 +16,29 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_6912b1a0d0003",
-                    "label": "Title when all questions are passed",
-                    "name": "pass_title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_6912b1a0d0004",
-                    "label": "Text when all questions are passed",
-                    "name": "pass_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 3,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_6912b1a0d0005",
-                    "label": "Title when an answer stops the guide",
-                    "name": "stop_title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_6912b1a0d0006",
-                    "label": "Text when an answer stops the guide",
-                    "name": "stop_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 3,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_6912b1a0d0007",
-                    "label": "Title when an answer needs to be checked",
-                    "name": "review_title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_6912b1a0d0008",
-                    "label": "Text when an answer needs to be checked",
-                    "name": "review_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 3,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_6912b1a0d0009",
-                    "label": "Notice",
-                    "name": "notice",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "For example: \"This is guidance, not a decision. Your answers are not saved.\"",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 2,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
-            "key": "field_6912b1a0d0030",
-            "label": "Show outcomes on answers",
-            "name": "show_outcome_tags",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "allow_in_bindings": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_57727933e3560",
-            "label": "Steps",
+            "label": "",
             "name": "steps",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
+            "collapsed": "field_577279cfb8810",
             "min": 1,
             "max": 0,
             "layout": "block",
-            "button_label": "Add",
+            "button_label": "Add question",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -223,6 +62,71 @@
                     "maxlength": "",
                     "readonly": 0,
                     "disabled": 0,
+                    "parent_repeater": "field_57727933e3560"
+                },
+                {
+                    "key": "field_6912b1a0d0013",
+                    "label": "Answers",
+                    "name": "selection_type",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "Whether the visitor can choose one or several answers.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "multiple": "Several answers",
+                        "single": "One answer"
+                    },
+                    "allow_null": 0,
+                    "default_value": "multiple",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "parent_repeater": "field_57727933e3560"
+                },
+                {
+                    "key": "field_6912b1a0d0044",
+                    "label": "Show advanced fields",
+                    "name": "show_advanced_fields",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Shows toggle keys and relations for the answers and content of this question. Most questions do not need them: use \"Show when\" instead.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "mod-guide-advanced-toggle",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_57727933e3560"
+                },
+                {
+                    "key": "field_6912b1a0d0054",
+                    "label": "More settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0,
                     "parent_repeater": "field_57727933e3560"
                 },
                 {
@@ -251,8 +155,8 @@
                     "label": "Icon",
                     "name": "icon",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Optional Material Symbols icon name, e.g. \"straighten\".",
+                    "type": "icon",
+                    "instructions": "Shown next to the question.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -261,10 +165,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
                     "placeholder": "",
-                    "prepend": "",
-                    "append": "",
                     "parent_repeater": "field_57727933e3560"
                 },
                 {
@@ -289,30 +190,6 @@
                     "parent_repeater": "field_57727933e3560"
                 },
                 {
-                    "key": "field_6912b1a0d0013",
-                    "label": "Answers",
-                    "name": "selection_type",
-                    "aria-label": "",
-                    "type": "button_group",
-                    "instructions": "Whether the visitor can choose one or several answers.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "multiple": "Several answers",
-                        "single": "One answer"
-                    },
-                    "allow_null": 0,
-                    "default_value": "multiple",
-                    "layout": "horizontal",
-                    "return_format": "value",
-                    "parent_repeater": "field_57727933e3560"
-                },
-                {
                     "key": "field_6912b1a0d0014",
                     "label": "Help text",
                     "name": "help",
@@ -334,8 +211,27 @@
                     "parent_repeater": "field_57727933e3560"
                 },
                 {
+                    "key": "field_6912b1a0d0055",
+                    "label": "",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 1,
+                    "parent_repeater": "field_57727933e3560"
+                },
+                {
                     "key": "field_57727e2129817",
-                    "label": "Content",
+                    "label": "Answers and content",
                     "name": "content",
                     "aria-label": "",
                     "type": "flexible_content",
@@ -347,14 +243,14 @@
                         "class": "",
                         "id": ""
                     },
-                    "button_label": "Add content",
+                    "button_label": "Add answers or content",
                     "min": 1,
                     "max": "",
                     "layouts": [
                         {
                             "key": "57727e2b2ea57",
                             "name": "text",
-                            "label": "Text",
+                            "label": "Tip or text",
                             "display": "block",
                             "sub_fields": [
                                 {
@@ -378,6 +274,32 @@
                                     "delay": 0
                                 },
                                 {
+                                    "key": "field_6912b1a0d0060",
+                                    "label": "Show when",
+                                    "name": "show_when",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Show when the visitor chooses any of these answers. Leave empty to always show.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": [],
+                                    "default_value": [],
+                                    "return_format": "value",
+                                    "multiple": 1,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "allow_in_bindings": 0
+                                },
+                                {
                                     "key": "field_57736cb2f03e9",
                                     "label": "Toggle key",
                                     "name": "toggle_key",
@@ -388,7 +310,7 @@
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
-                                        "class": "",
+                                        "class": "mod-guide-advanced",
                                         "id": ""
                                     },
                                     "default_value": "",
@@ -482,7 +404,7 @@
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
-                                        "class": "",
+                                        "class": "mod-guide-advanced",
                                         "id": ""
                                     },
                                     "default_value": "",
@@ -492,6 +414,32 @@
                                     "maxlength": "",
                                     "readonly": 0,
                                     "disabled": 0
+                                },
+                                {
+                                    "key": "field_6912b1a0d0061",
+                                    "label": "Show when",
+                                    "name": "show_when",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Show when the visitor chooses any of these answers. Leave empty to always show.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": [],
+                                    "default_value": [],
+                                    "return_format": "value",
+                                    "multiple": 1,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "allow_in_bindings": 0
                                 }
                             ],
                             "min": "",
@@ -500,12 +448,12 @@
                         {
                             "key": "57727e4829819",
                             "name": "checkboxes",
-                            "label": "Checkboxes",
+                            "label": "Answer options",
                             "display": "block",
                             "sub_fields": [
                                 {
                                     "key": "field_57727e502981a",
-                                    "label": "Checkboxes",
+                                    "label": "Answers",
                                     "name": "checkboxes",
                                     "aria-label": "",
                                     "type": "repeater",
@@ -520,44 +468,21 @@
                                     "collapsed": "",
                                     "min": 1,
                                     "max": 0,
-                                    "layout": "table",
-                                    "button_label": "Add checkbox",
+                                    "layout": "block",
+                                    "button_label": "Add answer",
                                     "rows_per_page": 20,
                                     "sub_fields": [
                                         {
-                                            "key": "field_57727e6d2981b",
-                                            "label": "Toggle key",
-                                            "name": "key",
-                                            "aria-label": "",
-                                            "type": "text",
-                                            "instructions": "Unique key for this checkbox",
-                                            "required": 1,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "15",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "maxlength": "",
-                                            "readonly": 0,
-                                            "disabled": 0,
-                                            "parent_repeater": "field_57727e502981a"
-                                        },
-                                        {
                                             "key": "field_57727e8c2981c",
-                                            "label": "Label",
+                                            "label": "Answer",
                                             "name": "label",
                                             "aria-label": "",
                                             "type": "text",
-                                            "instructions": "Checkbox label",
+                                            "instructions": "",
                                             "required": 1,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "25",
+                                                "width": "60",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -568,27 +493,6 @@
                                             "maxlength": "",
                                             "readonly": 0,
                                             "disabled": 0,
-                                            "parent_repeater": "field_57727e502981a"
-                                        },
-                                        {
-                                            "key": "field_57d280f7e9dee",
-                                            "label": "Relate to (toggle key)",
-                                            "name": "relate_to",
-                                            "aria-label": "",
-                                            "type": "text",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "12",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "maxlength": "",
                                             "parent_repeater": "field_57727e502981a"
                                         },
                                         {
@@ -597,11 +501,11 @@
                                             "name": "description",
                                             "aria-label": "",
                                             "type": "text",
-                                            "instructions": "Optional extra line under the label.",
+                                            "instructions": "Optional extra line under the answer.",
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "15",
+                                                "width": "40",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -622,7 +526,7 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "13",
+                                                "width": "40",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -660,7 +564,7 @@
                                                 ]
                                             ],
                                             "wrapper": {
-                                                "width": "20",
+                                                "width": "60",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -669,6 +573,50 @@
                                             "default_value": "",
                                             "maxlength": "",
                                             "placeholder": "",
+                                            "parent_repeater": "field_57727e502981a"
+                                        },
+                                        {
+                                            "key": "field_57727e6d2981b",
+                                            "label": "Toggle key",
+                                            "name": "key",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "Created automatically when empty.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "mod-guide-advanced",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": "",
+                                            "readonly": 0,
+                                            "disabled": 0,
+                                            "parent_repeater": "field_57727e502981a"
+                                        },
+                                        {
+                                            "key": "field_57d280f7e9dee",
+                                            "label": "Relate to (toggle key)",
+                                            "name": "relate_to",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "mod-guide-advanced",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": "",
                                             "parent_repeater": "field_57727e502981a"
                                         }
                                     ]
@@ -700,21 +648,21 @@
                                     "collapsed": "",
                                     "min": 1,
                                     "max": 0,
-                                    "layout": "table",
+                                    "layout": "block",
                                     "button_label": "Add row",
                                     "rows_per_page": 20,
                                     "sub_fields": [
                                         {
                                             "key": "field_577370aca7be8",
-                                            "label": "Title",
+                                            "label": "Group",
                                             "name": "title",
                                             "aria-label": "",
                                             "type": "text",
-                                            "instructions": "",
+                                            "instructions": "Items with the same group are listed together.",
                                             "required": 1,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "30",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -737,7 +685,7 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "40",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -760,12 +708,39 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "30",
                                                 "class": "",
                                                 "id": ""
                                             },
                                             "default_value": "",
                                             "placeholder": "",
+                                            "parent_repeater": "field_577370a3a7be7"
+                                        },
+                                        {
+                                            "key": "field_6912b1a0d0062",
+                                            "label": "Show when",
+                                            "name": "show_when",
+                                            "aria-label": "",
+                                            "type": "select",
+                                            "instructions": "Show when the visitor chooses any of these answers. Leave empty to always show.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": [],
+                                            "default_value": [],
+                                            "return_format": "value",
+                                            "multiple": 1,
+                                            "allow_null": 1,
+                                            "ui": 1,
+                                            "ajax": 0,
+                                            "placeholder": "",
+                                            "create_options": 0,
+                                            "save_options": 0,
+                                            "allow_in_bindings": 0,
                                             "parent_repeater": "field_577370a3a7be7"
                                         },
                                         {
@@ -779,7 +754,7 @@
                                             "conditional_logic": 0,
                                             "wrapper": {
                                                 "width": "",
-                                                "class": "",
+                                                "class": "mod-guide-advanced",
                                                 "id": ""
                                             },
                                             "default_value": "",
@@ -820,7 +795,7 @@
                                     "collapsed": "",
                                     "min": 1,
                                     "max": 0,
-                                    "layout": "table",
+                                    "layout": "block",
                                     "button_label": "Add row",
                                     "rows_per_page": 20,
                                     "sub_fields": [
@@ -834,7 +809,7 @@
                                             "required": 1,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "50",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -855,12 +830,39 @@
                                             "required": 1,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "50",
                                                 "class": "",
                                                 "id": ""
                                             },
                                             "default_value": "",
                                             "placeholder": "",
+                                            "parent_repeater": "field_57d653cf46a7d"
+                                        },
+                                        {
+                                            "key": "field_6912b1a0d0063",
+                                            "label": "Show when",
+                                            "name": "show_when",
+                                            "aria-label": "",
+                                            "type": "select",
+                                            "instructions": "Show when the visitor chooses any of these answers. Leave empty to always show.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": [],
+                                            "default_value": [],
+                                            "return_format": "value",
+                                            "multiple": 1,
+                                            "allow_null": 1,
+                                            "ui": 1,
+                                            "ajax": 0,
+                                            "placeholder": "",
+                                            "create_options": 0,
+                                            "save_options": 0,
+                                            "allow_in_bindings": 0,
                                             "parent_repeater": "field_57d653cf46a7d"
                                         },
                                         {
@@ -874,7 +876,7 @@
                                             "conditional_logic": 0,
                                             "wrapper": {
                                                 "width": "",
-                                                "class": "",
+                                                "class": "mod-guide-advanced",
                                                 "id": ""
                                             },
                                             "default_value": "",
@@ -894,6 +896,293 @@
                     "parent_repeater": "field_57727933e3560"
                 }
             ]
+        },
+        {
+            "key": "field_6912b1a0d0041",
+            "label": "Summary page",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6912b1a0d0002",
+            "label": "Texts",
+            "name": "summary_page",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Texts shown on the summary page. Leave empty to use the default texts.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6912b1a0d0050",
+                    "label": "All questions passed",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6912b1a0d0003",
+                    "label": "Title",
+                    "name": "pass_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6912b1a0d0004",
+                    "label": "Text",
+                    "name": "pass_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6912b1a0d0051",
+                    "label": "An answer stops the guide",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6912b1a0d0005",
+                    "label": "Title",
+                    "name": "stop_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6912b1a0d0006",
+                    "label": "Text",
+                    "name": "stop_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6912b1a0d0052",
+                    "label": "An answer needs to be checked",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6912b1a0d0007",
+                    "label": "Title",
+                    "name": "review_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6912b1a0d0008",
+                    "label": "Text",
+                    "name": "review_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6912b1a0d0053",
+                    "label": "",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 1
+                },
+                {
+                    "key": "field_6912b1a0d0009",
+                    "label": "Notice",
+                    "name": "notice",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "For example: \"This is guidance, not a decision. Your answers are not saved.\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_6912b1a0d0042",
+            "label": "Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6912b1a0d0030",
+            "label": "Show outcomes on answers",
+            "name": "show_outcome_tags",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [

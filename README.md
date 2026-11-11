@@ -28,6 +28,21 @@ Guides are shown **step by step**: one question at a time, with a progress sideb
   Visitors can edit answers, print/save as PDF, save their answers as a text file or start over.
   Nothing is sent or stored.
 
+## Editing a guide
+
+The edit screen has three tabs: **Questions**, **Summary page** and **Settings**.
+
+- Questions start collapsed (showing their title). Short title, icon, description and help text are
+  under *More settings*.
+- Answers are added with *Answers and content → Answer options*.
+- *Show when* on tips, modal texts, todo items and related guides lists the guide's answers: the
+  content is shown when the visitor chooses any of them. It is stored as toggle keys, so the toggle
+  engine and the e-mail export work as before. The list is filled from the saved guide, so save
+  once after adding new answers.
+- Answers get a toggle key automatically when it is empty. A question's toggle keys, relations and
+  the old toggle key fields are only shown when its *Show advanced fields* switch is on (for AND/NOT
+  expressions such as `a+b` or `a-b`). They are hidden visually, so their values are always saved.
+
 ## Migrating from the accordion mode
 
 Earlier versions showed guides as an accordion. Existing guides work in the step by step mode
