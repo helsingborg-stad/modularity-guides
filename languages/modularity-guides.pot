@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Kristoffer Svanmark
+# Copyright (C) 2026 Kristoffer Svanmark
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Guides 4.0.4\n"
+"Project-Id-Version: Modularity Guides 5.0.16\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-guides\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-20T10:54:29+00:00\n"
+"POT-Creation-Date: 2026-11-11T07:11:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
@@ -39,71 +39,241 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#: source/php/App.php:36
-#: source/php/Helper/Lang.php:15
-msgid "Your checklist"
-msgstr ""
-
-#: source/php/Helper/Lang.php:10
+#: source/php/Helper/Lang.php:12
 msgid "Notice"
 msgstr ""
 
-#: source/php/Helper/Lang.php:11
+#: source/php/Helper/Lang.php:13
 msgid "Send"
 msgstr ""
 
-#: source/php/Helper/Lang.php:12
+#: source/php/Helper/Lang.php:14
 msgid "Email"
 msgstr ""
 
-#: source/php/Helper/Lang.php:13
+#: source/php/Helper/Lang.php:15
 msgid "Send todo-list as email"
 msgstr ""
 
-#: source/php/Helper/Lang.php:14
+#: source/php/Helper/Lang.php:16
 msgid "Send as email"
 msgstr ""
 
-#: source/php/Helper/Lang.php:16
-msgid "You need to add a valid E-mail!"
-msgstr ""
-
 #: source/php/Helper/Lang.php:17
-msgid "Email was sent"
+msgid "Your checklist"
 msgstr ""
 
 #: source/php/Helper/Lang.php:18
-msgid "The message can't be sent right now. Please try again later."
+msgid "You need to add a valid E-mail!"
 msgstr ""
 
 #: source/php/Helper/Lang.php:19
-msgid "Hi, here's your requested checlist, enjoy!"
+msgid "Email was sent"
 msgstr ""
 
 #: source/php/Helper/Lang.php:20
-msgid "Previous"
+msgid "The message can't be sent right now. Please try again later."
 msgstr ""
 
 #: source/php/Helper/Lang.php:21
-msgid "Next"
+msgid "Hi, here's your requested checlist, enjoy!"
 msgstr ""
 
 #: source/php/Helper/Lang.php:22
-msgid "required"
+msgid "Previous"
 msgstr ""
 
 #: source/php/Helper/Lang.php:23
+msgid "Next"
+msgstr ""
+
+#: source/php/Helper/Lang.php:24
+msgid "required"
+msgstr ""
+
+#: source/php/Helper/Lang.php:25
 msgid "Read more"
 msgstr ""
 
-#: source/php/Module.php:19
+#: source/php/Helper/Lang.php:26
+msgid "Your progress through the guide"
+msgstr ""
+
+#. translators: 1: current question number, 2: number of questions
+#: source/php/Helper/Lang.php:28
+#, php-format
+msgid "Question %1$s of %2$s"
+msgstr ""
+
+#. translators: %s: number of answered questions
+#: source/php/Helper/Lang.php:30
+#, php-format
+msgid "%s question answered"
+msgid_plural "%s questions answered"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: number of questions left
+#: source/php/Helper/Lang.php:32
+#, php-format
+msgid "%s question remains."
+msgid_plural "%s questions remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#: source/php/Helper/Lang.php:33
+msgid "Continue"
+msgstr ""
+
+#: source/php/Helper/Lang.php:34
+msgid "Back"
+msgstr ""
+
+#: source/php/Helper/Lang.php:35
+msgid "Show summary"
+msgstr ""
+
+#: source/php/Helper/Lang.php:36
+msgid "Choose an answer to continue."
+msgstr ""
+
+#: source/php/Helper/Lang.php:37
+msgid "Choose one or more answers to continue."
+msgstr ""
+
+#: source/php/Helper/Lang.php:38
+msgid "Your saved answer is selected. You can choose another."
+msgstr ""
+
+#: source/php/Helper/Lang.php:39
+msgid "Your answer takes you further in the guide."
+msgstr ""
+
+#: source/php/Helper/Lang.php:40
+msgid "This answer stops the guide. Continue to see why and what to do next."
+msgstr ""
+
+#: source/php/Helper/Lang.php:41
+msgid "This answer needs to be checked. Continue to see what is missing."
+msgstr ""
+
+#: source/php/Helper/Lang.php:42
+msgctxt "answer outcome"
+msgid "Continue"
+msgstr ""
+
+#: source/php/Helper/Lang.php:43
+msgctxt "answer outcome"
+msgid "Stop"
+msgstr ""
+
+#: source/php/Helper/Lang.php:44
+msgctxt "answer outcome"
+msgid "Check"
+msgstr ""
+
+#: source/php/Helper/Lang.php:45
+msgid "Help with the question"
+msgstr ""
+
+#: source/php/Helper/Lang.php:46
+msgid "Summary"
+msgstr ""
+
+#: source/php/Helper/Lang.php:47
+msgid "Your answers"
+msgstr ""
+
+#: source/php/Helper/Lang.php:48
+msgid "Edit"
+msgstr ""
+
+#: source/php/Helper/Lang.php:49
+msgid "Not answered"
+msgstr ""
+
+#: source/php/Helper/Lang.php:50
+msgid "Stops the guide"
+msgstr ""
+
+#: source/php/Helper/Lang.php:51
+msgid "Needs to be checked"
+msgstr ""
+
+#. translators: %s: short title of the question where the guide stopped
+#: source/php/Helper/Lang.php:53
+#, php-format
+msgid "The guide stopped at \"%s\". The other questions have not been assessed."
+msgstr ""
+
+#: source/php/Helper/Lang.php:54
+msgid "Print / save as PDF"
+msgstr ""
+
+#: source/php/Helper/Lang.php:55
+msgid "Save answers as text"
+msgstr ""
+
+#: source/php/Helper/Lang.php:56
+msgid "Your answers have been saved as a text file."
+msgstr ""
+
+#: source/php/Helper/Lang.php:57
+msgid "Start over"
+msgstr ""
+
+#: source/php/Helper/Lang.php:58
+msgid "Do you want to start over?"
+msgstr ""
+
+#: source/php/Helper/Lang.php:59
+msgid "Your answers will be cleared. Save the summary first if you want to keep it."
+msgstr ""
+
+#: source/php/Helper/Lang.php:60
+msgid "Yes, start over"
+msgstr ""
+
+#: source/php/Helper/Lang.php:61
+msgid "Cancel"
+msgstr ""
+
+#: source/php/Helper/Lang.php:62
+msgid "Created"
+msgstr ""
+
+#: source/php/Helper/Lang.php:63
+msgid "You have answered all questions"
+msgstr ""
+
+#: source/php/Helper/Lang.php:64
+msgid "Here is a summary of your answers and what you can do next."
+msgstr ""
+
+#: source/php/Helper/Lang.php:65
+msgid "The guide stops here"
+msgstr ""
+
+#: source/php/Helper/Lang.php:66
+msgid "One of your answers does not meet a condition in the guide. Contact us for advice on how to proceed."
+msgstr ""
+
+#: source/php/Helper/Lang.php:67
+msgid "This needs to be checked"
+msgstr ""
+
+#: source/php/Helper/Lang.php:68
+msgid "The guide cannot give a preliminary answer when information is unknown. Check the information and update your answer."
+msgstr ""
+
+#: source/php/Module.php:22
 msgid "Guide"
 msgstr ""
 
-#: source/php/Module.php:20
+#: source/php/Module.php:23
 msgid "Guides"
 msgstr ""
 
-#: source/php/Module.php:21
+#: source/php/Module.php:24
 msgid "A step by step guide"
 msgstr ""

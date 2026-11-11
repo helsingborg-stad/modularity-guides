@@ -1,17 +1,11 @@
-@php
-    $j = 1;
-    $questions = $wizard['questions'];
-    $total = count($questions);
-    $guideId = 'mod-guide-wizard-' . $id;
-    $restartModalId = $guideId . '-restart';
-    $noticeTypes = ['pass' => 'success', 'stop' => 'danger', 'review' => 'warning'];
-    $noticeIcons = ['pass' => 'check_circle', 'stop' => 'cancel', 'review' => 'help'];
-@endphp
+{{-- Step by step (wizard) display mode. All data is prepared in Helper\Wizard. --}}
+@php $j = 1; @endphp
 
-<div class="mod-guide-wizard js-modularity-guide js-mod-guide-wizard"
-    id="{{ $guideId }}"
-    data-js-modularity-guide-post-url="{{ $apiUrl }}"
-    data-guide-title="{{ wp_strip_all_tags((string) ($postTitle ?? '')) }}">
+<div class="mod-guide-wizard js-modularity-guide"
+    id="{{ $wizard['id'] }}"
+    data-js-guide-wizard="{{ json_encode($wizard['script']) }}"
+    data-js-guide-wizard-title="{{ $wizard['plainTitle'] }}"
+    data-js-modularity-guide-post-url="{{ $apiUrl }}">
 
     <div class="mod-guide-wizard__layout">
         {{-- Sidebar with progress and steps --}}
@@ -22,26 +16,31 @@
                 @endtypography
             @endif
             <div class="mod-guide-wizard__progress-label u-display--flex u-justify-content--space-between u-gap--1 u-margin__bottom--1">
-                <span data-wizard-progress-position></span>
-                <span data-wizard-progress-answered></span>
+                <span data-js-guide-wizard-progress-position></span>
+                <span data-js-guide-wizard-progress-answered></span>
             </div>
             @progressBar([
                 'value' => 0,
                 'classList' => ['mod-guide-wizard__progress'],
-                'attributeList' => ['data-wizard-progress' => '', 'aria-hidden' => 'true']
+                'attributeList' => ['data-js-guide-wizard-progress' => '', 'aria-hidden' => 'true']
             ])
             @endprogressBar
             <ol class="mod-guide-wizard__steps">
-                @foreach ($questions as $index => $question)
+                @foreach ($wizard['questions'] as $question)
                     <li>
-                        <button type="button" class="mod-guide-wizard__step" data-wizard-jump="{{ $index }}" disabled>
-                            <span class="mod-guide-wizard__step-dot" data-wizard-step-dot>{{ $index + 1 }}</span>
+                        <button type="button" class="mod-guide-wizard__step" data-js-guide-wizard-jump="{{ $question['index'] }}" disabled>
+                            <span class="mod-guide-wizard__step-dot" aria-hidden="true">
+                                <span class="mod-guide-wizard__step-number">{{ $question['index'] + 1 }}</span>
+                                @icon(['icon' => 'check', 'size' => 'sm', 'classList' => ['mod-guide-wizard__step-icon', 'mod-guide-wizard__step-icon--pass']])@endicon
+                                @icon(['icon' => 'close', 'size' => 'sm', 'classList' => ['mod-guide-wizard__step-icon', 'mod-guide-wizard__step-icon--stop']])@endicon
+                                @icon(['icon' => 'question_mark', 'size' => 'sm', 'classList' => ['mod-guide-wizard__step-icon', 'mod-guide-wizard__step-icon--review']])@endicon
+                            </span>
                             <span>{{ $question['shortTitle'] }}</span>
                         </button>
                     </li>
                 @endforeach
                 <li>
-                    <button type="button" class="mod-guide-wizard__step" data-wizard-jump="summary" disabled>
+                    <button type="button" class="mod-guide-wizard__step" data-js-guide-wizard-jump="summary" disabled>
                         <span class="mod-guide-wizard__step-dot" aria-hidden="true">
                             @icon(['icon' => 'checklist', 'size' => 'sm'])@endicon
                         </span>
@@ -53,25 +52,13 @@
 
         <div class="mod-guide-wizard__main">
             {{-- Questions --}}
-            @foreach ($questions as $index => $question)
-                @php
-                    $questionAttributes = [
-                        'data-wizard-question' => $index,
-                        'data-wizard-type' => $question['inputType'],
-                        'data-wizard-short-title' => $question['shortTitle'],
-                        'role' => 'group',
-                        'aria-labelledby' => $guideId . '-q' . $index,
-                    ];
-                    if ($index > 0) {
-                        $questionAttributes['hidden'] = 'hidden';
-                    }
-                @endphp
+            @foreach ($wizard['questions'] as $question)
                 @paper([
                     'classList' => ['mod-guide-wizard__question'],
-                    'attributeList' => $questionAttributes
+                    'attributeList' => $question['attributes']
                 ])
                     @typography(['element' => 'p', 'variant' => 'meta', 'classList' => ['mod-guide-wizard__eyebrow', 'u-margin__bottom--2']])
-                        {{ sprintf($lang['wizard_question_x_of_y'], $index + 1, $total) }} · {{ $question['shortTitle'] }}
+                        {{ $question['eyebrow'] }}
                     @endtypography
 
                     <div class="mod-guide-wizard__head u-display--flex u-align-items--center u-gap--3 u-margin__bottom--3">
@@ -79,60 +66,39 @@
                             @typography([
                                 'element' => 'h2',
                                 'variant' => 'h2',
-                                'id' => $guideId . '-q' . $index,
+                                'id' => $question['titleId'],
                                 'classList' => ['mod-guide-wizard__title'],
                                 'attributeList' => ['tabindex' => '-1']
                             ])
                                 {{ $question['title'] }}
                             @endtypography
-                            @if (!empty($question['description']))
-                                @typography([
-                                    'id' => $guideId . '-q' . $index . '-hint',
-                                    'classList' => ['mod-guide-wizard__hint', 'u-margin__bottom--0']
-                                ])
+                            @if ($question['hintId'])
+                                @typography(['id' => $question['hintId'], 'classList' => ['mod-guide-wizard__hint', 'u-margin__bottom--0']])
                                     {{ $question['description'] }}
                                 @endtypography
                             @endif
                         </div>
-                        @if (!empty($question['icon']))
+                        @if ($question['icon'])
                             <div class="mod-guide-wizard__art" aria-hidden="true">
                                 @icon(['icon' => $question['icon'], 'size' => 'xl'])@endicon
                             </div>
                         @endif
                     </div>
 
-                    <div class="mod-guide-wizard__form" data-wizard-form>
+                    <div class="mod-guide-wizard__form">
                         @foreach ($question['content'] as $content)
                             @if ($content['acf_fc_layout'] === 'checkboxes')
-                                <fieldset class="mod-guide-wizard__options"
-                                    @if (!empty($question['description'])) aria-describedby="{{ $guideId }}-q{{ $index }}-hint" @endif>
+                                <fieldset class="mod-guide-wizard__options" @if ($question['hintId']) aria-describedby="{{ $question['hintId'] }}" @endif>
                                     <legend class="u-sr__only">{{ $question['title'] }}</legend>
                                     @foreach ($content['wizard_options'] as $option)
-                                        @php
-                                            $optionAttributes = [
-                                                'data-wizard-outcome' => $option['outcome'],
-                                                'data-wizard-reason' => $option['reason'],
-                                                'data-wizard-label' => $option['label'],
-                                            ];
-                                            if ($option['toggleKey'] !== '') {
-                                                $optionAttributes['data-mod-guide-toggle-key'] = $option['toggleKey'];
-                                            }
-                                            if ($option['relation'] !== '') {
-                                                $optionAttributes['data-mod-guide-relation'] = $option['relation'];
-                                            }
-                                            $optionLabel = e($option['label']);
-                                            if (!empty($option['description'])) {
-                                                $optionLabel .= '<span class="mod-guide-wizard__option-desc">' . e($option['description']) . '</span>';
-                                            }
-                                        @endphp
                                         <div class="mod-guide-wizard__option">
                                             @option([
-                                                'type' => $question['inputType'],
-                                                'id' => $guideId . '-' . $option['id'],
-                                                'name' => $guideId . '-q' . $index,
+                                                'type' => $option['type'],
+                                                'id' => $option['id'],
+                                                'name' => $option['name'],
                                                 'value' => $option['value'],
-                                                'label' => $optionLabel,
-                                                'attributeList' => $optionAttributes
+                                                'label' => $option['labelHtml'],
+                                                'attributeList' => $option['attributes']
                                             ])
                                             @endoption
                                             @if ($question['showTags'])
@@ -147,7 +113,7 @@
                             @php $j++; @endphp
                         @endforeach
 
-                        <p class="mod-guide-wizard__note u-margin__top--2 u-margin__bottom--0" data-wizard-note role="status" aria-live="polite"></p>
+                        <p class="mod-guide-wizard__note u-margin__top--2 u-margin__bottom--0" data-js-guide-wizard-note role="status" aria-live="polite"></p>
 
                         <div class="mod-guide-wizard__actions u-display--flex u-justify-content--space-between u-align-items--center u-gap--2 u-margin__top--2">
                             @button([
@@ -156,23 +122,23 @@
                                 'reversePositions' => true,
                                 'style' => 'basic',
                                 'type' => 'button',
-                                'classList' => ['mod-guide-wizard__back', $index === 0 ? 'u-visibility--hidden' : ''],
-                                'attributeList' => ['data-wizard-back' => '']
+                                'classList' => $question['isFirst'] ? ['u-visibility--hidden'] : [],
+                                'attributeList' => ['data-js-guide-wizard-back' => '']
                             ])
                             @endbutton
                             @button([
-                                'text' => $index === $total - 1 ? $lang['wizard_show_summary'] : $lang['wizard_continue'],
+                                'text' => $question['nextLabel'],
                                 'icon' => 'arrow_forward',
                                 'style' => 'filled',
                                 'color' => 'primary',
                                 'type' => 'button',
-                                'attributeList' => ['data-wizard-next' => '', 'disabled' => 'disabled']
+                                'attributeList' => ['data-js-guide-wizard-next' => '', 'disabled' => 'disabled']
                             ])
                             @endbutton
                         </div>
                     </div>
 
-                    @if (!empty($question['help']))
+                    @if ($question['help'])
                         @accordion(['classList' => ['mod-guide-wizard__help', 'u-margin__top--3']])
                             @accordion__item(['heading' => $lang['wizard_help']])
                                 <div class="c-article">{!! $question['help'] !!}</div>
@@ -183,25 +149,16 @@
             @endforeach
 
             {{-- Summary --}}
-            <section class="mod-guide-wizard__result" data-wizard-result hidden aria-labelledby="{{ $guideId }}-result-title">
-                <h2 class="u-sr__only" id="{{ $guideId }}-result-title">{{ $lang['wizard_summary'] }}</h2>
+            <section class="mod-guide-wizard__result" data-js-guide-wizard-result hidden aria-labelledby="{{ $wizard['id'] }}-result-title">
+                <h2 class="u-sr__only" id="{{ $wizard['id'] }}-result-title">{{ $lang['wizard_summary'] }}</h2>
 
-                @foreach ($wizard['results'] as $type => $result)
+                @foreach ($wizard['results'] as $result)
                     @notice([
-                        'type' => $noticeTypes[$type],
-                        'message' => [
-                            'title' => $result['title'],
-                            'text' => '<strong class="mod-guide-wizard__hero-reason" data-wizard-reason hidden></strong>'
-                                . '<span data-wizard-hero-text>' . e($result['text']) . '</span>',
-                        ],
-                        'icon' => ['icon' => $noticeIcons[$type], 'size' => 'lg'],
+                        'type' => $result['noticeType'],
+                        'message' => ['title' => $result['title'], 'text' => $result['messageHtml']],
+                        'icon' => ['icon' => $result['icon'], 'size' => 'lg'],
                         'classList' => ['mod-guide-wizard__hero'],
-                        'attributeList' => [
-                            'data-wizard-hero' => $type,
-                            'data-wizard-hero-title' => '',
-                            'tabindex' => '-1',
-                            'hidden' => 'hidden',
-                        ]
+                        'attributeList' => ['data-js-guide-wizard-hero' => $result['type'], 'tabindex' => '-1', 'hidden' => 'hidden']
                     ])
                     @endnotice
                 @endforeach
@@ -214,7 +171,7 @@
                         'style' => 'filled',
                         'color' => 'primary',
                         'type' => 'button',
-                        'attributeList' => ['data-wizard-print' => '']
+                        'attributeList' => ['data-js-guide-wizard-print' => '']
                     ])
                     @endbutton
                     @button([
@@ -223,7 +180,7 @@
                         'reversePositions' => true,
                         'style' => 'outlined',
                         'type' => 'button',
-                        'attributeList' => ['data-wizard-download' => '']
+                        'attributeList' => ['data-js-guide-wizard-download' => '']
                     ])
                     @endbutton
                     @button([
@@ -232,36 +189,36 @@
                         'reversePositions' => true,
                         'style' => 'basic',
                         'type' => 'button',
-                        'attributeList' => ['data-open' => $restartModalId]
+                        'attributeList' => ['data-open' => $wizard['restartModalId']]
                     ])
                     @endbutton
                 </div>
 
                 @notice([
                     'type' => 'warning',
-                    'message' => ['text' => '<span data-wizard-remaining-text></span>'],
+                    'message' => ['text' => '<span data-js-guide-wizard-remaining-text></span>'],
                     'icon' => ['icon' => 'info', 'size' => 'md'],
-                    'classList' => ['mod-guide-wizard__remaining', 'u-margin__bottom--3'],
-                    'attributeList' => ['data-wizard-remaining' => '', 'hidden' => 'hidden']
+                    'classList' => ['u-margin__bottom--3'],
+                    'attributeList' => ['data-js-guide-wizard-remaining' => '', 'hidden' => 'hidden']
                 ])
                 @endnotice
 
                 <div class="mod-guide-wizard__result-grid u-margin__top--3 @if (empty($wizard['summarySteps'])) mod-guide-wizard__result-grid--split @endif">
-                    @paper(['classList' => ['mod-guide-wizard__panel']])
+                    @paper(['classList' => ['mod-guide-wizard__panel'], 'attributeList' => ['data-js-guide-wizard-panel' => 'answers']])
                         @typography(['element' => 'h3', 'variant' => 'h3', 'classList' => ['u-margin__bottom--2']])
                             {{ $lang['wizard_your_answers'] }}
                         @endtypography
-                        <dl class="mod-guide-wizard__answers" data-wizard-answers></dl>
-                        @typography(['variant' => 'meta', 'classList' => ['mod-guide-wizard__meta', 'u-margin__top--2', 'u-margin__bottom--0'], 'attributeList' => ['data-wizard-created' => '']])
+                        <dl class="mod-guide-wizard__answers" data-js-guide-wizard-answers></dl>
+                        @typography(['variant' => 'meta', 'classList' => ['u-margin__top--2', 'u-margin__bottom--0'], 'attributeList' => ['data-js-guide-wizard-created' => '']])
                         @endtypography
                     @endpaper
 
                     @foreach ($wizard['summarySteps'] as $step)
-                        @paper(['classList' => ['mod-guide-wizard__panel']])
+                        @paper(['classList' => ['mod-guide-wizard__panel'], 'attributeList' => ['data-js-guide-wizard-panel' => 'content']])
                             @typography(['element' => 'h3', 'variant' => 'h3', 'classList' => ['u-margin__bottom--2']])
                                 {{ $step['title'] }}
                             @endtypography
-                            @if (!empty($step['description']))
+                            @if ($step['description'])
                                 @typography(['classList' => ['mod-guide-wizard__hint']])
                                     {{ $step['description'] }}
                                 @endtypography
@@ -274,12 +231,13 @@
                     @endforeach
                 </div>
 
-                @if (!empty($wizard['notice']))
+                @if ($wizard['notice'])
                     @notice([
                         'type' => 'info',
                         'message' => ['text' => e($wizard['notice'])],
                         'icon' => ['icon' => 'info', 'size' => 'md'],
-                        'classList' => ['mod-guide-wizard__disclaimer', 'u-margin__top--3']
+                        'classList' => ['u-margin__top--3'],
+                        'attributeList' => ['data-js-guide-wizard-disclaimer' => '']
                     ])
                     @endnotice
                 @endif
@@ -289,16 +247,15 @@
 
     @modal([
         'heading' => $lang['wizard_restart_title'],
-        'id' => $restartModalId,
+        'id' => $wizard['restartModalId'],
         'size' => 'sm',
         'overlay' => 'dark',
-        'animation' => 'scale-up',
-        'attributeList' => ['data-wizard-dialog' => '']
+        'animation' => 'scale-up'
     ])
         @typography([])
             {{ $lang['wizard_restart_text'] }}
         @endtypography
-        <div class="mod-guide-wizard__dialog-actions u-display--flex u-justify-content--end u-gap--2 u-margin__top--3">
+        <div class="u-display--flex u-justify-content--end u-gap--2 u-margin__top--3">
             @button([
                 'text' => $lang['wizard_cancel'],
                 'style' => 'outlined',
@@ -311,17 +268,17 @@
                 'style' => 'filled',
                 'color' => 'primary',
                 'type' => 'button',
-                'attributeList' => ['data-close' => '', 'data-wizard-dialog-confirm' => '']
+                'attributeList' => ['data-close' => '', 'data-js-guide-wizard-restart' => '']
             ])
             @endbutton
         </div>
     @endmodal
 
-    <div class="mod-guide-wizard__toast" data-wizard-toast hidden>
+    <div data-js-guide-wizard-toast hidden>
         @toast(['position' => 'bottom-right'])
             @toast__item([
                 'type' => 'success',
-                'message' => ['text' => '<span data-wizard-toast-text></span>'],
+                'message' => ['text' => '<span data-js-guide-wizard-toast-text></span>'],
                 'icon' => ['icon' => 'check', 'size' => 'md']
             ])
             @endtoast__item

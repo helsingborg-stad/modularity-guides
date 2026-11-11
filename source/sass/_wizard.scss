@@ -3,12 +3,14 @@
 // Built on the Municipio design system:
 // - Sizes are multipliers of --base, scaled by the global tokens --space,
 //   --border-radius and --border-width (same pattern as the components).
-// - Every token can be overridden for the wizard only via --c-guide-wizard--<token>,
-//   e.g. --c-guide-wizard--space or --c-guide-wizard--color--primary.
+// - Every token can be overridden for the wizard only via --mod-guide-wizard--<token>,
+//   e.g. --mod-guide-wizard--space or --mod-guide-wizard--color--primary.
+//   (Not --c-…: that prefix belongs to the component library.)
+// - corner-shape is progressive enhancement (Chromium only); other browsers ignore it.
 // - Lives in the theme's "plugin" cascade layer: above components (so component
 //   internals can be adjusted) and below utilities (so utility classes win).
 
-$prefix: '--c-guide-wizard--';
+$prefix: '--mod-guide-wizard--';
 
 // Breakpoints from the design system (--breakpoint-*). Media queries cannot use custom properties.
 $breakpoint-sm: 32.5em;
@@ -175,6 +177,21 @@ $breakpoint-lg: 78em;
       }
     }
 
+    // The step dot shows the number until the step is answered, then the outcome icon.
+    &__step-icon {
+      display: none;
+    }
+
+    @each $state in (pass, stop, review) {
+      &__step.is-#{$state} &__step-icon--#{$state} {
+        display: inline-flex;
+      }
+    }
+
+    &__step.is-completed &__step-number {
+      display: none;
+    }
+
     &__step[aria-current='step'] &__step-dot {
       background: color('primary');
       border-color: color('primary');
@@ -189,15 +206,6 @@ $breakpoint-lg: 78em;
       }
     }
 
-    &__svg {
-      width: size(2);
-      height: size(2);
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
 
     // ---------- Question card ----------
     &__question,

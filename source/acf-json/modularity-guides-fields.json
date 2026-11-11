@@ -455,7 +455,7 @@
 									"collapsed": "",
 									"min": 1,
 									"max": "",
-									"layout": "block",
+									"layout": "table",
 									"button_label": "Add checkbox",
 									"sub_fields": [
 										{
@@ -467,7 +467,7 @@
 											"required": 1,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "25",
+												"width": "15",
 												"class": "",
 												"id": ""
 											},
@@ -488,7 +488,7 @@
 											"required": 1,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "50",
+												"width": "25",
 												"class": "",
 												"id": ""
 											},
@@ -509,7 +509,7 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "15",
+												"width": "10",
 												"class": "",
 												"id": ""
 											},
@@ -528,7 +528,7 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "10",
+												"width": "5",
 												"class": "",
 												"id": ""
 											},
@@ -544,7 +544,7 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "50",
+												"width": "15",
 												"class": "",
 												"id": ""
 											}
@@ -558,14 +558,14 @@
 											"required": 0,
 											"conditional_logic": 0,
 											"wrapper": {
-												"width": "50",
+												"width": "12",
 												"class": "",
 												"id": ""
 											},
 											"choices": {
-												"pass": "Continue",
-												"stop": "Stop",
-												"review": "Check"
+												"pass": "Continue to next question",
+												"stop": "Stop the guide",
+												"review": "Needs to be checked"
 											},
 											"default_value": "pass",
 											"allow_null": 0,
@@ -590,7 +590,7 @@
 												]
 											],
 											"wrapper": {
-												"width": "",
+												"width": "18",
 												"class": "",
 												"id": ""
 											},

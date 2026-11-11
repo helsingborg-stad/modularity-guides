@@ -19,68 +19,67 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:36
-#: source/php/Helper/Lang.php:15
+#: source/php/Helper/Lang.php:17
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/Helper/Lang.php:19
+#: source/php/Helper/Lang.php:21
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: source/php/Helper/Lang.php:17
+#: source/php/Helper/Lang.php:19
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Helper/Lang.php:18
+#: source/php/Helper/Lang.php:20
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: source/php/Helper/Lang.php:14
+#: source/php/Helper/Lang.php:16
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: source/php/Helper/Lang.php:13
+#: source/php/Helper/Lang.php:15
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: source/php/Helper/Lang.php:12
+#: source/php/Helper/Lang.php:14
 msgid "Email"
 msgstr "E-postadress"
 
-#: source/php/Helper/Lang.php:11
+#: source/php/Helper/Lang.php:13
 msgid "Send"
 msgstr "Skicka"
 
-#: source/php/Helper/Lang.php:10
+#: source/php/Helper/Lang.php:12
 msgid "Notice"
 msgstr " "
 
-#: source/php/Helper/Lang.php:20
+#: source/php/Helper/Lang.php:22
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Helper/Lang.php:21
+#: source/php/Helper/Lang.php:23
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Helper/Lang.php:16
+#: source/php/Helper/Lang.php:18
 msgid "You need to add a valid E-mail!"
 msgstr "Ange en giltig E-post adress"
 
-#: source/php/Module.php:19
+#: source/php/Module.php:22
 msgid "Guide"
 msgstr ""
 
-#: source/php/Module.php:20
+#: source/php/Module.php:23
 msgid "Guides"
 msgstr ""
 
-#: source/php/Module.php:21
+#: source/php/Module.php:24
 msgid "A step by step guide"
 msgstr ""
 
-#: source/php/Helper/Lang.php:22
+#: source/php/Helper/Lang.php:24
 msgid "required"
 msgstr "obligatoriskt"
 
@@ -109,139 +108,177 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#: source/php/Helper/Lang.php:23
+#: source/php/Helper/Lang.php:25
 msgid "Read more"
 msgstr "Läs mer"
 
+#: source/php/Helper/Lang.php:26
 msgid "Your progress through the guide"
 msgstr "Din väg genom guiden"
 
+#. translators: 1: current question number, 2: number of questions
+#: source/php/Helper/Lang.php:28
 #, php-format
 msgid "Question %1$s of %2$s"
 msgstr "Fråga %1$s av %2$s"
 
-#, php-format
-msgid "%s answered"
-msgstr "%s besvarade"
-
+#: source/php/Helper/Lang.php:33
 msgid "Continue"
 msgstr "Fortsätt"
 
+#: source/php/Helper/Lang.php:34
 msgid "Back"
 msgstr "Tillbaka"
 
+#: source/php/Helper/Lang.php:35
 msgid "Show summary"
 msgstr "Se sammanfattning"
 
+#: source/php/Helper/Lang.php:36
 msgid "Choose an answer to continue."
 msgstr "Välj ett svar för att fortsätta."
 
+#: source/php/Helper/Lang.php:37
 msgid "Choose one or more answers to continue."
 msgstr "Välj ett eller flera svar för att fortsätta."
 
+#: source/php/Helper/Lang.php:38
 msgid "Your saved answer is selected. You can choose another."
 msgstr "Ditt sparade svar är markerat. Du kan välja ett annat."
 
+#: source/php/Helper/Lang.php:39
 msgid "Your answer takes you further in the guide."
 msgstr "Ditt svar leder vidare i guiden."
 
+#: source/php/Helper/Lang.php:40
 msgid "This answer stops the guide. Continue to see why and what to do next."
 msgstr "Det här svaret ger ett stopp. Fortsätt för att se orsaken och nästa steg."
 
+#: source/php/Helper/Lang.php:41
 msgid "This answer needs to be checked. Continue to see what is missing."
 msgstr "Det här svaret behöver kontrolleras. Fortsätt för att se vad som saknas."
 
-msgid "Stop"
-msgstr "Stopp"
-
-msgid "Check"
-msgstr "Kontroll"
-
+#: source/php/Helper/Lang.php:45
 msgid "Help with the question"
 msgstr "Hjälp med frågan"
 
+#: source/php/Helper/Lang.php:46
 msgid "Summary"
 msgstr "Sammanfattning"
 
+#: source/php/Helper/Lang.php:47
 msgid "Your answers"
 msgstr "Dina svar"
 
-msgid "Your next step"
-msgstr "Ditt nästa steg"
-
+#: source/php/Helper/Lang.php:48
 msgid "Edit"
 msgstr "Ändra"
 
+#: source/php/Helper/Lang.php:49
 msgid "Not answered"
 msgstr "Inte besvarad"
 
+#: source/php/Helper/Lang.php:50
 msgid "Stops the guide"
 msgstr "Stopp i guiden"
 
+#: source/php/Helper/Lang.php:51
 msgid "Needs to be checked"
 msgstr "Behöver kontrolleras"
 
+#. translators: %s: number of questions left
+#: source/php/Helper/Lang.php:32
 #, php-format
 msgid "%s question remains."
-msgstr "%s fråga återstår."
+msgid_plural "%s questions remain."
+msgstr[0] "%s fråga återstår."
+msgstr[1] "%s frågor återstår."
 
-#, php-format
-msgid "%s questions remain."
-msgstr "%s frågor återstår."
-
+#. translators: %s: short title of the question where the guide stopped
+#: source/php/Helper/Lang.php:53
 #, php-format
 msgid "The guide stopped at \"%s\". The other questions have not been assessed."
 msgstr "Guiden stannade vid \"%s\". Övriga frågor har inte bedömts."
 
+#: source/php/Helper/Lang.php:54
 msgid "Print / save as PDF"
 msgstr "Skriv ut / spara PDF"
 
+#: source/php/Helper/Lang.php:55
 msgid "Save answers as text"
 msgstr "Spara svar som text"
 
+#: source/php/Helper/Lang.php:56
 msgid "Your answers have been saved as a text file."
 msgstr "Dina svar har sparats som en textfil."
 
+#: source/php/Helper/Lang.php:57
 msgid "Start over"
 msgstr "Börja om"
 
+#: source/php/Helper/Lang.php:58
 msgid "Do you want to start over?"
 msgstr "Vill du börja om?"
 
+#: source/php/Helper/Lang.php:59
 msgid "Your answers will be cleared. Save the summary first if you want to keep it."
 msgstr "Dina svar rensas. Spara sammanfattningen först om du vill behålla den."
 
+#: source/php/Helper/Lang.php:60
 msgid "Yes, start over"
 msgstr "Ja, börja om"
 
+#: source/php/Helper/Lang.php:61
 msgid "Cancel"
 msgstr "Avbryt"
 
+#: source/php/Helper/Lang.php:62
 msgid "Created"
 msgstr "Skapad"
 
+#: source/php/Helper/Lang.php:63
 msgid "You have answered all questions"
 msgstr "Du har svarat på alla frågor"
 
+#: source/php/Helper/Lang.php:64
 msgid "Here is a summary of your answers and what you can do next."
 msgstr "Här är en sammanfattning av dina svar och vad du kan göra härnäst."
 
+#: source/php/Helper/Lang.php:65
 msgid "The guide stops here"
 msgstr "Stopp i guiden"
 
+#: source/php/Helper/Lang.php:66
 msgid "One of your answers does not meet a condition in the guide. Contact us for advice on how to proceed."
 msgstr "Ett av dina svar uppfyller inte ett villkor i guiden. Kontakta oss för rådgivning om hur du kan gå vidare."
 
+#: source/php/Helper/Lang.php:67
 msgid "This needs to be checked"
 msgstr "Det här behöver kontrolleras"
 
+#: source/php/Helper/Lang.php:68
 msgid "The guide cannot give a preliminary answer when information is unknown. Check the information and update your answer."
 msgstr "Guiden kan inte ge ett preliminärt svar när en uppgift är okänd. Kontrollera uppgiften och uppdatera ditt svar."
 
-msgid "Go ahead"
+#. translators: %s: number of answered questions
+#: source/php/Helper/Lang.php:30
+#, php-format
+msgid "%s question answered"
+msgid_plural "%s questions answered"
+msgstr[0] "%s besvarad"
+msgstr[1] "%s besvarade"
+
+#: source/php/Helper/Lang.php:42
+msgctxt "answer outcome"
+msgid "Continue"
 msgstr "Vidare"
 
-#, php-format
-msgctxt "one question"
-msgid "%s answered"
-msgstr "%s besvarad"
+#: source/php/Helper/Lang.php:43
+msgctxt "answer outcome"
+msgid "Stop"
+msgstr "Stopp"
+
+#: source/php/Helper/Lang.php:44
+msgctxt "answer outcome"
+msgid "Check"
+msgstr "Kontroll"

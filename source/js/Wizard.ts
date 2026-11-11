@@ -1,7 +1,34 @@
-declare const guides: Record<string, string> | undefined;
+/**
+ * Step by step (wizard) display mode.
+ *
+ * All texts come from the view model (Helper\Wizard) through the data-js-guide-wizard attribute.
+ * Texts containing numbers are prepared server side for every possible value, so plural forms
+ * are handled by WordPress and the script never formats strings.
+ */
 
-type Outcome = 'pass' | 'stop' | 'review';
+export type Outcome = 'pass' | 'stop' | 'review';
 type View = { kind: 'question'; index: number } | { kind: 'result' };
+
+export interface WizardStrings {
+	answered: string[];
+	remaining: string[];
+	position: string[];
+	stoppedAt: string[];
+	summary: string;
+	chooseOne: string;
+	chooseMany: string;
+	savedAnswer: string;
+	notePass: string;
+	noteStop: string;
+	noteReview: string;
+	yourAnswers: string;
+	edit: string;
+	notAnswered: string;
+	outcomeStop: string;
+	outcomeReview: string;
+	created: string;
+	downloadDone: string;
+}
 
 interface Result {
 	type: Outcome;
@@ -9,28 +36,35 @@ interface Result {
 	questionIndex: number | null;
 }
 
+const ROOT = 'data-js-guide-wizard';
+const hook = (name: string) => `[${ROOT}-${name}]`;
 const OUTCOME_WEIGHT: Record<Outcome, number> = { pass: 0, review: 1, stop: 2 };
-
-const ICONS: Record<Outcome, string> = {
-	pass: '<path d="m5 12 4 4L19 6"/>',
-	stop: '<path d="m6 6 12 12M18 6 6 18"/>',
-	review: '<circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4M12 17v.2"/>',
+const NOTE: Record<Outcome, keyof WizardStrings> = { pass: 'notePass', stop: 'noteStop', review: 'noteReview' };
+const OUTCOME_LABEL: Record<Exclude<Outcome, 'pass'>, keyof WizardStrings> = {
+	stop: 'outcomeStop',
+	review: 'outcomeReview',
 };
 
-const t = (key: string, ...values: (string | number)[]): string => {
-	let text = (typeof guides !== 'undefined' && guides?.[key]) || key;
-	values.forEach((value, i) => {
-		text = text.replace(`%${i + 1}$s`, String(value)).replace('%s', String(value));
-	});
-	return text;
-};
+export const toOutcome = (value: string | null | undefined): Outcome =>
+	value === 'stop' || value === 'review' ? value : 'pass';
 
-const svg = (outcome: Outcome) =>
-	`<svg viewBox="0 0 24 24" class="mod-guide-wizard__svg" aria-hidden="true" focusable="false">${ICONS[outcome]}</svg>`;
-
-const toOutcome = (value: string | null): Outcome => (value === 'stop' || value === 'review' ? value : 'pass');
+/**
+ * The most severe outcome among the given inputs wins (stop > review > pass).
+ */
+export function worstOutcome(inputs: HTMLInputElement[]): { outcome: Outcome; reason: string } {
+	return inputs.reduce(
+		(worst, input) => {
+			const outcome = toOutcome(input.dataset.jsGuideWizardOutcome);
+			return OUTCOME_WEIGHT[outcome] > OUTCOME_WEIGHT[worst.outcome]
+				? { outcome, reason: input.dataset.jsGuideWizardReason ?? '' }
+				: worst;
+		},
+		{ outcome: 'pass' as Outcome, reason: '' },
+	);
+}
 
 export class GuideWizard {
+	private readonly strings: WizardStrings;
 	private readonly questions: HTMLElement[];
 	private readonly result: HTMLElement;
 	private readonly stepButtons: HTMLButtonElement[];
@@ -41,12 +75,13 @@ export class GuideWizard {
 	private toastTimer: number | undefined;
 
 	constructor(private readonly root: HTMLElement) {
-		this.questions = [...root.querySelectorAll<HTMLElement>('[data-wizard-question]')];
-		this.result = root.querySelector<HTMLElement>('[data-wizard-result]') as HTMLElement;
-		this.stepButtons = [...root.querySelectorAll<HTMLButtonElement>('[data-wizard-jump]')].filter(
-			(button) => button.dataset.wizardJump !== 'summary',
+		this.strings = JSON.parse(root.getAttribute(ROOT) || '{}') as WizardStrings;
+		this.questions = [...root.querySelectorAll<HTMLElement>(hook('question'))];
+		this.result = root.querySelector<HTMLElement>(hook('result')) as HTMLElement;
+		this.stepButtons = [...root.querySelectorAll<HTMLButtonElement>(hook('jump'))].filter(
+			(button) => button.dataset.jsGuideWizardJump !== 'summary',
 		);
-		this.summaryButton = root.querySelector<HTMLButtonElement>('[data-wizard-jump="summary"]');
+		this.summaryButton = root.querySelector<HTMLButtonElement>(`[${ROOT}-jump="summary"]`);
 
 		if (this.questions.length === 0 || !this.result) {
 			return;
@@ -56,10 +91,18 @@ export class GuideWizard {
 		this.render(false);
 	}
 
-	/* ---------- State helpers ---------- */
+	/* ---------- State ---------- */
+
+	public get currentView(): View {
+		return this.view;
+	}
+
+	public get currentResult(): Result | null {
+		return this.lastResult;
+	}
 
 	private inputs(index: number): HTMLInputElement[] {
-		return [...(this.questions[index]?.querySelectorAll<HTMLInputElement>('input[data-wizard-outcome]') ?? [])];
+		return [...(this.questions[index]?.querySelectorAll<HTMLInputElement>(hook('outcome')) ?? [])];
 	}
 
 	private checked(index: number): HTMLInputElement[] {
@@ -71,19 +114,11 @@ export class GuideWizard {
 	}
 
 	private outcomeOf(index: number): { outcome: Outcome; reason: string } {
-		return this.checked(index).reduce(
-			(worst, input) => {
-				const outcome = toOutcome(input.dataset.wizardOutcome ?? null);
-				return OUTCOME_WEIGHT[outcome] > OUTCOME_WEIGHT[worst.outcome]
-					? { outcome, reason: input.dataset.wizardReason ?? '' }
-					: worst;
-			},
-			{ outcome: 'pass' as Outcome, reason: '' },
-		);
+		return worstOutcome(this.checked(index));
 	}
 
 	private shortTitle(index: number): string {
-		return this.questions[index]?.dataset.wizardShortTitle ?? '';
+		return this.questions[index]?.dataset.jsGuideWizardShortTitle ?? '';
 	}
 
 	/* ---------- Events ---------- */
@@ -91,92 +126,76 @@ export class GuideWizard {
 	private bind(): void {
 		this.questions.forEach((question, index) => {
 			question.addEventListener('change', (event) => {
-				const target = event.target as HTMLInputElement;
-				if (target?.dataset?.wizardOutcome === undefined) {
+				if ((event.target as HTMLInputElement)?.dataset?.jsGuideWizardOutcome === undefined) {
 					return;
 				}
 				this.updateQuestionControls(index, true);
 				this.renderSidebar();
 			});
-
-			question.querySelector('[data-wizard-next]')?.addEventListener('click', () => this.commit(index));
-			question.querySelector('[data-wizard-back]')?.addEventListener('click', () => this.goTo(index - 1));
-
-			// Enter on an option continues, like submitting a form
-			question.addEventListener('keydown', (event) => {
-				const target = event.target as HTMLElement;
-				if (event.key === 'Enter' && target instanceof HTMLInputElement && target.dataset.wizardOutcome) {
-					event.preventDefault();
-					if (this.isAnswered(index)) {
-						this.commit(index);
-					}
-				}
-			});
+			question.querySelector(hook('next'))?.addEventListener('click', () => this.commit(index));
+			question.querySelector(hook('back'))?.addEventListener('click', () => this.goTo(index - 1));
 		});
 
 		this.stepButtons.forEach((button) => {
-			button.addEventListener('click', () => this.goTo(Number(button.dataset.wizardJump)));
+			button.addEventListener('click', () => this.goTo(Number(button.dataset.jsGuideWizardJump)));
 		});
-		this.summaryButton?.addEventListener('click', () => {
-			if (this.lastResult) {
-				this.view = { kind: 'result' };
-				this.render();
-			}
-		});
+		this.summaryButton?.addEventListener('click', () => this.showResult());
 
-		this.root.querySelector('[data-wizard-print]')?.addEventListener('click', () => window.print());
-		this.root.querySelector('[data-wizard-download]')?.addEventListener('click', () => this.download());
-
-		// The restart modal is opened and closed by the component library (data-open / data-close)
-		this.root.querySelector('[data-wizard-dialog-confirm]')?.addEventListener('click', () => this.restart());
+		this.root.querySelector(hook('print'))?.addEventListener('click', () => window.print());
+		this.root.querySelector(hook('download'))?.addEventListener('click', () => this.download());
+		// The restart modal itself is opened and closed by the component library (data-open / data-close)
+		this.root.querySelector(hook('restart'))?.addEventListener('click', () => this.restart());
 
 		this.result.addEventListener('click', (event) => {
-			const edit = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-wizard-edit]');
+			const edit = (event.target as HTMLElement).closest<HTMLButtonElement>(hook('edit'));
 			if (edit) {
-				this.goTo(Number(edit.dataset.wizardEdit));
+				this.goTo(Number(edit.dataset.jsGuideWizardEdit));
 			}
 		});
 	}
 
-	private commit(index: number): void {
+	public commit(index: number): void {
 		if (!this.isAnswered(index)) {
 			return;
 		}
 		const { outcome, reason } = this.outcomeOf(index);
+		const isLast = index === this.questions.length - 1;
 
-		if (outcome !== 'pass') {
-			this.lastResult = { type: outcome, reason, questionIndex: index };
+		if (outcome !== 'pass' || isLast) {
+			this.lastResult = { type: outcome, reason, questionIndex: outcome === 'pass' ? null : index };
 			this.view = { kind: 'result' };
-		} else if (index === this.questions.length - 1) {
-			this.lastResult = { type: 'pass', reason: '', questionIndex: null };
-			this.view = { kind: 'result' };
-		} else {
-			this.lastResult = null;
-			this.view = { kind: 'question', index: index + 1 };
-			this.furthest = Math.max(this.furthest, index + 1);
+			this.render();
+			return;
 		}
+
+		this.lastResult = null;
+		this.furthest = Math.max(this.furthest, index + 1);
+		this.view = { kind: 'question', index: index + 1 };
 		this.render();
 	}
 
-	private goTo(index: number): void {
-		if (!Number.isInteger(index) || index < 0 || index >= this.questions.length) {
-			return;
-		}
-		if (index > this.furthest && !this.isAnswered(index)) {
+	public goTo(index: number): void {
+		const outOfRange = !Number.isInteger(index) || index < 0 || index >= this.questions.length;
+		if (outOfRange || (index > this.furthest && !this.isAnswered(index))) {
 			return;
 		}
 		this.view = { kind: 'question', index };
 		this.render();
 	}
 
-	private restart(): void {
+	private showResult(): void {
+		if (this.lastResult) {
+			this.view = { kind: 'result' };
+			this.render();
+		}
+	}
+
+	public restart(): void {
 		this.questions.forEach((_, index) => {
-			this.inputs(index).forEach((input) => {
-				if (input.checked) {
-					input.checked = false;
-					input.dispatchEvent(new Event('change', { bubbles: true }));
-				}
-			});
+			for (const input of this.checked(index)) {
+				input.checked = false;
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+			}
 		});
 		this.furthest = 0;
 		this.lastResult = null;
@@ -191,193 +210,196 @@ export class GuideWizard {
 
 		this.questions.forEach((question, index) => {
 			question.hidden = index !== current;
-			if (index === current) {
-				this.updateQuestionControls(index, false);
-			}
 		});
+		if (current >= 0) {
+			this.updateQuestionControls(current, false);
+		}
 		this.result.hidden = this.view.kind !== 'result';
-
 		if (this.view.kind === 'result') {
 			this.renderResult();
 		}
 		this.renderSidebar();
 
 		if (focus) {
-			const heading =
-				this.view.kind === 'result'
-					? this.result.querySelector<HTMLElement>('[data-wizard-hero]:not([hidden])')
-					: this.questions[current]?.querySelector<HTMLElement>('h2');
-			heading?.focus({ preventScroll: true });
+			this.moveFocus(current);
+		}
+	}
 
-			const top = this.root.getBoundingClientRect().top;
-			if (top < 0 || top > window.innerHeight * 0.4) {
-				this.root.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			}
+	private moveFocus(current: number): void {
+		const target =
+			this.view.kind === 'result'
+				? this.result.querySelector<HTMLElement>(`${hook('hero')}:not([hidden])`)
+				: this.questions[current]?.querySelector<HTMLElement>('h2');
+		target?.focus({ preventScroll: true });
+
+		const top = this.root.getBoundingClientRect().top;
+		if (top < 0 || top > window.innerHeight * 0.4) {
+			this.root.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 		}
 	}
 
 	private updateQuestionControls(index: number, changed: boolean): void {
 		const question = this.questions[index];
-		const next = question.querySelector<HTMLButtonElement>('[data-wizard-next]');
-		const note = question.querySelector<HTMLElement>('[data-wizard-note]');
+		const next = question.querySelector<HTMLButtonElement>(hook('next'));
+		const note = question.querySelector<HTMLElement>(hook('note'));
 		const answered = this.isAnswered(index);
 
 		if (next) {
 			next.disabled = !answered;
-			if (answered) {
-				next.removeAttribute('disabled');
-			}
 		}
-
 		if (!note) {
 			return;
 		}
+
+		let text = this.strings[NOTE[this.outcomeOf(index).outcome]] as string;
 		if (!answered) {
-			note.textContent = t(question.dataset.wizardType === 'radio' ? 'wizard_choose_one' : 'wizard_choose_many');
+			text = question.dataset.jsGuideWizardType === 'radio' ? this.strings.chooseOne : this.strings.chooseMany;
 		} else if (!changed) {
-			note.textContent = t('wizard_saved_answer');
-		} else {
-			note.textContent = t(`wizard_note_${this.outcomeOf(index).outcome}`);
+			text = this.strings.savedAnswer;
 		}
+		note.textContent = text;
 	}
 
 	private renderSidebar(): void {
-		const total = this.questions.length;
 		const answered = this.questions.filter((_, i) => this.isAnswered(i)).length;
 		const current = this.view.kind === 'question' ? this.view.index : -1;
 
-		const position = this.root.querySelector('[data-wizard-progress-position]');
-		if (position) {
-			position.textContent =
-				this.view.kind === 'result' ? t('wizard_summary') : t('wizard_question_x_of_y', current + 1, total);
-		}
-		const count = this.root.querySelector('[data-wizard-progress-answered]');
-		if (count) {
-			count.textContent = t(answered === 1 ? 'wizard_answered_one' : 'wizard_answered_many', answered);
-		}
-		const progress = this.root.querySelector<HTMLElement>('[data-wizard-progress] > *');
+		this.setText(
+			this.root.querySelector(hook('progress-position')),
+			current >= 0 ? this.strings.position[current] : this.strings.summary,
+		);
+		this.setText(this.root.querySelector(hook('progress-answered')), this.strings.answered[answered]);
+
+		const progress = this.root.querySelector<HTMLElement>(`${hook('progress')} > *`);
 		if (progress) {
-			progress.style.width = `${total > 0 ? (answered / total) * 100 : 0}%`;
+			progress.style.width = `${(answered / this.questions.length) * 100}%`;
 		}
 
 		this.stepButtons.forEach((button, index) => {
-			const isAnswered = this.isAnswered(index);
-			const dot = button.querySelector<HTMLElement>('[data-wizard-step-dot]');
-			const outcome = this.outcomeOf(index).outcome;
-
-			button.disabled = index > this.furthest && !isAnswered;
-			button.classList.toggle('is-completed', isAnswered);
-			button.classList.toggle('is-stop', isAnswered && outcome === 'stop');
-			button.classList.toggle('is-review', isAnswered && outcome === 'review');
-			if (index === current) {
-				button.setAttribute('aria-current', 'step');
-			} else {
-				button.removeAttribute('aria-current');
-			}
-			if (dot) {
-				dot.innerHTML = isAnswered ? svg(outcome) : String(index + 1);
-			}
+			this.renderStepButton(button, index, current);
 		});
 
 		if (this.summaryButton) {
 			this.summaryButton.disabled = !this.lastResult;
-			if (this.view.kind === 'result') {
-				this.summaryButton.setAttribute('aria-current', 'step');
-			} else {
-				this.summaryButton.removeAttribute('aria-current');
-			}
+			this.setCurrent(this.summaryButton, this.view.kind === 'result');
 		}
 	}
 
-	private renderResult(): void {
-		const result = this.lastResult ?? { type: 'pass', reason: '', questionIndex: null };
+	private renderStepButton(button: HTMLButtonElement, index: number, current: number): void {
+		const isAnswered = this.isAnswered(index);
+		const outcome = isAnswered ? this.outcomeOf(index).outcome : null;
 
-		this.result.querySelectorAll<HTMLElement>('[data-wizard-hero]').forEach((hero) => {
-			const active = hero.dataset.wizardHero === result.type;
+		button.disabled = index > this.furthest && !isAnswered;
+		button.classList.toggle('is-completed', isAnswered);
+		for (const state of ['pass', 'stop', 'review'] as Outcome[]) {
+			button.classList.toggle(`is-${state}`, outcome === state);
+		}
+		this.setCurrent(button, index === current);
+	}
+
+	private setCurrent(element: HTMLElement, isCurrent: boolean): void {
+		if (isCurrent) {
+			element.setAttribute('aria-current', 'step');
+			return;
+		}
+		element.removeAttribute('aria-current');
+	}
+
+	private renderResult(): void {
+		const result = this.lastResult ?? { type: 'pass' as Outcome, reason: '', questionIndex: null };
+
+		this.result.querySelectorAll<HTMLElement>(hook('hero')).forEach((hero) => {
+			const active = hero.dataset.jsGuideWizardHero === result.type;
 			hero.hidden = !active;
-			const reason = hero.querySelector<HTMLElement>('[data-wizard-reason]');
+			const reason = hero.querySelector<HTMLElement>(hook('reason'));
 			if (reason) {
 				reason.textContent = active ? result.reason : '';
 				reason.hidden = !active || result.reason === '';
 			}
 		});
 
+		this.renderRemaining(result);
+
+		this.result
+			.querySelector<HTMLElement>(hook('answers'))
+			?.replaceChildren(...this.questions.map((_, index) => this.answerRow(index)));
+
+		this.setText(this.result.querySelector(hook('created')), `${this.strings.created} ${this.formatDate()}.`);
+	}
+
+	private renderRemaining(result: Result): void {
+		const notice = this.result.querySelector<HTMLElement>(hook('remaining'));
+		if (!notice) {
+			return;
+		}
 		const remaining = this.questions.filter((_, i) => !this.isAnswered(i)).length;
-		const remainingNotice = this.result.querySelector<HTMLElement>('[data-wizard-remaining]');
-		if (remainingNotice) {
-			const show = result.questionIndex !== null && remaining > 0;
-			remainingNotice.hidden = !show;
-			const remainingText = remainingNotice.querySelector<HTMLElement>('[data-wizard-remaining-text]');
-			if (remainingText) {
-				remainingText.textContent = show
-					? `${t(remaining === 1 ? 'wizard_remaining_one' : 'wizard_remaining_many', remaining)} ${t(
-							'wizard_stopped_at',
-							this.shortTitle(result.questionIndex as number),
-						)}`
-					: '';
-			}
-		}
+		const show = result.questionIndex !== null && remaining > 0;
 
-		const answers = this.result.querySelector<HTMLElement>('[data-wizard-answers]');
-		if (answers) {
-			answers.replaceChildren(...this.questions.map((_, index) => this.answerRow(index)));
-		}
-
-		const created = this.result.querySelector<HTMLElement>('[data-wizard-created]');
-		if (created) {
-			created.textContent = `${t('wizard_created')} ${this.formatDate()}.`;
-		}
+		notice.hidden = !show;
+		this.setText(
+			notice.querySelector(hook('remaining-text')),
+			show ? `${this.strings.remaining[remaining]} ${this.strings.stoppedAt[result.questionIndex as number]}` : '',
+		);
 	}
 
 	private answerRow(index: number): HTMLElement {
 		const row = document.createElement('div');
-		const answered = this.isAnswered(index);
+		const checked = this.checked(index);
+		const answered = checked.length > 0;
 		row.className = `mod-guide-wizard__answer${answered ? '' : ' is-unanswered'}`;
 
 		const dt = document.createElement('dt');
 		const label = document.createElement('span');
 		label.textContent = `${index + 1}. ${this.shortTitle(index)}`;
 		dt.append(label);
-
 		if (answered || index <= this.furthest) {
-			const edit = document.createElement('button');
-			edit.type = 'button';
-			edit.className = 'mod-guide-wizard__edit';
-			edit.dataset.wizardEdit = String(index);
-			edit.textContent = t('wizard_edit');
-			const sr = document.createElement('span');
-			sr.className = 'u-sr__only';
-			sr.textContent = ` ${this.shortTitle(index)}`;
-			edit.append(sr);
-			dt.append(edit);
+			dt.append(this.editButton(index));
 		}
 
 		const dd = document.createElement('dd');
-		const checked = this.checked(index);
-		if (checked.length === 0) {
-			dd.textContent = t('wizard_not_answered');
-		} else if (checked.length === 1) {
-			dd.textContent = checked[0].dataset.wizardLabel ?? '';
-		} else {
+		if (checked.length === 1) {
+			dd.textContent = checked[0].dataset.jsGuideWizardLabel ?? '';
+		} else if (answered) {
 			const list = document.createElement('ul');
-			checked.forEach((input) => {
+			for (const input of checked) {
 				const li = document.createElement('li');
-				li.textContent = input.dataset.wizardLabel ?? '';
+				li.textContent = input.dataset.jsGuideWizardLabel ?? '';
 				list.append(li);
-			});
+			}
 			dd.append(list);
+		} else {
+			dd.textContent = this.strings.notAnswered;
 		}
 
 		const { outcome } = this.outcomeOf(index);
 		if (answered && outcome !== 'pass') {
 			const tag = document.createElement('span');
 			tag.className = `mod-guide-wizard__outcome mod-guide-wizard__outcome--${outcome}`;
-			tag.textContent = t(`wizard_outcome_${outcome}`);
+			tag.textContent = this.strings[OUTCOME_LABEL[outcome]] as string;
 			dd.append(tag);
 		}
 
 		row.append(dt, dd);
 		return row;
+	}
+
+	private editButton(index: number): HTMLButtonElement {
+		const edit = document.createElement('button');
+		edit.type = 'button';
+		edit.className = 'mod-guide-wizard__edit';
+		edit.setAttribute(`${ROOT}-edit`, String(index));
+		edit.textContent = this.strings.edit;
+		const hidden = document.createElement('span');
+		hidden.className = 'u-sr__only';
+		hidden.textContent = ` ${this.shortTitle(index)}`;
+		edit.append(hidden);
+		return edit;
+	}
+
+	private setText(element: Element | null, text: string | undefined): void {
+		if (element) {
+			element.textContent = text ?? '';
+		}
 	}
 
 	private formatDate(): string {
@@ -395,76 +417,67 @@ export class GuideWizard {
 
 	public summaryText(): string {
 		const result = this.lastResult ?? { type: 'pass' as Outcome, reason: '', questionIndex: null };
-		const hero = this.result.querySelector<HTMLElement>(`[data-wizard-hero="${result.type}"]`);
+		const hero = this.result.querySelector<HTMLElement>(`[${ROOT}-hero="${result.type}"]`);
 		const clean = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
+
 		const lines: string[] = [
-			clean(this.root.dataset.guideTitle).toUpperCase(),
-			`${t('wizard_created')} ${this.formatDate()}`,
+			clean(this.root.getAttribute(`${ROOT}-title`)).toUpperCase(),
+			`${this.strings.created} ${this.formatDate()}`,
 			'',
 			clean(hero?.querySelector('.c-notice__title')?.textContent),
 		];
 		if (result.reason) {
 			lines.push(result.reason);
 		}
-		lines.push(
-			clean(hero?.querySelector('[data-wizard-hero-text]')?.textContent),
-			'',
-			t('wizard_your_answers').toUpperCase(),
-		);
+		lines.push(clean(hero?.querySelector(hook('hero-text'))?.textContent), '', this.strings.yourAnswers.toUpperCase());
 
 		this.questions.forEach((_, index) => {
-			const checked = this.checked(index);
-			lines.push(`${index + 1}. ${this.shortTitle(index)}`);
-			if (checked.length === 0) {
-				lines.push(`   ${t('wizard_not_answered')}`);
-			}
-			for (const input of checked) {
-				lines.push(`   - ${input.dataset.wizardLabel ?? ''}`);
-			}
-			const { outcome } = this.outcomeOf(index);
-			if (checked.length > 0 && outcome !== 'pass') {
-				lines.push(`   (${t(`wizard_outcome_${outcome}`)})`);
-			}
-			lines.push('');
+			lines.push(...this.answerLines(index), '');
 		});
 
 		// Visible summary content, e.g. a filtered todo list
-		this.result.querySelectorAll<HTMLElement>('.mod-guide-wizard__panel').forEach((panel, i) => {
-			if (i === 0) {
-				return;
-			}
-			const heading = clean(panel.querySelector('h3')?.textContent);
-			const items: string[] = [];
-			panel.querySelectorAll<HTMLElement>('h4, label, li, p').forEach((el) => {
-				if (el.closest('.c-modal, dialog, form') || !el.checkVisibility?.()) {
-					return;
-				}
-				const text = clean(el.textContent);
-				if (text) {
-					items.push(el.tagName === 'H4' ? `\n${text}` : `   - ${text}`);
-				}
-			});
+		this.result.querySelectorAll<HTMLElement>(`[${ROOT}-panel="content"]`).forEach((panel) => {
+			const items = [...panel.querySelectorAll<HTMLElement>('h4, label, li, p')]
+				.filter((el) => !el.closest('.c-modal, dialog, form') && el.checkVisibility?.() !== false)
+				.map((el) => ({ tag: el.tagName, text: clean(el.textContent) }))
+				.filter((item) => item.text !== '')
+				.map((item) => (item.tag === 'H4' ? `\n${item.text}` : `   - ${item.text}`));
 			if (items.length > 0) {
-				lines.push(heading.toUpperCase(), ...items, '');
+				lines.push(clean(panel.querySelector('h3')?.textContent).toUpperCase(), ...items, '');
 			}
 		});
 
-		const notice = clean(
-			this.result.querySelector('.mod-guide-wizard__disclaimer [data-js-notice-message]')?.textContent,
-		);
-		if (notice) {
-			lines.push(notice, '');
+		const disclaimer = clean(this.result.querySelector(`${hook('disclaimer')} [data-js-notice-message]`)?.textContent);
+		if (disclaimer) {
+			lines.push(disclaimer, '');
 		}
 		lines.push(window.location.href);
 
 		return lines.join('\r\n');
 	}
 
+	private answerLines(index: number): string[] {
+		const checked = this.checked(index);
+		const lines = [`${index + 1}. ${this.shortTitle(index)}`];
+
+		if (checked.length === 0) {
+			return [...lines, `   ${this.strings.notAnswered}`];
+		}
+		for (const input of checked) {
+			lines.push(`   - ${input.dataset.jsGuideWizardLabel ?? ''}`);
+		}
+		const { outcome } = this.outcomeOf(index);
+		if (outcome !== 'pass') {
+			lines.push(`   (${this.strings[OUTCOME_LABEL[outcome]]})`);
+		}
+		return lines;
+	}
+
 	private download(): void {
 		const blob = new Blob([`﻿${this.summaryText()}`], { type: 'text/plain;charset=utf-8' });
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement('a');
-		const name = (this.root.dataset.guideTitle || 'guide')
+		const name = (this.root.getAttribute(`${ROOT}-title`) || 'guide')
 			.toLowerCase()
 			.normalize('NFD')
 			.replace(/[̀-ͯ]/g, '')
@@ -476,18 +489,15 @@ export class GuideWizard {
 		link.click();
 		link.remove();
 		window.setTimeout(() => URL.revokeObjectURL(url), 30000);
-		this.toast(t('wizard_download_done'));
+		this.toast(this.strings.downloadDone);
 	}
 
 	private toast(text: string): void {
-		const toast = this.root.querySelector<HTMLElement>('[data-wizard-toast]');
+		const toast = this.root.querySelector<HTMLElement>(hook('toast'));
 		if (!toast) {
 			return;
 		}
-		const toastText = toast.querySelector<HTMLElement>('[data-wizard-toast-text]');
-		if (toastText) {
-			toastText.textContent = text;
-		}
+		this.setText(toast.querySelector(hook('toast-text')), text);
 		toast.hidden = false;
 		window.clearTimeout(this.toastTimer);
 		this.toastTimer = window.setTimeout(() => {
@@ -496,10 +506,10 @@ export class GuideWizard {
 	}
 }
 
-export function initWizards(): void {
-	document.querySelectorAll<HTMLElement>('.js-mod-guide-wizard').forEach((root) => {
-		new GuideWizard(root);
-	});
+export function initWizards(): GuideWizard[] {
+	return [...document.querySelectorAll<HTMLElement>(`[${ROOT}]`)].map((root) => new GuideWizard(root));
 }
 
-window.addEventListener('DOMContentLoaded', initWizards);
+window.addEventListener('DOMContentLoaded', () => {
+	initWizards();
+});
