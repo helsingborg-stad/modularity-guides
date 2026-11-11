@@ -257,7 +257,7 @@
                 ])
                 @endnotice
 
-                @element(['classList' => array_filter(['mod-guide-wizard__result-grid', 'u-margin__top--3', $wizard['summarySteps'] ? '' : 'mod-guide-wizard__result-grid--split'])])
+                @element(['classList' => ['mod-guide-wizard__result-grid', 'u-margin__top--3']])
                     @paper(['classList' => ['mod-guide-wizard__panel'], 'attributeList' => ['data-js-guide-wizard-panel' => 'answers']])
                         @typography(['element' => 'h3', 'variant' => 'h3', 'classList' => ['u-margin__bottom--2']])
                             {{ $lang['wizard_your_answers'] }}

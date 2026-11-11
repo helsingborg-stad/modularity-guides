@@ -74,47 +74,55 @@ export class Summary {
 		row.className = `mod-guide-wizard__answer${answered ? '' : ' is-unanswered'}`;
 
 		const dt = document.createElement('dt');
+		const number = document.createElement('span');
+		number.className = 'mod-guide-wizard__answer-number';
+		number.setAttribute('aria-hidden', 'true');
+		number.textContent = String(index + 1);
 		const title = document.createElement('span');
-		title.textContent = `${index + 1}. ${this.answers.shortTitle(index)}`;
-		dt.append(title);
+		title.className = 'mod-guide-wizard__answer-title';
+		title.textContent = this.answers.shortTitle(index);
+		dt.append(number, title);
+
+		const dd = this.answerValue(index, labels);
 		if (answered || index <= furthest) {
-			dt.append(this.editButton(index));
+			dd.append(this.editButton(index));
 		}
 
-		row.append(dt, this.answerValue(index, labels));
+		row.append(dt, dd);
 		return row;
 	}
 
 	private answerValue(index: number, labels: string[]): HTMLElement {
 		const dd = document.createElement('dd');
+		const list = document.createElement('ul');
+		list.className = 'mod-guide-wizard__answer-list';
 
 		if (labels.length === 0) {
-			dd.textContent = this.strings.notAnswered;
+			list.append(this.chip(this.strings.notAnswered, 'mod-guide-wizard__chip mod-guide-wizard__chip--empty'));
+			dd.append(list);
 			return dd;
 		}
 
-		if (labels.length === 1) {
-			dd.textContent = labels[0];
-		} else {
-			const list = document.createElement('ul');
-			list.append(
-				...labels.map((label) => {
-					const item = document.createElement('li');
-					item.textContent = label;
-					return item;
-				}),
-			);
-			dd.append(list);
-		}
+		list.append(...labels.map((label) => this.chip(label, 'mod-guide-wizard__chip')));
 
 		const { outcome } = this.answers.outcomeOf(index);
 		if (outcome !== 'pass') {
-			const tag = document.createElement('span');
-			tag.className = `mod-guide-wizard__outcome mod-guide-wizard__outcome--${outcome}`;
-			tag.textContent = this.strings[LABEL_KEY[outcome]] as string;
-			dd.append(tag);
+			list.append(
+				this.chip(
+					this.strings[LABEL_KEY[outcome]] as string,
+					`mod-guide-wizard__outcome mod-guide-wizard__outcome--${outcome}`,
+				),
+			);
 		}
+		dd.append(list);
 		return dd;
+	}
+
+	private chip(text: string, className: string): HTMLLIElement {
+		const item = document.createElement('li');
+		item.className = className;
+		item.textContent = text;
+		return item;
 	}
 
 	private editButton(index: number): HTMLButtonElement {

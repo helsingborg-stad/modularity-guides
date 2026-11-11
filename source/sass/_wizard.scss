@@ -17,8 +17,7 @@ $prefix: '--mod-guide-wizard--';
 // breakpoints (--breakpoint-sm 32.5em, --breakpoint-md 56em); queries cannot use custom properties.
 $container: guide-wizard;
 $container-sm: 32.5em; // answer tags next to the text, larger card padding, question icon
-$container-md: 48em;   // sidebar with step list next to the question
-$container-lg: 56em;   // answers and summary content side by side
+$container-md: 48em;   // sidebar with step list next to the question, answers next to questions in the summary
 
 @function token($name) {
   @return var(#{$prefix}#{$name}, var(--#{$name}));
@@ -392,16 +391,10 @@ $container-lg: 56em;   // answers and summary content side by side
       flex-wrap: wrap;
     }
 
+    // The summary is one column: result, answers, then the summary content.
     &__result-grid {
       display: grid;
       gap: space(3);
-
-      @container #{$container} (min-width: #{$container-lg}) {
-        &:not(.mod-guide-wizard__result-grid--split) {
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-          align-items: start;
-        }
-      }
     }
 
     &__panel {
@@ -412,38 +405,84 @@ $container-lg: 56em;   // answers and summary content side by side
       margin: 0;
     }
 
+    // One row per question: number and question, then the answers as chips and "Edit".
+    // Side by side when there is room, stacked otherwise.
     &__answer {
+      display: grid;
+      gap: space(0.5) space(2);
       padding: space(1.5) 0;
       border-top: border-width() solid color('surface-border');
 
       &:first-child {
-        padding-top: 0;
         border-top: 0;
+        padding-top: 0;
+      }
+
+      @container #{$container} (min-width: #{$container-md}) {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        align-items: baseline;
       }
 
       dt {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         gap: space(1);
-        font-size: font-size(90);
-        color: color('surface-contrast-muted');
-        margin-bottom: space(0.5);
+        font-weight: font-weight('bold');
       }
 
       dd {
+        display: flex;
+        align-items: baseline;
+        gap: space(1);
         margin: 0;
-        font-weight: font-weight('bold');
+      }
+    }
 
-        ul {
-          margin: 0;
-          padding-left: space(2.5);
-        }
+    &__answer-number {
+      flex-shrink: 0;
+      min-width: size(3);
+      height: size(3);
+      padding: 0 space(0.5);
+      border-radius: radius(999);
+      background: color('surface-alt');
+      color: color('surface-contrast-muted');
+      font-size: font-size(80);
+      line-height: size(3);
+      text-align: center;
+    }
+
+    &__answer-list {
+      display: grid;
+      gap: space(0.5);
+      flex: 1;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    // An answer, with a small marker instead of a bullet
+    &__chip {
+      position: relative;
+      padding-left: space(2);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: space(0.25);
+        top: 0.6em;
+        width: size(1);
+        height: size(1);
+        border-radius: 50%;
+        background: color('primary');
       }
 
-      &.is-unanswered dd {
-        font-weight: font-weight('normal');
+      &--empty {
         color: color('surface-contrast-muted');
+        font-style: italic;
+
+        &::before {
+          background: color('surface-border');
+        }
       }
     }
 
@@ -468,16 +507,18 @@ $container-lg: 56em;   // answers and summary content side by side
     }
 
     &__outcome {
-      display: block;
+      justify-self: start;
+      padding: space(0.25) space(1);
+      border-radius: radius(999);
       font-size: font-size(90);
-      margin-top: space(0.5);
+      font-weight: font-weight('bold');
 
-      &--stop {
-        color: color('danger');
-      }
-
-      &--review {
-        color: color('warning');
+      @each $outcome, $color in (stop: danger, review: warning) {
+        &--#{$outcome} {
+          background: color($color);
+          border: border-width() solid color('#{$color}-border');
+          color: color('#{$color}-contrast');
+        }
       }
     }
 
