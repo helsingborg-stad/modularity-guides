@@ -45,6 +45,31 @@ add_filter(
     3
 );
 
+// Acf auto import and export. Edit the field group in ACF locally; saving it re-exports
+// source/php/AcfFields/php (translatable labels) and source/php/AcfFields/json.
+add_action('acf/init', function () {
+    $acfExportManager = new \AcfExportManager\AcfExportManager();
+    $acfExportManager->setTextdomain('modularity-guides');
+    $acfExportManager->setExportFolder(MODULARITYGUIDES_PATH . 'source/php/AcfFields/');
+    $acfExportManager->autoExport([
+        'modularity-guides-fields' => 'group_577279265d68a',
+    ]);
+    $acfExportManager->import();
+});
+
+// AcfExportManager only translates sub fields of repeaters and groups. Also translate the sub fields
+// of flexible content layouts, so every label in the export gets __(). Only runs while exporting
+// (acf_translate_field is a no-op unless ACF's l10n settings are enabled).
+add_filter('acf/translate_field/type=flexible_content', static function (array $field): array {
+    foreach ($field['layouts'] ?? [] as $layoutKey => $layout) {
+        foreach ($layout['sub_fields'] ?? [] as $subFieldKey => $subField) {
+            $field['layouts'][$layoutKey]['sub_fields'][$subFieldKey] = acf_translate_field($subField);
+        }
+    }
+
+    return $field;
+});
+
 // Start application
 new ModularityGuides\App();
 new ModularityGuides\Api(new NativeWpService(), new NativeAcfService());

@@ -13,12 +13,5 @@ class App
                 modularity_register_module(MODULARITYGUIDES_PATH . 'source/php/', 'Module');
             }
         });
-        add_filter('acf/settings/load_json', [$this, 'jsonLoadPath']);
-    }
-
-    public function jsonLoadPath($paths)
-    {
-        $paths[] = MODULARITYGUIDES_PATH . 'source/acf-json';
-        return $paths;
     }
 }

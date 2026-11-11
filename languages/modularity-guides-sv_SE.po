@@ -19,68 +19,69 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/App.php:36
-#: source/php/Helper/Lang.php:15
+#: source/php/Helper/Lang.php:17
 msgid "Your checklist"
 msgstr "Din att göra-lista"
 
-#: source/php/Helper/Lang.php:19
+#: source/php/Helper/Lang.php:21
 msgid "Hi, here's your requested checlist, enjoy!"
 msgstr "Hej, här kommer din önskade att göra-lista!"
 
-#: source/php/Helper/Lang.php:17
+#: source/php/Helper/Lang.php:19
 msgid "Email was sent"
 msgstr "Meddelandet har skickats"
 
-#: source/php/Helper/Lang.php:18
+#: source/php/Helper/Lang.php:20
 msgid "The message can't be sent right now. Please try again later."
 msgstr "Meddelandet kunde inte skickas. Vänligen försök igen senare."
 
-#: source/php/Helper/Lang.php:14
+#: source/php/Helper/Lang.php:16
 msgid "Send as email"
 msgstr "Skicka som E-post"
 
-#: source/php/Helper/Lang.php:13
+#: source/php/Helper/Lang.php:15
 msgid "Send todo-list as email"
 msgstr "Skicka att göra-lista som e-post"
 
-#: source/php/Helper/Lang.php:12
+#: source/php/Helper/Lang.php:14
 msgid "Email"
 msgstr "E-postadress"
 
-#: source/php/Helper/Lang.php:11
+#: source/php/Helper/Lang.php:13
 msgid "Send"
 msgstr "Skicka"
 
-#: source/php/Helper/Lang.php:10
+#: source/php/Helper/Lang.php:12
 msgid "Notice"
 msgstr " "
 
-#: source/php/Helper/Lang.php:20
+#: source/php/Helper/Lang.php:22
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Helper/Lang.php:21
+#: source/php/Helper/Lang.php:23
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Helper/Lang.php:16
+#: source/php/Helper/Lang.php:18
 msgid "You need to add a valid E-mail!"
 msgstr "Ange en giltig E-post adress"
 
-#: source/php/Module.php:19
-msgid "Guide"
-msgstr ""
-
-#: source/php/Module.php:20
-msgid "Guides"
-msgstr ""
-
+#: source/php/AcfFields/php/modularity-guides-fields.php:8
 #: source/php/Module.php:21
-msgid "A step by step guide"
-msgstr ""
+msgid "Guide"
+msgstr "Guide"
 
-#: source/php/Helper/Lang.php:22
+#: source/php/AcfFields/php/modularity-guides-fields.php:467
+#: source/php/Module.php:22
+msgid "Guides"
+msgstr "Guider"
+
+#: source/php/Module.php:23
+msgid "A step by step guide"
+msgstr "En steg-för-steg-guide"
+
+#: source/php/Helper/Lang.php:24
 msgid "required"
 msgstr "obligatoriskt"
 
@@ -109,6 +110,112 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#: source/php/Helper/Lang.php:23
+#: source/php/Helper/Lang.php:25
 msgid "Read more"
 msgstr "Läs mer"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:12
+msgid "Steps"
+msgstr "Steg"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:28
+msgid "Add"
+msgstr "Lägg till"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:33
+#: source/php/AcfFields/php/modularity-guides-fields.php:132
+#: source/php/AcfFields/php/modularity-guides-fields.php:368
+#: source/php/AcfFields/php/modularity-guides-fields.php:488
+msgid "Title"
+msgstr "Rubrik"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:56
+msgid "Content"
+msgstr "Innehåll"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:68
+msgid "Add content"
+msgstr "Lägg till innehåll"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:75
+#: source/php/AcfFields/php/modularity-guides-fields.php:80
+msgid "Text"
+msgstr "Text"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:100
+#: source/php/AcfFields/php/modularity-guides-fields.php:194
+#: source/php/AcfFields/php/modularity-guides-fields.php:247
+#: source/php/AcfFields/php/modularity-guides-fields.php:432
+#: source/php/AcfFields/php/modularity-guides-fields.php:527
+msgid "Toggle key"
+msgstr "Växlingsnyckel"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:127
+msgid "Text: modal"
+msgstr "Text: modal"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:154
+msgid "Summary"
+msgstr "Sammanfattning"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:174
+msgid "Modal content"
+msgstr "Innehåll i modal"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:221
+#: source/php/AcfFields/php/modularity-guides-fields.php:226
+msgid "Checkboxes"
+msgstr "Kryssrutor"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:242
+msgid "Add checkbox"
+msgstr "Lägg till kryssruta"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:251
+msgid "Unique key for this checkbox"
+msgstr "Unik nyckel för kryssrutan"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:270
+msgid "Label"
+msgstr "Etikett"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:274
+msgid "Checkbox label"
+msgstr "Kryssrutans text"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:293
+msgid "Relate to (toggle key)"
+msgstr "Koppla till (växlingsnyckel)"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:314
+msgid "Required"
+msgstr "Obligatorisk"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:342
+msgid "Todo list"
+msgstr "Att göra-lista"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:347
+msgid "List items"
+msgstr "Listpunkter"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:363
+#: source/php/AcfFields/php/modularity-guides-fields.php:483
+msgid "Add row"
+msgstr "Lägg till rad"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:391
+msgid "Link text"
+msgstr "Länktext"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:414
+msgid "Link url"
+msgstr "Länk-URL"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:462
+msgid "Related guides"
+msgstr "Relaterade guider"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:509
+msgid "Link URL"
+msgstr "Länk-URL"
