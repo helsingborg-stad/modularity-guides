@@ -9,8 +9,9 @@ Guides are shown **step by step**: one question at a time, with a progress sideb
 - **Questions:** every step that contains a *Checkboxes* layout becomes a question.
   Text, modal text and related guides in the same step are shown under the answers (they still
   react to toggle keys).
-- **Summary content:** steps without answer options (for example the *Todo list*) are shown on the
-  summary page, filtered by the visitor's answers.
+- **Summary content:** *Content* on the *Summary page* tab (for example a todo list or what to do
+  next) is shown under the answers, filtered by the visitor's answers. Steps without answer options
+  are also shown there (that is where older guides kept it; the migration moves them).
 - **Guides without questions:** if no step has answer options, the content is shown as it is,
   without the step by step frame.
 - **Per step:** *Short title* (sidebar and summary), *Icon* (Material Symbols name), *Description*,
@@ -34,6 +35,8 @@ The edit screen has three tabs: **Questions**, **Summary page** and **Settings**
 
 - Questions start collapsed (showing their title). Short title, icon, description and help text are
   under *More settings*.
+- *Summary page → Content* holds sections shown under the answers: a title, a description and
+  text, modal texts, a todo list or related guides.
 - Answers are added with *Answers and content → Answer options*.
 - *Show when* on tips, modal texts, todo items and related guides lists the guide's answers: the
   content is shown when the visitor chooses any of them. It is stored as toggle keys, so the toggle
@@ -54,9 +57,10 @@ wp modularity-guides migrate-to-wizard --url=https://example.com
 ```
 
 It sets *several answers* explicitly on every question, removes accordion-only data
-(`display_mode`, the unused *Required* flag on checkboxes) and lists what editors should review:
-guides without questions, steps without answers in the middle of a guide (they move to the
-summary page) and checkboxes that used to be required.
+(`display_mode`, the unused *Required* flag on checkboxes), moves steps without answer options to
+*Summary page → Content* (they were already shown on the summary page, so guides look the same)
+and lists what editors should review: guides without questions and checkboxes that used to be
+required.
 
 ## Development
 

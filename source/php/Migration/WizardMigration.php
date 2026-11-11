@@ -13,9 +13,10 @@ use WpService\Contracts\UpdatePostMeta;
  * Migrates guides from the old accordion mode to the step by step mode.
  *
  * Existing content already works in the step by step mode (several answers per question,
- * outcome "continue"), so no content is rewritten. The migration:
+ * outcome "continue"), so no texts are rewritten. The migration:
  * - sets "several answers" explicitly on every question, so the behaviour is kept even if defaults change,
  * - removes accordion-only data (display_mode, the "required" flag on checkboxes),
+ * - moves steps without answer options to "Content" on the summary page tab (they were already shown there),
  * - reports what an editor should look at.
  *
  * plan() only reads; apply() saves a plan.
@@ -67,6 +68,9 @@ class WizardMigration
         }
         foreach ($change['delete'] as $key) {
             $this->wpService->deletePostMeta($guideId, $key);
+        }
+        if (isset($change['moveToSummary'])) {
+            (new SummarySectionMove($this->wpService))->apply($guideId, $change['moveToSummary']);
         }
     }
 }

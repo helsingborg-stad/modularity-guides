@@ -20,8 +20,10 @@ use WpService\Contracts\GetTheID;
 class AnswerFields
 {
     public const ANSWER_KEY_FIELD = 'field_57727e6d2981b';
-    public const ADVANCED_FIELD = 'field_6912b1a0d0044';
-    public const STEPS_FIELD = 'field_57727933e3560';
+    /** "Show advanced fields" in a question and in a summary page section. */
+    public const ADVANCED_FIELDS = ['field_6912b1a0d0044', 'field_6912b1a0d0074'];
+    /** Questions and summary page sections, which start collapsed. */
+    public const COLLAPSED_FIELDS = ['field_57727933e3560', 'field_6912b1a0d0070'];
     public const POST_TYPE = 'mod-guide';
 
     public const SHOW_WHEN_FIELDS = [
@@ -29,6 +31,11 @@ class AnswerFields
         'field_6912b1a0d0061',
         'field_6912b1a0d0062',
         'field_6912b1a0d0063',
+        // Summary page content
+        'field_6912b1a0d0103',
+        'field_6912b1a0d010a',
+        'field_6912b1a0d0110',
+        'field_6912b1a0d0116',
     ];
 
     public function __construct(
@@ -48,10 +55,10 @@ class AnswerFields
 
     /**
      * Guide edit screen only:
-     * - questions start collapsed (showing their title), so editors open one at a time,
+     * - questions and summary page sections start collapsed (showing their title), so editors open one at a time,
      * - every other row in the lists has a grey background, so new rows are easy to tell apart,
      * - fields with the wrapper class "mod-guide-advanced" are hidden in a question until its
-     *   "Show advanced fields" switch is turned on.
+     *   "Show advanced fields" switch is turned on (questions and summary page sections).
      */
     public function printAdminScript(): void
     {
@@ -64,14 +71,15 @@ class AnswerFields
             '<style>.acf-row.mod-guide-hide-advanced .acf-field.mod-guide-advanced{display:none}'
             // Every other row (questions, answers, todo items …) gets a light grey background.
             . '#acf-group_577279265d68a .acf-repeater>.acf-table>tbody>.acf-row:nth-child(even)>td{background:#f6f7f7}</style>'
-            . '<script>(function($){if(!window.acf||!$){return;}var toggle=%1$s;'
+            . '<script>(function($){if(!window.acf||!$){return;}'
+            . 'var toggles=%1$s.map(function(key){return ".acf-field[data-key="+key+"] input[type=checkbox]";}).join(",");'
             . 'function update(input){$(input).closest(".acf-row").toggleClass("mod-guide-hide-advanced",!input.checked);}'
-            . 'function updateAll(){$(".acf-field[data-key="+toggle+"] input[type=checkbox]").each(function(){update(this);});}'
-            . '$(document).on("change",".acf-field[data-key="+toggle+"] input[type=checkbox]",function(){update(this);});'
-            . 'acf.addAction("ready",function(){updateAll();acf.getFields({key:%2$s}).forEach(function(steps){steps.$rows().addClass("-collapsed");});});'
+            . 'function updateAll(){$(toggles).each(function(){update(this);});}'
+            . '$(document).on("change",toggles,function(){update(this);});'
+            . 'acf.addAction("ready",function(){updateAll();%2$s.forEach(function(key){acf.getFields({key:key}).forEach(function(field){field.$rows().addClass("-collapsed");});});});'
             . 'acf.addAction("append",updateAll);})(window.jQuery);</script>',
-            json_encode(self::ADVANCED_FIELD),
-            json_encode(self::STEPS_FIELD),
+            json_encode(self::ADVANCED_FIELDS),
+            json_encode(self::COLLAPSED_FIELDS),
         );
     }
 

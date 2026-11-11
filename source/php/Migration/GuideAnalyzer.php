@@ -9,7 +9,8 @@ use WpService\Contracts\GetPostMeta;
 /**
  * Works out what the migration to the step by step mode changes for one guide.
  *
- * A change is ['description' => string, 'update' => [metaKey => value], 'delete' => [metaKey, ...]].
+ * A change is ['description' => string, 'update' => [metaKey => value], 'delete' => [metaKey, ...]],
+ * optionally with 'moveToSummary' => [step index, ...] (see SummarySectionMove).
  */
 class GuideAnalyzer
 {
@@ -50,12 +51,42 @@ class GuideAnalyzer
             $changes[] = ['description' => 'Remove display_mode', 'update' => [], 'delete' => ['display_mode', '_display_mode']];
         }
 
+        // Last, as it renumbers the steps.
+        array_push($changes, ...$this->summaryMoveChanges($guideId, $stepCount, $questionSteps));
+
         return [
             'id' => $guideId,
             'title' => (string) $guide->post_title,
             'changes' => $changes,
-            'warnings' => [...$warnings, ...(new StructureWarnings($this->wpService))->for($guideId, $stepCount, $questionSteps)],
+            'warnings' => [...$warnings, ...(new StructureWarnings())->for($stepCount, $questionSteps)],
         ];
+    }
+
+    /**
+     * Steps without answer options in a guide with questions move to the summary page content.
+     * The change is applied last, as it renumbers the steps.
+     *
+     * @param int[] $questionSteps
+     */
+    private function summaryMoveChanges(int $guideId, int $stepCount, array $questionSteps): array
+    {
+        if ($questionSteps === []) {
+            return [];
+        }
+        $steps = array_values(array_diff(range(0, $stepCount - 1), $questionSteps));
+
+        return $steps === [] ? [] : [[
+            'description' => sprintf(
+                'Move %s to the summary page content',
+                implode(', ', array_map(
+                    fn(int $step): string => sprintf('step %d "%s"', $step + 1, (string) $this->meta($guideId, "steps_{$step}_title")),
+                    $steps,
+                )),
+            ),
+            'update' => [],
+            'delete' => [],
+            'moveToSummary' => $steps,
+        ]];
     }
 
     /**

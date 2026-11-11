@@ -66,6 +66,7 @@ msgid "Guide"
 msgstr "Guide"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:794
+#: source/php/AcfFields/php/modularity-guides-fields.php:1624
 #: source/php/Module.php:23
 msgid "Guides"
 msgstr "Guider"
@@ -154,6 +155,7 @@ msgid "Help with the question"
 msgstr "Hjälp med frågan"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:365
+#: source/php/AcfFields/php/modularity-guides-fields.php:1375
 #: source/php/Helper/Lang.php:56
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -290,6 +292,9 @@ msgstr "Till exempel: \"Detta är vägledning, inte ett beslut. Dina svar sparas
 #: source/php/AcfFields/php/modularity-guides-fields.php:967
 #: source/php/AcfFields/php/modularity-guides-fields.php:1025
 #: source/php/AcfFields/php/modularity-guides-fields.php:1083
+#: source/php/AcfFields/php/modularity-guides-fields.php:1185
+#: source/php/AcfFields/php/modularity-guides-fields.php:1353
+#: source/php/AcfFields/php/modularity-guides-fields.php:1645
 msgid "Title"
 msgstr "Rubrik"
 
@@ -303,6 +308,7 @@ msgstr "Ikon"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:178
 #: source/php/AcfFields/php/modularity-guides-fields.php:509
+#: source/php/AcfFields/php/modularity-guides-fields.php:1206
 msgid "Description"
 msgstr "Beskrivning"
 
@@ -327,6 +333,7 @@ msgstr "Hjälptext"
 #: source/php/AcfFields/php/modularity-guides-fields.php:987
 #: source/php/AcfFields/php/modularity-guides-fields.php:1045
 #: source/php/AcfFields/php/modularity-guides-fields.php:1103
+#: source/php/AcfFields/php/modularity-guides-fields.php:1273
 msgid "Text"
 msgstr "Text"
 
@@ -335,14 +342,20 @@ msgstr "Text"
 #: source/php/AcfFields/php/modularity-guides-fields.php:589
 #: source/php/AcfFields/php/modularity-guides-fields.php:759
 #: source/php/AcfFields/php/modularity-guides-fields.php:883
+#: source/php/AcfFields/php/modularity-guides-fields.php:1321
+#: source/php/AcfFields/php/modularity-guides-fields.php:1415
+#: source/php/AcfFields/php/modularity-guides-fields.php:1589
+#: source/php/AcfFields/php/modularity-guides-fields.php:1713
 msgid "Toggle key"
 msgstr "Växlingsnyckel"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:338
+#: source/php/AcfFields/php/modularity-guides-fields.php:1348
 msgid "Text: modal"
 msgstr "Text: modal"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:385
+#: source/php/AcfFields/php/modularity-guides-fields.php:1395
 msgid "Modal content"
 msgstr "Innehåll i modal"
 
@@ -371,31 +384,39 @@ msgid "Shown on the summary page when this answer stops the guide."
 msgstr "Visas på sammanfattningssidan när svaret stoppar guiden."
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:640
+#: source/php/AcfFields/php/modularity-guides-fields.php:1470
 msgid "Todo list"
 msgstr "Att göra-lista"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:645
+#: source/php/AcfFields/php/modularity-guides-fields.php:1475
 msgid "List items"
 msgstr "Listpunkter"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:661
 #: source/php/AcfFields/php/modularity-guides-fields.php:810
+#: source/php/AcfFields/php/modularity-guides-fields.php:1491
+#: source/php/AcfFields/php/modularity-guides-fields.php:1640
 msgid "Add row"
 msgstr "Lägg till rad"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:689
+#: source/php/AcfFields/php/modularity-guides-fields.php:1519
 msgid "Link text"
 msgstr "Länktext"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:712
+#: source/php/AcfFields/php/modularity-guides-fields.php:1542
 msgid "Link url"
 msgstr "Länk-URL"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:789
+#: source/php/AcfFields/php/modularity-guides-fields.php:1619
 msgid "Related guides"
 msgstr "Relaterade guider"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:836
+#: source/php/AcfFields/php/modularity-guides-fields.php:1666
 msgid "Link URL"
 msgstr "Länk-URL"
 
@@ -423,11 +444,11 @@ msgstr "Visas i en utfällbar \"Hjälp\"-sektion under frågan."
 msgid "Continue goes to the next question. Stop and Check end the guide and show the summary."
 msgstr "Gå vidare leder till nästa fråga. Stoppa och Behöver kontrolleras avslutar guiden och visar sammanfattningen."
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:1181
+#: source/php/AcfFields/php/modularity-guides-fields.php:1763
 msgid "Show outcomes on answers"
 msgstr "Visa utfall vid svaren"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:1185
+#: source/php/AcfFields/php/modularity-guides-fields.php:1767
 msgid "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page."
 msgstr "Visar Vidare, Stopp och Kontroll bredvid svaren på frågor där ett svar kan avsluta guiden. Stäng av för att bara visa utfallet på sammanfattningssidan."
 
@@ -460,6 +481,7 @@ msgid "Add answers or content"
 msgstr "Lägg till svar eller innehåll"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:258
+#: source/php/AcfFields/php/modularity-guides-fields.php:1268
 msgid "Tip or text"
 msgstr "Tips eller text"
 
@@ -467,6 +489,10 @@ msgstr "Tips eller text"
 #: source/php/AcfFields/php/modularity-guides-fields.php:427
 #: source/php/AcfFields/php/modularity-guides-fields.php:730
 #: source/php/AcfFields/php/modularity-guides-fields.php:854
+#: source/php/AcfFields/php/modularity-guides-fields.php:1293
+#: source/php/AcfFields/php/modularity-guides-fields.php:1437
+#: source/php/AcfFields/php/modularity-guides-fields.php:1560
+#: source/php/AcfFields/php/modularity-guides-fields.php:1684
 msgid "Show when"
 msgstr "Visa när"
 
@@ -474,6 +500,10 @@ msgstr "Visa när"
 #: source/php/AcfFields/php/modularity-guides-fields.php:431
 #: source/php/AcfFields/php/modularity-guides-fields.php:734
 #: source/php/AcfFields/php/modularity-guides-fields.php:858
+#: source/php/AcfFields/php/modularity-guides-fields.php:1297
+#: source/php/AcfFields/php/modularity-guides-fields.php:1441
+#: source/php/AcfFields/php/modularity-guides-fields.php:1564
+#: source/php/AcfFields/php/modularity-guides-fields.php:1688
 msgid "Show when the visitor chooses any of these answers. Leave empty to always show."
 msgstr "Visas när besökaren väljer något av dessa svar. Lämna tomt för att alltid visa."
 
@@ -498,10 +528,12 @@ msgid "Created automatically when empty."
 msgstr "Skapas automatiskt om fältet är tomt."
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:666
+#: source/php/AcfFields/php/modularity-guides-fields.php:1496
 msgid "Group"
 msgstr "Grupp"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:670
+#: source/php/AcfFields/php/modularity-guides-fields.php:1500
 msgid "Items with the same group are listed together."
 msgstr "Punkter med samma grupp listas tillsammans."
 
@@ -521,14 +553,40 @@ msgstr "Ett svar stoppar guiden"
 msgid "An answer needs to be checked"
 msgstr "Ett svar behöver kontrolleras"
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:1163
+#: source/php/AcfFields/php/modularity-guides-fields.php:1745
 msgid "Settings"
 msgstr "Inställningar"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:98
+#: source/php/AcfFields/php/modularity-guides-fields.php:1227
 msgid "Show advanced fields"
 msgstr "Visa avancerade fält"
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:102
 msgid "Shows toggle keys and relations for the answers and content of this question. Most questions do not need them: use \"Show when\" instead."
 msgstr "Visar växlingsnycklar och kopplingar för svaren och innehållet i den här frågan. De flesta frågor behöver dem inte: använd \"Visa när\" i stället."
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1163
+#: source/php/AcfFields/php/modularity-guides-fields.php:1249
+msgid "Content"
+msgstr "Innehåll"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1167
+msgid "Shown under the answers on the summary page, e.g. a todo list or what to do next."
+msgstr "Visas under svaren på sammanfattningssidan, t.ex. en att göra-lista eller vad man ska göra härnäst."
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1180
+msgid "Add section"
+msgstr "Lägg till avsnitt"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1253
+msgid "Text, modal texts, a todo list or related guides. Use Show when to show content only for some answers."
+msgstr "Text, texter i modal, en att göra-lista eller relaterade guider. Använd Visa när för att bara visa innehåll vid vissa svar."
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1261
+msgid "Add content"
+msgstr "Lägg till innehåll"
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1231
+msgid "Shows toggle keys for the content of this section. Most sections do not need them: use \"Show when\" instead."
+msgstr "Visar växlingsnycklar för innehållet i det här avsnittet. De flesta avsnitt behöver dem inte: använd \"Visa när\" i stället."

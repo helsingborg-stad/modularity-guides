@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-11T12:12:17+00:00\n"
+"POT-Creation-Date: 2026-11-11T14:23:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
@@ -58,6 +58,9 @@ msgstr ""
 #: source/php/AcfFields/php/modularity-guides-fields.php:967
 #: source/php/AcfFields/php/modularity-guides-fields.php:1025
 #: source/php/AcfFields/php/modularity-guides-fields.php:1083
+#: source/php/AcfFields/php/modularity-guides-fields.php:1185
+#: source/php/AcfFields/php/modularity-guides-fields.php:1353
+#: source/php/AcfFields/php/modularity-guides-fields.php:1645
 msgid "Title"
 msgstr ""
 
@@ -79,6 +82,7 @@ msgid "One answer"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:98
+#: source/php/AcfFields/php/modularity-guides-fields.php:1227
 msgid "Show advanced fields"
 msgstr ""
 
@@ -108,6 +112,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:178
 #: source/php/AcfFields/php/modularity-guides-fields.php:509
+#: source/php/AcfFields/php/modularity-guides-fields.php:1206
 msgid "Description"
 msgstr ""
 
@@ -132,6 +137,7 @@ msgid "Add answers or content"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:258
+#: source/php/AcfFields/php/modularity-guides-fields.php:1268
 msgid "Tip or text"
 msgstr ""
 
@@ -139,6 +145,7 @@ msgstr ""
 #: source/php/AcfFields/php/modularity-guides-fields.php:987
 #: source/php/AcfFields/php/modularity-guides-fields.php:1045
 #: source/php/AcfFields/php/modularity-guides-fields.php:1103
+#: source/php/AcfFields/php/modularity-guides-fields.php:1273
 msgid "Text"
 msgstr ""
 
@@ -146,6 +153,10 @@ msgstr ""
 #: source/php/AcfFields/php/modularity-guides-fields.php:427
 #: source/php/AcfFields/php/modularity-guides-fields.php:730
 #: source/php/AcfFields/php/modularity-guides-fields.php:854
+#: source/php/AcfFields/php/modularity-guides-fields.php:1293
+#: source/php/AcfFields/php/modularity-guides-fields.php:1437
+#: source/php/AcfFields/php/modularity-guides-fields.php:1560
+#: source/php/AcfFields/php/modularity-guides-fields.php:1684
 msgid "Show when"
 msgstr ""
 
@@ -153,6 +164,10 @@ msgstr ""
 #: source/php/AcfFields/php/modularity-guides-fields.php:431
 #: source/php/AcfFields/php/modularity-guides-fields.php:734
 #: source/php/AcfFields/php/modularity-guides-fields.php:858
+#: source/php/AcfFields/php/modularity-guides-fields.php:1297
+#: source/php/AcfFields/php/modularity-guides-fields.php:1441
+#: source/php/AcfFields/php/modularity-guides-fields.php:1564
+#: source/php/AcfFields/php/modularity-guides-fields.php:1688
 msgid "Show when the visitor chooses any of these answers. Leave empty to always show."
 msgstr ""
 
@@ -161,19 +176,26 @@ msgstr ""
 #: source/php/AcfFields/php/modularity-guides-fields.php:589
 #: source/php/AcfFields/php/modularity-guides-fields.php:759
 #: source/php/AcfFields/php/modularity-guides-fields.php:883
+#: source/php/AcfFields/php/modularity-guides-fields.php:1321
+#: source/php/AcfFields/php/modularity-guides-fields.php:1415
+#: source/php/AcfFields/php/modularity-guides-fields.php:1589
+#: source/php/AcfFields/php/modularity-guides-fields.php:1713
 msgid "Toggle key"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:338
+#: source/php/AcfFields/php/modularity-guides-fields.php:1348
 msgid "Text: modal"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:365
+#: source/php/AcfFields/php/modularity-guides-fields.php:1375
 #: source/php/Helper/Lang.php:56
 msgid "Summary"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:385
+#: source/php/AcfFields/php/modularity-guides-fields.php:1395
 msgid "Modal content"
 msgstr ""
 
@@ -231,44 +253,55 @@ msgid "Relate to (toggle key)"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:640
+#: source/php/AcfFields/php/modularity-guides-fields.php:1470
 msgid "Todo list"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:645
+#: source/php/AcfFields/php/modularity-guides-fields.php:1475
 msgid "List items"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:661
 #: source/php/AcfFields/php/modularity-guides-fields.php:810
+#: source/php/AcfFields/php/modularity-guides-fields.php:1491
+#: source/php/AcfFields/php/modularity-guides-fields.php:1640
 msgid "Add row"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:666
+#: source/php/AcfFields/php/modularity-guides-fields.php:1496
 msgid "Group"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:670
+#: source/php/AcfFields/php/modularity-guides-fields.php:1500
 msgid "Items with the same group are listed together."
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:689
+#: source/php/AcfFields/php/modularity-guides-fields.php:1519
 msgid "Link text"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:712
+#: source/php/AcfFields/php/modularity-guides-fields.php:1542
 msgid "Link url"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:789
+#: source/php/AcfFields/php/modularity-guides-fields.php:1619
 msgid "Related guides"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:794
+#: source/php/AcfFields/php/modularity-guides-fields.php:1624
 #: source/php/Module.php:23
 msgid "Guides"
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:836
+#: source/php/AcfFields/php/modularity-guides-fields.php:1666
 msgid "Link URL"
 msgstr ""
 
@@ -306,14 +339,39 @@ msgid "For example: \"This is guidance, not a decision. Your answers are not sav
 msgstr ""
 
 #: source/php/AcfFields/php/modularity-guides-fields.php:1163
+#: source/php/AcfFields/php/modularity-guides-fields.php:1249
+msgid "Content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1167
+msgid "Shown under the answers on the summary page, e.g. a todo list or what to do next."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1180
+msgid "Add section"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1231
+msgid "Shows toggle keys for the content of this section. Most sections do not need them: use \"Show when\" instead."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1253
+msgid "Text, modal texts, a todo list or related guides. Use Show when to show content only for some answers."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1261
+msgid "Add content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1745
 msgid "Settings"
 msgstr ""
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:1181
+#: source/php/AcfFields/php/modularity-guides-fields.php:1763
 msgid "Show outcomes on answers"
 msgstr ""
 
-#: source/php/AcfFields/php/modularity-guides-fields.php:1185
+#: source/php/AcfFields/php/modularity-guides-fields.php:1767
 msgid "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page."
 msgstr ""
 
