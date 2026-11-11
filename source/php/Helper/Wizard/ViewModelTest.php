@@ -58,6 +58,7 @@ class ViewModelTest extends TestCase
         static::assertSame('Guide', $result['plainTitle']);
         static::assertSame(['First', 'Second'], array_column($result['questions'], 'title'));
         static::assertSame(['Todo'], array_column($result['summarySteps'], 'title'));
+        static::assertTrue($result['hasQuestions']);
     }
 
     public function testAddsPositionDependentPresentation(): void
@@ -91,6 +92,7 @@ class ViewModelTest extends TestCase
 
         static::assertSame([], $result['questions']);
         static::assertSame([], $result['summarySteps']);
+        static::assertFalse($result['hasQuestions']);
         static::assertSame(['0'], $result['script']['answered']);
     }
 }

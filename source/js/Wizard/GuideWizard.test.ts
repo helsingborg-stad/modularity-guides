@@ -1,4 +1,6 @@
-import { GuideWizard, toOutcome, type WizardStrings, worstOutcome } from './Wizard';
+import { GuideWizard } from './GuideWizard';
+import { toOutcome, worstOutcome } from './outcome';
+import type { WizardStrings } from './strings';
 
 const strings: WizardStrings = {
 	answered: ['0 answered', '1 answered', '2 answered'],
@@ -164,7 +166,7 @@ describe('GuideWizard', () => {
 
 		choose(root, 'unknown');
 		wizard.commit(0);
-		const summary = wizard.summaryText();
+		const summary = wizard.exporter?.text(wizard.currentResult as NonNullable<typeof wizard.currentResult>) ?? '';
 
 		expect(summary).toContain('TEST GUIDE');
 		expect(summary).toContain('1. Size\r\n   - unknown\r\n   (Check)');

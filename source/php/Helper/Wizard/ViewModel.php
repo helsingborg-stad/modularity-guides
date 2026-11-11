@@ -57,6 +57,8 @@ class ViewModel
             'plainTitle' => trim($this->wpService->wpStripAllTags($postTitle)),
             'restartModalId' => $guideId . '-restart',
             'questions' => $questions,
+            // Guides with only content (no answer options) show their content without the wizard.
+            'hasQuestions' => $questions !== [],
             'summarySteps' => array_values(array_filter($steps, static fn(array $step): bool => !$step['hasOptions'])),
             'results' => $this->resultFactory->create($summaryPage, $lang),
             'notice' => trim((string) ($summaryPage['notice'] ?? '')),

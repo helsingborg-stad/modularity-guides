@@ -33,6 +33,8 @@ class StepFactoryTest extends TestCase
         static::assertSame('Size', $step['shortTitle']);
         static::assertArrayNotHasKey('wizard_options', $step['content'][0]);
         static::assertSame('guide-q0', $step['content'][1]['wizard_options'][0]['name']);
+        static::assertSame('guide-0-0', $step['content'][0]['stepId'], 'Partials get a unique id per step and content');
+        static::assertSame('guide-0-1', $step['content'][1]['stepId']);
     }
 
     public function testStepWithoutOptionsIsSummaryContent(): void

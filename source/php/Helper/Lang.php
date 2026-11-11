@@ -21,9 +21,6 @@ class Lang
             'email_sent' => __('Email was sent', 'modularity-guides'),
             'email_failed' => __("The message can't be sent right now. Please try again later.", 'modularity-guides'),
             'email_intro' => __('Hi, here\'s your requested checlist, enjoy!', 'modularity-guides'),
-            'previous' => __('Previous', 'modularity-guides'),
-            'next' => __('Next', 'modularity-guides'),
-            'required' => __('required', 'modularity-guides'),
             'read_more' => __('Read more', 'modularity-guides'),
         ];
     }

@@ -12,10 +12,13 @@
 
 $prefix: '--mod-guide-wizard--';
 
-// Breakpoints from the design system (--breakpoint-*). Media queries cannot use custom properties.
-$breakpoint-sm: 32.5em;
-$breakpoint-md: 56em;
-$breakpoint-lg: 78em;
+// Layout responds to the width of the module (container queries), not the viewport, so the
+// guide works in narrow and wide page areas alike. Values follow the design system
+// breakpoints (--breakpoint-sm 32.5em, --breakpoint-md 56em); queries cannot use custom properties.
+$container: guide-wizard;
+$container-sm: 32.5em; // answer tags next to the text, larger card padding, question icon
+$container-md: 48em;   // sidebar with step list next to the question
+$container-lg: 56em;   // answers and summary content side by side
 
 @function token($name) {
   @return var(#{$prefix}#{$name}, var(--#{$name}));
@@ -57,6 +60,7 @@ $breakpoint-lg: 78em;
 @layer plugin {
   .mod-guide-wizard {
     position: relative;
+    container: #{$container} / inline-size;
     color: color('surface-contrast');
 
     [hidden] {
@@ -76,7 +80,7 @@ $breakpoint-lg: 78em;
       gap: space(2);
       align-items: start;
 
-      @media (min-width: $breakpoint-md) {
+      @container #{$container} (min-width: #{$container-md}) {
         grid-template-columns: minmax(size(20), size(30)) minmax(0, 1fr);
         gap: space(4);
       }
@@ -91,7 +95,7 @@ $breakpoint-lg: 78em;
       min-width: 0;
     }
 
-    @media (min-width: $breakpoint-md) {
+    @container #{$container} (min-width: #{$container-md}) {
       &__layout > &__side {
         position: sticky;
         top: space(3);
@@ -114,7 +118,7 @@ $breakpoint-lg: 78em;
       padding: 0;
       margin: space(3) 0 0;
 
-      @media (min-width: $breakpoint-md) {
+      @container #{$container} (min-width: #{$container-md}) {
         display: block;
       }
 
@@ -123,41 +127,32 @@ $breakpoint-lg: 78em;
       }
     }
 
-    &__step {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: space(1);
-      font: inherit;
+    // Steps are @button components (style basic); only the layout is adjusted here.
+    &__step.c-button {
+      justify-content: flex-start;
+      height: auto;
+      min-height: size(5);
+      padding: space(1);
+      text-align: left;
       font-size: font-size(90);
       line-height: token('line-height-heading');
-      text-align: left;
       color: color('surface-contrast-muted');
-      background: none;
-      border: 0;
-      padding: space(1);
-      border-radius: radius();
-      corner-shape: token('corner-shape');
-      cursor: pointer;
-      transition: background-color token('duration-160') token('ease-out');
 
-      &:disabled {
-        cursor: default;
-        opacity: 0.65;
+      .c-button__label {
+        display: flex;
+        align-items: center;
+        gap: space(1);
+        width: 100%;
       }
 
-      &:not(:disabled):hover,
+      .c-button__label-text {
+        white-space: normal;
+      }
+
       &[aria-current='step'] {
         background: color('surface-alt');
-      }
-
-      &[aria-current='step'] {
         color: color('surface-contrast');
         font-weight: font-weight('bold');
-      }
-
-      &:focus-visible {
-        @include focus-ring;
       }
     }
 
@@ -216,7 +211,7 @@ $breakpoint-lg: 78em;
     &__question {
       padding: space(3) space(2);
 
-      @media (min-width: $breakpoint-sm) {
+      @container #{$container} (min-width: #{$container-sm}) {
         padding: space(4);
       }
     }
@@ -257,7 +252,7 @@ $breakpoint-lg: 78em;
       color: color('primary');
       place-items: center;
 
-      @media (min-width: $breakpoint-sm) {
+      @container #{$container} (min-width: #{$container-sm}) {
         display: grid;
       }
     }
@@ -283,7 +278,7 @@ $breakpoint-lg: 78em;
         border-color token('duration-160') token('ease-out'),
         background-color token('duration-160') token('ease-out');
 
-      @media (min-width: $breakpoint-sm) {
+      @container #{$container} (min-width: #{$container-sm}) {
         flex-wrap: nowrap;
         gap: space(1.5);
         padding-right: space(2);
@@ -310,7 +305,7 @@ $breakpoint-lg: 78em;
         width: auto;
         margin: 0;
 
-        @media (min-width: $breakpoint-sm) {
+        @container #{$container} (min-width: #{$container-sm}) {
           flex-basis: auto;
         }
       }
@@ -353,7 +348,7 @@ $breakpoint-lg: 78em;
       margin: calc(#{space(1)} * -1) 0 space(1.5) size(6);
       white-space: nowrap;
 
-      @media (min-width: $breakpoint-sm) {
+      @container #{$container} (min-width: #{$container-sm}) {
         margin: 0;
       }
 
@@ -401,7 +396,7 @@ $breakpoint-lg: 78em;
       display: grid;
       gap: space(3);
 
-      @media (min-width: $breakpoint-lg) {
+      @container #{$container} (min-width: #{$container-lg}) {
         &:not(.mod-guide-wizard__result-grid--split) {
           grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
           align-items: start;

@@ -82,6 +82,16 @@ add_filter('acf/translate_field', static function (array $field): array {
     return $field;
 }, 20);
 
+// Migration from the accordion mode: wp modularity-guides migrate-to-wizard --dry-run
+if (defined('WP_CLI') && WP_CLI) {
+    WP_CLI::add_command(
+        'modularity-guides',
+        new ModularityGuides\Migration\MigrateCommand(
+            new ModularityGuides\Migration\WizardMigration(new NativeWpService()),
+        ),
+    );
+}
+
 // Start application
 new ModularityGuides\App();
 new ModularityGuides\Api(new NativeWpService(), new NativeAcfService());

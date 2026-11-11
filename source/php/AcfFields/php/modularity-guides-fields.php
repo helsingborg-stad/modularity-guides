@@ -8,45 +8,14 @@ if (function_exists('acf_add_local_field_group')) {
     'title' => __('Guide', 'modularity-guides'),
     'fields' => array(
         0 => array(
-            'key' => 'field_6912b1a0d0001',
-            'label' => __('Display mode', 'modularity-guides'),
-            'name' => 'display_mode',
-            'aria-label' => '',
-            'type' => 'button_group',
-            'instructions' => __('Accordion shows all steps at once. Step by step shows one question at a time with a progress sidebar and a summary page.', 'modularity-guides'),
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-                'accordion' => __('Accordion', 'modularity-guides'),
-                'wizard' => __('Step by step', 'modularity-guides'),
-            ),
-            'allow_null' => 0,
-            'default_value' => 'accordion',
-            'layout' => 'horizontal',
-            'return_format' => 'value',
-        ),
-        1 => array(
             'key' => 'field_6912b1a0d0002',
             'label' => __('Summary page', 'modularity-guides'),
             'name' => 'summary_page',
             'aria-label' => '',
             'type' => 'group',
-            'instructions' => __('Texts shown on the summary page in step by step mode. Leave empty to use the default texts.', 'modularity-guides'),
+            'instructions' => __('Texts shown on the summary page. Leave empty to use the default texts.', 'modularity-guides'),
             'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_6912b1a0d0001',
-                        'operator' => '==',
-                        'value' => 'wizard',
-                    ),
-                ),
-            ),
+            'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
                 'class' => '',
@@ -196,7 +165,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
             ),
         ),
-        2 => array(
+        1 => array(
             'key' => 'field_57727933e3560',
             'label' => __('Steps', 'modularity-guides'),
             'name' => 'steps',
@@ -246,7 +215,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'name' => 'short_title',
                     'aria-label' => '',
                     'type' => 'text',
-                    'instructions' => __('Step by step mode: shown in the progress sidebar and summary. Defaults to the title.', 'modularity-guides'),
+                    'instructions' => __('Shown in the progress sidebar and summary. Defaults to the title.', 'modularity-guides'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -267,7 +236,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'name' => 'icon',
                     'aria-label' => '',
                     'type' => 'text',
-                    'instructions' => __('Step by step mode: optional Material Symbols icon name, e.g. "straighten".', 'modularity-guides'),
+                    'instructions' => __('Optional Material Symbols icon name, e.g. "straighten".', 'modularity-guides'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -288,7 +257,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'name' => 'description',
                     'aria-label' => '',
                     'type' => 'textarea',
-                    'instructions' => __('Step by step mode: short hint shown under the question.', 'modularity-guides'),
+                    'instructions' => __('Short hint shown under the question.', 'modularity-guides'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -309,7 +278,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'name' => 'selection_type',
                     'aria-label' => '',
                     'type' => 'button_group',
-                    'instructions' => __('Step by step mode: whether the visitor can choose one or several answers.', 'modularity-guides'),
+                    'instructions' => __('Whether the visitor can choose one or several answers.', 'modularity-guides'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -333,7 +302,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'name' => 'help',
                     'aria-label' => '',
                     'type' => 'wysiwyg',
-                    'instructions' => __('Step by step mode: shown in an expandable "Help" section under the question.', 'modularity-guides'),
+                    'instructions' => __('Shown in an expandable "Help" section under the question.', 'modularity-guides'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -595,7 +564,7 @@ if (function_exists('acf_add_local_field_group')) {
                                             'required' => 0,
                                             'conditional_logic' => 0,
                                             'wrapper' => array(
-                                                'width' => '10',
+                                                'width' => '12',
                                                 'class' => '',
                                                 'id' => '',
                                             ),
@@ -607,33 +576,12 @@ if (function_exists('acf_add_local_field_group')) {
                                             'parent_repeater' => 'field_57727e502981a',
                                         ),
                                         3 => array(
-                                            'key' => 'field_57d27e8ed3eb5',
-                                            'label' => __('Required', 'modularity-guides'),
-                                            'name' => 'required',
-                                            'aria-label' => '',
-                                            'type' => 'true_false',
-                                            'instructions' => '',
-                                            'required' => 0,
-                                            'conditional_logic' => 0,
-                                            'wrapper' => array(
-                                                'width' => '5',
-                                                'class' => '',
-                                                'id' => '',
-                                            ),
-                                            'message' => '',
-                                            'default_value' => 0,
-                                            'ui' => 0,
-                                            'ui_on_text' => '',
-                                            'ui_off_text' => '',
-                                            'parent_repeater' => 'field_57727e502981a',
-                                        ),
-                                        4 => array(
                                             'key' => 'field_6912b1a0d0020',
                                             'label' => __('Description', 'modularity-guides'),
                                             'name' => 'description',
                                             'aria-label' => '',
                                             'type' => 'text',
-                                            'instructions' => __('Step by step mode: optional extra line under the label.', 'modularity-guides'),
+                                            'instructions' => __('Optional extra line under the label.', 'modularity-guides'),
                                             'required' => 0,
                                             'conditional_logic' => 0,
                                             'wrapper' => array(
@@ -648,17 +596,17 @@ if (function_exists('acf_add_local_field_group')) {
                                             'append' => '',
                                             'parent_repeater' => 'field_57727e502981a',
                                         ),
-                                        5 => array(
+                                        4 => array(
                                             'key' => 'field_6912b1a0d0021',
                                             'label' => __('Outcome', 'modularity-guides'),
                                             'name' => 'outcome',
                                             'aria-label' => '',
                                             'type' => 'select',
-                                            'instructions' => __('Step by step mode: Continue goes to the next question. Stop and Check end the guide and show the summary.', 'modularity-guides'),
+                                            'instructions' => __('Continue goes to the next question. Stop and Check end the guide and show the summary.', 'modularity-guides'),
                                             'required' => 0,
                                             'conditional_logic' => 0,
                                             'wrapper' => array(
-                                                'width' => '12',
+                                                'width' => '13',
                                                 'class' => '',
                                                 'id' => '',
                                             ),
@@ -678,7 +626,7 @@ if (function_exists('acf_add_local_field_group')) {
                                             'save_options' => 0,
                                             'parent_repeater' => 'field_57727e502981a',
                                         ),
-                                        6 => array(
+                                        5 => array(
                                             'key' => 'field_6912b1a0d0022',
                                             'label' => __('Reason', 'modularity-guides'),
                                             'name' => 'outcome_reason',
@@ -696,7 +644,7 @@ if (function_exists('acf_add_local_field_group')) {
                                                 ),
                                             ),
                                             'wrapper' => array(
-                                                'width' => '18',
+                                                'width' => '20',
                                                 'class' => '',
                                                 'id' => '',
                                             ),

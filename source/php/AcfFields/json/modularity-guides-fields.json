@@ -3,45 +3,14 @@
     "title": "Guide",
     "fields": [
         {
-            "key": "field_6912b1a0d0001",
-            "label": "Display mode",
-            "name": "display_mode",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "Accordion shows all steps at once. Step by step shows one question at a time with a progress sidebar and a summary page.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "accordion": "Accordion",
-                "wizard": "Step by step"
-            },
-            "allow_null": 0,
-            "default_value": "accordion",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
             "key": "field_6912b1a0d0002",
             "label": "Summary page",
             "name": "summary_page",
             "aria-label": "",
             "type": "group",
-            "instructions": "Texts shown on the summary page in step by step mode. Leave empty to use the default texts.",
+            "instructions": "Texts shown on the summary page. Leave empty to use the default texts.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6912b1a0d0001",
-                        "operator": "==",
-                        "value": "wizard"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -241,7 +210,7 @@
                     "name": "short_title",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Step by step mode: shown in the progress sidebar and summary. Defaults to the title.",
+                    "instructions": "Shown in the progress sidebar and summary. Defaults to the title.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -262,7 +231,7 @@
                     "name": "icon",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Step by step mode: optional Material Symbols icon name, e.g. \"straighten\".",
+                    "instructions": "Optional Material Symbols icon name, e.g. \"straighten\".",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -283,7 +252,7 @@
                     "name": "description",
                     "aria-label": "",
                     "type": "textarea",
-                    "instructions": "Step by step mode: short hint shown under the question.",
+                    "instructions": "Short hint shown under the question.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -304,7 +273,7 @@
                     "name": "selection_type",
                     "aria-label": "",
                     "type": "button_group",
-                    "instructions": "Step by step mode: whether the visitor can choose one or several answers.",
+                    "instructions": "Whether the visitor can choose one or several answers.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -328,7 +297,7 @@
                     "name": "help",
                     "aria-label": "",
                     "type": "wysiwyg",
-                    "instructions": "Step by step mode: shown in an expandable \"Help\" section under the question.",
+                    "instructions": "Shown in an expandable \"Help\" section under the question.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -590,7 +559,7 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "10",
+                                                "width": "12",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -602,33 +571,12 @@
                                             "parent_repeater": "field_57727e502981a"
                                         },
                                         {
-                                            "key": "field_57d27e8ed3eb5",
-                                            "label": "Required",
-                                            "name": "required",
-                                            "aria-label": "",
-                                            "type": "true_false",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "5",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "message": "",
-                                            "default_value": 0,
-                                            "ui": 0,
-                                            "ui_on_text": "",
-                                            "ui_off_text": "",
-                                            "parent_repeater": "field_57727e502981a"
-                                        },
-                                        {
                                             "key": "field_6912b1a0d0020",
                                             "label": "Description",
                                             "name": "description",
                                             "aria-label": "",
                                             "type": "text",
-                                            "instructions": "Step by step mode: optional extra line under the label.",
+                                            "instructions": "Optional extra line under the label.",
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
@@ -649,11 +597,11 @@
                                             "name": "outcome",
                                             "aria-label": "",
                                             "type": "select",
-                                            "instructions": "Step by step mode: Continue goes to the next question. Stop and Check end the guide and show the summary.",
+                                            "instructions": "Continue goes to the next question. Stop and Check end the guide and show the summary.",
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "12",
+                                                "width": "13",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -691,7 +639,7 @@
                                                 ]
                                             ],
                                             "wrapper": {
-                                                "width": "18",
+                                                "width": "20",
                                                 "class": "",
                                                 "id": ""
                                             },

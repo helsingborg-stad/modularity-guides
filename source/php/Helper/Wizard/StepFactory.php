@@ -21,7 +21,10 @@ class StepFactory
         $optionIndex = 0;
         $outcomes = [];
 
-        foreach ($contents as &$content) {
+        foreach ($contents as $contentIndex => &$content) {
+            // Unique id for partials that render modals or forms (text_modal, todo).
+            $content['stepId'] = $guideId . '-' . $stepIndex . '-' . $contentIndex;
+
             if (($content['acf_fc_layout'] ?? '') !== 'checkboxes') {
                 continue;
             }
