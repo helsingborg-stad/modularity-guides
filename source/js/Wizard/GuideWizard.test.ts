@@ -154,6 +154,7 @@ describe('GuideWizard', () => {
 		wizard.commit(0);
 
 		expect(wizard.currentResult?.type).toBe('stop');
+		expect(step.classList.contains('is-stop')).toBe(true);
 	});
 
 	it('does not jump to questions that have not been reached', () => {

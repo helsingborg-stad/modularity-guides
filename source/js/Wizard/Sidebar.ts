@@ -9,6 +9,8 @@ import { setText, type WizardStrings } from './strings';
 export class Sidebar {
 	private readonly stepButtons: HTMLButtonElement[];
 	private readonly summaryButton: HTMLButtonElement | null;
+	/** Outcomes are revealed once the guide has a result, even when hidden on the answers. */
+	private outcomesRevealed = false;
 
 	constructor(
 		private readonly root: HTMLElement,
@@ -34,6 +36,7 @@ export class Sidebar {
 	 */
 	render(current: number, furthest: number, hasResult: boolean): void {
 		const answered = this.answers.answeredCount();
+		this.outcomesRevealed = hasResult;
 
 		setText(
 			this.root.querySelector(hook('progress-position')),
@@ -60,8 +63,9 @@ export class Sidebar {
 		const isAnswered = this.answers.isAnswered(index);
 		let outcome: Outcome | null = null;
 		if (isAnswered) {
-			// With outcomes hidden, an answered step only shows that it is answered.
-			outcome = this.strings.hideOutcomes ? 'pass' : this.answers.outcomeOf(index).outcome;
+			// With outcomes hidden, an answered step only shows that it is answered until the guide has a result.
+			const hidden = this.strings.hideOutcomes && !this.outcomesRevealed;
+			outcome = hidden ? 'pass' : this.answers.outcomeOf(index).outcome;
 		}
 
 		button.disabled = index > furthest && !isAnswered;
