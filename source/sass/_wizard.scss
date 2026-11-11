@@ -1,0 +1,566 @@
+// Step by step (wizard) display mode
+//
+// Built on the Municipio design system:
+// - Sizes are multipliers of --base, scaled by the global tokens --space,
+//   --border-radius and --border-width (same pattern as the components).
+// - Every token can be overridden for the wizard only via --mod-guide-wizard--<token>,
+//   e.g. --mod-guide-wizard--space or --mod-guide-wizard--color--primary.
+//   (Not --c-…: that prefix belongs to the component library.)
+// - corner-shape is progressive enhancement (Chromium only); other browsers ignore it.
+// - Lives in the theme's "plugin" cascade layer: above components (so component
+//   internals can be adjusted) and below utilities (so utility classes win).
+
+$prefix: '--mod-guide-wizard--';
+
+// Layout responds to the width of the module (container queries), not the viewport, so the
+// guide works in narrow and wide page areas alike. Values follow the design system
+// breakpoints (--breakpoint-sm 32.5em, --breakpoint-md 56em); queries cannot use custom properties.
+$container: guide-wizard;
+$container-sm: 32.5em; // answer tags next to the text, larger card padding, question icon
+$container-md: 48em;   // sidebar with step list next to the question, answers next to questions in the summary
+
+@function token($name) {
+  @return var(#{$prefix}#{$name}, var(--#{$name}));
+}
+
+@function color($name) {
+  @return token('color--#{$name}');
+}
+
+@function space($n) {
+  @return calc(#{token('space')} * var(--base) * #{$n});
+}
+
+@function radius($n: 1) {
+  @return calc(#{token('border-radius')} * var(--base) * #{$n});
+}
+
+@function border-width($n: 1) {
+  @return calc(#{token('border-width')} * var(--base) * #{$n});
+}
+
+@function size($n) {
+  @return calc(var(--base) * #{$n});
+}
+
+@function font-size($step) {
+  @return token('font-size-#{$step}');
+}
+
+@function font-weight($name) {
+  @return token('font-weight-#{$name}');
+}
+
+@mixin focus-ring($offset: 2) {
+  outline: border-width(3) solid color('focus');
+  outline-offset: size($offset * 0.25);
+}
+
+@layer plugin {
+  .mod-guide-wizard {
+    position: relative;
+    container: #{$container} / inline-size;
+    color: color('surface-contrast');
+
+    [hidden] {
+      display: none !important;
+    }
+
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    // ---------- Layout ----------
+    &__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: space(2);
+      align-items: start;
+
+      @container #{$container} (min-width: #{$container-md}) {
+        grid-template-columns: minmax(size(20), size(30)) minmax(0, 1fr);
+        gap: space(4);
+      }
+    }
+
+    &__main {
+      min-width: 0;
+    }
+
+    // ---------- Sidebar ----------
+    &__side {
+      min-width: 0;
+    }
+
+    @container #{$container} (min-width: #{$container-md}) {
+      &__layout > &__side {
+        position: sticky;
+        top: space(3);
+      }
+    }
+
+    &__side-title.c-typography {
+      font-size: font-size(200);
+      line-height: token('line-height-heading');
+    }
+
+    &__progress-label {
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
+    }
+
+    &__steps {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: space(3) 0 0;
+
+      @container #{$container} (min-width: #{$container-md}) {
+        display: block;
+      }
+
+      li {
+        margin: space(0.25) 0;
+      }
+    }
+
+    // Steps are @button components (style basic); only the layout is adjusted here.
+    &__step.c-button {
+      justify-content: flex-start;
+      height: auto;
+      min-height: size(5);
+      padding: space(1);
+      text-align: left;
+      font-size: font-size(90);
+      line-height: token('line-height-heading');
+      color: color('surface-contrast-muted');
+
+      .c-button__label {
+        display: flex;
+        align-items: center;
+        gap: space(1);
+        width: 100%;
+      }
+
+      .c-button__label-text {
+        white-space: normal;
+      }
+
+      &[aria-current='step'] {
+        background: color('surface-alt');
+        color: color('surface-contrast');
+        font-weight: font-weight('bold');
+      }
+    }
+
+    &__step-dot {
+      flex-shrink: 0;
+      width: size(3.5);
+      height: size(3.5);
+      border-radius: 50%;
+      border: border-width() solid color('surface-border');
+      background: color('surface');
+      display: grid;
+      place-items: center;
+      font-size: font-size(80);
+
+      .c-icon {
+        font-size: font-size(100);
+      }
+    }
+
+    // The step dot shows the number until the step is answered, then the outcome icon.
+    &__step-icon {
+      display: none;
+    }
+
+    @each $state in (pass, stop, review) {
+      &__step.is-#{$state} &__step-icon--#{$state} {
+        display: inline-flex;
+      }
+    }
+
+    &__step.is-completed &__step-number {
+      display: none;
+    }
+
+    &__step[aria-current='step'] &__step-dot {
+      background: color('primary');
+      border-color: color('primary');
+      color: color('primary-contrast');
+    }
+
+    @each $state, $color in (completed: success, stop: danger, review: warning) {
+      &__step.is-#{$state}:not([aria-current='step']) &__step-dot {
+        background: color($color);
+        border-color: color('#{$color}-border');
+        color: color('#{$color}-contrast');
+      }
+    }
+
+
+    // ---------- Question card ----------
+    &__question,
+    &__panel {
+      min-width: 0;
+    }
+
+    &__question {
+      padding: space(3) space(2);
+
+      @container #{$container} (min-width: #{$container-sm}) {
+        padding: space(4);
+      }
+    }
+
+    &__eyebrow.c-typography {
+      font-size: font-size(80);
+      font-weight: font-weight('bold');
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: color('primary');
+    }
+
+    &__head-text {
+      min-width: 0;
+    }
+
+    &__title {
+      overflow-wrap: anywhere;
+      hyphens: auto;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__hint {
+      color: color('surface-contrast-muted');
+    }
+
+    &__art {
+      display: none;
+      flex-shrink: 0;
+      width: size(12);
+      height: size(12);
+      border-radius: radius(2);
+      corner-shape: token('corner-shape');
+      background: color('surface-alt');
+      color: color('primary');
+      place-items: center;
+
+      @container #{$container} (min-width: #{$container-sm}) {
+        display: grid;
+      }
+    }
+
+    // ---------- Options ----------
+    &__options {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    &__option {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border: border-width() solid color('surface-border');
+      border-radius: radius();
+      corner-shape: token('corner-shape');
+      margin: space(1) 0;
+      background: color('surface');
+      transition:
+        border-color token('duration-160') token('ease-out'),
+        background-color token('duration-160') token('ease-out');
+
+      @container #{$container} (min-width: #{$container-sm}) {
+        flex-wrap: nowrap;
+        gap: space(1.5);
+        padding-right: space(2);
+      }
+
+      &:hover {
+        background: color('surface-alt');
+      }
+
+      &:has(input:checked) {
+        border-color: color('primary');
+        box-shadow: 0 0 0 border-width() color('primary');
+        background: color('surface-alt');
+      }
+
+      &:has(input:focus-visible) {
+        @include focus-ring(3);
+      }
+
+      // Let the component's label cover the whole card.
+      .c-option {
+        flex: 1 1 100%;
+        min-width: 0;
+        width: auto;
+        margin: 0;
+
+        @container #{$container} (min-width: #{$container-sm}) {
+          flex-basis: auto;
+        }
+      }
+
+      .c-option__checkbox--label,
+      .c-option__radio--label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: space(2);
+        cursor: pointer;
+      }
+
+      .c-option__checkbox--label-text,
+      .c-option__radio--label-text {
+        font-weight: font-weight('bold');
+        line-height: token('line-height-heading');
+      }
+
+      .c-option__input-invalid-message {
+        display: none;
+      }
+    }
+
+    &__option-desc {
+      display: block;
+      font-weight: font-weight('normal');
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
+      margin-top: space(0.5);
+    }
+
+    &__tag {
+      font-size: font-size(80);
+      font-weight: font-weight('bold');
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: radius(0.5);
+      padding: space(0.5) space(0.75);
+      margin: calc(#{space(1)} * -1) 0 space(1.5) size(6);
+      white-space: nowrap;
+
+      @container #{$container} (min-width: #{$container-sm}) {
+        margin: 0;
+      }
+
+      @each $outcome, $color in (pass: success, stop: danger, review: warning) {
+        &--#{$outcome} {
+          background: color($color);
+          color: color('#{$color}-contrast');
+        }
+      }
+    }
+
+    // Toggle content (tips) inside a question
+    &__form > .mod-guide-text,
+    &__form > .grid,
+    &__form > .o-grid {
+      margin-top: space(2);
+    }
+
+    &__note {
+      font-size: font-size(90);
+      color: color('surface-contrast-muted');
+      min-height: 1.5em;
+    }
+
+    &__actions {
+      border-top: border-width() solid color('surface-border');
+      padding-top: space(2.5);
+    }
+
+    // ---------- Result ----------
+    &__hero:focus {
+      outline: none;
+    }
+
+    &__hero-reason {
+      display: block;
+      margin-bottom: space(1);
+    }
+
+    &__result-actions {
+      flex-wrap: wrap;
+    }
+
+    // The summary is one column: result, answers, then the summary content.
+    &__result-grid {
+      display: grid;
+      gap: space(3);
+    }
+
+    &__panel {
+      padding: space(3);
+    }
+
+    &__answers {
+      margin: 0;
+    }
+
+    // One row per question: number and question, then the answers as chips and "Edit".
+    // Side by side when there is room, stacked otherwise.
+    &__answer {
+      display: grid;
+      gap: space(0.5) space(2);
+      padding: space(1.5) 0;
+      border-top: border-width() solid color('surface-border');
+
+      &:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      @container #{$container} (min-width: #{$container-md}) {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        align-items: baseline;
+      }
+
+      dt {
+        display: flex;
+        align-items: baseline;
+        gap: space(1);
+        font-weight: font-weight('bold');
+      }
+
+      dd {
+        display: flex;
+        align-items: baseline;
+        gap: space(1);
+        margin: 0;
+      }
+    }
+
+    &__answer-number {
+      flex-shrink: 0;
+      min-width: size(3);
+      height: size(3);
+      padding: 0 space(0.5);
+      border-radius: radius(999);
+      background: color('surface-alt');
+      color: color('surface-contrast-muted');
+      font-size: font-size(80);
+      line-height: size(3);
+      text-align: center;
+    }
+
+    &__answer-list {
+      display: grid;
+      gap: space(0.5);
+      flex: 1;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    // An answer, with a small marker instead of a bullet
+    &__chip {
+      position: relative;
+      padding-left: space(2);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: space(0.25);
+        top: 0.6em;
+        width: size(1);
+        height: size(1);
+        border-radius: 50%;
+        background: color('primary');
+      }
+
+      &--empty {
+        color: color('surface-contrast-muted');
+        font-style: italic;
+
+        &::before {
+          background: color('surface-border');
+        }
+      }
+    }
+
+    &__edit {
+      font: inherit;
+      font-size: font-size(90);
+      font-weight: font-weight('bold');
+      color: color('primary');
+      background: none;
+      border: 0;
+      padding: space(0.25) 0;
+      cursor: pointer;
+      white-space: nowrap;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    &__outcome {
+      justify-self: start;
+      padding: space(0.25) space(1);
+      border-radius: radius(999);
+      font-size: font-size(90);
+      font-weight: font-weight('bold');
+
+      @each $outcome, $color in (stop: danger, review: warning) {
+        &--#{$outcome} {
+          background: color($color);
+          border: border-width() solid color('#{$color}-border');
+          color: color('#{$color}-contrast');
+        }
+      }
+    }
+
+    // The todo list keeps working on the summary page
+    &__panel .modularity-guide-todos .c-paper {
+      box-shadow: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  }
+
+  // ---------- Print ----------
+  @media print {
+    .mod-guide-wizard {
+      &__side,
+      &__result-actions,
+      &__edit,
+      &__toast,
+      &__question,
+      .js-modularity-guide-todos__modal-trigger,
+      .c-modal {
+        display: none !important;
+      }
+
+      &__layout,
+      &__result-grid {
+        display: block;
+      }
+
+      &__hero,
+      &__answer,
+      .modularity-guide-todos tr {
+        break-inside: avoid;
+      }
+
+      &__panel {
+        box-shadow: none;
+      }
+    }
+  }
+}

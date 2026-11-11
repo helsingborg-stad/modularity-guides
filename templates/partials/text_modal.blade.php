@@ -1,4 +1,4 @@
-<div class="grid mod-guide-text u-mb-2" {!! isset($item['toggle_key']) && !empty($item['toggle_key']) ? 'data-mod-guide-toggle-key-content="' . $item['toggle_key'] . '"' : '' !!}>
+<div class="grid mod-guide-text u-mb-2" @if (!empty($content['toggle_key'])) data-mod-guide-toggle-key-content="{{ $content['toggle_key'] }}" @endif>
     <div class="grid-xs-12">
         <article>
             @typography([

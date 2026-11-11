@@ -10,7 +10,9 @@ class FieldTransform
 
     public function __construct(array $fields)
     {
-        $this->fields = $fields;
+        // Content from the summary page tab is shown like steps without answer options.
+        // "Show when" answers become toggle keys before anything uses them (view and e-mail).
+        $this->fields = ShowWhen::apply(SummarySections::asSteps($fields));
 
         // Transform todo list items into groups based on title
         $todo = &$this->getTodo();
