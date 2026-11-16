@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ModularityGuides;
 
 use ModularityGuides\Helper\Lang;
+use WpService\Implementations\NativeWpService;
 
 class Module extends \Modularity\Module
 {
@@ -34,6 +35,14 @@ class Module extends \Modularity\Module
         $data['municipio'] = $theme->name == 'Municipio' || $theme->parent_theme == 'Municipio' ? true : false;
         $data['lang'] = $this->lang;
         $data['apiUrl'] = get_rest_url(null, MODULARITYGUIDES_API_NAMESPACE . '/modularity-guides/' . $data['id']);
+        $data['wizard'] = (new Helper\Wizard\ViewModel(new NativeWpService()))->create(
+            $data['fields'],
+            $this->lang,
+            (int) $data['id'],
+            // postTitle is set after data() runs, post_title is already available.
+            (string) ($this->data['post_title'] ?? ''),
+        );
+
         return $data;
     }
 

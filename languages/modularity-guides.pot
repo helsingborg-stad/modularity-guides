@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Kristoffer Svanmark
+# Copyright (C) 2026 Kristoffer Svanmark
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Guides 4.0.4\n"
+"Project-Id-Version: Modularity Guides 5.0.16\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-guides\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-20T10:54:29+00:00\n"
+"POT-Creation-Date: 2026-11-11T14:23:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-guides\n"
@@ -39,71 +39,549 @@ msgstr ""
 msgid "(#plugin_author_url#)"
 msgstr ""
 
-#: source/php/App.php:36
-#: source/php/Helper/Lang.php:15
-msgid "Your checklist"
-msgstr ""
-
-#: source/php/Helper/Lang.php:10
-msgid "Notice"
-msgstr ""
-
-#: source/php/Helper/Lang.php:11
-msgid "Send"
-msgstr ""
-
-#: source/php/Helper/Lang.php:12
-msgid "Email"
-msgstr ""
-
-#: source/php/Helper/Lang.php:13
-msgid "Send todo-list as email"
-msgstr ""
-
-#: source/php/Helper/Lang.php:14
-msgid "Send as email"
-msgstr ""
-
-#: source/php/Helper/Lang.php:16
-msgid "You need to add a valid E-mail!"
-msgstr ""
-
-#: source/php/Helper/Lang.php:17
-msgid "Email was sent"
-msgstr ""
-
-#: source/php/Helper/Lang.php:18
-msgid "The message can't be sent right now. Please try again later."
-msgstr ""
-
-#: source/php/Helper/Lang.php:19
-msgid "Hi, here's your requested checlist, enjoy!"
-msgstr ""
-
-#: source/php/Helper/Lang.php:20
-msgid "Previous"
-msgstr ""
-
-#: source/php/Helper/Lang.php:21
-msgid "Next"
-msgstr ""
-
-#: source/php/Helper/Lang.php:22
-msgid "required"
-msgstr ""
-
-#: source/php/Helper/Lang.php:23
-msgid "Read more"
-msgstr ""
-
-#: source/php/Module.php:19
+#: source/php/AcfFields/php/modularity-guides-fields.php:8
+#: source/php/Module.php:22
 msgid "Guide"
 msgstr ""
 
-#: source/php/Module.php:20
+#: source/php/AcfFields/php/modularity-guides-fields.php:12
+msgid "Questions"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:46
+msgid "Add question"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:51
+#: source/php/AcfFields/php/modularity-guides-fields.php:343
+#: source/php/AcfFields/php/modularity-guides-fields.php:815
+#: source/php/AcfFields/php/modularity-guides-fields.php:967
+#: source/php/AcfFields/php/modularity-guides-fields.php:1025
+#: source/php/AcfFields/php/modularity-guides-fields.php:1083
+#: source/php/AcfFields/php/modularity-guides-fields.php:1185
+#: source/php/AcfFields/php/modularity-guides-fields.php:1353
+#: source/php/AcfFields/php/modularity-guides-fields.php:1645
+msgid "Title"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:74
+#: source/php/AcfFields/php/modularity-guides-fields.php:465
+msgid "Answers"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:78
+msgid "Whether the visitor can choose one or several answers."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:87
+msgid "Several answers"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:88
+msgid "One answer"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:98
+#: source/php/AcfFields/php/modularity-guides-fields.php:1227
+msgid "Show advanced fields"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:102
+msgid "Shows toggle keys and relations for the answers and content of this question. Most questions do not need them: use \"Show when\" instead."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:120
+msgid "More settings"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:139
+msgid "Short title"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:143
+msgid "Shown in the progress sidebar and summary. Defaults to the title."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:160
+msgid "Icon"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:164
+msgid "Shown next to the question."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:178
+#: source/php/AcfFields/php/modularity-guides-fields.php:509
+#: source/php/AcfFields/php/modularity-guides-fields.php:1206
+msgid "Description"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:182
+msgid "Short hint shown under the question."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:199
+msgid "Help text"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:203
+msgid "Shown in an expandable \"Help\" section under the question."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:239
+msgid "Answers and content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:251
+msgid "Add answers or content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:258
+#: source/php/AcfFields/php/modularity-guides-fields.php:1268
+msgid "Tip or text"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:263
+#: source/php/AcfFields/php/modularity-guides-fields.php:987
+#: source/php/AcfFields/php/modularity-guides-fields.php:1045
+#: source/php/AcfFields/php/modularity-guides-fields.php:1103
+#: source/php/AcfFields/php/modularity-guides-fields.php:1273
+msgid "Text"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:283
+#: source/php/AcfFields/php/modularity-guides-fields.php:427
+#: source/php/AcfFields/php/modularity-guides-fields.php:730
+#: source/php/AcfFields/php/modularity-guides-fields.php:854
+#: source/php/AcfFields/php/modularity-guides-fields.php:1293
+#: source/php/AcfFields/php/modularity-guides-fields.php:1437
+#: source/php/AcfFields/php/modularity-guides-fields.php:1560
+#: source/php/AcfFields/php/modularity-guides-fields.php:1684
+msgid "Show when"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:287
+#: source/php/AcfFields/php/modularity-guides-fields.php:431
+#: source/php/AcfFields/php/modularity-guides-fields.php:734
+#: source/php/AcfFields/php/modularity-guides-fields.php:858
+#: source/php/AcfFields/php/modularity-guides-fields.php:1297
+#: source/php/AcfFields/php/modularity-guides-fields.php:1441
+#: source/php/AcfFields/php/modularity-guides-fields.php:1564
+#: source/php/AcfFields/php/modularity-guides-fields.php:1688
+msgid "Show when the visitor chooses any of these answers. Leave empty to always show."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:311
+#: source/php/AcfFields/php/modularity-guides-fields.php:405
+#: source/php/AcfFields/php/modularity-guides-fields.php:589
+#: source/php/AcfFields/php/modularity-guides-fields.php:759
+#: source/php/AcfFields/php/modularity-guides-fields.php:883
+#: source/php/AcfFields/php/modularity-guides-fields.php:1321
+#: source/php/AcfFields/php/modularity-guides-fields.php:1415
+#: source/php/AcfFields/php/modularity-guides-fields.php:1589
+#: source/php/AcfFields/php/modularity-guides-fields.php:1713
+msgid "Toggle key"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:338
+#: source/php/AcfFields/php/modularity-guides-fields.php:1348
+msgid "Text: modal"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:365
+#: source/php/AcfFields/php/modularity-guides-fields.php:1375
+#: source/php/Helper/Lang.php:56
+msgid "Summary"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:385
+#: source/php/AcfFields/php/modularity-guides-fields.php:1395
+msgid "Modal content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:460
+msgid "Answer options"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:481
+msgid "Add answer"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:486
+msgid "Answer"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:513
+msgid "Optional extra line under the answer."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:530
+msgid "Outcome"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:534
+msgid "Continue goes to the next question. Stop and Check end the guide and show the summary."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:543
+msgid "Continue to next question"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:544
+msgid "Stop the guide"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:545
+#: source/php/Helper/Lang.php:61
+msgid "Needs to be checked"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:560
+msgid "Reason"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:564
+msgid "Shown on the summary page when this answer stops the guide."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:593
+msgid "Created automatically when empty."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:612
+msgid "Relate to (toggle key)"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:640
+#: source/php/AcfFields/php/modularity-guides-fields.php:1470
+msgid "Todo list"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:645
+#: source/php/AcfFields/php/modularity-guides-fields.php:1475
+msgid "List items"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:661
+#: source/php/AcfFields/php/modularity-guides-fields.php:810
+#: source/php/AcfFields/php/modularity-guides-fields.php:1491
+#: source/php/AcfFields/php/modularity-guides-fields.php:1640
+msgid "Add row"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:666
+#: source/php/AcfFields/php/modularity-guides-fields.php:1496
+msgid "Group"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:670
+#: source/php/AcfFields/php/modularity-guides-fields.php:1500
+msgid "Items with the same group are listed together."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:689
+#: source/php/AcfFields/php/modularity-guides-fields.php:1519
+msgid "Link text"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:712
+#: source/php/AcfFields/php/modularity-guides-fields.php:1542
+msgid "Link url"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:789
+#: source/php/AcfFields/php/modularity-guides-fields.php:1619
+msgid "Related guides"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:794
+#: source/php/AcfFields/php/modularity-guides-fields.php:1624
+#: source/php/Module.php:23
 msgid "Guides"
 msgstr ""
 
-#: source/php/Module.php:21
+#: source/php/AcfFields/php/modularity-guides-fields.php:836
+#: source/php/AcfFields/php/modularity-guides-fields.php:1666
+msgid "Link URL"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:915
+msgid "Summary page"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:933
+msgid "Texts"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:937
+msgid "Texts shown on the summary page. Leave empty to use the default texts."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:949
+msgid "All questions passed"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1007
+msgid "An answer stops the guide"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1065
+msgid "An answer needs to be checked"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1141
+#: source/php/Helper/Lang.php:14
+msgid "Notice"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1145
+msgid "For example: \"This is guidance, not a decision. Your answers are not saved.\""
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1163
+#: source/php/AcfFields/php/modularity-guides-fields.php:1249
+msgid "Content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1167
+msgid "Shown under the answers on the summary page, e.g. a todo list or what to do next."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1180
+msgid "Add section"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1231
+msgid "Shows toggle keys for the content of this section. Most sections do not need them: use \"Show when\" instead."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1253
+msgid "Text, modal texts, a todo list or related guides. Use Show when to show content only for some answers."
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1261
+msgid "Add content"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1745
+msgid "Settings"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1763
+msgid "Show outcomes on answers"
+msgstr ""
+
+#: source/php/AcfFields/php/modularity-guides-fields.php:1767
+msgid "Shows Continue, Stop and Check next to the answers on questions where an answer can end the guide. Turn off to only show the outcome on the summary page."
+msgstr ""
+
+#: source/php/Helper/Lang.php:15
+msgid "Send"
+msgstr ""
+
+#: source/php/Helper/Lang.php:16
+msgid "Email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:17
+msgid "Send todo-list as email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:18
+msgid "Send as email"
+msgstr ""
+
+#: source/php/Helper/Lang.php:19
+msgid "Your checklist"
+msgstr ""
+
+#: source/php/Helper/Lang.php:20
+msgid "You need to add a valid E-mail!"
+msgstr ""
+
+#: source/php/Helper/Lang.php:21
+msgid "Email was sent"
+msgstr ""
+
+#: source/php/Helper/Lang.php:22
+msgid "The message can't be sent right now. Please try again later."
+msgstr ""
+
+#: source/php/Helper/Lang.php:23
+msgid "Hi, here's your requested checlist, enjoy!"
+msgstr ""
+
+#: source/php/Helper/Lang.php:24
+msgid "Read more"
+msgstr ""
+
+#: source/php/Helper/Lang.php:34
+msgid "Your progress through the guide"
+msgstr ""
+
+#. translators: 1: current question number, 2: number of questions
+#: source/php/Helper/Lang.php:36
+#, php-format
+msgid "Question %1$s of %2$s"
+msgstr ""
+
+#. translators: %s: number of answered questions
+#: source/php/Helper/Lang.php:38
+#, php-format
+msgid "%s question answered"
+msgid_plural "%s questions answered"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: number of questions left
+#: source/php/Helper/Lang.php:40
+#, php-format
+msgid "%s question remains."
+msgid_plural "%s questions remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#: source/php/Helper/Lang.php:41
+msgid "Continue"
+msgstr ""
+
+#: source/php/Helper/Lang.php:42
+msgid "Back"
+msgstr ""
+
+#: source/php/Helper/Lang.php:43
+msgid "Show summary"
+msgstr ""
+
+#: source/php/Helper/Lang.php:44
+msgid "Choose an answer to continue."
+msgstr ""
+
+#: source/php/Helper/Lang.php:45
+msgid "Choose one or more answers to continue."
+msgstr ""
+
+#: source/php/Helper/Lang.php:46
+msgid "Your saved answer is selected. You can choose another."
+msgstr ""
+
+#: source/php/Helper/Lang.php:47
+msgid "Your answer takes you further in the guide."
+msgstr ""
+
+#: source/php/Helper/Lang.php:48
+msgid "This answer stops the guide. Continue to see why and what to do next."
+msgstr ""
+
+#: source/php/Helper/Lang.php:49
+msgid "This answer needs to be checked. Continue to see what is missing."
+msgstr ""
+
+#: source/php/Helper/Lang.php:51
+msgid "Continue when you are ready."
+msgstr ""
+
+#: source/php/Helper/Lang.php:52
+msgctxt "answer outcome"
+msgid "Continue"
+msgstr ""
+
+#: source/php/Helper/Lang.php:53
+msgctxt "answer outcome"
+msgid "Stop"
+msgstr ""
+
+#: source/php/Helper/Lang.php:54
+msgctxt "answer outcome"
+msgid "Check"
+msgstr ""
+
+#: source/php/Helper/Lang.php:55
+msgid "Help with the question"
+msgstr ""
+
+#: source/php/Helper/Lang.php:57
+msgid "Your answers"
+msgstr ""
+
+#: source/php/Helper/Lang.php:58
+msgid "Edit"
+msgstr ""
+
+#: source/php/Helper/Lang.php:59
+msgid "Not answered"
+msgstr ""
+
+#: source/php/Helper/Lang.php:60
+msgid "Stops the guide"
+msgstr ""
+
+#. translators: %s: short title of the question where the guide stopped
+#: source/php/Helper/Lang.php:63
+#, php-format
+msgid "The guide stopped at \"%s\". The other questions have not been assessed."
+msgstr ""
+
+#: source/php/Helper/Lang.php:64
+msgid "Print / save as PDF"
+msgstr ""
+
+#: source/php/Helper/Lang.php:65
+msgid "Save answers as text"
+msgstr ""
+
+#: source/php/Helper/Lang.php:66
+msgid "Your answers have been saved as a text file."
+msgstr ""
+
+#: source/php/Helper/Lang.php:67
+msgid "Start over"
+msgstr ""
+
+#: source/php/Helper/Lang.php:68
+msgid "Do you want to start over?"
+msgstr ""
+
+#: source/php/Helper/Lang.php:69
+msgid "Your answers will be cleared. Save the summary first if you want to keep it."
+msgstr ""
+
+#: source/php/Helper/Lang.php:70
+msgid "Yes, start over"
+msgstr ""
+
+#: source/php/Helper/Lang.php:71
+msgid "Cancel"
+msgstr ""
+
+#: source/php/Helper/Lang.php:72
+msgid "Created"
+msgstr ""
+
+#: source/php/Helper/Lang.php:82
+msgid "You have answered all questions"
+msgstr ""
+
+#: source/php/Helper/Lang.php:83
+msgid "Here is a summary of your answers and what you can do next."
+msgstr ""
+
+#: source/php/Helper/Lang.php:84
+msgid "The guide stops here"
+msgstr ""
+
+#: source/php/Helper/Lang.php:85
+msgid "One of your answers does not meet a condition in the guide. Contact us for advice on how to proceed."
+msgstr ""
+
+#: source/php/Helper/Lang.php:86
+msgid "This needs to be checked"
+msgstr ""
+
+#: source/php/Helper/Lang.php:87
+msgid "The guide cannot give a preliminary answer when information is unknown. Check the information and update your answer."
+msgstr ""
+
+#: source/php/Module.php:24
 msgid "A step by step guide"
 msgstr ""
