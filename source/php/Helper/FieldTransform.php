@@ -40,7 +40,17 @@ class FieldTransform
 
     public function &getTodo(): array
     {
+        $none = [];
+        // ACF returns false (or nothing) for a guide without steps.
+        if (!is_array($this->fields['steps'] ?? null)) {
+            return $none;
+        }
+
         foreach ($this->fields['steps'] as &$step) {
+            // A step without content (ACF returns false or null) has no todo list.
+            if (!is_array($step['content'] ?? null)) {
+                continue;
+            }
             foreach ($step['content'] as &$content) {
                 if ($content['acf_fc_layout'] != 'todo') {
                     continue;
