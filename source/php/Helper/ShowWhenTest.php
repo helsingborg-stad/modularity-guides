@@ -41,4 +41,10 @@ class ShowWhenTest extends TestCase
     {
         static::assertSame([], ShowWhen::apply([]));
     }
+
+    public function testStepsOrContentWithoutRowsAreUnchanged(): void
+    {
+        static::assertSame(['steps' => false], ShowWhen::apply(['steps' => false]));
+        static::assertSame(['steps' => [['content' => false]]], ShowWhen::apply(['steps' => [['content' => false]]]));
+    }
 }

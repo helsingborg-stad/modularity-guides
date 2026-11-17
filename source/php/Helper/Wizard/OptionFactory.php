@@ -18,7 +18,7 @@ class OptionFactory
     ) {}
 
     /**
-     * @param array  $checkbox ACF row: key, label, relate_to, description, outcome, outcome_reason
+     * @param array  $checkbox ACF row: key, label, relate_to, description, outcome, outcome_reason, show_when
      * @param string $type     Input type, radio or checkbox
      * @param string $id       Unique element id
      * @param string $name     Input name shared by the question's options
@@ -55,6 +55,12 @@ class OptionFactory
 
         if ($key !== '') {
             $attributes['data-mod-guide-toggle-key'] = $key;
+        }
+
+        // "Show when": only shown when one of these answers is chosen in an earlier question.
+        $showWhen = array_filter(array_map(static fn($key): string => trim((string) $key), (array) ($checkbox['show_when'] ?? [])));
+        if ($showWhen !== []) {
+            $attributes[ViewModel::ATTRIBUTE_PREFIX . 'show-when'] = implode(',', $showWhen);
         }
 
         // Relations toggle other checkboxes, which makes no sense for single choice.

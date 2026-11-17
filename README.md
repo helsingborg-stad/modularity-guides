@@ -21,6 +21,10 @@ Guides are shown **step by step**: one question at a time, with a progress sideb
   - *Stop the guide*: the guide ends and the summary shows the *Reason*.
   - *Needs to be checked*: as stop, but presented as something to look into, e.g. "I don't know".
 
+  *Show when* on an answer: it is only shown when the visitor has chosen one of the selected
+  answers in an earlier question, e.g. "Higher than 4 metres" only inside a detailed plan. A hidden
+  answer cannot be chosen, and it is cleared if the visitor changes the earlier answer.
+
   With several answers, the most severe outcome wins (stop before check before continue).
   Outcome tags are only shown on questions where an answer can end the guide.
   The setting *Show outcomes on answers* (on by default) hides the tags; the note under the answers

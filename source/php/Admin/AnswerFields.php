@@ -31,6 +31,8 @@ class AnswerFields
         'field_6912b1a0d0061',
         'field_6912b1a0d0062',
         'field_6912b1a0d0063',
+        // Answer options
+        'field_6912b1a0d0064',
         // Summary page content
         'field_6912b1a0d0103',
         'field_6912b1a0d010a',
