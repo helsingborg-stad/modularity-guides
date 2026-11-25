@@ -585,6 +585,35 @@ if (function_exists('acf_add_local_field_group')) {
                                             'parent_repeater' => 'field_57727e502981a',
                                         ),
                                         4 => array(
+                                            'key' => 'field_6912b1a0d0064',
+                                            'label' => __('Show when', 'modularity-guides'),
+                                            'name' => 'show_when',
+                                            'aria-label' => '',
+                                            'type' => 'select',
+                                            'instructions' => __('Only show this answer when the visitor has chosen any of these answers in an earlier question. Leave empty to always show.', 'modularity-guides'),
+                                            'required' => 0,
+                                            'conditional_logic' => 0,
+                                            'wrapper' => array(
+                                                'width' => '',
+                                                'class' => '',
+                                                'id' => '',
+                                            ),
+                                            'choices' => array(
+                                            ),
+                                            'default_value' => array(
+                                            ),
+                                            'return_format' => 'value',
+                                            'multiple' => 1,
+                                            'allow_null' => 1,
+                                            'ui' => 1,
+                                            'ajax' => 0,
+                                            'placeholder' => '',
+                                            'create_options' => 0,
+                                            'save_options' => 0,
+                                            'allow_in_bindings' => 0,
+                                            'parent_repeater' => 'field_57727e502981a',
+                                        ),
+                                        5 => array(
                                             'key' => 'field_57727e6d2981b',
                                             'label' => __('Toggle key', 'modularity-guides'),
                                             'name' => 'key',
@@ -607,7 +636,7 @@ if (function_exists('acf_add_local_field_group')) {
                                             'disabled' => 0,
                                             'parent_repeater' => 'field_57727e502981a',
                                         ),
-                                        5 => array(
+                                        6 => array(
                                             'key' => 'field_57d280f7e9dee',
                                             'label' => __('Relate to (toggle key)', 'modularity-guides'),
                                             'name' => 'relate_to',

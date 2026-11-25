@@ -74,4 +74,13 @@ class OptionFactoryTest extends TestCase
         static::assertSame('pass', OptionFactory::normalizeOutcome(null));
         static::assertSame('review', OptionFactory::normalizeOutcome('review'));
     }
+
+    public function testShowWhenBecomesAnAttribute(): void
+    {
+        $option = $this->factory()->create(['key' => 'b', 'show_when' => ['a', ' c ', '']], 'radio', 'id', 'name', 'fallback');
+        $without = $this->factory()->create(['key' => 'b', 'show_when' => false], 'radio', 'id', 'name', 'fallback');
+
+        static::assertSame('a,c', $option['attributes']['data-js-guide-wizard-show-when']);
+        static::assertArrayNotHasKey('data-js-guide-wizard-show-when', $without['attributes']);
+    }
 }

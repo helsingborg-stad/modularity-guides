@@ -19,13 +19,19 @@ class ShowWhen
 
     public static function apply(array $fields): array
     {
-        foreach ($fields['steps'] ?? [] as $stepIndex => $step) {
-            foreach ($step['content'] ?? [] as $contentIndex => $content) {
+        foreach (self::rows($fields['steps'] ?? null) as $stepIndex => $step) {
+            foreach (self::rows($step['content'] ?? null) as $contentIndex => $content) {
                 $fields['steps'][$stepIndex]['content'][$contentIndex] = self::applyToContent((array) $content);
             }
         }
 
         return $fields;
+    }
+
+    /** ACF returns false for a repeater or flexible content field without rows. */
+    private static function rows(mixed $rows): array
+    {
+        return is_array($rows) ? $rows : [];
     }
 
     private static function applyToContent(array $content): array

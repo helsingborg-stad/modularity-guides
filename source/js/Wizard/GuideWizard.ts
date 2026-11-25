@@ -1,4 +1,5 @@
 import { Answers } from './Answers';
+import { Conditions } from './Conditions';
 import { hook, ROOT } from './hooks';
 import { NOTE_KEY, type Result } from './outcome';
 import { Sidebar } from './Sidebar';
@@ -15,6 +16,7 @@ type View = { kind: 'question'; index: number } | { kind: 'result' };
 export class GuideWizard {
 	private readonly strings: WizardStrings;
 	private readonly answers: Answers;
+	private readonly conditions: Conditions;
 	private readonly sidebar: Sidebar;
 	private readonly summary: Summary | null = null;
 	private readonly textExport: TextExport | null = null;
@@ -22,10 +24,13 @@ export class GuideWizard {
 	private view: View = { kind: 'question', index: 0 };
 	private furthest = 0;
 	private lastResult: Result | null = null;
+	/** True while hidden options are unchecked, so their change events are not handled again. */
+	private applyingConditions = false;
 
 	constructor(private readonly root: HTMLElement) {
 		this.strings = parseStrings(root.getAttribute(ROOT));
 		this.answers = new Answers([...root.querySelectorAll<HTMLElement>(hook('question'))]);
+		this.conditions = new Conditions(this.answers);
 		this.sidebar = new Sidebar(root, this.answers, this.strings);
 		this.toast = new Toast(root.querySelector<HTMLElement>(hook('toast')));
 
@@ -56,9 +61,10 @@ export class GuideWizard {
 		for (let index = 0; index < this.answers.count; index++) {
 			const question = this.answers.question(index) as HTMLElement;
 			question.addEventListener('change', (event) => {
-				if ((event.target as HTMLInputElement)?.dataset?.jsGuideWizardOutcome === undefined) {
+				if (this.applyingConditions || (event.target as HTMLInputElement)?.dataset?.jsGuideWizardOutcome === undefined) {
 					return;
 				}
+				this.applyConditions();
 				this.updateQuestionControls(index, true);
 				this.renderSidebar();
 			});
@@ -133,8 +139,19 @@ export class GuideWizard {
 		return this.view.kind === 'question' ? this.view.index : -1;
 	}
 
+	/** Shows or hides options with "Show when" from the answers to earlier questions. */
+	private applyConditions(): void {
+		this.applyingConditions = true;
+		try {
+			this.conditions.apply();
+		} finally {
+			this.applyingConditions = false;
+		}
+	}
+
 	private render(focus = true): void {
 		const current = this.currentIndex;
+		this.applyConditions();
 
 		for (let index = 0; index < this.answers.count; index++) {
 			(this.answers.question(index) as HTMLElement).hidden = index !== current;
